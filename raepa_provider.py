@@ -33,6 +33,9 @@ __revision__ = '$Format:%H$'
 from qgis.core import QgsProcessingProvider
 from .raepa_execute_sql_on_service_algorithm import RaepaExecuteSqlOnServiceAlgorithm
 from .raepa_create_structure_algorithm import RaepaCreateStructureAlgorithm
+from .raepa_import_shapefile_algorithm import RaepaImportShapefileAlgorithm
+from .raepa_import_convert_into_model_algorithm import RaepaImportConvertIntoModelAlgorithm
+from .raepa_import_insert_converted_data_algorithm import RaepaImportInsertConvertedDataAlgorithm
 
 
 class RaepaProvider(QgsProcessingProvider):
@@ -43,7 +46,10 @@ class RaepaProvider(QgsProcessingProvider):
         # Load algorithms
         self.alglist = [
             RaepaExecuteSqlOnServiceAlgorithm(),
-            RaepaCreateStructureAlgorithm()
+            RaepaCreateStructureAlgorithm(),
+            RaepaImportShapefileAlgorithm(),
+            RaepaImportConvertIntoModelAlgorithm(),
+            RaepaImportInsertConvertedDataAlgorithm()
         ]
 
     def unload(self):
