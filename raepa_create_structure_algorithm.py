@@ -81,15 +81,30 @@ class RaepaCreateStructureAlgorithm(QgsProcessingAlgorithm):
         import processing
         plugin_dir = os.path.dirname(os.path.abspath(__file__))
 
-        sql = 'CREATE SCHEMA IF NOT EXISTS raepa;'
+        sql_files = [
+            '00_raepa_pre_structure.sql',
+            '10_raepa_structure.sql',
+            '20_raepa_post_structure.sql',
+            '30_raepa_triggers.sql',
+            '40_raepa_verification.sql',
+            '50_raepa_audit.sql',
+            '60_raepa_import_gabarits_shapefile.sql',
+            '90_raepa_nomenclature.sql'
+        ]
         msg = ''
-        exec_result = processing.run("Raepa:raepa_execute_sql_on_service", {
-            'PGSERVICE': parameters[self.PGSERVICE],
-            'INPUT_SQL': sql
-        }, context=context, feedback=feedback)
+        for sf in sql_files:
+            sql_file = os.path.join(plugin_dir, 'sql/install/%s' % sf)
+            with open(sql_file, 'r') as f:
+                feedback.pushInfo(sf)
+                sql = f.read()
+                exec_result = processing.run("Raepa:raepa_execute_sql_on_service", {
+                    'PGSERVICE': parameters[self.PGSERVICE],
+                    'INPUT_SQL': sql
+                }, context=context, feedback=feedback)
+                feedback.pushInfo(exec_result['OUTPUT_STRING'])
 
         return {
-            self.OUTPUT_STRING: exec_result['OUTPUT_STRING']
+            self.OUTPUT_STRING: msg
         }
 
     def name(self):

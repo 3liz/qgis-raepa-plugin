@@ -100,8 +100,7 @@ class RaepaExecuteSqlOnServiceAlgorithm(QgsProcessingAlgorithm):
 
                 # Close db connection
                 db.close()
-                msg = u'SQL has been successfully run: \n%s' % sql
-                feedback.pushInfo(msg)
+                msg = u'SQL has been successfully run'
             else:
                 err = db.lastError()
                 QgsProcessingException(err.driverText())
