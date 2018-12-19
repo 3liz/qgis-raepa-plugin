@@ -31,7 +31,8 @@ __copyright__ = '(C) 2018 by 3liz'
 __revision__ = '$Format:%H$'
 
 from qgis.core import QgsProcessingProvider
-from .raepa_algorithm import RaepaAlgorithm
+from .raepa_execute_sql_on_service_algorithm import RaepaExecuteSqlOnServiceAlgorithm
+from .raepa_create_structure_algorithm import RaepaCreateStructureAlgorithm
 
 
 class RaepaProvider(QgsProcessingProvider):
@@ -40,7 +41,10 @@ class RaepaProvider(QgsProcessingProvider):
         QgsProcessingProvider.__init__(self)
 
         # Load algorithms
-        self.alglist = [RaepaAlgorithm()]
+        self.alglist = [
+            RaepaExecuteSqlOnServiceAlgorithm(),
+            RaepaCreateStructureAlgorithm()
+        ]
 
     def unload(self):
         """
@@ -50,34 +54,14 @@ class RaepaProvider(QgsProcessingProvider):
         pass
 
     def loadAlgorithms(self):
-        """
-        Loads all algorithms belonging to this provider.
-        """
         for alg in self.alglist:
             self.addAlgorithm( alg )
 
     def id(self):
-        """
-        Returns the unique provider id, used for identifying the provider. This
-        string should be a unique, short, character only string, eg "qgis" or
-        "gdal". This string should not be localised.
-        """
-        return 'Raepa provider name'
+        return 'Raepa'
 
     def name(self):
-        """
-        Returns the provider name, which is used to describe the provider
-        within the GUI.
-
-        This string should be short (e.g. "Lastools") and localised.
-        """
-        return self.tr('Raepa provider name')
+        return self.tr('Raepa')
 
     def longName(self):
-        """
-        Returns the a longer version of the provider name, which can include
-        extra details such as version numbers. E.g. "Lastools LIDAR tools
-        (version 2.2.1)". This string should be localised. The default
-        implementation returns the same string as name().
-        """
-        return self.name()
+        return self.tr('Outils Raepa')
