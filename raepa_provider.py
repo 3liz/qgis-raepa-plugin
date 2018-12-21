@@ -36,6 +36,7 @@ from .raepa_create_structure_algorithm import RaepaCreateStructureAlgorithm
 from .raepa_import_shapefile_algorithm import RaepaImportShapefileAlgorithm
 from .raepa_import_convert_into_model_algorithm import RaepaImportConvertIntoModelAlgorithm
 from .raepa_import_insert_converted_data_algorithm import RaepaImportInsertConvertedDataAlgorithm
+from .raepa_export_package_algorithm import RaepaExportPackageAlgorithm
 
 
 class RaepaProvider(QgsProcessingProvider):
@@ -49,7 +50,8 @@ class RaepaProvider(QgsProcessingProvider):
             RaepaCreateStructureAlgorithm(),
             RaepaImportShapefileAlgorithm(),
             RaepaImportConvertIntoModelAlgorithm(),
-            RaepaImportInsertConvertedDataAlgorithm()
+            RaepaImportInsertConvertedDataAlgorithm(),
+            RaepaExportPackageAlgorithm()
         ]
 
     def unload(self):
