@@ -115,6 +115,9 @@ INSERT INTO raepa."val_raepa_fonc_app_ass" (libelle, code, description) VALUES (
 INSERT INTO raepa."val_raepa_fonc_app_ass" (libelle, code, description) VALUES ('Vanne', '03', 'Vanne d''assainissement');
 INSERT INTO raepa."val_raepa_fonc_app_ass" (libelle, code, description) VALUES ('Débitmètre', '04', 'Appareil de mesure des débits transités');
 INSERT INTO raepa."val_raepa_fonc_app_ass" (libelle, code, description) VALUES ('Autre', '99', 'Appareillage dont le type ne figure pas dans la liste ci-dessus');
+INSERT INTO raepa."val_raepa_fonc_app_ass" (libelle, code, description) VALUES ('Purge', '_1', 'Purge');
+
+
 INSERT INTO raepa."val_raepa_fonc_ouv_ass" (libelle, code, description) VALUES ('Indéterminé', '00', 'Type d''ouvrage inconnu');
 INSERT INTO raepa."val_raepa_fonc_ouv_ass" (libelle, code, description) VALUES ('Station de pompage', '01', 'Station de pompage d''eaux usées et/ou pluviales');
 INSERT INTO raepa."val_raepa_fonc_ouv_ass" (libelle, code, description) VALUES ('Station d''épuration', '02', 'Station de traitement d''eaux usées');
@@ -124,6 +127,14 @@ INSERT INTO raepa."val_raepa_fonc_ouv_ass" (libelle, code, description) VALUES (
 INSERT INTO raepa."val_raepa_fonc_ouv_ass" (libelle, code, description) VALUES ('Regard', '06', 'Regard');
 INSERT INTO raepa."val_raepa_fonc_ouv_ass" (libelle, code, description) VALUES ('Avaloir', '07', 'Avaloir');
 INSERT INTO raepa."val_raepa_fonc_ouv_ass" (libelle, code, description) VALUES ('Autre', '99', 'Ouvrage dont le type ne figure pas dans la liste ci-dessus');
+INSERT INTO raepa."val_raepa_fonc_ouv_ass" (libelle, code, description) VALUES ('Désableur', '_1', 'Désableur');
+INSERT INTO raepa."val_raepa_fonc_ouv_ass" (libelle, code, description) VALUES ('Boîte de branchement', '_2', 'Boîte de branchement');
+INSERT INTO raepa."val_raepa_fonc_ouv_ass" (libelle, code, description) VALUES ('Regard double', '_3', 'Regard double');
+INSERT INTO raepa."val_raepa_fonc_ouv_ass" (libelle, code, description) VALUES ('RACAS', '_4', 'RACAS');
+INSERT INTO raepa."val_raepa_fonc_ouv_ass" (libelle, code, description) VALUES ('Chasse', '_5', 'Chasse');
+INSERT INTO raepa."val_raepa_fonc_ouv_ass" (libelle, code, description) VALUES ('Dégraisseur', '_6', 'Dégraisseur');
+INSERT INTO raepa."val_raepa_fonc_ouv_ass" (libelle, code, description) VALUES ('Grille', '_7', 'Grille');
+
 INSERT INTO raepa."val_raepa_support_reparation" (libelle, code, description) VALUES ('Canalisation', '01', 'Réparation sur une canalisation');
 INSERT INTO raepa."val_raepa_support_reparation" (libelle, code, description) VALUES ('Appareillage', '02', 'Réparation d''un appareillage');
 INSERT INTO raepa."val_raepa_support_reparation" (libelle, code, description) VALUES ('Ouvrage', '03', 'Réparation d''un ouvrage');
@@ -166,6 +177,9 @@ INSERT INTO raepa."_val_raepa_type_intervention_ass" (libelle, code, description
 INSERT INTO raepa."_val_raepa_type_intervention_ass" (libelle, code, description) VALUES ('Inspection', '04', 'Inspection (ITV)');
 
 
-
+-- Ajout de lignes utiles pour les contraintes
+ALTER TABLE raepa.raepa_ouvrass_p DISABLE TRIGGER ALL;
+INSERT INTO raepa.raepa_ouvrass_p (id, idouvrage, x ,y ,mouvrage ,gexploit ,typreseau ,fnouvass ,anfinpose ,idcanamont ,idcanaval ,qualglocxy, qualglocz,datemaj ,sourmaj ,geom) VALUES ( -1, 'INCONNU', 0, 0, '', '', '01', '01', 2018, 'INCONNU', 'INCONNU', '01', '01', now()::date, '', ST_SetSrid(ST_MakePoint(0, 0), 2154) );
+ALTER TABLE raepa.raepa_ouvrass_p ENABLE TRIGGER ALL;
 
 COMMIT;
