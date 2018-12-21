@@ -132,11 +132,12 @@ class RaepaImportConvertIntoModelAlgorithm(QgsProcessingAlgorithm):
             '%s', '%s'
         )
         ''' % (
-            parameters[ANNEE_FIN_POSE],
-            parameters[QUALITE_XY], parameters[QUALITE_Z],
-            parameters[ETAT],
-            parameters[SOURCE_HISTORIQUE], parameters[CODE_CHANTIER]
+            parameters[self.ANNEE_FIN_POSE],
+            parameters[self.QUALITE_XY], parameters[self.QUALITE_Z],
+            parameters[self.ETAT],
+            parameters[self.SOURCE_HISTORIQUE], parameters[self.CODE_CHANTIER]
         )
+        feedback.pushInfo(sql)
         exec_result = processing.run("Raepa:raepa_execute_sql_on_service", {
             'PGSERVICE': parameters[self.PGSERVICE],
             'INPUT_SQL': sql

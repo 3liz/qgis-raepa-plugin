@@ -108,7 +108,9 @@ class RaepaImportInsertConvertedDataAlgorithm(QgsProcessingAlgorithm):
             '%s', '%s', %s
         )
         ''' % (
-            parameters[SOURCE_HISTORIQUE], parameters[CODE_CHANTIER], parameters[NETTOYER_AVANT_INSERTION]
+            parameters[self.SOURCE_HISTORIQUE],
+            parameters[self.CODE_CHANTIER],
+            parameters[self.NETTOYER_AVANT_INSERTION]
         )
         exec_result = processing.run("Raepa:raepa_execute_sql_on_service", {
             'PGSERVICE': parameters[self.PGSERVICE],

@@ -430,7 +430,7 @@ ALTER TABLE "raepa_canalaep_l" ADD COLUMN IF NOT EXISTS "id" serial NOT NULL ;
 COMMENT ON COLUMN "raepa_canalaep_l"."id" IS 'Identifiant numérique auto (clé primaire)' ;
 
 ALTER TABLE "raepa_canalaep_l" ADD COLUMN IF NOT EXISTS "idcana" varchar(254) NOT NULL ;
-ALTER TABLE "raepa_canalaep_l" ALTER COLUMN "idcana" SET DEFAULT 'raepa.generate_oid(‘raepa_canalaep_l’)';
+ALTER TABLE "raepa_canalaep_l" ALTER COLUMN "idcana" SET DEFAULT raepa.generate_oid('raepa_canalaep_l');
 COMMENT ON COLUMN "raepa_canalaep_l"."idcana" IS 'Identifiant de la canalisation (code textuel)' ;
 
 ALTER TABLE "raepa_canalaep_l" ADD COLUMN IF NOT EXISTS "mouvrage" varchar(100) NOT NULL ;
@@ -1065,7 +1065,7 @@ ALTER TABLE "raepa_ouvrass_p" ADD COLUMN IF NOT EXISTS "id" serial  NOT NULL ;
 COMMENT ON COLUMN "raepa_ouvrass_p"."id" IS 'Identifiant numérique auto (clé primaire)' ;
 
 ALTER TABLE "raepa_ouvrass_p" ADD COLUMN IF NOT EXISTS "idouvrage" varchar(254) NOT NULL ;
-ALTER TABLE "raepa_ouvrass_p" ALTER COLUMN "idouvrage" SET DEFAULT 'raepa.generate_oid(‘raepa_ouvrass_p’)';
+ALTER TABLE "raepa_ouvrass_p" ALTER COLUMN "idouvrage" SET DEFAULT raepa.generate_oid('raepa_ouvrass_p');
 COMMENT ON COLUMN "raepa_ouvrass_p"."idouvrage" IS 'Identifiant de l''ouvrage' ;
 
 ALTER TABLE "raepa_ouvrass_p" ADD COLUMN IF NOT EXISTS "x" numeric(10,3) NOT NULL ;
@@ -1181,7 +1181,7 @@ ALTER TABLE "raepa_reparass_p" ADD COLUMN IF NOT EXISTS "id" serial  NOT NULL ;
 COMMENT ON COLUMN "raepa_reparass_p"."id" IS 'Identifiant numérique auto (clé primaire)' ;
 
 ALTER TABLE "raepa_reparass_p" ADD COLUMN IF NOT EXISTS "idrepar" varchar(254) NOT NULL ;
-ALTER TABLE "raepa_reparass_p" ALTER COLUMN "idrepar" SET DEFAULT 'raepa.generate_oid(‘raepa_reparass_p’)';
+ALTER TABLE "raepa_reparass_p" ALTER COLUMN "idrepar" SET DEFAULT raepa.generate_oid('raepa_reparass_p');
 COMMENT ON COLUMN "raepa_reparass_p"."idrepar" IS 'Identifiant de la réparation effectuée' ;
 
 ALTER TABLE "raepa_reparass_p" ADD COLUMN IF NOT EXISTS "x" numeric(10,3) NOT NULL ;

@@ -109,7 +109,7 @@ BEGIN
         in_source_historique, in_code_chantier, now()::date,
         '00' AS _precisionannee,
         c.fe_amont, c.fe_aval, c.id_nd_amon, c.id_nd_aval,
-        ST_Transform(geom, 2154)
+        ST_Transform((st_dump(c.geom)).geom, 2154)
     FROM imports.gabarit_canalisations AS c
     ;
 

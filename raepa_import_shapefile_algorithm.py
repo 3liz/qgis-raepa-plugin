@@ -64,6 +64,13 @@ class RaepaImportShapefileAlgorithm(QgsProcessingAlgorithm):
         """
         # INPUTS
         self.addParameter(
+            QgsProcessingParameterString(
+                self.CONNECTION_NAME, 'PostgreSQL connection name in QGIS',
+                defaultValue='raepa',
+                optional=False
+            )
+        )
+        self.addParameter(
             QgsProcessingParameterVectorLayer(
                 self.APPAREILS, self.tr('Appareils'),
                 optional=False
@@ -95,83 +102,66 @@ class RaepaImportShapefileAlgorithm(QgsProcessingAlgorithm):
         """
         import processing
         plugin_dir = os.path.dirname(os.path.abspath(__file__))
-        Database = None
-        a = self.getConnections()
-        if parameters[self.CONNECTION_NAME] in a:
-            Database = a.index(Connexion_PostgreSQL)
 
-        if not Database:
-            QgsProcessingException('Database connection %s does not exists' % parameters[self.CONNECTION_NAME])
+        feedback.pushInfo('Connection name = %s' % parameters[self.CONNECTION_NAME])
 
         # Ouvrages
         feedback.pushInfo('Import ouvrages')
-        ouvrages_conversion = processing.runalg(
-            'qgis:importintopostgis',
-            parameters[self.OUVRAGES],
-            Database,
-            'imports',
-            'gabarit_ouvrages',
-            None, # primary key
-            'geom',
-            'UTF-8',
-            True, # overwrite
-            True, # create index
-            True, # convert field name to lowercase
-            True, # drop string length
-            True # force singlepart
-        )
+        ouvrages_conversion = processing.run("qgis:importintopostgis", {
+            'INPUT': parameters[self.OUVRAGES],
+            'DATABASE': parameters[self.CONNECTION_NAME],
+            'SCHEMA': 'imports',
+            'TABLENAME': 'gabarit_ouvrages',
+            'PRIMARY_KEY': None,
+            'GEOMETRY_COLUMN': 'geom',
+            'ENCODING': 'UTF-8',
+            'OVERWRITE': True,
+            'CREATEINDEX': True,
+            'LOWERCASE_NAMES': True,
+            'DROP_STRING_LENGTH': True,
+            'FORCE_SINGLEPART': True
+        }, context=context, feedback=feedback)
         feedback.pushInfo('Import ouvrages - OK')
 
         # Appareils
         feedback.pushInfo('Import appareils')
-        appareil_conversion = processing.runalg(
-            'qgis:importintopostgis',
-            parameters[self.APPAREILS],
-            Database,
-            'imports',
-            'gabarit_appareils',
-            None, # primary key
-            'geom',
-            'UTF-8',
-            True, # overwrite
-            True, # create index
-            True, # convert field name to lowercase
-            True, # drop string length
-            True # force singlepart
-        )
+        appareil_conversion = processing.run("qgis:importintopostgis", {
+            'INPUT': parameters[self.APPAREILS],
+            'DATABASE': parameters[self.CONNECTION_NAME],
+            'SCHEMA': 'imports',
+            'TABLENAME': 'gabarit_appareils',
+            'PRIMARY_KEY': None,
+            'GEOMETRY_COLUMN': 'geom',
+            'ENCODING': 'UTF-8',
+            'OVERWRITE': True,
+            'CREATEINDEX': True,
+            'LOWERCASE_NAMES': True,
+            'DROP_STRING_LENGTH': True,
+            'FORCE_SINGLEPART': True
+        }, context=context, feedback=feedback)
         feedback.pushInfo('Import appareils - OK')
 
         # Canalisations
         feedback.pushInfo('Import canalisations')
-        canalisation_conversion = processing.runalg(
-            'qgis:importintopostgis',
-            parameters[self.CANALISATIONS],
-            Database,
-            'imports',
-            'gabarit_canalisations',
-            None, # primary key
-            'geom',
-            'UTF-8',
-            True, # overwrite
-            True, # create index
-            True, # convert field name to lowercase
-            True, # drop string length
-            True # force singlepart
-        )
+        canalisation_conversion = processing.run("qgis:importintopostgis", {
+            'INPUT': parameters[self.CANALISATIONS],
+            'DATABASE': parameters[self.CONNECTION_NAME],
+            'SCHEMA': 'imports',
+            'TABLENAME': 'gabarit_canalisations',
+            'PRIMARY_KEY': None,
+            'GEOMETRY_COLUMN': 'geom',
+            'ENCODING': 'UTF-8',
+            'OVERWRITE': True,
+            'CREATEINDEX': True,
+            'LOWERCASE_NAMES': True,
+            'DROP_STRING_LENGTH': True,
+            'FORCE_SINGLEPART': True
+        }, context=context, feedback=feedback)
         feedback.pushInfo('Import canalisations - OK')
 
         return {
             self.OUTPUT_STRING: 'Import OK'
         }
-
-
-    # Get database connection index
-    def getConnections(self):
-        s = QSettings()
-        s.beginGroup("PostgreSQL/connections")
-        currentConnections = s.childGroups()
-        s.endGroup()
-        return currentConnections
 
     def name(self):
         return 'raepa_import_shapefile'
