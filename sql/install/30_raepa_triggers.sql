@@ -15,7 +15,7 @@ DECLARE
 BEGIN
 
     -- Calcul de l'identifiant si besoin
-    IF NEW.idouvrage IS NULL OR trim(NEW.idouvrage) = '' OR NEW.idouvrage NOT LIKE 'cas%' THEN
+    IF NEW.idouvrage IS NULL OR trim(NEW.idouvrage) = '' THEN
         NEW.idouvrage := raepa.generate_oid('raepa_ouvrass_p')::character varying;
     END IF;
 
@@ -178,7 +178,7 @@ EXECUTE PROCEDURE raepa.trg_apres_modification_ouvrage();
 ----------------
 -- APPAREILS
 -----------------
--- Modification des valeures de l'appareil
+-- Modification des valeurs de l'appareil
 CREATE OR REPLACE FUNCTION raepa.trg_avant_modification_appareil()
 RETURNS trigger AS
 $BODY$
@@ -187,7 +187,7 @@ DECLARE
 BEGIN
 
     -- Calcul de l'identifiant si besoin
-    IF NEW.idappareil IS NULL OR trim(NEW.idappareil) = '' OR NEW.idappareil NOT LIKE 'cas%' THEN
+    IF NEW.idappareil IS NULL OR trim(NEW.idappareil) = '' THEN
         NEW.idappareil := raepa.generate_oid('raepa_apparass_p')::character varying;
     END IF;
 
@@ -348,7 +348,7 @@ BEGIN
     END IF;
 
     -- Calcul de l'identifiant si besoin
-    IF NEW.idcana NOT LIKE 'cas%' THEN
+    IF NEW.idcana IS NULL OR trim(NEW.idcana) = '' THEN
         NEW.idcana := raepa.generate_oid('raepa_canalass_l')::character varying;
     END IF;
 

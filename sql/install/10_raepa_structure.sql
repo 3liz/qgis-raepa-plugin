@@ -1,7 +1,6 @@
 BEGIN;
 
 -- Table val_raepa_materiau
---DROP SCHEMA IF EXISTS "raepa" CASCADE;
 CREATE SCHEMA IF NOT EXISTS "raepa" ;
 SET search_path TO raepa,public ;
 CREATE TABLE IF NOT EXISTS "val_raepa_materiau" () ;
@@ -551,7 +550,7 @@ ALTER TABLE "raepa_apparaep_p" ADD COLUMN IF NOT EXISTS "id" serial  NOT NULL ;
 COMMENT ON COLUMN "raepa_apparaep_p"."id" IS 'Identifiant numérique auto (clé primaire)' ;
 
 ALTER TABLE "raepa_apparaep_p" ADD COLUMN IF NOT EXISTS "idappareil" varchar(254) NOT NULL ;
-ALTER TABLE "raepa_apparaep_p" ALTER COLUMN "idappareil" SET DEFAULT 'raepa.generate_oid(‘raepa_apparaep_p’)';
+ALTER TABLE "raepa_apparaep_p" ALTER COLUMN "idappareil" SET DEFAULT raepa.generate_oid('raepa_apparaep_p');
 COMMENT ON COLUMN "raepa_apparaep_p"."idappareil" IS 'Identifiant de l''appareillage' ;
 
 ALTER TABLE "raepa_apparaep_p" ADD COLUMN IF NOT EXISTS "x" numeric(10,3) NOT NULL ;
@@ -651,7 +650,7 @@ ALTER TABLE "raepa_ouvraep_p" ADD COLUMN IF NOT EXISTS "id" serial  NOT NULL ;
 COMMENT ON COLUMN "raepa_ouvraep_p"."id" IS 'Identifiant numérique auto (clé primaire)' ;
 
 ALTER TABLE "raepa_ouvraep_p" ADD COLUMN IF NOT EXISTS "idouvrage" varchar(254) NOT NULL ;
-ALTER TABLE "raepa_ouvraep_p" ALTER COLUMN "idouvrage" SET DEFAULT 'raepa.generate_oid(‘raepa_ouvraep_p’)';
+ALTER TABLE "raepa_ouvraep_p" ALTER COLUMN "idouvrage" SET DEFAULT raepa.generate_oid('raepa_ouvraep_p');
 COMMENT ON COLUMN "raepa_ouvraep_p"."idouvrage" IS 'Identifiant de l''ouvrage' ;
 
 ALTER TABLE "raepa_ouvraep_p" ADD COLUMN IF NOT EXISTS "x" numeric(10,3) NOT NULL ;
@@ -745,7 +744,7 @@ ALTER TABLE "raepa_reparaep_p" ADD COLUMN IF NOT EXISTS "id" serial  NOT NULL ;
 COMMENT ON COLUMN "raepa_reparaep_p"."id" IS 'Identifiant numérique auto (clé primaire)' ;
 
 ALTER TABLE "raepa_reparaep_p" ADD COLUMN IF NOT EXISTS "idrepar" varchar(254) NOT NULL ;
-ALTER TABLE "raepa_reparaep_p" ALTER COLUMN "idrepar" SET DEFAULT 'raepa.generate_oid(‘raepa_reparaep_p’)';
+ALTER TABLE "raepa_reparaep_p" ALTER COLUMN "idrepar" SET DEFAULT raepa.generate_oid('raepa_reparaep_p');
 COMMENT ON COLUMN "raepa_reparaep_p"."idrepar" IS 'Identifiant de la réparation effectuée' ;
 
 ALTER TABLE "raepa_reparaep_p" ADD COLUMN IF NOT EXISTS "x" numeric(10,3) NOT NULL ;
@@ -792,7 +791,7 @@ ALTER TABLE "raepa_canalass_l" ADD COLUMN IF NOT EXISTS "id" serial  NOT NULL ;
 COMMENT ON COLUMN "raepa_canalass_l"."id" IS 'Identifiant numérique auto (clé primaire)' ;
 
 ALTER TABLE "raepa_canalass_l" ADD COLUMN IF NOT EXISTS "idcana" varchar(254) NOT NULL ;
-ALTER TABLE "raepa_canalass_l" ALTER COLUMN "idcana" SET DEFAULT 'raepa.generate_oid(‘raepa_canalass_l’)';
+ALTER TABLE "raepa_canalass_l" ALTER COLUMN "idcana" SET DEFAULT raepa.generate_oid('raepa_canalass_l');
 COMMENT ON COLUMN "raepa_canalass_l"."idcana" IS 'Identifiant de la canalisation' ;
 
 ALTER TABLE "raepa_canalass_l" ADD COLUMN IF NOT EXISTS "mouvrage" varchar(100) NOT NULL ;
@@ -951,7 +950,7 @@ ALTER TABLE "raepa_apparass_p" ADD COLUMN IF NOT EXISTS "id" serial  NOT NULL ;
 COMMENT ON COLUMN "raepa_apparass_p"."id" IS 'Identifiant numérique auto (clé primaire)' ;
 
 ALTER TABLE "raepa_apparass_p" ADD COLUMN IF NOT EXISTS "idappareil" varchar(254) NOT NULL ;
-ALTER TABLE "raepa_apparass_p" ALTER COLUMN "idappareil" SET DEFAULT 'raepa.generate_oid(‘raepa_apparass_p’)';
+ALTER TABLE "raepa_apparass_p" ALTER COLUMN "idappareil" SET DEFAULT raepa.generate_oid('raepa_apparass_p');
 COMMENT ON COLUMN "raepa_apparass_p"."idappareil" IS 'Identifiant de l''appareillage' ;
 
 ALTER TABLE "raepa_apparass_p" ADD COLUMN IF NOT EXISTS "x" numeric(10,3) NOT NULL ;
@@ -1495,5 +1494,9 @@ ALTER TABLE "raepa_reparass_p" ADD CONSTRAINT raepa_reparass_p__etatcanalisation
 ALTER TABLE "affleurant_pcrs" ADD CONSTRAINT affleurant_pcrs_qualglocxy_fkey FOREIGN KEY (qualglocxy)  REFERENCES "val_raepa_qualite_geoloc" (code);
 
 ALTER TABLE "affleurant_pcrs" ADD CONSTRAINT affleurant_pcrs_qualglocz_fkey FOREIGN KEY (qualglocz)  REFERENCES "val_raepa_qualite_geoloc" (code);
+
+
+-- Schema import
+CREATE SCHEMA IF NOT EXISTS imports;
 
 COMMIT;

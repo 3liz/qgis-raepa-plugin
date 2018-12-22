@@ -31,12 +31,14 @@ __copyright__ = '(C) 2018 by 3liz'
 __revision__ = '$Format:%H$'
 
 from PyQt5.QtCore import QCoreApplication
+from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 from qgis.core import (
         QgsProcessing,
         QgsProcessingAlgorithm,
         QgsProcessingUtils,
         QgsProcessingException,
         QgsProcessingParameterString,
+        QgsProcessingParameterBoolean,
         QgsProcessingOutputString
 )
 import os
@@ -51,6 +53,10 @@ class RaepaCreateStructureAlgorithm(QgsProcessingAlgorithm):
     # calling from the QGIS console.
 
     PGSERVICE = 'PGSERVICE'
+    OVERRIDE = 'OVERRIDE'
+    NOM = 'NOM'
+    SIREN = 'SIREN'
+    CODE = 'CODE'
     OUTPUT_STRING = 'OUTPUT_STRING'
 
     def initAlgorithm(self, config):
@@ -66,6 +72,34 @@ class RaepaCreateStructureAlgorithm(QgsProcessingAlgorithm):
                 optional=False
             )
         )
+        self.addParameter(
+            QgsProcessingParameterBoolean(
+                self.OVERRIDE, 'Ecraser le schéma raepa et toutes les données ? ** ATTENTION **',
+                defaultValue=False,
+                optional=False
+            )
+        )
+        self.addParameter(
+            QgsProcessingParameterString(
+                self.NOM, 'Nom du gestionnaire',
+                defaultValue='Communauté d\'Agglomération de Test',
+                optional=False
+            )
+        )
+        self.addParameter(
+            QgsProcessingParameterString(
+                self.SIREN, 'SIREN',
+                defaultValue='123456789',
+                optional=False
+            )
+        )
+        self.addParameter(
+            QgsProcessingParameterString(
+                self.CODE, 'Nom abbrégé en 3 caractères',
+                defaultValue='cat',
+                optional=False
+            )
+        )
 
         # OUTPUTS
         self.addOutput(
@@ -74,6 +108,52 @@ class RaepaCreateStructureAlgorithm(QgsProcessingAlgorithm):
             )
         )
 
+    def checkParameterValues(self, parameters, context):
+        # Check inputs
+        if len(parameters[self.CODE]) != 3:
+            return False, self.tr('Le nom abbrégé doit faire 3 exactement caractères.')
+        if len(parameters[self.SIREN]) != 9:
+            return False, self.tr("Le SIREN doit faire exactement 9 caractères.")
+
+        # Check database content
+        ok, msg = self.checkRaepaSchema(parameters, context)
+        if not ok:
+            return False, msg
+
+        return super(RaepaCreateStructureAlgorithm, self).checkParameterValues(parameters, context)
+
+    def checkRaepaSchema(self, parameters, context):
+        override = self.parameterAsBool(parameters, self.OVERRIDE, context)
+        db = QSqlDatabase.addDatabase("QPSQL")
+        service = parameters[self.PGSERVICE]
+        sql = "SELECT to_regclass('raepa.raepa_ouvrass_p') AS test;"
+        db.setConnectOptions('service=%s' % service)
+        msg = ''
+        ok = True
+        if db.isValid():
+            if db.open():
+                # Run the query
+                query = db.exec_(sql)
+                msg =  query.lastError().databaseText()
+                if msg:
+                    ok = False
+                else:
+                    while query.next():
+                        record = query.record()
+                        value = record.field('test').value()
+                        if value == 'raepa.raepa_ouvrass_p' and not override:
+                            ok = False
+                            msg = "Le schema raepa existe déjà et contient déjà une structure !"
+                db.close()
+            else:
+                msg = db.lastError().driverText()
+                ok = False
+        else:
+            msg = 'Cannot connect to the database via service=%s' % service
+            msg+= ': %s' % db.lastError().driverText()
+            ok = False
+        return ok, msg
+
     def processAlgorithm(self, parameters, context, feedback):
         """
         Here is where the processing itself takes place.
@@ -81,6 +161,17 @@ class RaepaCreateStructureAlgorithm(QgsProcessingAlgorithm):
         import processing
         plugin_dir = os.path.dirname(os.path.abspath(__file__))
 
+        # Drop schema if needed
+        override = self.parameterAsBool(parameters, self.OVERRIDE, context)
+        if override:
+            sql = 'DROP SCHEMA raepa CASCADE;'
+            feedback.pushInfo("Suppression du schéma raepa")
+            exec_result = processing.run("Raepa:raepa_execute_sql_on_service", {
+                'PGSERVICE': parameters[self.PGSERVICE],
+                'INPUT_SQL': sql
+            }, context=context, feedback=feedback)
+
+        # Create full structure
         sql_files = [
             '00_raepa_pre_structure.sql',
             '10_raepa_structure.sql',
@@ -102,6 +193,19 @@ class RaepaCreateStructureAlgorithm(QgsProcessingAlgorithm):
                     'INPUT_SQL': sql
                 }, context=context, feedback=feedback)
                 feedback.pushInfo(exec_result['OUTPUT_STRING'])
+
+        # Add metadata info
+        sql = 'INSERT INTO raepa.sys_organisme_gestionnaire (nom, siren, code, actif)'
+        sql+= "VALUES ('%s', '%s', '%s', True);" % (
+            parameters[self.NOM].replace("'", "''"),
+            parameters[self.SIREN],
+            parameters[self.CODE]
+        )
+        feedback.pushInfo("Ajout des informations sur le gestionnaire")
+        exec_result = processing.run("Raepa:raepa_execute_sql_on_service", {
+            'PGSERVICE': parameters[self.PGSERVICE],
+            'INPUT_SQL': sql
+        }, context=context, feedback=feedback)
 
         return {
             self.OUTPUT_STRING: msg

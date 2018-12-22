@@ -148,7 +148,7 @@ class RaepaExportPackageAlgorithm(QgsProcessingAlgorithm):
         try:
             subprocess.check_call(ogr_command,stderr=subprocess.STDOUT)
         except subprocess.CalledProcessError as e:
-            QgsProcessingException(str(e.output))
+            raise QgsProcessingException(str(e.output))
 
         feedback.pushInfo('Export - OK')
 

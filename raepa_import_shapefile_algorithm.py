@@ -63,13 +63,17 @@ class RaepaImportShapefileAlgorithm(QgsProcessingAlgorithm):
         with some other properties.
         """
         # INPUTS
-        self.addParameter(
-            QgsProcessingParameterString(
-                self.CONNECTION_NAME, 'PostgreSQL connection name in QGIS',
-                defaultValue='raepa',
-                optional=False
-            )
+        db_param = QgsProcessingParameterString(
+            self.CONNECTION_NAME, 'PostgreSQL connection name in QGIS',
+            optional=False
         )
+        db_param.setMetadata({
+            'widget_wrapper': {
+                'class': 'processing.gui.wrappers_postgis.ConnectionWidgetWrapper'
+            }
+        })
+        self.addParameter(db_param)
+
         self.addParameter(
             QgsProcessingParameterVectorLayer(
                 self.APPAREILS, self.tr('Appareils'),

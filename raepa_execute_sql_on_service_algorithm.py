@@ -93,20 +93,28 @@ class RaepaExecuteSqlOnServiceAlgorithm(QgsProcessingAlgorithm):
 
         db = QSqlDatabase.addDatabase("QPSQL")
         db.setConnectOptions('service=%s' % service)
+        msg = ''
         if db.isValid():
             if db.open():
                 # Run the query
+                db.transaction()
                 query = db.exec_(sql)
-
-                # Close db connection
-                db.close()
-                msg = u'SQL has been successfully run'
+                msg =  query.lastError().databaseText()
+                if msg:
+                    db.rollback()
+                    db.close()
+                    raise QgsProcessingException(msg)
+                else:
+                    db.commit()
+                    db.close()
+                    msg = u'SQL has been successfully run'
             else:
-                err = db.lastError()
-                QgsProcessingException(err.driverText())
+                msg = db.lastError().driverText()
+                raise QgsProcessingException(msg)
         else:
             msg = 'Cannot connect to the database via service=%s' % service
-            QgsProcessingException(msg)
+            msg+= ': %s' % db.lastError().driverText()
+            raise QgsProcessingException(msg)
 
         return {
             self.OUTPUT_STRING: msg
