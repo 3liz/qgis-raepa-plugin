@@ -184,7 +184,7 @@ class RaepaCreateStructureAlgorithm(QgsProcessingAlgorithm):
         ]
         msg = ''
         for sf in sql_files:
-            sql_file = os.path.join(plugin_dir, 'sql/install/%s' % sf)
+            sql_file = os.path.join(plugin_dir, 'install/sql/%s' % sf)
             with open(sql_file, 'r') as f:
                 feedback.pushInfo(sf)
                 sql = f.read()
