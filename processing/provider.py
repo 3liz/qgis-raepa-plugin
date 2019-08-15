@@ -23,33 +23,56 @@
 """
 
 __author__ = '3liz'
-__date__ = '2018-12-19'
-__copyright__ = '(C) 2018 by 3liz'
+__date__ = '2019-02-15'
+__copyright__ = '(C) 2019 by 3liz'
 
 # This will get replaced with a git SHA1 when you do a git archive
 
 __revision__ = '$Format:%H$'
 
-import os
-import sys
-import inspect
-
-from qgis.core import QgsProcessingAlgorithm, QgsApplication
-from .processing.provider import RaepaProvider
-
-cmd_folder = os.path.split(inspect.getfile(inspect.currentframe()))[0]
-
-if cmd_folder not in sys.path:
-    sys.path.insert(0, cmd_folder)
+from qgis.core import QgsProcessingProvider
+from .algorithms.configure_plugin import ConfigurePlugin
+from .algorithms.execute_sql_on_service import ExecuteSqlOnService
+from .algorithms.create_database_structure import CreateDatabaseStructure
+from .algorithms.import_shapefile import ImportShapefile
+from .algorithms.convert_imported_data import ConvertImportedData
+from .algorithms.insert_converted_data import InsertConvertedData
+from .algorithms.export_package import ExportPackage
 
 
-class RaepaPlugin(object):
+class RaepaProvider(QgsProcessingProvider):
 
     def __init__(self):
-        self.provider = RaepaProvider()
+        QgsProcessingProvider.__init__(self)
 
-    def initGui(self):
-        QgsApplication.processingRegistry().addProvider(self.provider)
+        # Load algorithms
+        self.alglist = [
+            ConfigurePlugin(),
+            ExecuteSqlOnService(),
+            CreateDatabaseStructure(),
+            ImportShapefile(),
+            ConvertImportedData(),
+            InsertConvertedData(),
+            ExportPackage()
+
+        ]
 
     def unload(self):
-        QgsApplication.processingRegistry().removeProvider(self.provider)
+        """
+        Unloads the provider. Any tear-down steps required by the provider
+        should be implemented here.
+        """
+        pass
+
+    def loadAlgorithms(self):
+        for alg in self.alglist:
+            self.addAlgorithm( alg )
+
+    def id(self):
+        return 'raepa'
+
+    def name(self):
+        return self.tr('Raepa')
+
+    def longName(self):
+        return self.tr('Raepa')
