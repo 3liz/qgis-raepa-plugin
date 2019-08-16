@@ -33,7 +33,7 @@ __revision__ = '$Format:%H$'
 from qgis.core import QgsProcessingProvider
 from .algorithms.get_data_as_layer import GetDataAsLayer
 from .algorithms.configure_plugin import ConfigurePlugin
-from .algorithms.execute_sql_on_service import ExecuteSqlOnService
+from .algorithms.execute_sql import ExecuteSql
 from .algorithms.create_database_structure import CreateDatabaseStructure
 from .algorithms.import_shapefile import ImportShapefile
 from .algorithms.convert_imported_data import ConvertImportedData
@@ -50,7 +50,7 @@ class RaepaProvider(QgsProcessingProvider):
         self.alglist = [
             GetDataAsLayer(),
             ConfigurePlugin(),
-            ExecuteSqlOnService(),
+            ExecuteSql(),
             CreateDatabaseStructure(),
             ImportShapefile(),
             ConvertImportedData(),

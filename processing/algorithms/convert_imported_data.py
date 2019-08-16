@@ -33,8 +33,9 @@ from qgis.core import (
 import os
 from .tools import *
 from db_manager.db_plugins import createDbPlugin
+from .execute_sql import *
 
-class ConvertImportedData(QgsProcessingAlgorithm):
+class ConvertImportedData(ExecuteSql):
     """
     Convert imported Shapefile data into Raepa model structure
     """
@@ -45,8 +46,6 @@ class ConvertImportedData(QgsProcessingAlgorithm):
     ETAT = 'ETAT'
     SOURCE_HISTORIQUE = 'SOURCE_HISTORIQUE'
     CODE_CHANTIER = 'CODE_CHANTIER'
-    OUTPUT_STRING = 'OUTPUT_STRING'
-    OUTPUT_STATUS = 'OUTPUT_STATUS'
 
     def name(self):
         return 'convert_imported_data'
@@ -71,6 +70,9 @@ class ConvertImportedData(QgsProcessingAlgorithm):
         Here we define the inputs and output of the algorithm, along
         with some other properties.
         """
+        # use parent class to get other parameters
+        super(self.__class__, self).initAlgorithm(config)
+
         # INPUTS
         self.addParameter(
             QgsProcessingParameterString(
@@ -115,42 +117,12 @@ class ConvertImportedData(QgsProcessingAlgorithm):
             )
         )
 
-        # OUTPUTS
-        # Add output for status (integer)
-        self.addOutput(
-            QgsProcessingOutputNumber(
-                self.OUTPUT_STATUS,
-                self.tr('Output status')
-            )
-        )
-        self.addOutput(
-            QgsProcessingOutputString(
-                self.OUTPUT_STRING, self.tr('Output message')
-            )
-        )
-
     def checkParameterValues(self, parameters, context):
-
-        # Check that the connection name has been configured
-        connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
-        if not connection_name:
-            return False, self.tr('You must use the "Configure Raepa plugin" alg to set the database connection name')
-
-        # Check that it corresponds to an existing connection
-        dbpluginclass = createDbPlugin( 'postgis' )
-        connections = [c.connectionName() for c in dbpluginclass.connections()]
-        if connection_name not in connections:
-            return False, self.tr('The configured connection name does not exists in QGIS')
 
         return super(ConvertImportedData, self).checkParameterValues(parameters, context)
 
-    def processAlgorithm(self, parameters, context, feedback):
-        """
-        Here is where the processing itself takes place.
-        """
-        connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
+    def setSql(self, parameters, context, feedback):
 
-        msg = ''
         sql = '''
         SELECT raepa.import_gabarit_dans_tables_temporaires(
             '%s', '%s', '%s', '%s',
@@ -165,20 +137,4 @@ class ConvertImportedData(QgsProcessingAlgorithm):
         feedback.pushInfo(self.tr('Convert imported data'))
         feedback.pushInfo(sql)
 
-        [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
-            connection_name,
-            sql
-        )
-        if ok:
-            msg = self.tr('Conversion successfull !')
-            feedback.pushInfo(msg)
-            status = 1
-        else:
-            feedback.pushInfo('* ' + error_message)
-            status = 0
-            raise Exception(error_message)
-
-        return {
-            self.OUTPUT_STATUS: 0,
-            self.OUTPUT_STRING: msg
-        }
+        self.SQL = sql.replace('\n', ' ').rstrip(';')
