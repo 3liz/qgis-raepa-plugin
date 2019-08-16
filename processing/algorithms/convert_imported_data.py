@@ -21,21 +21,24 @@ __revision__ = '$Format:%H$'
 
 from PyQt5.QtCore import QCoreApplication
 from qgis.core import (
-        QgsProcessing,
-        QgsProcessingAlgorithm,
-        QgsProcessingUtils,
-        QgsProcessingException,
-        QgsProcessingParameterString,
-        QgsProcessingOutputString
+    QgsProcessing,
+    QgsProcessingAlgorithm,
+    QgsProcessingUtils,
+    QgsProcessingException,
+    QgsProcessingParameterString,
+    QgsProcessingOutputString,
+    QgsProcessingOutputNumber,
+    QgsExpressionContextUtils
 )
 import os
+from .tools import *
+from db_manager.db_plugins import createDbPlugin
 
 class ConvertImportedData(QgsProcessingAlgorithm):
     """
     Convert imported Shapefile data into Raepa model structure
     """
 
-    PGSERVICE = 'PGSERVICE'
     ANNEE_FIN_POSE = 'ANNEE_FIN_POSE'
     QUALITE_XY = 'QUALITE_XY'
     QUALITE_Z = 'QUALITE_Z'
@@ -43,6 +46,7 @@ class ConvertImportedData(QgsProcessingAlgorithm):
     SOURCE_HISTORIQUE = 'SOURCE_HISTORIQUE'
     CODE_CHANTIER = 'CODE_CHANTIER'
     OUTPUT_STRING = 'OUTPUT_STRING'
+    OUTPUT_STATUS = 'OUTPUT_STATUS'
 
     def name(self):
         return 'convert_imported_data'
@@ -68,13 +72,6 @@ class ConvertImportedData(QgsProcessingAlgorithm):
         with some other properties.
         """
         # INPUTS
-        self.addParameter(
-            QgsProcessingParameterString(
-                self.PGSERVICE, 'PostgreSQL Service',
-                defaultValue='raepa',
-                optional=False
-            )
-        )
         self.addParameter(
             QgsProcessingParameterString(
                 self.ANNEE_FIN_POSE, 'Année de fin de pose',
@@ -119,18 +116,39 @@ class ConvertImportedData(QgsProcessingAlgorithm):
         )
 
         # OUTPUTS
+        # Add output for status (integer)
+        self.addOutput(
+            QgsProcessingOutputNumber(
+                self.OUTPUT_STATUS,
+                self.tr('Output status')
+            )
+        )
         self.addOutput(
             QgsProcessingOutputString(
                 self.OUTPUT_STRING, self.tr('Output message')
             )
         )
 
+    def checkParameterValues(self, parameters, context):
+
+        # Check that the connection name has been configured
+        connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
+        if not connection_name:
+            return False, self.tr('You must use the "Configure Raepa plugin" alg to set the database connection name')
+
+        # Check that it corresponds to an existing connection
+        dbpluginclass = createDbPlugin( 'postgis' )
+        connections = [c.connectionName() for c in dbpluginclass.connections()]
+        if connection_name not in connections:
+            return False, self.tr('The configured connection name does not exists in QGIS')
+
+        return super(ConvertImportedData, self).checkParameterValues(parameters, context)
+
     def processAlgorithm(self, parameters, context, feedback):
         """
         Here is where the processing itself takes place.
         """
-        import processing
-        plugin_dir = os.path.dirname(os.path.abspath(__file__))
+        connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
 
         msg = ''
         sql = '''
@@ -144,15 +162,23 @@ class ConvertImportedData(QgsProcessingAlgorithm):
             parameters[self.ETAT],
             parameters[self.SOURCE_HISTORIQUE], parameters[self.CODE_CHANTIER]
         )
+        feedback.pushInfo(self.tr('Convert imported data'))
         feedback.pushInfo(sql)
-        exec_result = processing.run("Raepa:raepa_execute_sql_on_service", {
-            'PGSERVICE': parameters[self.PGSERVICE],
-            'INPUT_SQL': sql
-        }, context=context, feedback=feedback)
 
-        feedback.pushInfo(exec_result['OUTPUT_STRING'])
+        [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
+            connection_name,
+            sql
+        )
+        if ok:
+            msg = self.tr('Conversion successfull !')
+            feedback.pushInfo(msg)
+            status = 1
+        else:
+            feedback.pushInfo('* ' + error_message)
+            status = 0
+            raise Exception(error_message)
 
-        msg = exec_result['OUTPUT_STRING']
         return {
+            self.OUTPUT_STATUS: 0,
             self.OUTPUT_STRING: msg
         }

@@ -23,7 +23,6 @@ from PyQt5.QtCore import (
     QCoreApplication,
     QSettings
 )
-
 from qgis.core import (
     QgsProcessing,
     QgsProcessingAlgorithm,
@@ -31,20 +30,23 @@ from qgis.core import (
     QgsProcessingException,
     QgsProcessingParameterString,
     QgsProcessingParameterVectorLayer,
-    QgsProcessingOutputString
+    QgsProcessingOutputString,
+    QgsProcessingOutputNumber,
+    QgsExpressionContextUtils
 )
 import os
+from db_manager.db_plugins import createDbPlugin
 
 class ImportShapefile(QgsProcessingAlgorithm):
     """
     Import Shapefile into imports schema
     """
 
-    CONNECTION_NAME = 'CONNECTION_NAME'
     APPAREILS = 'APPAREILS'
     CANALISATIONS = 'CANALISATIONS'
     OUVRAGES = 'OUVRAGES'
     OUTPUT_STRING = 'OUTPUT_STRING'
+    OUTPUT_STATUS = 'OUTPUT_STATUS'
 
     def name(self):
         return 'import_shapefile'
@@ -70,17 +72,6 @@ class ImportShapefile(QgsProcessingAlgorithm):
         with some other properties.
         """
         # INPUTS
-        db_param = QgsProcessingParameterString(
-            self.CONNECTION_NAME, 'PostgreSQL connection name in QGIS',
-            optional=False
-        )
-        db_param.setMetadata({
-            'widget_wrapper': {
-                'class': 'processing.gui.wrappers_postgis.ConnectionWidgetWrapper'
-            }
-        })
-        self.addParameter(db_param)
-
         self.addParameter(
             QgsProcessingParameterVectorLayer(
                 self.APPAREILS, self.tr('Appareils'),
@@ -101,11 +92,34 @@ class ImportShapefile(QgsProcessingAlgorithm):
         )
 
         # OUTPUTS
+        # Add output for status (integer)
+        self.addOutput(
+            QgsProcessingOutputNumber(
+                self.OUTPUT_STATUS,
+                self.tr('Output status')
+            )
+        )
         self.addOutput(
             QgsProcessingOutputString(
                 self.OUTPUT_STRING, self.tr('Output message')
             )
         )
+
+    def checkParameterValues(self, parameters, context):
+
+        # Check that the connection name has been configured
+        connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
+        if not connection_name:
+            return False, self.tr('You must use the "Configure Raepa plugin" alg to set the database connection name')
+
+        # Check that it corresponds to an existing connection
+        dbpluginclass = createDbPlugin( 'postgis' )
+        connections = [c.connectionName() for c in dbpluginclass.connections()]
+        if connection_name not in connections:
+            return False, self.tr('The configured connection name does not exists in QGIS')
+
+        return super(ImportShapefile, self).checkParameterValues(parameters, context)
+
 
     def processAlgorithm(self, parameters, context, feedback):
         """
@@ -114,13 +128,14 @@ class ImportShapefile(QgsProcessingAlgorithm):
         import processing
         plugin_dir = os.path.dirname(os.path.abspath(__file__))
 
-        feedback.pushInfo('Connection name = %s' % parameters[self.CONNECTION_NAME])
+        connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
+        feedback.pushInfo('Connection name = %s' % connection_name)
 
         # Ouvrages
         feedback.pushInfo('Import ouvrages')
         ouvrages_conversion = processing.run("qgis:importintopostgis", {
             'INPUT': parameters[self.OUVRAGES],
-            'DATABASE': parameters[self.CONNECTION_NAME],
+            'DATABASE': connection_name,
             'SCHEMA': 'imports',
             'TABLENAME': 'gabarit_ouvrages',
             'PRIMARY_KEY': None,
@@ -138,7 +153,7 @@ class ImportShapefile(QgsProcessingAlgorithm):
         feedback.pushInfo('Import appareils')
         appareil_conversion = processing.run("qgis:importintopostgis", {
             'INPUT': parameters[self.APPAREILS],
-            'DATABASE': parameters[self.CONNECTION_NAME],
+            'DATABASE': connection_name,
             'SCHEMA': 'imports',
             'TABLENAME': 'gabarit_appareils',
             'PRIMARY_KEY': None,
@@ -156,7 +171,7 @@ class ImportShapefile(QgsProcessingAlgorithm):
         feedback.pushInfo('Import canalisations')
         canalisation_conversion = processing.run("qgis:importintopostgis", {
             'INPUT': parameters[self.CANALISATIONS],
-            'DATABASE': parameters[self.CONNECTION_NAME],
+            'DATABASE': connection_name,
             'SCHEMA': 'imports',
             'TABLENAME': 'gabarit_canalisations',
             'PRIMARY_KEY': None,
@@ -171,5 +186,6 @@ class ImportShapefile(QgsProcessingAlgorithm):
         feedback.pushInfo('Import canalisations - OK')
 
         return {
-            self.OUTPUT_STRING: 'Import OK'
+            self.OUTPUT_STATUS: 1,
+            self.OUTPUT_STRING: self.tr('Import OK')
         }

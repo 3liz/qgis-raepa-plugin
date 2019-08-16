@@ -108,6 +108,13 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
         )
 
         # OUTPUTS
+        # Add output for status (integer)
+        self.addOutput(
+            QgsProcessingOutputNumber(
+                self.OUTPUT_STATUS,
+                self.tr('Output status')
+            )
+        )
         self.addOutput(
             QgsProcessingOutputString(
                 self.OUTPUT_STRING, self.tr('Output message')
