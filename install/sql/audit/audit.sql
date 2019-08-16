@@ -1,3 +1,17 @@
+-- An audit history is important on most tables. Provide an audit trigger that logs to
+-- a dedicated audit table for the major relations.
+--
+-- This file should be generic and not depend on application roles or structures,
+-- as it's being listed here:
+--
+--    https://wiki.postgresql.org/wiki/Audit_trigger_91plus
+--
+-- This trigger was originally based on
+--   http://wiki.postgresql.org/wiki/Audit_trigger
+-- but has been completely rewritten.
+--
+-- Should really be converted into a relocatable EXTENSION, with control and upgrade files.
+
 CREATE EXTENSION IF NOT EXISTS hstore;
 
 CREATE SCHEMA IF NOT EXISTS audit;
@@ -69,7 +83,6 @@ CREATE INDEX logged_actions_relid_idx ON audit.logged_actions(relid);
 CREATE INDEX logged_actions_action_tstamp_tx_stm_idx ON audit.logged_actions(action_tstamp_stm);
 CREATE INDEX logged_actions_action_idx ON audit.logged_actions(action);
 
-DROP TABLE IF EXISTS audit.logged_relations;
 CREATE TABLE audit.logged_relations (
     relation_name text not null,
     uid_column text not null,
@@ -444,9 +457,3 @@ Rollback a logged event and returns to previous row data
 Arguments:
    pevent_id:  The event_id of the event in audit.logged_actions to rollback
 $body$;
-
-
-
-SELECT audit.audit_table('raepa.raepa_ouvrass_p');
-SELECT audit.audit_table('raepa.raepa_apparass_p');
-SELECT audit.audit_table('raepa.raepa_canalass_l');

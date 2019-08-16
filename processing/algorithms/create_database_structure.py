@@ -179,15 +179,19 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
         # Drop schema if needed
         override = self.parameterAsBool(parameters, self.OVERRIDE, context)
         if override:
-            feedback.pushInfo(self.tr("Trying to drop schema raepa..."))
-            sql = 'DROP SCHEMA IF EXISTS raepa CASCADE;'
+            feedback.pushInfo(self.tr("Trying to drop schema raepa, audit, imports"))
+            sql = '''
+                DROP SCHEMA IF EXISTS raepa CASCADE;
+                DROP SCHEMA IF EXISTS audit CASCADE;
+                DROP SCHEMA IF EXISTS imports CASCADE;
+            '''
 
             [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
                 connection_name,
                 sql
             )
             if ok:
-                feedback.pushInfo(self.tr("Schema raepa has been droped."))
+                feedback.pushInfo(self.tr("* Schema raepa has been droped."))
             else:
                 feedback.pushInfo(error_message)
                 status = 0
@@ -199,14 +203,16 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
 
         # Create full structure
         sql_files = [
-            '00_raepa_pre_structure.sql',
-            '10_raepa_structure.sql',
-            '20_raepa_post_structure.sql',
-            '30_raepa_triggers.sql',
-            '40_raepa_verification.sql',
-            '50_raepa_audit.sql',
-            '60_raepa_import_gabarits_shapefile.sql',
-            '90_raepa_nomenclature.sql'
+            '00_initialize_database.sql',
+            'audit/audit.sql',
+            'raepa/10_FUNCTION.sql',
+            'raepa/20_TABLE_COMMENT_SEQUENCE_DEFAULT.sql',
+            'raepa/30_VIEW.sql',
+            'raepa/40_INDEX.sql',
+            'raepa/50_TRIGGER.sql',
+            'raepa/60_CONSTRAINT.sql',
+            'raepa/90_GLOSSARY.sql',
+            '99_finalize_database.sql',
         ]
         msg = ''
         alg_dir = os.path.dirname(__file__)
@@ -214,11 +220,12 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
 
         # Loop sql files and run SQL code
         for sf in sql_files:
+            feedback.pushInfo(sf)
             sql_file = os.path.join(plugin_dir, 'install/sql/%s' % sf)
             with open(sql_file, 'r') as f:
                 sql = f.read()
                 if len(sql.strip()) == 0:
-                    feedback.pushInfo('* ' + sf + ' -> SKIPPED (EMPTY FILE)')
+                    feedback.pushInfo('  Skipped (empty file)')
                     continue
 
                 [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
@@ -226,9 +233,9 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
                     sql
                 )
                 if ok:
-                    feedback.pushInfo('* ' + sf + ' -> SUCCESS !')
+                    feedback.pushInfo('  Success !')
                 else:
-                    feedback.pushInfo(error_message)
+                    feedback.pushInfo('* ' + error_message)
                     status = 0
                     raise Exception(error_message)
                     # return {
@@ -259,7 +266,6 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
             parameters[self.SIREN],
             parameters[self.CODE]
         )
-        feedback.pushInfo("Ajout des informations sur le gestionnaire")
         [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
             connection_name,
             sql
