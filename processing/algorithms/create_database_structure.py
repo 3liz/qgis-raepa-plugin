@@ -47,7 +47,6 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
     # used when calling the algorithm from another algorithm, or when
     # calling from the QGIS console.
 
-    PGSERVICE = 'PGSERVICE'
     OVERRIDE = 'OVERRIDE'
     NOM = 'NOM'
     SIREN = 'SIREN'
@@ -79,13 +78,6 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
         with some other properties.
         """
         # INPUTS
-        self.addParameter(
-            QgsProcessingParameterString(
-                self.PGSERVICE, 'PostgreSQL Service',
-                defaultValue='raepa',
-                optional=False
-            )
-        )
         self.addParameter(
             QgsProcessingParameterBoolean(
                 self.OVERRIDE, 'Ecraser le schéma raepa et toutes les données ? ** ATTENTION **',

@@ -8,7 +8,7 @@
 
 ### Database structure installation files
 
-To generate automatically the SQL files in the `install/sql` folder, see [README](doc/database/README.md)
+To generate automatically the SQL files in the `install/sql` folder, see [README](install/sql/README.md)
 
 ### Database documentation
 
