@@ -31,6 +31,7 @@ __copyright__ = '(C) 2019 by 3liz'
 __revision__ = '$Format:%H$'
 
 from qgis.core import QgsProcessingProvider
+from .algorithms.get_data_as_layer import GetDataAsLayer
 from .algorithms.configure_plugin import ConfigurePlugin
 from .algorithms.execute_sql_on_service import ExecuteSqlOnService
 from .algorithms.create_database_structure import CreateDatabaseStructure
@@ -47,6 +48,7 @@ class RaepaProvider(QgsProcessingProvider):
 
         # Load algorithms
         self.alglist = [
+            GetDataAsLayer(),
             ConfigurePlugin(),
             ExecuteSqlOnService(),
             CreateDatabaseStructure(),
