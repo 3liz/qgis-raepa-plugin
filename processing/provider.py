@@ -39,6 +39,8 @@ from .algorithms.import_shapefile import ImportShapefile
 from .algorithms.convert_imported_data import ConvertImportedData
 from .algorithms.insert_converted_data import InsertConvertedData
 from .algorithms.export_package import ExportPackage
+from .algorithms.get_upstream_route import GetUpstreamRoute
+from .algorithms.get_downstream_route import GetDownstreamRoute
 
 
 class RaepaProvider(QgsProcessingProvider):
@@ -55,7 +57,9 @@ class RaepaProvider(QgsProcessingProvider):
             ImportShapefile(),
             ConvertImportedData(),
             InsertConvertedData(),
-            ExportPackage()
+            ExportPackage(),
+            GetUpstreamRoute(),
+            GetDownstreamRoute()
 
         ]
 
