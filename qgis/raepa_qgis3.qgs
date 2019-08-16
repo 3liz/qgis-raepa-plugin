@@ -61,7 +61,7 @@
     </layer-tree-group>
     <layer-tree-group name="Hidden" checked="Qt::Checked" expanded="1">
       <customproperties/>
-      <layer-tree-layer name="osm-mapnik" checked="Qt::Checked" id="osm_mapnik_516f2df6_2fed_47cd_a8c0_5efa82258d8b" providerKey="wms" source="type=xyz&amp;url=http://tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png" expanded="1">
+      <layer-tree-layer name="osm-mapnik" checked="Qt::Checked" id="osm_mapnik_516f2df6_2fed_47cd_a8c0_5efa82258d8b" providerKey="wms" source="crs=EPSG:3857&amp;format&amp;type=xyz&amp;url=http://tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png" expanded="1">
         <customproperties/>
       </layer-tree-layer>
       <layer-tree-group name="Nomenclature" checked="Qt::Checked" expanded="1">
@@ -140,24 +140,24 @@
   <snapping-settings mode="3" tolerance="10" unit="1" type="2" enabled="1" intersection-snapping="0">
     <individual-layer-settings>
       <layer-setting tolerance="0" units="2" id="canalisations20180322160548206" type="2" enabled="0"/>
-      <layer-setting tolerance="10" units="1" id="raepa_canalass_l20171203161904442" type="2" enabled="1"/>
-      <layer-setting tolerance="0" units="2" id="gabarit_ouvrages20180322162756121" type="2" enabled="0"/>
-      <layer-setting tolerance="10" units="1" id="raepa_canalass_l20180119163234594" type="2" enabled="1"/>
-      <layer-setting tolerance="10" units="1" id="v_canalisation_sans_idnini20171210185504753" type="2" enabled="0"/>
       <layer-setting tolerance="10" units="1" id="raepa_apparass_p20180118113736389" type="2" enabled="1"/>
-      <layer-setting tolerance="10" units="1" id="v_canalisation_sans_idnini20171210185440282" type="2" enabled="0"/>
-      <layer-setting tolerance="10" units="1" id="gabarit_canalisations20180201175517937" type="2" enabled="1"/>
       <layer-setting tolerance="10" units="1" id="raepa_ouvrass_p_geom20171203161907366" type="2" enabled="1"/>
+      <layer-setting tolerance="10" units="1" id="gabarit_canalisations20180201175517937" type="2" enabled="1"/>
+      <layer-setting tolerance="0" units="2" id="gabarit_ouvrages20180322162756121" type="2" enabled="0"/>
+      <layer-setting tolerance="10" units="1" id="raepa_canalass_l20171203161904442" type="2" enabled="1"/>
+      <layer-setting tolerance="10" units="1" id="v_canalisation_sans_idnini20171210185504753" type="2" enabled="0"/>
+      <layer-setting tolerance="10" units="1" id="raepa_canalass_l20180119163234594" type="2" enabled="1"/>
+      <layer-setting tolerance="10" units="1" id="v_canalisation_sans_idnini20171210185440282" type="2" enabled="0"/>
     </individual-layer-settings>
   </snapping-settings>
   <relations/>
   <mapcanvas name="theMapCanvas" annotationsVisible="1">
     <units>meters</units>
     <extent>
-      <xmin>724206.39310102490708232</xmin>
-      <ymin>6921339.87200803402811289</ymin>
-      <xmax>724319.27609046129509807</xmax>
-      <ymax>6922059.67784709576517344</ymax>
+      <xmin>724270.8157900299411267</xmin>
+      <ymin>6921578.69161492213606834</ymin>
+      <xmax>724327.25728474813513458</xmax>
+      <ymax>6921938.59453445300459862</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -393,29 +393,6 @@
         <projectionacronym>longlat</projectionacronym>
         <ellipsoidacronym>WGS84</ellipsoidacronym>
         <geographicflag>true</geographicflag>
-      </spatialrefsys>
-    </destinationsrs>
-    <rendermaptile>0</rendermaptile>
-  </mapcanvas>
-  <mapcanvas name="" annotationsVisible="1">
-    <units>meters</units>
-    <extent>
-      <xmin>722986.69377296324819326</xmin>
-      <ymin>6920270.68503124266862869</ymin>
-      <xmax>723400.61469889897853136</xmax>
-      <ymax>6920570.98808491975069046</ymax>
-    </extent>
-    <rotation>0</rotation>
-    <destinationsrs>
-      <spatialrefsys>
-        <proj4>+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>
-        <srsid>145</srsid>
-        <srid>2154</srid>
-        <authid>EPSG:2154</authid>
-        <description>RGF93 / Lambert-93</description>
-        <projectionacronym>lcc</projectionacronym>
-        <ellipsoidacronym>GRS80</ellipsoidacronym>
-        <geographicflag>false</geographicflag>
       </spatialrefsys>
     </destinationsrs>
     <rendermaptile>0</rendermaptile>
@@ -2367,7 +2344,7 @@
         <ymax>20037508.34278924390673637</ymax>
       </extent>
       <id>osm_mapnik_516f2df6_2fed_47cd_a8c0_5efa82258d8b</id>
-      <datasource>type=xyz&amp;url=http://tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png</datasource>
+      <datasource>crs=EPSG:3857&amp;format&amp;type=xyz&amp;url=http://tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -2443,10 +2420,10 @@
     </maplayer>
     <maplayer autoRefreshTime="0" minScale="2501" simplifyMaxScale="1" maxScale="1" simplifyAlgorithm="2" geometry="Point" simplifyLocal="0" simplifyDrawingTol="1" autoRefreshEnabled="0" hasScaleBasedVisibilityFlag="1" labelsEnabled="1" simplifyDrawingHints="0" readOnly="0" refreshOnNotifyEnabled="0" type="vector" refreshOnNotifyMessage="" styleCategories="AllStyleCategories">
       <extent>
-        <xmin>724249.62292433297261596</xmin>
-        <ymin>6921552.44376057013869286</ymin>
-        <xmax>724303.37672882503829896</xmax>
-        <ymax>6921895.20844584982842207</ymax>
+        <xmin>724249.3125</xmin>
+        <ymin>6921550.5</ymin>
+        <xmax>724303.6875</xmax>
+        <ymax>6921897</ymax>
       </extent>
       <id>raepa_apparass_p20180118113736389</id>
       <datasource>service='raepa' sslmode=disable key='id' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."raepa_apparass_p" (geom) sql=</datasource>
@@ -4777,7 +4754,7 @@ def my_form_open(dialog, layer, feature):
       </geometryOptions>
       <fieldConfiguration>
         <field name="id">
-          <editWidget type="">
+          <editWidget type="Range">
             <config>
               <Option/>
             </config>
@@ -5489,7 +5466,7 @@ def my_form_open(dialog, layer, feature):
       <expressionfields/>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
-        <actionsetting shortTitle="Inverser la canalisation" action="# -*- coding: utf-8 -*-&#xa;layer = None&#xa;for layername in ['Canalisations']:&#xa;&#x9;layers = QgsMapLayerRegistry.instance().mapLayersByName(layername)&#xa;&#x9;if len(layers) == 1:&#xa;&#x9;&#x9;layer = layers[0]&#xa;if layer:&#xa;&#x9;print layer.name()&#xa;&#xa;&#x9;r = QgsFeatureRequest([% $id %])&#xa;&#x9;f = QgsFeature()&#xa;&#xa;&#x9;if layer.getFeatures(r).nextFeature(f):&#xa;&#x9;&#x9;geom = f.geometry().asPolyline()&#xa;&#x9;&#x9;geom.reverse()&#xa;&#x9;&#x9;geom = QgsGeometry.fromPolyline(geom)&#xa;&#x9;&#x9;&#xa;&#x9;&#x9;if layer.changeGeometry([% $id %], geom):&#xa;&#x9;&#x9;&#x9;qgis.utils.iface.messageBar().pushMessage(&#xa;&#x9;&#x9;&#x9;&#x9;u&quot;Sens de ligne inversé&quot;, &#xa;&#x9;&#x9;&#x9;&#x9;QgsMessageBar.INFO, 2&#xa;&#x9;&#x9;&#x9;)&#xa;&#x9;&#x9;&#x9;qgis.utils.iface.mapCanvas().refresh()&#xa;&#x9;&#x9;else:&#xa;&#x9;&#x9;&#x9;qgis.utils.iface.messageBar().pushMessage(&#xa;&#x9;&#x9;&#x9;&#x9;u&quot;Pour pouvoir modifier le sens, activer l'édition&quot;, &#xa;&#x9;&#x9;&#x9;&#x9;QgsMessageBar.WARNING, 3&#xa;&#x9;&#x9;&#x9;)&#xa;&#x9;else:&#xa;&#x9;&#x9;qgis.utils.iface.messageBar().pushMessage(&#xa;&#x9;&#x9;&#x9;u&quot;Cet objet ne peut pas être modifié&quot;, &#xa;&#x9;&#x9;&#x9;QgsMessageBar.CRITICAL, 3&#xa;&#x9;&#x9;)" name="Inverser la canalisation" capture="0" isEnabledOnlyWhenEditable="0" type="1" icon="" notificationMessage="" id="{56cdbe0d-1e97-4563-9d70-ee42cc6354f1}">
+        <actionsetting shortTitle="Inverser la canalisation" action="# -*- coding: utf-8 -*-&#xa;layer = None&#xa;for layername in ['Canalisations']:&#xa;&#x9;layers = QgsMapLayerRegistry.instance().mapLayersByName(layername)&#xa;&#x9;if len(layers) == 1:&#xa;&#x9;&#x9;layer = layers[0]&#xa;if layer:&#xa;&#x9;print layer.name()&#xa;&#xa;&#x9;r = QgsFeatureRequest([% $id %])&#xa;&#x9;f = QgsFeature()&#xa;&#xa;&#x9;if layer.getFeatures(r).nextFeature(f):&#xa;&#x9;&#x9;geom = f.geometry().asPolyline()&#xa;&#x9;&#x9;geom.reverse()&#xa;&#x9;&#x9;geom = QgsGeometry.fromPolyline(geom)&#xa;&#x9;&#x9;&#xa;&#x9;&#x9;if layer.changeGeometry([% $id %], geom):&#xa;&#x9;&#x9;&#x9;qgis.utils.iface.messageBar().pushMessage(&#xa;&#x9;&#x9;&#x9;&#x9;u&quot;Sens de ligne inversé&quot;, &#xa;&#x9;&#x9;&#x9;&#x9;QgsMessageBar.INFO, 2&#xa;&#x9;&#x9;&#x9;)&#xa;&#x9;&#x9;&#x9;qgis.utils.iface.mapCanvas().refresh()&#xa;&#x9;&#x9;else:&#xa;&#x9;&#x9;&#x9;qgis.utils.iface.messageBar().pushMessage(&#xa;&#x9;&#x9;&#x9;&#x9;u&quot;Pour pouvoir modifier le sens, activer l'édition&quot;, &#xa;&#x9;&#x9;&#x9;&#x9;QgsMessageBar.WARNING, 3&#xa;&#x9;&#x9;&#x9;)&#xa;&#x9;else:&#xa;&#x9;&#x9;qgis.utils.iface.messageBar().pushMessage(&#xa;&#x9;&#x9;&#x9;u&quot;Cet objet ne peut pas être modifié&quot;, &#xa;&#x9;&#x9;&#x9;QgsMessageBar.CRITICAL, 3&#xa;&#x9;&#x9;)" name="Inverser la canalisation" capture="0" isEnabledOnlyWhenEditable="0" type="1" icon="" notificationMessage="" id="{31e42b96-cb3f-49c4-80be-7b4de7412088}">
           <actionScope id="Canvas"/>
           <actionScope id="Feature"/>
           <actionScope id="Field"/>
@@ -5542,6 +5519,7 @@ def my_form_open(dialog, layer, feature):
           <column name="val_raepa_materiau_libelle" hidden="0" type="field" width="-1"/>
           <column name="val_raepa_qualite_geoloc_libelle" hidden="0" type="field" width="-1"/>
           <column name="val_raepa_cat_canal_ass_libelle" hidden="0" type="field" width="-1"/>
+          <column name="id" hidden="0" type="field" width="-1"/>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -5645,6 +5623,7 @@ def my_form_open(dialog, layer, feature):
         <field editable="1" name="enservice"/>
         <field editable="1" name="fonccanass"/>
         <field editable="1" name="gexploit"/>
+        <field editable="1" name="id"/>
         <field editable="1" name="idcana"/>
         <field editable="1" name="idcanppale"/>
         <field editable="1" name="idnini"/>
@@ -5692,6 +5671,7 @@ def my_form_open(dialog, layer, feature):
         <field name="enservice" labelOnTop="0"/>
         <field name="fonccanass" labelOnTop="0"/>
         <field name="gexploit" labelOnTop="0"/>
+        <field name="id" labelOnTop="0"/>
         <field name="idcana" labelOnTop="0"/>
         <field name="idcanppale" labelOnTop="0"/>
         <field name="idnini" labelOnTop="0"/>
@@ -8100,7 +8080,7 @@ def my_form_open(dialog, layer, feature):
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
-        <DiagramCategory rotationOffset="270" enabled="0" sizeType="MM" backgroundAlpha="255" diagramOrientation="Up" penWidth="0" lineSizeScale="3x:0,0,0,0,0,0" minimumSize="0" minScaleDenominator="-2.14748e+9" penAlpha="255" scaleBasedVisibility="0" backgroundColor="#ffffff" lineSizeType="MM" penColor="#000000" opacity="1" scaleDependency="Area" barWidth="5" labelPlacementMethod="XHeight" maxScaleDenominator="1e+8" height="15" sizeScale="3x:0,0,0,0,0,0" width="15">
+        <DiagramCategory rotationOffset="270" enabled="0" sizeType="MM" backgroundAlpha="255" diagramOrientation="Up" penWidth="0" lineSizeScale="3x:0,0,0,0,0,0" minimumSize="0" minScaleDenominator="1" penAlpha="255" scaleBasedVisibility="0" backgroundColor="#ffffff" lineSizeType="MM" penColor="#000000" opacity="1" scaleDependency="Area" barWidth="5" labelPlacementMethod="XHeight" maxScaleDenominator="1e+8" height="15" sizeScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""/>
           <attribute color="#000000" field="" label=""/>
         </DiagramCategory>
@@ -8120,7 +8100,7 @@ def my_form_open(dialog, layer, feature):
       </geometryOptions>
       <fieldConfiguration>
         <field name="id">
-          <editWidget type="">
+          <editWidget type="Range">
             <config>
               <Option/>
             </config>
@@ -8581,17 +8561,17 @@ def my_form_open(dialog, layer, feature):
       <expressionfields/>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
-        <actionsetting shortTitle="" action="# Identifiant de l'ouvrage&#xd;&#xa;idouvrage = '[%idouvrage%]'&#xd;&#xa;&#xd;&#xa;# Connect to database and update raepa.sys_parcours_reseau&#xd;&#xa;from PyQt4.QtSql import QSqlDatabase, QSqlQuery&#xd;&#xa;db = QSqlDatabase.addDatabase(&quot;QPSQL&quot;)&#xd;&#xa;db.setConnectOptions('service=raepa')&#xd;&#xa;if db.isValid():&#xd;&#xa;    if db.open():&#xd;&#xa;        # Run the query&#xd;&#xa;        query = db.exec_(&quot;UPDATE raepa.sys_parcours_reseau SET idouvrage = '%s'&quot; % idouvrage)&#xd;&#xa;&#xd;&#xa;        # Get the querie features&#xd;&#xa;        #while query.next():&#xd;&#xa;        #    record = query.record()&#xd;&#xa;        #    print(record.field('idcana').value())&#xd;&#xa;&#xd;&#xa;        # Close db connection&#xd;&#xa;        db.close()&#xd;&#xa;    else:&#xd;&#xa;        err = db.lastError()&#xd;&#xa;        print('Cannot connect to database')&#xd;&#xa;        print(err.driverText())&#xd;&#xa;&#xd;&#xa;# Refresh upstream and downstream&#xd;&#xa;for layername in ['upstream', 'downstream']:&#xd;&#xa;    gl = QgsMapLayerRegistry.instance().mapLayersByName(layername)&#xd;&#xa;    if gl:&#xd;&#xa;        gl[0].triggerRepaint()&#xd;&#xa;        gl[0].updateExtents()" name="Parcourir le réseau depuis cet ouvrage" capture="0" isEnabledOnlyWhenEditable="0" type="1" icon="" notificationMessage="" id="{73561f88-e555-4098-a723-2a3c5660c8d0}">
+        <actionsetting shortTitle="" action="# Identifiant de l'ouvrage&#xd;&#xa;idouvrage = '[%idouvrage%]'&#xd;&#xa;&#xa;# Use alg get_downstream_route and get_upstream_route&#xd;&#xa;pass" name="Parcourir le réseau depuis cet ouvrage" capture="0" isEnabledOnlyWhenEditable="0" type="1" icon="" notificationMessage="" id="{2710c939-3ca9-47ae-a087-5cefc4d83f81}">
           <actionScope id="Canvas"/>
           <actionScope id="Feature"/>
           <actionScope id="Field"/>
         </actionsetting>
-        <actionsetting shortTitle="" action="# Identifiant de l'ouvrage&#xa;idouvrage = '[%idouvrage%]'&#xa;event_id = None&#xa;&#xa;# Connect to database and update raepa.sys_parcours_reseau&#xa;from PyQt4.QtSql import QSqlDatabase, QSqlQuery&#xa;db = QSqlDatabase.addDatabase(&quot;QPSQL&quot;)&#xa;db.setConnectOptions('service=raepa')&#xa;if db.isValid():&#xa;    if db.open():&#xa;        # Run the query to get the last audited event&#xa;        sql = &quot;&quot;&#xa;        sql+= &quot; SELECT event_id&quot;&#xa;        sql+= &quot; FROM audit.logged_actions&quot;&#xa;        sql+= &quot; WHERE schema_name = 'raepa' AND table_name = 'raepa_ouvrass_p'&quot;&#xa;        sql+= &quot; AND row_data->'idouvrage' = '%s'&quot; % idouvrage&#xa;        sql+= &quot; ORDER BY action_tstamp_tx DESC&quot;&#xa;        sql+= &quot; LIMIT 1&quot;&#xa;        query = QSqlQuery(db)&#xa;        query.exec_(sql)&#xa;&#xa;        # Get the querie features&#xa;        while query.next():&#xa;            record = query.record()&#xa;            event_id = record.field('event_id').value()&#xa;        if not event_id:&#xa;            print('no event found')&#xa;        else:&#xa;            print('rollback event %s' % event_id)&#xa;&#xa;        query = QSqlQuery(db)&#xa;        sql = 'SELECT audit.rollback_event(%s);' % event_id&#xa;        query.exec_(sql)&#xa;&#xa;        # Close db connection&#xa;        db.close()&#xa;    else:&#xa;        err = db.lastError()&#xa;        print('Cannot connect to database')&#xa;        print(err.driverText())&#xa;&#xa;# Refresh layers&#xa;for layername in [&quot;Canalisations&quot;, &quot;Ouvrages&quot;]:&#xa;    gl = QgsMapLayerRegistry.instance().mapLayersByName(layername)&#xa;    if gl:&#xa;        gl[0].triggerRepaint()" name="Annuler la dernière modification" capture="0" isEnabledOnlyWhenEditable="0" type="1" icon="" notificationMessage="" id="{3e2bc0af-ae0a-4f45-86ff-085a9badb045}">
+        <actionsetting shortTitle="" action="# Identifiant de l'ouvrage&#xa;idouvrage = '[%idouvrage%]'&#xa;event_id = None&#xa;&#xa;# use processing alg cancel_last_modification&#xa;&#xa;pass" name="Annuler la dernière modification" capture="0" isEnabledOnlyWhenEditable="0" type="1" icon="" notificationMessage="" id="{37738c9f-dacd-45e3-b0ff-5e41ba32e4dc}">
           <actionScope id="Canvas"/>
           <actionScope id="Feature"/>
           <actionScope id="Field"/>
         </actionsetting>
-        <actionsetting shortTitle="" action="# Identifiant de l'ouvrage&#xa;idouvrage = '[%idouvrage%]'&#xa;&#xa;# Connect to database and update raepa.sys_parcours_reseau&#xa;from PyQt4.QtSql import QSqlDatabase, QSqlQuery&#xa;db = QSqlDatabase.addDatabase(&quot;QPSQL&quot;)&#xa;db.setConnectOptions('service=raepa')&#xa;if db.isValid():&#xa;    if db.open():&#xa;        # Run the query&#xa;        query = db.exec_(&quot;SELECT raepa.decoupage_canalisation_par_ouvrage('%s');&quot; % idouvrage)&#xa;&#xa;        # Close db connection&#xa;        db.close()&#xa;    else:&#xa;        err = db.lastError()&#xa;        print('Cannot connect to database')&#xa;        print(err.driverText())&#xa;&#xa;# Refresh upstream and downstream&#xa;for layername in ['Ouvrages', 'Canalisations']:&#xa;    gl = QgsMapLayerRegistry.instance().mapLayersByName(layername)&#xa;    if gl:&#xa;        gl[0].triggerRepaint()&#xa;" name="Couper la canalisation sous cet ouvrage" capture="0" isEnabledOnlyWhenEditable="0" type="1" icon="" notificationMessage="" id="{655a1475-9404-41ef-a005-20b4c77150e0}">
+        <actionsetting shortTitle="" action="# Identifiant de l'ouvrage&#xa;idouvrage = '[%idouvrage%]'&#xa;&#xa;# Use alg to do cut_pipe_under_item&#xa;# SELECT raepa.decoupage_canalisation_par_ouvrage('%s');&quot; % idouvrage&#xa;pass" name="Couper la canalisation sous cet ouvrage" capture="0" isEnabledOnlyWhenEditable="0" type="1" icon="" notificationMessage="" id="{c3654a1a-89e7-498b-89b0-83c552557f4b}">
           <actionScope id="Canvas"/>
           <actionScope id="Feature"/>
           <actionScope id="Field"/>
@@ -8628,6 +8608,7 @@ def my_form_open(dialog, layer, feature):
           <column name="_code_chantier" hidden="0" type="field" width="-1"/>
           <column name="_date_import" hidden="0" type="field" width="-1"/>
           <column name="_temp_data" hidden="0" type="field" width="-1"/>
+          <column name="id" hidden="0" type="field" width="-1"/>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -8696,6 +8677,7 @@ def my_form_open(dialog, layer, feature):
         <field editable="1" name="datemaj"/>
         <field editable="1" name="fnouvass"/>
         <field editable="1" name="gexploit"/>
+        <field editable="1" name="id"/>
         <field editable="1" name="idcanamont"/>
         <field editable="1" name="idcanaval"/>
         <field editable="1" name="idcanppale"/>
@@ -8726,6 +8708,7 @@ def my_form_open(dialog, layer, feature):
         <field name="datemaj" labelOnTop="0"/>
         <field name="fnouvass" labelOnTop="0"/>
         <field name="gexploit" labelOnTop="0"/>
+        <field name="id" labelOnTop="0"/>
         <field name="idcanamont" labelOnTop="0"/>
         <field name="idcanaval" labelOnTop="0"/>
         <field name="idcanppale" labelOnTop="0"/>
@@ -8860,9 +8843,7 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
       </flags>
       <customproperties>
-        <property key="dualview/previewExpressions">
-          <value>"id"</value>
-        </property>
+        <property key="dualview/previewExpressions" value="&quot;id&quot;"/>
       </customproperties>
       <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
         <activeChecks/>
@@ -9045,9 +9026,7 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
       </flags>
       <customproperties>
-        <property key="dualview/previewExpressions">
-          <value>COALESCE("id", '&lt;NULL>')</value>
-        </property>
+        <property key="dualview/previewExpressions" value="COALESCE(&quot;id&quot;, '&lt;NULL>')"/>
       </customproperties>
       <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
         <activeChecks/>
@@ -13240,8 +13219,8 @@ def my_form_open(dialog, layer, feature):
       <Automatic type="bool">true</Automatic>
     </PositionPrecision>
     <WMSRootName type="QString"></WMSRootName>
-    <WMSContactPerson type="QString"></WMSContactPerson>
     <WMTSUrl type="QString"></WMTSUrl>
+    <WMSContactPerson type="QString"></WMSContactPerson>
     <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
     <WMSSegmentizeFeatureInfoGeometry type="bool">false</WMSSegmentizeFeatureInfoGeometry>
     <WMSKeywordList type="QStringList">
@@ -13269,8 +13248,8 @@ def my_form_open(dialog, layer, feature):
     <WMSContactOrganization type="QString"></WMSContactOrganization>
     <WMSContactMail type="QString"></WMSContactMail>
     <WCSLayers type="QStringList"/>
-    <WCSUrl type="QString"></WCSUrl>
     <WMSImageQuality type="int">90</WMSImageQuality>
+    <WCSUrl type="QString"></WCSUrl>
     <quickfinder_plugin>
       <project type="bool">false</project>
       <refreshDelay type="int">15</refreshDelay>
@@ -13320,14 +13299,14 @@ def my_form_open(dialog, layer, feature):
     <Paths>
       <Absolute type="bool">false</Absolute>
     </Paths>
-    <Identify>
-      <disabledLayers type="QStringList"/>
-    </Identify>
     <WFSLayers type="QStringList">
       <value>raepa_apparass_p20180118113736389</value>
       <value>raepa_canalass_l20171203161904442</value>
       <value>raepa_ouvrass_p_geom20171203161907366</value>
     </WFSLayers>
+    <Identify>
+      <disabledLayers type="QStringList"/>
+    </Identify>
     <WMSPrecision type="QString">8</WMSPrecision>
     <WMSUrl type="QString"></WMSUrl>
     <WMSRestrictedLayers type="QStringList"/>
