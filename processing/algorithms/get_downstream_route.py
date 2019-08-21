@@ -59,7 +59,7 @@ class GetDownstreamRoute(GetDataAsLayer):
 
         self.addParameter(
             QgsProcessingParameterString(
-                self.SOURCE_ID, 'Unique ID',
+                self.SOURCE_ID, 'Unique ID (idouvrage)',
                 defaultValue=-1,
                 optional=False
             )

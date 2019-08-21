@@ -613,14 +613,6 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table name="sys_parcours_reseau" remarks="" schema="raepa" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('raepa.sys_parcours_reseau_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
-         <column autoUpdated="false" digits="0" id="1" name="id_ouvrage" nullable="false" remarks="" size="2147483647" type="text"/>
-         <primaryKey column="id" sequenceNumberInPK="1"/>
-         <index name="sys_parcours_reseau_pkey" unique="true">
-            <column ascending="true" name="id"/>
-         </index>
-      </table>
       <table name="sys_structure_metadonnee" remarks="Métadonnées sur la structure de la bdd : numéro de version, date, etc." schema="raepa" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('raepa.sys_structure_metadonnee_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant" size="10" type="serial"/>
          <column autoUpdated="false" defaultValue="'2019-08-15'::date" digits="0" id="1" name="date_ajout" nullable="false" remarks="Date d’ajout" size="13" type="date"/>

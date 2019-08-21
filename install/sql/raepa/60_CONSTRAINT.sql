@@ -138,11 +138,6 @@ ALTER TABLE ONLY raepa.sys_organisme_gestionnaire
     ADD CONSTRAINT sys_organisme_gestionnaire_pkey PRIMARY KEY (id);
 
 
--- sys_parcours_reseau sys_parcours_reseau_pkey
-ALTER TABLE ONLY raepa.sys_parcours_reseau
-    ADD CONSTRAINT sys_parcours_reseau_pkey PRIMARY KEY (id);
-
-
 -- sys_structure_metadonnee sys_structure_metadonnee_pkey
 ALTER TABLE ONLY raepa.sys_structure_metadonnee
     ADD CONSTRAINT sys_structure_metadonnee_pkey PRIMARY KEY (id);

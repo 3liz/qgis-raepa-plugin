@@ -31,5 +31,4 @@ endpoint
 startpoint
 sys_liste_table
 sys_organisme_gestionnaire
-sys_parcours_reseau
 sys_structure_metadonnee

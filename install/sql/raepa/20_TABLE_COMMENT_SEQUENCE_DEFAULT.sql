@@ -1622,26 +1622,6 @@ CREATE SEQUENCE raepa.sys_organisme_gestionnaire_id_seq
 ALTER SEQUENCE raepa.sys_organisme_gestionnaire_id_seq OWNED BY raepa.sys_organisme_gestionnaire.id;
 
 
--- sys_parcours_reseau
-CREATE TABLE raepa.sys_parcours_reseau (
-    id integer NOT NULL,
-    id_ouvrage text NOT NULL
-);
-
-
--- sys_parcours_reseau_id_seq
-CREATE SEQUENCE raepa.sys_parcours_reseau_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
--- sys_parcours_reseau_id_seq
-ALTER SEQUENCE raepa.sys_parcours_reseau_id_seq OWNED BY raepa.sys_parcours_reseau.id;
-
-
 -- sys_structure_metadonnee
 CREATE TABLE raepa.sys_structure_metadonnee (
     id integer NOT NULL,
@@ -2157,10 +2137,6 @@ ALTER TABLE ONLY raepa.sys_liste_table ALTER COLUMN id SET DEFAULT nextval('raep
 
 -- sys_organisme_gestionnaire id
 ALTER TABLE ONLY raepa.sys_organisme_gestionnaire ALTER COLUMN id SET DEFAULT nextval('raepa.sys_organisme_gestionnaire_id_seq'::regclass);
-
-
--- sys_parcours_reseau id
-ALTER TABLE ONLY raepa.sys_parcours_reseau ALTER COLUMN id SET DEFAULT nextval('raepa.sys_parcours_reseau_id_seq'::regclass);
 
 
 -- sys_structure_metadonnee id

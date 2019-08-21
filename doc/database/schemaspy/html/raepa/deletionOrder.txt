@@ -1,5 +1,4 @@
 sys_structure_metadonnee
-sys_parcours_reseau
 sys_organisme_gestionnaire
 sys_liste_table
 startpoint
