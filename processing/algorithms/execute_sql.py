@@ -46,6 +46,7 @@ class ExecuteSql(QgsProcessingAlgorithm):
     # used when calling the algorithm from another algorithm, or when
     # calling from the QGIS console.
 
+    INPUT_SQL = 'INPUT_SQL'
     OUTPUT_STATUS = 'OUTPUT_STATUS'
     OUTPUT_STRING = 'OUTPUT_STRING'
 
@@ -75,6 +76,12 @@ class ExecuteSql(QgsProcessingAlgorithm):
         with some other properties.
         """
         # INPUTS
+        self.addParameter(
+            QgsProcessingParameterString(
+                self.INPUT_SQL, 'INPUT_SQL',
+                optional=True
+            )
+        )
 
         # OUTPUTS
         # Add output for status (integer)
@@ -109,8 +116,12 @@ class ExecuteSql(QgsProcessingAlgorithm):
 
     def setSql(self, parameters, context, feedback):
 
-        self.SQL = self.SQL.replace('\n', ' ').rstrip(';')
-
+        sql = self.SQL
+        if self.INPUT_SQL in parameters:
+            input_sql = str(parameters[self.INPUT_SQL]).strip()
+            if input_sql:
+                sql = input_sql
+        self.SQL = sql.replace('\n', ' ').rstrip(';')
 
     def processAlgorithm(self, parameters, context, feedback):
         """

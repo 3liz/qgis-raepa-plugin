@@ -85,7 +85,6 @@ def fetchDataFromSqlQuery(connection_name, sql):
     except BaseError as e:
         ok = False
         error_message = e.msg
-        print(error_message)
         return [header, data, rowCount, ok, error_message]
     finally:
         if c:

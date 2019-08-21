@@ -33,6 +33,11 @@ for ITEM in FUNCTION "TABLE|COMMENT|SEQUENCE|DEFAULT" VIEW INDEX TRIGGER CONSTRA
     rm "$OUTDIR/$ITEM";
     # Simplify comments inside SQL files
     perl -i -0pe 's/\n--\n-- Name: (TABLE )?(COLUMN )?(.+); Type:.+\n--\n\n/\n-- $3\n/g' "$OUTDIR"/"$I"_"$ITEM".sql;
+    # Remove audit trigger (added afterwards)
+    if [ $ITEM = 'TRIGGER' ]
+    then
+        sed -i '/audit_trigger/d' "$OUTDIR"/"$I"_"$ITEM".sql;
+    fi
     # Rename
     rename -f 's#\|#_#g' "$OUTDIR"/"$I"_"$ITEM".sql;
     # Increment I

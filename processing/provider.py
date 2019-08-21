@@ -41,27 +41,10 @@ from .algorithms.insert_converted_data import InsertConvertedData
 from .algorithms.export_package import ExportPackage
 from .algorithms.get_upstream_route import GetUpstreamRoute
 from .algorithms.get_downstream_route import GetDownstreamRoute
+from .algorithms.cancel_last_modification import CancelLastModification
 
 
 class RaepaProvider(QgsProcessingProvider):
-
-    def __init__(self):
-        QgsProcessingProvider.__init__(self)
-
-        # Load algorithms
-        self.alglist = [
-            GetDataAsLayer(),
-            ConfigurePlugin(),
-            ExecuteSql(),
-            CreateDatabaseStructure(),
-            ImportShapefile(),
-            ConvertImportedData(),
-            InsertConvertedData(),
-            ExportPackage(),
-            GetUpstreamRoute(),
-            GetDownstreamRoute()
-
-        ]
 
     def unload(self):
         """
@@ -71,8 +54,18 @@ class RaepaProvider(QgsProcessingProvider):
         pass
 
     def loadAlgorithms(self):
-        for alg in self.alglist:
-            self.addAlgorithm( alg )
+
+        self.addAlgorithm(GetDataAsLayer())
+        self.addAlgorithm(ConfigurePlugin())
+        self.addAlgorithm(ExecuteSql())
+        self.addAlgorithm(CreateDatabaseStructure())
+        self.addAlgorithm(ImportShapefile())
+        self.addAlgorithm(ConvertImportedData())
+        self.addAlgorithm(InsertConvertedData())
+        self.addAlgorithm(ExportPackage())
+        self.addAlgorithm(GetUpstreamRoute())
+        self.addAlgorithm(GetDownstreamRoute())
+        self.addAlgorithm(CancelLastModification())
 
     def id(self):
         return 'raepa'
