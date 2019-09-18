@@ -453,11 +453,6 @@
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{de351281-7548-4865-ba0e-ab16dce1ba36}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('_val_raepa_etat_canal_ass20171204083216181',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
@@ -618,11 +613,6 @@
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{d0484ca3-e23f-47f6-924d-7d5ebfb01cd5}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('_val_raepa_forme_canal_ass20171204083216218',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
@@ -783,11 +773,6 @@
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{2c7358d7-6170-4f48-996d-ee992eb5afe4}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('_val_raepa_precision_annee20171204083216232',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
@@ -948,11 +933,6 @@
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{3564bf79-bfc4-43e6-a4ae-69b415ce0a4a}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('_val_raepa_type_intervention_ass20171204083216243',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
@@ -3098,12 +3078,6 @@
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{818ed5c6-6911-4d8c-8f19-8536dd21974c}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('raepa_apparass_p20180118113736389',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
@@ -8886,12 +8860,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{7ed29742-4c32-4dfa-8dae-d6f5bd519064}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('sys_organisme_gestionnaire20171214110503227',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
@@ -9656,12 +9624,6 @@ WHERE idnterm = 'INCONNU'
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{42c0afea-fb4e-4255-bf50-cdc3a95bbf50}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('v_canalisation_sans_ouvrage20171207182227720',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
@@ -10470,12 +10432,6 @@ WHERE idnini = 'INCONNU' AND branchemnt != 'O'
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <defaultAction value="{00000000-0000-0000-0000-000000000000}" key="Canvas"/>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{f3a212ad-bfd3-43de-931a-98d94e6322d3}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('v_canalisation_sans_idnini20171210185504753',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
@@ -10688,11 +10644,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{be581832-f440-4da5-bcdc-96a632723743}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_cat_canal_ae20171204083216253',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
@@ -10847,11 +10798,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{01b9fbec-ab56-46a4-b956-22db5becc614}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_cat_canal_ass20171204083216263',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="&quot;code&quot;" sortOrder="0">
         <columns>
@@ -11012,11 +10958,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{8bd1e2e6-a1dd-4edf-b10a-73a00f3a40e5}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_fonc_app_ae20171204083216273',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
@@ -11177,11 +11118,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{c59b3134-98c2-4be7-a577-70e6349b47e9}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_fonc_app_ass20171204083216283',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
@@ -11342,11 +11278,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{f2351f1c-e437-462a-91b3-2ca2bbd3e932}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_fonc_canal_ae20171204083216294',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
@@ -11501,11 +11432,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{cbb16b91-f71f-4be4-8caf-36788cf329ea}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_fonc_canal_ass20171204083216304',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
@@ -11666,11 +11592,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{f5161dc5-0caf-454a-b274-402fdb64b308}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_fonc_ouv_ae20171204083216314',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
@@ -11825,11 +11746,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{c4de67e8-e5ba-49fc-929f-c5cacee0d848}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_fonc_ouv_ass20171204083216324',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
@@ -11984,11 +11900,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{e46edc12-806d-4e13-b0cc-fbaa6af4fa1b}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_materiau20171204083216335',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
@@ -12149,11 +12060,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{cdac4dcf-f848-4301-a96b-db06e207a9fb}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_mode_circulation20171204083216345',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
@@ -12314,11 +12220,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{05e46b04-02ca-4486-b77a-6c0c44525631}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_qualite_anpose20171204083216356',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
@@ -12479,11 +12380,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{fffead68-6937-45bc-99af-8c6de70cfc74}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_qualite_geoloc20171204083216366',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns>
@@ -12644,11 +12540,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{10ddbf55-409c-4822-be8a-62bda506d3ca}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_support_reparation20171204083216376',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
@@ -12803,11 +12694,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{597073d9-7ac7-46c0-bdb0-c179e4f72f3b}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_typ_reseau_ass20171204083216386',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="&quot;code&quot;" sortOrder="0">
         <columns>
@@ -12968,11 +12854,6 @@ def my_form_open(dialog, layer, feature):
       </constraintExpressions>
       <expressionfields/>
       <attributeactions>
-        <actionsetting capture="0" notificationMessage="" type="1" shortTitle="" isEnabledOnlyWhenEditable="0" icon="" id="{1c0e5328-e5f4-4609-8fe0-29ecaab26400}" name="History audit" action="qgis.utils.plugins['postgres91plusauditor'].audit('val_raepa_type_defaillance20171204083216396',[% $id %])">
-          <actionScope id="Field"/>
-          <actionScope id="Feature"/>
-          <actionScope id="Canvas"/>
-        </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
         <columns/>
