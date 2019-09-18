@@ -18,7 +18,7 @@ esac
 done
 
 # Create HTML landing page with list of exported schemas
-echo "<h3>G-Obs - List of database schemas</h3>" > $OUTPUTDIR/index.html
+echo "<h3>List of database schemas</h3>" > $OUTPUTDIR/index.html
 
 # On boucle sur les schemas
 for SCHEMANAME in raepa; do
