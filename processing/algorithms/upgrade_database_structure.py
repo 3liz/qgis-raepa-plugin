@@ -12,15 +12,14 @@
 """
 
 __author__ = '3liz'
-__date__ = '2018-12-19'
-__copyright__ = '(C) 2018 by 3liz'
+__date__ = '2019-02-15'
+__copyright__ = '(C) 2019 by 3liz'
 
 # This will get replaced with a git SHA1 when you do a git archive
 
 __revision__ = '$Format:%H$'
 
 from PyQt5.QtCore import QCoreApplication
-from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 from qgis.core import (
     QgsProcessing,
     QgsProcessingAlgorithm,
@@ -32,33 +31,30 @@ from qgis.core import (
     QgsProcessingOutputString,
     QgsExpressionContextUtils
 )
+
 import processing
 import os
 from .tools import *
 import configparser
 from db_manager.db_plugins import createDbPlugin
 
-class CreateDatabaseStructure(QgsProcessingAlgorithm):
+class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
     """
-    Create Raepa structure in Database
+
     """
 
     # Constants used to refer to parameters and outputs. They will be
     # used when calling the algorithm from another algorithm, or when
     # calling from the QGIS console.
-
-    OVERRIDE = 'OVERRIDE'
-    NOM = 'NOM'
-    SIREN = 'SIREN'
-    CODE = 'CODE'
+    RUNIT = 'RUNIT'
     OUTPUT_STATUS = 'OUTPUT_STATUS'
     OUTPUT_STRING = 'OUTPUT_STRING'
 
     def name(self):
-        return 'create_database_structure'
+        return 'upgrade_database_structure'
 
     def displayName(self):
-        return self.tr('Create database structure')
+        return self.tr('Upgrade database structure')
 
     def group(self):
         return self.tr('Structure')
@@ -78,37 +74,17 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
         with some other properties.
         """
         # INPUTS
+
         self.addParameter(
             QgsProcessingParameterBoolean(
-                self.OVERRIDE, 'Ecraser le schéma raepa et toutes les données ? ** ATTENTION **',
+                self.RUNIT,
+                self.tr('Check this box to upgrade. No action will be done otherwise'),
                 defaultValue=False,
                 optional=False
             )
         )
-        self.addParameter(
-            QgsProcessingParameterString(
-                self.NOM, 'Nom du gestionnaire',
-                defaultValue='Communauté d\'Agglomération de Test',
-                optional=False
-            )
-        )
-        self.addParameter(
-            QgsProcessingParameterString(
-                self.SIREN, 'SIREN',
-                defaultValue='123456789',
-                optional=False
-            )
-        )
-        self.addParameter(
-            QgsProcessingParameterString(
-                self.CODE, 'Nom abbrégé en 3 caractères',
-                defaultValue='cat',
-                optional=False
-            )
-        )
-
         # OUTPUTS
-        # Add output for status (integer)
+        # Add output for status (integer) and message (string)
         self.addOutput(
             QgsProcessingOutputNumber(
                 self.OUTPUT_STATUS,
@@ -117,16 +93,24 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
         )
         self.addOutput(
             QgsProcessingOutputString(
-                self.OUTPUT_STRING, self.tr('Output message')
+                self.OUTPUT_STRING,
+                self.tr('Output message')
             )
         )
 
+
     def checkParameterValues(self, parameters, context):
+        # Check if runit is checked
+        runit = self.parameterAsBool(parameters, self.RUNIT, context)
+        if not runit:
+            msg = self.tr('You must check the box to run the upgrade !')
+            ok = False
+            return ok, msg
 
         # Check that the connection name has been configured
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
         if not connection_name:
-            return False, self.tr('You must use the "Configure Raepa plugin" alg to set the database connection name')
+            return False, self.tr('You must use the "Configure G-obs plugin" alg to set the database connection name')
 
         # Check that it corresponds to an existing connection
         dbpluginclass = createDbPlugin( 'postgis' )
@@ -139,13 +123,7 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
         if not ok:
             return False, msg
 
-        # Check inputs
-        if len(parameters[self.CODE]) != 3:
-            return False, self.tr('Le nom abbrégé doit faire 3 exactement caractères.')
-        if len(parameters[self.SIREN]) != 9:
-            return False, self.tr("Le SIREN doit faire exactement 9 caractères.")
-
-        return super(CreateDatabaseStructure, self).checkParameterValues(parameters, context)
+        return super(UpgradeDatabaseStructure, self).checkParameterValues(parameters, context)
 
     def checkSchema(self, parameters, context):
         sql = '''
@@ -160,81 +138,120 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
         )
         if not ok:
             return ok, error_message
-        override = parameters[self.OVERRIDE]
-        msg = self.tr('Schema raepa does not exists. Continue...')
+        ok = False
+        msg = self.tr("Schema raepa does not exist in database !")
         for a in data:
             schema = a[0]
-            if schema == 'raepa' and not override:
-                ok = False
-                msg = self.tr("Schema raepa already exists in database ! If you REALLY want to drop and recreate it (and loose all data), check the *Overwrite* checkbox")
+            if schema == 'raepa':
+                ok = True
+                msg = ''
         return ok, msg
 
     def processAlgorithm(self, parameters, context, feedback):
         """
         Here is where the processing itself takes place.
         """
+
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
 
         # Drop schema if needed
-        override = self.parameterAsBool(parameters, self.OVERRIDE, context)
-        if override:
-            feedback.pushInfo(self.tr("Trying to drop schema raepa, audit, imports"))
-            sql = '''
-                DROP SCHEMA IF EXISTS raepa CASCADE;
-                DROP SCHEMA IF EXISTS audit CASCADE;
-                DROP SCHEMA IF EXISTS imports CASCADE;
-            '''
+        runit = self.parameterAsBool(parameters, self.RUNIT, context)
+        if not runit:
+            status = 0
+            msg = self.tr('You must check the box to run the upgrade !')
+            # raise Exception(msg)
+            return {
+                self.OUTPUT_STATUS: status,
+                self.OUTPUT_STRING: msg
+            }
 
-            [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
-                connection_name,
-                sql
-            )
-            if ok:
-                feedback.pushInfo(self.tr("* Schema raepa has been droped."))
-            else:
-                feedback.pushInfo(error_message)
-                status = 0
-                # raise Exception(msg)
-                return {
-                    self.OUTPUT_STATUS: status,
-                    self.OUTPUT_STRING: msg
-                }
+        # get database version
+        sql = '''
+            SELECT version
+            FROM raepa.sys_structure_metadonnee
+            ORDER BY date_ajout DESC
+            LIMIT 1;
+        '''
+        [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
+            connection_name,
+            sql
+        )
+        if not ok:
+            feedback.pushInfo(error_message)
+            status = 0
+            raise Exception(error_message)
+        db_version = None
+        for a in data:
+            db_version = a[0]
+        if not db_version:
+            error_message = self.tr('No installed version found in the database !')
+            raise Exception(error_message)
+        feedback.pushInfo(self.tr('Database structure version') + ' = %s' % db_version)
 
-        # Create full structure
-        sql_files = [
-            '00_initialize_database.sql',
-            'audit/audit.sql',
-            'raepa/10_FUNCTION.sql',
-            'raepa/20_TABLE_COMMENT_SEQUENCE_DEFAULT.sql',
-            'raepa/30_VIEW.sql',
-            'raepa/40_INDEX.sql',
-            'raepa/50_TRIGGER.sql',
-            'raepa/60_CONSTRAINT.sql',
-            'raepa/90_GLOSSARY.sql',
-            '99_finalize_database.sql',
-        ]
-        msg = ''
+        # get plugin version
         alg_dir = os.path.dirname(__file__)
         plugin_dir = os.path.join(alg_dir, '../../')
+        config = configparser.ConfigParser()
+        config.read(os.path.join(plugin_dir, 'metadata.txt'))
+        plugin_version = config['general']['version']
+        feedback.pushInfo(self.tr('Plugin version') + ' = %s' % plugin_version)
 
+        # Return if nothing to do
+        if db_version == plugin_version:
+            return {
+                self.OUTPUT_STATUS: 1,
+                self.OUTPUT_STRING: self.tr('The database version already matches the plugin version. No upgrade needed.')
+            }
+
+        # Get all the upgrade SQL files between db versions and plugin version
+        upgrade_dir = os.path.join(plugin_dir, 'install/sql/upgrade/')
+        ff = {}
+        get_files = [
+            f for f in os.listdir(upgrade_dir)
+            if os.path.isfile(os.path.join(upgrade_dir, f))
+        ]
+        files = []
+        db_version_integer = getVersionInteger(db_version)
+        for f in get_files:
+            k = getVersionInteger(
+                f.replace('upgrade_to_', '').replace('.sql', '').strip()
+            )
+            if k > db_version_integer:
+                files.append(
+                    [k, f]
+                )
+        def getKey(item):
+            return item[0]
+        sfiles = sorted(files, key=getKey)
+        sql_files = [s[1] for s in sfiles]
+
+        msg = ''
         # Loop sql files and run SQL code
         for sf in sql_files:
-            feedback.pushInfo(sf)
-            sql_file = os.path.join(plugin_dir, 'install/sql/%s' % sf)
+            sql_file = os.path.join(plugin_dir, 'install/sql/upgrade/%s' % sf)
             with open(sql_file, 'r') as f:
                 sql = f.read()
                 if len(sql.strip()) == 0:
-                    feedback.pushInfo('  Skipped (empty file)')
+                    feedback.pushInfo('* ' + sf + ' -- SKIPPED (EMPTY FILE)')
                     continue
+
+                # Add SQL database version in raepa.metadata
+                new_db_version = sf.replace('upgrade_to_', '').replace('.sql', '').strip()
+                feedback.pushInfo('* NEW DB VERSION' + new_db_version )
+                sql+= '''
+                    UPDATE raepa.sys_structure_metadonnee
+                    SET (version, date_ajout)
+                    = ( '%s', now()::timestamp(0) );
+                ''' % new_db_version
 
                 [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
                     connection_name,
                     sql
                 )
                 if ok:
-                    feedback.pushInfo('  Success !')
+                    feedback.pushInfo('* ' + sf + ' -- SUCCESS !')
                 else:
-                    feedback.pushInfo('* ' + error_message)
+                    feedback.pushInfo(error_message)
                     status = 0
                     raise Exception(error_message)
                     # return {
@@ -242,35 +259,7 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
                         # self.OUTPUT_STRING: error_message
                     # }
 
-        # Add version
-        config = configparser.ConfigParser()
-        config.read(str(os.path.join(plugin_dir, 'metadata.txt')))
-        version = config['general']['version']
-        sql = '''
-            INSERT INTO raepa.sys_structure_metadonnee
-            (version, date_ajout)
-            VALUES (
-                '%s', now()::timestamp(0)
-            )
-        ''' % version
-        [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
-            connection_name,
-            sql
-        )
-
-        # Add metadata info
-        sql = 'INSERT INTO raepa.sys_organisme_gestionnaire (nom, siren, code, actif)'
-        sql+= "VALUES ('%s', '%s', '%s', True);" % (
-            parameters[self.NOM].replace("'", "''"),
-            parameters[self.SIREN],
-            parameters[self.CODE]
-        )
-        [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
-            connection_name,
-            sql
-        )
-
         return {
             self.OUTPUT_STATUS: 1,
-            self.OUTPUT_STRING: self.tr('*** RAEPA STRUCTURE HAS BEEN SUCCESSFULLY CREATED ***')
+            self.OUTPUT_STRING: self.tr('*** RAEPA STRUCTURE HAS BEEN SUCCESSFULLY UPGRADED ***')
         }

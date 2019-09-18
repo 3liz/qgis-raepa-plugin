@@ -35,6 +35,7 @@ from .algorithms.get_data_as_layer import GetDataAsLayer
 from .algorithms.configure_plugin import ConfigurePlugin
 from .algorithms.execute_sql import ExecuteSql
 from .algorithms.create_database_structure import CreateDatabaseStructure
+from .algorithms.upgrade_database_structure import UpgradeDatabaseStructure
 from .algorithms.import_shapefile import ImportShapefile
 from .algorithms.convert_imported_data import ConvertImportedData
 from .algorithms.insert_converted_data import InsertConvertedData
@@ -59,6 +60,7 @@ class RaepaProvider(QgsProcessingProvider):
         self.addAlgorithm(ConfigurePlugin())
         self.addAlgorithm(ExecuteSql())
         self.addAlgorithm(CreateDatabaseStructure())
+        self.addAlgorithm(UpgradeDatabaseStructure())
         self.addAlgorithm(ImportShapefile())
         self.addAlgorithm(ConvertImportedData())
         self.addAlgorithm(InsertConvertedData())
