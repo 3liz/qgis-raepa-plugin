@@ -17,20 +17,16 @@ __copyright__ = '(C) 2019 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (
-    QgsProcessing,
     QgsProcessingAlgorithm,
-    QgsProcessingContext,
-    QgsProcessingUtils,
-    QgsProcessingException,
     QgsProcessingParameterString,
     QgsProcessingOutputString,
     QgsProcessingOutputNumber,
     QgsExpressionContextUtils
 )
+
 from .tools import *
-from processing.tools import postgis
+
 
 class ConfigurePlugin(QgsProcessingAlgorithm):
     """

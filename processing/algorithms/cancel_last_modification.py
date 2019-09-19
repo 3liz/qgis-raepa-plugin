@@ -17,22 +17,12 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (
-    QgsProcessing,
-    QgsProcessingAlgorithm,
-    QgsProcessingUtils,
-    QgsProcessingException,
-    QgsProcessingParameterString,
-    QgsProcessingOutputNumber,
-    QgsProcessingOutputString,
-    QgsProcessingParameterVectorLayer,
-    QgsExpressionContextUtils
+    QgsProcessingParameterVectorLayer
 )
-import os
-from .tools import *
-from db_manager.db_plugins import createDbPlugin
+
 from .execute_sql import *
+
 
 class CancelLastModification(ExecuteSql):
     """

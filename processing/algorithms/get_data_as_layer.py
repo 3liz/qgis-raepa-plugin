@@ -17,13 +17,12 @@ __copyright__ = '(C) 2019 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-from qgis.PyQt.QtCore import QCoreApplication
+from db_manager.db_plugins import createDbPlugin
+from processing.tools import postgis
 from qgis.core import (
     QgsVectorLayer,
-    QgsProcessing,
     QgsProcessingAlgorithm,
     QgsProcessingContext,
-    QgsProcessingUtils,
     QgsProcessingException,
     QgsProcessingParameterString,
     QgsProcessingOutputString,
@@ -31,9 +30,9 @@ from qgis.core import (
     QgsProcessingOutputVectorLayer,
     QgsExpressionContextUtils
 )
+
 from .tools import *
-from processing.tools import postgis
-from db_manager.db_plugins import createDbPlugin
+
 
 class GetDataAsLayer(QgsProcessingAlgorithm):
     """

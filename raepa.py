@@ -28,11 +28,12 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
+import inspect
 import os
 import sys
-import inspect
 
-from qgis.core import QgsProcessingAlgorithm, QgsApplication
+from qgis.core import QgsApplication
+
 from .processing.provider import RaepaProvider
 
 cmd_folder = os.path.split(inspect.getfile(inspect.currentframe()))[0]

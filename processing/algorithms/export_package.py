@@ -17,23 +17,22 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
+import os
+import subprocess
+
 from qgis.PyQt.QtCore import (
     QCoreApplication,
-    QSettings,
     QFileInfo
 )
-
 from qgis.core import (
-    QgsProcessing,
     QgsProcessingAlgorithm,
-    QgsProcessingUtils,
     QgsProcessingException,
     QgsProcessingParameterString,
     QgsProcessingOutputString,
     QgsProject,
     QgsDataSourceUri
 )
-import os, subprocess
+
 
 class ExportPackage(QgsProcessingAlgorithm):
     """
@@ -94,7 +93,6 @@ class ExportPackage(QgsProcessingAlgorithm):
         """
         Here is where the processing itself takes place.
         """
-        import processing
         plugin_dir = os.path.dirname(os.path.abspath(__file__))
 
         # Create directory

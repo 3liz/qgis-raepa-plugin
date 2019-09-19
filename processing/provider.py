@@ -29,18 +29,19 @@ __copyright__ = '(C) 2019 by 3liz'
 __revision__ = '$Format:%H$'
 
 from qgis.core import QgsProcessingProvider
-from .algorithms.get_data_as_layer import GetDataAsLayer
-from .algorithms.configure_plugin import ConfigurePlugin
-from .algorithms.execute_sql import ExecuteSql
-from .algorithms.create_database_structure import CreateDatabaseStructure
-from .algorithms.upgrade_database_structure import UpgradeDatabaseStructure
-from .algorithms.import_shapefile import ImportShapefile
-from .algorithms.convert_imported_data import ConvertImportedData
-from .algorithms.insert_converted_data import InsertConvertedData
-from .algorithms.export_package import ExportPackage
-from .algorithms.get_upstream_route import GetUpstreamRoute
-from .algorithms.get_downstream_route import GetDownstreamRoute
+
 from .algorithms.cancel_last_modification import CancelLastModification
+from .algorithms.configure_plugin import ConfigurePlugin
+from .algorithms.convert_imported_data import ConvertImportedData
+from .algorithms.create_database_structure import CreateDatabaseStructure
+from .algorithms.execute_sql import ExecuteSql
+from .algorithms.export_package import ExportPackage
+from .algorithms.get_data_as_layer import GetDataAsLayer
+from .algorithms.get_downstream_route import GetDownstreamRoute
+from .algorithms.get_upstream_route import GetUpstreamRoute
+from .algorithms.import_shapefile import ImportShapefile
+from .algorithms.insert_converted_data import InsertConvertedData
+from .algorithms.upgrade_database_structure import UpgradeDatabaseStructure
 
 
 class RaepaProvider(QgsProcessingProvider):

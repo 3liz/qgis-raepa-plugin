@@ -17,23 +17,20 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
+import os
+
+from db_manager.db_plugins import createDbPlugin
 from qgis.PyQt.QtCore import (
-    QCoreApplication,
-    QSettings
+    QCoreApplication
 )
 from qgis.core import (
-    QgsProcessing,
     QgsProcessingAlgorithm,
-    QgsProcessingUtils,
-    QgsProcessingException,
-    QgsProcessingParameterString,
     QgsProcessingParameterVectorLayer,
     QgsProcessingOutputString,
     QgsProcessingOutputNumber,
     QgsExpressionContextUtils
 )
-import os
-from db_manager.db_plugins import createDbPlugin
+
 
 class ImportShapefile(QgsProcessingAlgorithm):
     """

@@ -17,24 +17,21 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-from qgis.PyQt.QtCore import QCoreApplication
-from qgis.PyQt.QtSql import QSqlDatabase, QSqlQuery
+import configparser
+import os
+
+from db_manager.db_plugins import createDbPlugin
 from qgis.core import (
-    QgsProcessing,
     QgsProcessingAlgorithm,
-    QgsProcessingUtils,
-    QgsProcessingException,
     QgsProcessingParameterString,
     QgsProcessingParameterBoolean,
     QgsProcessingOutputNumber,
     QgsProcessingOutputString,
     QgsExpressionContextUtils
 )
-import processing
-import os
+
 from .tools import *
-import configparser
-from db_manager.db_plugins import createDbPlugin
+
 
 class CreateDatabaseStructure(QgsProcessingAlgorithm):
     """

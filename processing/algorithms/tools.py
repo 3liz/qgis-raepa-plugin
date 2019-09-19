@@ -14,9 +14,7 @@ __date__ = '2019-02-15'
 __copyright__ = '(C) 2019 by 3liz'
 
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (
-    QgsDataSourceUri
-)
+
 
 def tr(string):
     return QCoreApplication.translate('Processing', string)
