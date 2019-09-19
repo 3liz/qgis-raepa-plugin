@@ -104,8 +104,8 @@ class ConfigurePlugin(QgsProcessingAlgorithm):
         """
         connection_name = parameters[self.CONNECTION_NAME]
 
-        # Set global variable
-        QgsExpressionContextUtils.setGlobalVariable('raepa_connection_name', connection_name)
+        # Set project variable
+        QgsExpressionContextUtils.setProjectVariable(context.project(), 'raepa_connection_name', connection_name)
         feedback.pushInfo(self.tr('PostgreSQL connection to Raepa database') + ' = ' + connection_name)
 
         msg = self.tr('Configuration has been saved')
