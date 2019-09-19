@@ -17,8 +17,8 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-from PyQt5.QtCore import QCoreApplication
-from PyQt5.QtSql import QSqlDatabase, QSqlQuery
+from qgis.PyQt.QtCore import QCoreApplication
+from qgis.PyQt.QtSql import QSqlDatabase, QSqlQuery
 from qgis.core import (
     QgsProcessing,
     QgsProcessingAlgorithm,
