@@ -54,7 +54,6 @@ class RaepaProvider(QgsProcessingProvider):
         pass
 
     def loadAlgorithms(self):
-
         self.addAlgorithm(GetDataAsLayer())
         self.addAlgorithm(ConfigurePlugin())
         self.addAlgorithm(ExecuteSql())

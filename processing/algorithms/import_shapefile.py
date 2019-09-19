@@ -108,13 +108,12 @@ class ImportShapefile(QgsProcessingAlgorithm):
             return False, self.tr('You must use the "Configure Raepa plugin" alg to set the database connection name')
 
         # Check that it corresponds to an existing connection
-        dbpluginclass = createDbPlugin( 'postgis' )
+        dbpluginclass = createDbPlugin('postgis')
         connections = [c.connectionName() for c in dbpluginclass.connections()]
         if connection_name not in connections:
             return False, self.tr('The configured connection name does not exists in QGIS')
 
         return super(ImportShapefile, self).checkParameterValues(parameters, context)
-
 
     def processAlgorithm(self, parameters, context, feedback):
         """

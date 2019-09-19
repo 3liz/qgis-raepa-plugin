@@ -19,8 +19,8 @@ from qgis.PyQt.QtCore import QCoreApplication
 def tr(string):
     return QCoreApplication.translate('Processing', string)
 
-def fetchDataFromSqlQuery(connection_name, sql):
 
+def fetchDataFromSqlQuery(connection_name, sql):
     from db_manager.db_plugins.plugin import BaseError
     from db_manager.db_plugins import createDbPlugin
     from db_manager.db_plugins.postgis.connector import PostGisDBConnector
@@ -35,10 +35,10 @@ def fetchDataFromSqlQuery(connection_name, sql):
     # Create plugin class and try to connect
     ok = True
     try:
-        dbpluginclass = createDbPlugin( 'postgis', connection_name )
+        dbpluginclass = createDbPlugin('postgis', connection_name)
         connection = dbpluginclass.connect()
     except BaseError as e:
-        #DlgDbError.showError(e, self.dialog)
+        # DlgDbError.showError(e, self.dialog)
         ok = False
         error_message = e.msg
     except:
@@ -65,9 +65,9 @@ def fetchDataFromSqlQuery(connection_name, sql):
 
     c = None
     ok = True
-    #print "run query"
+    # print "run query"
     try:
-        c = connector._execute(None,str(sql))
+        c = connector._execute(None, str(sql))
         data = []
         header = connector._get_cursor_columns(c)
         if header == None:
@@ -107,6 +107,7 @@ def validateTimestamp(timestamp_text):
         valid = False
         msg = str(e)
     return valid, msg
+
 
 def getVersionInteger(f):
     '''

@@ -92,7 +92,6 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
             )
         )
 
-
     def checkParameterValues(self, parameters, context):
         # Check if runit is checked
         runit = self.parameterAsBool(parameters, self.RUNIT, context)
@@ -107,7 +106,7 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
             return False, self.tr('You must use the "Configure G-obs plugin" alg to set the database connection name')
 
         # Check that it corresponds to an existing connection
-        dbpluginclass = createDbPlugin( 'postgis' )
+        dbpluginclass = createDbPlugin('postgis')
         connections = [c.connectionName() for c in dbpluginclass.connections()]
         if connection_name not in connections:
             return False, self.tr('The configured connection name does not exists in QGIS')
@@ -214,8 +213,10 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
                 files.append(
                     [k, f]
                 )
+
         def getKey(item):
             return item[0]
+
         sfiles = sorted(files, key=getKey)
         sql_files = [s[1] for s in sfiles]
 
@@ -231,8 +232,8 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
 
                 # Add SQL database version in raepa.metadata
                 new_db_version = sf.replace('upgrade_to_', '').replace('.sql', '').strip()
-                feedback.pushInfo('* NEW DB VERSION' + new_db_version )
-                sql+= '''
+                feedback.pushInfo('* NEW DB VERSION' + new_db_version)
+                sql += '''
                     UPDATE raepa.sys_structure_metadonnee
                     SET (version, date_ajout)
                     = ( '%s', now()::timestamp(0) );
@@ -249,8 +250,8 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
                     status = 0
                     raise Exception(error_message)
                     # return {
-                        # self.OUTPUT_STATUS: status,
-                        # self.OUTPUT_STRING: error_message
+                    # self.OUTPUT_STATUS: status,
+                    # self.OUTPUT_STRING: error_message
                     # }
 
         return {

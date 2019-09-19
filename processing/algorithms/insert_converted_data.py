@@ -83,11 +83,9 @@ class InsertConvertedData(ExecuteSql):
         )
 
     def checkParameterValues(self, parameters, context):
-
         return super(InsertConvertedData, self).checkParameterValues(parameters, context)
 
     def setSql(self, parameters, context, feedback):
-
         sql = '''SELECT raepa.import_tables_temporaires_dans_raepa(
             '%s', '%s', %s
         )
@@ -98,6 +96,5 @@ class InsertConvertedData(ExecuteSql):
         )
         feedback.pushInfo(self.tr('Insert converted data into the raepa schema.'))
         feedback.pushInfo(sql)
-
 
         self.SQL = sql.replace('\n', ' ').rstrip(';')

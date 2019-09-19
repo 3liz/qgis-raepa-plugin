@@ -127,7 +127,7 @@ class GetDataAsLayer(QgsProcessingAlgorithm):
             return False, self.tr('You must use the "Configure G-obs plugin" alg to set the database connection name')
 
         # Check that it corresponds to an existing connection
-        dbpluginclass = createDbPlugin( 'postgis' )
+        dbpluginclass = createDbPlugin('postgis')
         connections = [c.connectionName() for c in dbpluginclass.connections()]
         if connection_name not in connections:
             return False, self.tr('The configured connection name does not exists in QGIS')
@@ -143,7 +143,6 @@ class GetDataAsLayer(QgsProcessingAlgorithm):
         # Name given by the user
         output_layer_name = parameters[self.OUTPUT_LAYER_NAME]
         self.LAYER_NAME = output_layer_name
-
 
     def processAlgorithm(self, parameters, context, feedback):
         """

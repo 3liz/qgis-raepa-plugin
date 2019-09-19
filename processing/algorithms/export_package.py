@@ -149,7 +149,7 @@ class ExportPackage(QgsProcessingAlgorithm):
 
         # Export with ogr2og:r
         try:
-            subprocess.check_call(ogr_command,stderr=subprocess.STDOUT)
+            subprocess.check_call(ogr_command, stderr=subprocess.STDOUT)
         except subprocess.CalledProcessError as e:
             raise QgsProcessingException(str(e.output))
 

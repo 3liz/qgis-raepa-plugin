@@ -49,9 +49,7 @@ class GetDownstreamRoute(GetDataAsLayer):
             )
         )
 
-
     def setSql(self, parameters, context, feedback):
-
         # Build SQL
         sql = '''
             SELECT 1 AS id, raepa.downstream('{0}') AS geom
@@ -62,4 +60,3 @@ class GetDownstreamRoute(GetDataAsLayer):
 
     def setLayerName(self, parameters, context, feedback):
         self.LAYER_NAME = self.tr('Downstream route from') + ' %s' % parameters[self.SOURCE_ID]
-
