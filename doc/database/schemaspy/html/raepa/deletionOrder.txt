@@ -1,8 +1,6 @@
 sys_structure_metadonnee
 sys_organisme_gestionnaire
 sys_liste_table
-startpoint
-endpoint
 commune
 raepa_canalaep_l
 raepa_apparass_p

@@ -81,13 +81,6 @@
             <column ascending="true" name="codeinsee"/>
          </index>
       </table>
-      <table name="endpoint" remarks="" schema="raepa" type="TABLE">
-         <column autoUpdated="false" digits="0" id="0" name="idcana" nullable="true" remarks="" size="254" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="1" name="geom" nullable="true" remarks="" size="2147483647" type="geometry"/>
-         <index name="endpoint_geom_idx" unique="false">
-            <column ascending="true" name="geom"/>
-         </index>
-      </table>
       <table name="raepa_apparaep_p" remarks="Table des appareillages du réseau d'AEP" schema="raepa" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('raepa.raepa_apparaep_p_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial"/>
          <column autoUpdated="false" defaultValue="raepa.generate_oid('raepa_apparaep_p'::text)" digits="0" id="1" name="idappareil" nullable="false" remarks="Identifiant de l'appareillage" size="254" type="varchar"/>
@@ -582,13 +575,6 @@
             <column ascending="true" name="mouvrage"/>
          </index>
       </table>
-      <table name="startpoint" remarks="" schema="raepa" type="TABLE">
-         <column autoUpdated="false" digits="0" id="0" name="idcana" nullable="true" remarks="" size="254" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="1" name="geom" nullable="true" remarks="" size="2147483647" type="geometry"/>
-         <index name="startpoint_geom_idx" unique="false">
-            <column ascending="true" name="geom"/>
-         </index>
-      </table>
       <table name="sys_liste_table" remarks="Liste les tables du schéma RAEPA" schema="raepa" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('raepa.sys_liste_table_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant" size="10" type="serial"/>
          <column autoUpdated="false" digits="0" id="1" name="nom" nullable="false" remarks="Nom de la table dans la base de données" size="2147483647" type="text"/>
@@ -798,14 +784,6 @@
          <column autoUpdated="false" digits="0" id="39" name="_date_import" nullable="true" remarks="" size="2147483647" type="text"/>
          <column autoUpdated="false" digits="0" id="40" name="geom" nullable="true" remarks="" size="2147483647" type="geometry"/>
          <column autoUpdated="false" digits="0" id="41" name="_temp_data" nullable="true" remarks="" size="2147483647" type="hstore"/>
-      </table>
-      <table name="v_impasses_basses" numRows="0" remarks="" schema="raepa" type="VIEW" viewSql=" SELECT DISTINCT e1.idcana,&#10;    (e1.geom)::geometry(Point,2154) AS geom&#10;   FROM ((raepa.endpoint e1&#10;     JOIN raepa.endpoint e2 ON ((st_intersects(e1.geom, e2.geom) AND ((e1.idcana)::text &lt;&gt; (e2.idcana)::text))))&#10;     LEFT JOIN raepa.startpoint s ON (st_intersects(e1.geom, s.geom)))&#10;  WHERE (s.idcana IS NULL);">
-         <column autoUpdated="false" digits="0" id="0" name="idcana" nullable="true" remarks="" size="254" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="1" name="geom" nullable="true" remarks="" size="2147483647" type="geometry"/>
-      </table>
-      <table name="v_impasses_hautes" numRows="0" remarks="" schema="raepa" type="VIEW" viewSql=" SELECT DISTINCT s1.idcana,&#10;    (s1.geom)::geometry(Point,2154) AS geom&#10;   FROM ((raepa.endpoint s1&#10;     JOIN raepa.endpoint s2 ON ((st_intersects(s1.geom, s2.geom) AND ((s1.idcana)::text &lt;&gt; (s2.idcana)::text))))&#10;     LEFT JOIN raepa.startpoint e ON (st_intersects(s1.geom, e.geom)))&#10;  WHERE (e.idcana IS NULL);">
-         <column autoUpdated="false" digits="0" id="0" name="idcana" nullable="true" remarks="" size="254" type="varchar"/>
-         <column autoUpdated="false" digits="0" id="1" name="geom" nullable="true" remarks="" size="2147483647" type="geometry"/>
       </table>
       <table name="val_raepa_cat_canal_ae" remarks="Nomenclature pour la catégorie de canalisation AEP" schema="raepa" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar">
