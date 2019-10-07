@@ -31,6 +31,7 @@ from qgis.core import (
     QgsProcessingAlgorithm,
     QgsProcessingException,
     QgsProcessingParameterString,
+    QgsProcessingParameterCrs,
     QgsProcessingOutputString,
     QgsProject,
     QgsDataSourceUri
@@ -78,9 +79,9 @@ class ExportPackage(QgsProcessingAlgorithm):
             )
         )
         self.addParameter(
-            QgsProcessingParameterString(
-                self.SRID, 'SRID',
-                defaultValue='2154',
+            QgsProcessingParameterCrs(
+                self.SRID, 'Projection',
+                defaultValue='EPSG:2154',
                 optional=False
             )
         )
@@ -99,11 +100,13 @@ class ExportPackage(QgsProcessingAlgorithm):
         # Create directory
         # TODO fix use of unix path
         exp = QgsExpression("'/home/' || @user_account_name || '/sup/'")
-        context = QgsExpressionContext()
-        context.appendScope(QgsExpressionContextUtils.globalScope())
-        output_dir = exp.evaluate(context)
+        expression_context = QgsExpressionContext()
+        expression_context.appendScope(QgsExpressionContextUtils.globalScope())
+        output_dir = exp.evaluate(expression_context)
         if not os.path.isdir(output_dir):
             os.mkdir(output_dir)
+
+        crs = self.parameterAsCrs(parameters, self.SRID, context)
 
         # Set sqlite file path
         projectFile = QgsProject.instance().fileName()
@@ -141,7 +144,7 @@ class ExportPackage(QgsProcessingAlgorithm):
             sqlite_path,
             ogr_source,
             '-lco', 'GEOMETRY_NAME=geom',
-            '-lco', 'SRID=%s' % parameters[self.SRID],
+            '-lco', 'SRID={}'.format(crs.authid()),
             '-gt', '50000',
             '-dsco', 'SPATIALITE=YES',
             '-lco', 'SPATIAL_INDEX=YES',
