@@ -25,6 +25,9 @@ from qgis.PyQt.QtCore import (
     QFileInfo
 )
 from qgis.core import (
+    QgsExpression,
+    QgsExpressionContext,
+    QgsExpressionContextUtils,
     QgsProcessingAlgorithm,
     QgsProcessingException,
     QgsProcessingParameterString,
@@ -93,10 +96,12 @@ class ExportPackage(QgsProcessingAlgorithm):
         """
         Here is where the processing itself takes place.
         """
-        plugin_dir = os.path.dirname(os.path.abspath(__file__))
-
         # Create directory
-        output_dir = '/home/mdouchin/sup/'
+        # TODO fix use of unix path
+        exp = QgsExpression("'/home/' || @user_account_name || '/sup/'")
+        context = QgsExpressionContext()
+        context.appendScope(QgsExpressionContextUtils.globalScope())
+        output_dir = exp.evaluate(context)
         if not os.path.isdir(output_dir):
             os.mkdir(output_dir)
 
