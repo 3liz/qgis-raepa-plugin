@@ -1,0 +1,2396 @@
+<!DOCTYPE qgis-layer-definition>
+<qlr>
+ <maplayers>
+  <maplayer geometry="Line" labelsEnabled="1" autoRefreshTime="0" simplifyLocal="1" simplifyDrawingHints="1" autoRefreshEnabled="0" simplifyAlgorithm="0" type="vector" simplifyDrawingTol="1" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="0" readOnly="0" refreshOnNotifyMessage="" maxScale="1" simplifyMaxScale="1" minScale="50001" refreshOnNotifyEnabled="0">
+   <extent>
+    <xmin>645367.15179981396067888</xmin>
+    <ymin>1793560.50005681999027729</ymin>
+    <xmax>666008.48183828603941947</xmax>
+    <ymax>1803336.41554543003439903</ymax>
+   </extent>
+   <id>raepa_canalass_l201910101510186331428872815</id>
+   <datasource>service='raepa' sslmode=disable key='id' srid=32620 type=LineString checkPrimaryKeyUnicity='1' table="raepa"."raepa_canalass_l" (geom) sql=</datasource>
+   <title>Canalisations d'assainissement</title>
+   <keywordList>
+    <value></value>
+   </keywordList>
+   <layername>Canalisations ASS</layername>
+   <srs>
+    <spatialrefsys>
+     <proj4>+proj=utm +zone=20 +datum=WGS84 +units=m +no_defs</proj4>
+     <srsid>3104</srsid>
+     <srid>32620</srid>
+     <authid>EPSG:32620</authid>
+     <description>WGS 84 / UTM zone 20N</description>
+     <projectionacronym>utm</projectionacronym>
+     <ellipsoidacronym>WGS84</ellipsoidacronym>
+     <geographicflag>false</geographicflag>
+    </spatialrefsys>
+   </srs>
+   <resourceMetadata>
+    <identifier></identifier>
+    <parentidentifier></parentidentifier>
+    <language></language>
+    <type></type>
+    <title></title>
+    <abstract></abstract>
+    <contact>
+     <name></name>
+     <organization></organization>
+     <position></position>
+     <voice></voice>
+     <fax></fax>
+     <email></email>
+     <role></role>
+    </contact>
+    <links/>
+    <fees></fees>
+    <encoding></encoding>
+    <crs>
+     <spatialrefsys>
+      <proj4></proj4>
+      <srsid>0</srsid>
+      <srid>0</srid>
+      <authid></authid>
+      <description></description>
+      <projectionacronym></projectionacronym>
+      <ellipsoidacronym></ellipsoidacronym>
+      <geographicflag>false</geographicflag>
+     </spatialrefsys>
+    </crs>
+    <extent>
+     <spatial crs="" maxz="0" minz="0" miny="0" maxy="0" dimensions="2" maxx="0" minx="0"/>
+     <temporal>
+      <period>
+       <start></start>
+       <end></end>
+      </period>
+     </temporal>
+    </extent>
+   </resourceMetadata>
+   <provider encoding="UTF-8">postgres</provider>
+   <vectorjoins>
+    <join targetFieldName="modecirc" editable="0" joinLayerId="val_raepa_mode_circulation20171204083216345" cascadedDelete="0" memoryCache="1" dynamicForm="0" joinFieldName="code" upsertOnEdit="0">
+     <joinFieldsSubset>
+      <field name="libelle"/>
+     </joinFieldsSubset>
+    </join>
+    <join targetFieldName="materiau" editable="0" joinLayerId="val_raepa_materiau20171204083216335" cascadedDelete="0" memoryCache="1" dynamicForm="0" joinFieldName="code" upsertOnEdit="0">
+     <joinFieldsSubset>
+      <field name="libelle"/>
+     </joinFieldsSubset>
+    </join>
+    <join targetFieldName="qualglocxy" editable="0" joinLayerId="val_raepa_qualite_geoloc20171204083216366" cascadedDelete="0" memoryCache="1" dynamicForm="0" joinFieldName="code" upsertOnEdit="0">
+     <joinFieldsSubset>
+      <field name="libelle"/>
+     </joinFieldsSubset>
+    </join>
+    <join targetFieldName="contcanass" editable="0" joinLayerId="val_raepa_cat_canal_ass20171204083216263" cascadedDelete="0" memoryCache="1" dynamicForm="0" joinFieldName="code" upsertOnEdit="0">
+     <joinFieldsSubset>
+      <field name="libelle"/>
+     </joinFieldsSubset>
+    </join>
+   </vectorjoins>
+   <layerDependencies/>
+   <dataDependencies/>
+   <legend type="default-vector"/>
+   <expressionfields/>
+   <map-layer-style-manager current="1_visualisation">
+    <map-layer-style name="1_visualisation"/>
+    <map-layer-style name="2_verification">
+     <qgis labelsEnabled="1" version="3.4.9-Madeira" simplifyLocal="0" simplifyDrawingHints="1" simplifyAlgorithm="2" simplifyDrawingTol="1" styleCategories="AllStyleCategories" hasScaleBasedVisibilityFlag="0" readOnly="0" maxScale="0" simplifyMaxScale="1" minScale="1e+8">
+      <flags>
+       <Identifiable>1</Identifiable>
+       <Removable>1</Removable>
+       <Searchable>1</Searchable>
+      </flags>
+      <renderer-v2 symbollevels="0" type="RuleRenderer" forceraster="0" enableorderby="0">
+       <rules key="{27857b54-262f-4863-919c-aabc1a14bb01}">
+        <rule symbol="0" filter="&quot;typreseau&quot; = 01" key="{cf29cd03-8c16-450b-beb7-87ba18eb0126}" label="Eaux pluviales"/>
+        <rule symbol="1" filter="&quot;typreseau&quot; = 02" key="{6d956d88-7b87-4487-ac2b-8459c8900202}" label="Eaux usées"/>
+        <rule symbol="2" filter="&quot;typreseau&quot; = 03" key="{f044abfb-7101-4abc-be95-9479807ced13}" label="Unitaire"/>
+        <rule symbol="3" filter="&quot;typreseau&quot; = 00" key="{57fe12d3-5110-4756-98ea-95892864d167}" label="Inconnu"/>
+        <rule symbol="4" key="{6feb04b5-f2f9-4224-82e9-cc54f2c951ab}"/>
+       </rules>
+       <symbols>
+        <symbol name="0" clip_to_extent="1" type="line" alpha="1" force_rhr="0">
+         <layer class="SimpleLine" locked="0" enabled="1" pass="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="5;2"/>
+          <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="MM"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="65,221,65,255"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="0.5"/>
+          <prop k="line_width_unit" v="MM"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="ring_filter" v="0"/>
+          <prop k="use_custom_dash" v="0"/>
+          <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <data_defined_properties>
+           <Option type="Map">
+            <Option name="name" type="QString" value=""/>
+            <Option name="properties" type="Map">
+             <Option name="outlineColor" type="Map">
+              <Option name="active" type="bool" value="false"/>
+              <Option name="field" type="QString" value=""/>
+              <Option name="type" type="int" value="2"/>
+             </Option>
+            </Option>
+            <Option name="type" type="QString" value="collection"/>
+           </Option>
+          </data_defined_properties>
+         </layer>
+        </symbol>
+        <symbol name="1" clip_to_extent="1" type="line" alpha="1" force_rhr="0">
+         <layer class="SimpleLine" locked="0" enabled="1" pass="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="5;2"/>
+          <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="MM"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="255,26,1,255"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="0.5"/>
+          <prop k="line_width_unit" v="MM"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="ring_filter" v="0"/>
+          <prop k="use_custom_dash" v="0"/>
+          <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <data_defined_properties>
+           <Option type="Map">
+            <Option name="name" type="QString" value=""/>
+            <Option name="properties" type="Map">
+             <Option name="outlineColor" type="Map">
+              <Option name="active" type="bool" value="false"/>
+              <Option name="field" type="QString" value=""/>
+              <Option name="type" type="int" value="2"/>
+             </Option>
+            </Option>
+            <Option name="type" type="QString" value="collection"/>
+           </Option>
+          </data_defined_properties>
+         </layer>
+        </symbol>
+        <symbol name="2" clip_to_extent="1" type="line" alpha="1" force_rhr="0">
+         <layer class="SimpleLine" locked="0" enabled="1" pass="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="5;2"/>
+          <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="MM"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="200,100,0,255"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="0.5"/>
+          <prop k="line_width_unit" v="MM"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="ring_filter" v="0"/>
+          <prop k="use_custom_dash" v="0"/>
+          <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <data_defined_properties>
+           <Option type="Map">
+            <Option name="name" type="QString" value=""/>
+            <Option name="properties" type="Map">
+             <Option name="outlineColor" type="Map">
+              <Option name="active" type="bool" value="false"/>
+              <Option name="field" type="QString" value=""/>
+              <Option name="type" type="int" value="2"/>
+             </Option>
+            </Option>
+            <Option name="type" type="QString" value="collection"/>
+           </Option>
+          </data_defined_properties>
+         </layer>
+        </symbol>
+        <symbol name="3" clip_to_extent="1" type="line" alpha="1" force_rhr="0">
+         <layer class="SimpleLine" locked="0" enabled="1" pass="0">
+          <prop k="capstyle" v="square"/>
+          <prop k="customdash" v="5;2"/>
+          <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="customdash_unit" v="MM"/>
+          <prop k="draw_inside_polygon" v="0"/>
+          <prop k="joinstyle" v="bevel"/>
+          <prop k="line_color" v="52,97,233,255"/>
+          <prop k="line_style" v="solid"/>
+          <prop k="line_width" v="0.4"/>
+          <prop k="line_width_unit" v="MM"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="ring_filter" v="0"/>
+          <prop k="use_custom_dash" v="0"/>
+          <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <data_defined_properties>
+           <Option type="Map">
+            <Option name="name" type="QString" value=""/>
+            <Option name="properties" type="Map">
+             <Option name="outlineColor" type="Map">
+              <Option name="active" type="bool" value="false"/>
+              <Option name="field" type="QString" value=""/>
+              <Option name="type" type="int" value="2"/>
+             </Option>
+            </Option>
+            <Option name="type" type="QString" value="collection"/>
+           </Option>
+          </data_defined_properties>
+         </layer>
+        </symbol>
+        <symbol name="4" clip_to_extent="1" type="line" alpha="1" force_rhr="0">
+         <layer class="MarkerLine" locked="0" enabled="1" pass="0">
+          <prop k="interval" v="3"/>
+          <prop k="interval_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="interval_unit" v="MM"/>
+          <prop k="offset" v="0"/>
+          <prop k="offset_along_line" v="0"/>
+          <prop k="offset_along_line_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="offset_along_line_unit" v="MM"/>
+          <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="placement" v="centralpoint"/>
+          <prop k="ring_filter" v="0"/>
+          <prop k="rotate" v="1"/>
+          <data_defined_properties>
+           <Option type="Map">
+            <Option name="name" type="QString" value=""/>
+            <Option name="properties"/>
+            <Option name="type" type="QString" value="collection"/>
+           </Option>
+          </data_defined_properties>
+          <symbol name="@4@0" clip_to_extent="1" type="marker" alpha="1" force_rhr="0">
+           <layer class="SimpleMarker" locked="0" enabled="1" pass="0">
+            <prop k="angle" v="0"/>
+            <prop k="color" v="97,97,97,255"/>
+            <prop k="horizontal_anchor_point" v="1"/>
+            <prop k="joinstyle" v="bevel"/>
+            <prop k="name" v="filled_arrowhead"/>
+            <prop k="offset" v="0.00000000000000006,0"/>
+            <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+            <prop k="offset_unit" v="MM"/>
+            <prop k="outline_color" v="0,0,0,255"/>
+            <prop k="outline_style" v="no"/>
+            <prop k="outline_width" v="5.55112e-17"/>
+            <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+            <prop k="outline_width_unit" v="MM"/>
+            <prop k="scale_method" v="area"/>
+            <prop k="size" v="4.3"/>
+            <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+            <prop k="size_unit" v="MM"/>
+            <prop k="vertical_anchor_point" v="1"/>
+            <data_defined_properties>
+             <Option type="Map">
+              <Option name="name" type="QString" value=""/>
+              <Option name="properties"/>
+              <Option name="type" type="QString" value="collection"/>
+             </Option>
+            </data_defined_properties>
+           </layer>
+          </symbol>
+         </layer>
+        </symbol>
+       </symbols>
+      </renderer-v2>
+      <labeling type="rule-based">
+       <rules key="{a7a737fa-4b03-4c3b-b107-cc2ad279c190}">
+        <rule description="ouvrage amont" scalemindenom="1" key="{b3ba987a-ef25-4def-aca3-388fc5451c13}" scalemaxdenom="600">
+         <settings>
+          <text-style fontWordSpacing="0" useSubstitutions="0" fieldName="Wordwrap(&#xa;&#x9;concat( replace(idnini, 'cas240200477ouvass', ''), ' ZAM=' , Coalesce(&quot;zamont&quot;, '0') ),&#xa;&#x9;2,&#xa;&#x9;' '&#xa;)" multilineHeight="1" fontItalic="1" fontLetterSpacing="0" fontStrikeout="0" blendMode="0" previewBkgrdColor="#ffffff" isExpression="1" fontSizeUnit="Point" textOpacity="1" namedStyle="Moyen Italic" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontFamily="Ubuntu" fontUnderline="0" fontSize="9" textColor="51,48,234,255" fontCapitals="0" fontWeight="63">
+           <text-buffer bufferSize="0.6000000000000001" bufferSizeUnits="MM" bufferDraw="1" bufferBlendMode="0" bufferJoinStyle="128" bufferOpacity="1" bufferNoFill="0" bufferColor="255,255,255,255" bufferSizeMapUnitScale="3x:0,0,0,0,0,0"/>
+           <background shapeSizeY="0" shapeOpacity="1" shapeRadiiUnit="MM" shapeOffsetMapUnitScale="3x:0,0,0,0,0,0" shapeOffsetX="0" shapeRadiiY="0" shapeBorderWidthMapUnitScale="3x:0,0,0,0,0,0" shapeJoinStyle="64" shapeOffsetUnit="MM" shapeBorderWidthUnit="MM" shapeBlendMode="0" shapeSVGFile="" shapeOffsetY="0" shapeRadiiX="0" shapeRadiiMapUnitScale="3x:0,0,0,0,0,0" shapeDraw="0" shapeRotation="0" shapeBorderColor="128,128,128,255" shapeBorderWidth="0" shapeSizeMapUnitScale="3x:0,0,0,0,0,0" shapeSizeType="0" shapeFillColor="255,255,255,255" shapeRotationType="0" shapeSizeUnit="MM" shapeType="0" shapeSizeX="0"/>
+           <shadow shadowOffsetGlobal="1" shadowOffsetMapUnitScale="3x:0,0,0,0,0,0" shadowDraw="0" shadowRadiusUnit="MM" shadowUnder="0" shadowOffsetAngle="135" shadowOffsetUnit="MM" shadowColor="0,0,0,255" shadowRadiusMapUnitScale="3x:0,0,0,0,0,0" shadowOpacity="0.7" shadowBlendMode="6" shadowRadiusAlphaOnly="0" shadowScale="100" shadowOffsetDist="1" shadowRadius="1.5"/>
+           <substitutions/>
+          </text-style>
+          <text-format placeDirectionSymbol="0" rightDirectionSymbol=">" useMaxLineLengthForAutoWrap="1" leftDirectionSymbol="&lt;" multilineAlign="0" plussign="0" addDirectionSymbol="0" formatNumbers="0" decimals="3" reverseDirectionSymbol="0" wrapChar="" autoWrapLength="0"/>
+          <placement labelOffsetMapUnitScale="3x:0,0,0,0,0,0" distUnits="MapUnit" rotationAngle="0" priority="5" maxCurvedCharAngleOut="-25" repeatDistanceUnits="MM" offsetUnits="MapUnit" offsetType="0" preserveRotation="1" placementFlags="12" placement="3" centroidWhole="0" maxCurvedCharAngleIn="25" dist="0" xOffset="0" fitInPolygonOnly="0" quadOffset="4" centroidInside="0" repeatDistance="0" yOffset="0" distMapUnitScale="3x:0,0,0,0,0,0" predefinedPositionOrder="TR,TL,BR,BL,R,L,TSR,BSR" repeatDistanceMapUnitScale="3x:0,0,0,0,0,0"/>
+          <rendering scaleMax="5000" minFeatureSize="0" scaleVisibility="0" maxNumLabels="2000" mergeLines="0" obstacleFactor="1" labelPerPart="0" drawLabels="1" zIndex="0" scaleMin="1" upsidedownLabels="0" limitNumLabels="0" obstacleType="0" fontLimitPixelSize="0" displayAll="1" fontMaxPixelSize="10000" fontMinPixelSize="3" obstacle="1"/>
+          <dd_properties>
+           <Option type="Map">
+            <Option name="name" type="QString" value=""/>
+            <Option name="properties" type="Map">
+             <Option name="PositionX" type="Map">
+              <Option name="active" type="bool" value="true"/>
+              <Option name="expression" type="QString" value="x(line_interpolate_point($geometry, 2))"/>
+              <Option name="type" type="int" value="3"/>
+             </Option>
+             <Option name="PositionY" type="Map">
+              <Option name="active" type="bool" value="true"/>
+              <Option name="expression" type="QString" value="y(line_interpolate_point($geometry, 2))"/>
+              <Option name="type" type="int" value="3"/>
+             </Option>
+            </Option>
+            <Option name="type" type="QString" value="collection"/>
+           </Option>
+          </dd_properties>
+         </settings>
+        </rule>
+        <rule description="ouvrage aval" scalemindenom="1" key="{8203d2c9-4609-4581-a777-502a2fd6a762}" scalemaxdenom="600">
+         <settings>
+          <text-style fontWordSpacing="0" useSubstitutions="0" fieldName="Wordwrap(&#xa;&#x9;concat( replace(idnterm, 'cas240200477ouvass', ''), ' ZAV=' , Coalesce(&quot;zaval&quot;, '0') ),&#xa;&#x9;2,&#xa;&#x9;' '&#xa;)" multilineHeight="1" fontItalic="1" fontLetterSpacing="0" fontStrikeout="0" blendMode="0" previewBkgrdColor="#ffffff" isExpression="1" fontSizeUnit="Point" textOpacity="1" namedStyle="Moyen Italic" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontFamily="Ubuntu" fontUnderline="0" fontSize="9" textColor="234,47,54,255" fontCapitals="0" fontWeight="63">
+           <text-buffer bufferSize="0.6000000000000001" bufferSizeUnits="MM" bufferDraw="1" bufferBlendMode="0" bufferJoinStyle="128" bufferOpacity="1" bufferNoFill="0" bufferColor="255,255,255,255" bufferSizeMapUnitScale="3x:0,0,0,0,0,0"/>
+           <background shapeSizeY="0" shapeOpacity="1" shapeRadiiUnit="MM" shapeOffsetMapUnitScale="3x:0,0,0,0,0,0" shapeOffsetX="0" shapeRadiiY="0" shapeBorderWidthMapUnitScale="3x:0,0,0,0,0,0" shapeJoinStyle="64" shapeOffsetUnit="MM" shapeBorderWidthUnit="MM" shapeBlendMode="0" shapeSVGFile="" shapeOffsetY="0" shapeRadiiX="0" shapeRadiiMapUnitScale="3x:0,0,0,0,0,0" shapeDraw="0" shapeRotation="0" shapeBorderColor="128,128,128,255" shapeBorderWidth="0" shapeSizeMapUnitScale="3x:0,0,0,0,0,0" shapeSizeType="0" shapeFillColor="255,255,255,255" shapeRotationType="0" shapeSizeUnit="MM" shapeType="0" shapeSizeX="0"/>
+           <shadow shadowOffsetGlobal="1" shadowOffsetMapUnitScale="3x:0,0,0,0,0,0" shadowDraw="0" shadowRadiusUnit="MM" shadowUnder="0" shadowOffsetAngle="135" shadowOffsetUnit="MM" shadowColor="0,0,0,255" shadowRadiusMapUnitScale="3x:0,0,0,0,0,0" shadowOpacity="0.7" shadowBlendMode="6" shadowRadiusAlphaOnly="0" shadowScale="100" shadowOffsetDist="1" shadowRadius="1.5"/>
+           <substitutions/>
+          </text-style>
+          <text-format placeDirectionSymbol="0" rightDirectionSymbol=">" useMaxLineLengthForAutoWrap="1" leftDirectionSymbol="&lt;" multilineAlign="2" plussign="0" addDirectionSymbol="0" formatNumbers="0" decimals="3" reverseDirectionSymbol="0" wrapChar="" autoWrapLength="0"/>
+          <placement labelOffsetMapUnitScale="3x:0,0,0,0,0,0" distUnits="MM" rotationAngle="0" priority="5" maxCurvedCharAngleOut="-25" repeatDistanceUnits="MM" offsetUnits="MapUnit" offsetType="0" preserveRotation="1" placementFlags="10" placement="3" centroidWhole="0" maxCurvedCharAngleIn="25" dist="0.5" xOffset="0" fitInPolygonOnly="0" quadOffset="4" centroidInside="0" repeatDistance="0" yOffset="0" distMapUnitScale="3x:0,0,0,0,0,0" predefinedPositionOrder="TR,TL,BR,BL,R,L,TSR,BSR" repeatDistanceMapUnitScale="3x:0,0,0,0,0,0"/>
+          <rendering scaleMax="500" minFeatureSize="0" scaleVisibility="0" maxNumLabels="2000" mergeLines="0" obstacleFactor="1" labelPerPart="0" drawLabels="1" zIndex="0" scaleMin="1" upsidedownLabels="0" limitNumLabels="0" obstacleType="0" fontLimitPixelSize="0" displayAll="1" fontMaxPixelSize="10000" fontMinPixelSize="3" obstacle="1"/>
+          <dd_properties>
+           <Option type="Map">
+            <Option name="name" type="QString" value=""/>
+            <Option name="properties" type="Map">
+             <Option name="PositionX" type="Map">
+              <Option name="active" type="bool" value="true"/>
+              <Option name="expression" type="QString" value="x(line_interpolate_point($geometry, -2))"/>
+              <Option name="type" type="int" value="3"/>
+             </Option>
+             <Option name="PositionY" type="Map">
+              <Option name="active" type="bool" value="true"/>
+              <Option name="expression" type="QString" value="y(line_interpolate_point($geometry, -2))"/>
+              <Option name="type" type="int" value="3"/>
+             </Option>
+            </Option>
+            <Option name="type" type="QString" value="collection"/>
+           </Option>
+          </dd_properties>
+         </settings>
+        </rule>
+        <rule description="Informations" scalemindenom="1" key="{942b46c6-604e-4700-b969-2b6c0fb29686}" scalemaxdenom="1000">
+         <settings>
+          <text-style fontWordSpacing="0" useSubstitutions="0" fieldName="concat(&#xa;substr(attribute(get_feature('val_raepa_mode_circulation','code', &quot;modecirc&quot;), 'libelle'), 1, 1),&#xa;Concat(' ', replace(&quot;idcana&quot;, 'cas240200477canass', '')),&#xa;Coalesce('@ple = ' || replace(&quot;idcanppale&quot;, 'cas240200477canass', ''), ''),&#xa;'@', &quot;_temp_data&quot;&#xa;)" multilineHeight="1" fontItalic="1" fontLetterSpacing="0" fontStrikeout="0" blendMode="0" previewBkgrdColor="#ffffff" isExpression="1" fontSizeUnit="Point" textOpacity="1" namedStyle="Moyen Italic" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontFamily="Ubuntu" fontUnderline="0" fontSize="8" textColor="0,0,0,255" fontCapitals="0" fontWeight="63">
+           <text-buffer bufferSize="0.6" bufferSizeUnits="MM" bufferDraw="1" bufferBlendMode="0" bufferJoinStyle="128" bufferOpacity="1" bufferNoFill="0" bufferColor="255,255,255,255" bufferSizeMapUnitScale="3x:0,0,0,0,0,0"/>
+           <background shapeSizeY="0" shapeOpacity="1" shapeRadiiUnit="MM" shapeOffsetMapUnitScale="3x:0,0,0,0,0,0" shapeOffsetX="0" shapeRadiiY="0" shapeBorderWidthMapUnitScale="3x:0,0,0,0,0,0" shapeJoinStyle="64" shapeOffsetUnit="MM" shapeBorderWidthUnit="MM" shapeBlendMode="0" shapeSVGFile="" shapeOffsetY="0" shapeRadiiX="0" shapeRadiiMapUnitScale="3x:0,0,0,0,0,0" shapeDraw="0" shapeRotation="0" shapeBorderColor="128,128,128,255" shapeBorderWidth="0" shapeSizeMapUnitScale="3x:0,0,0,0,0,0" shapeSizeType="0" shapeFillColor="255,255,255,255" shapeRotationType="0" shapeSizeUnit="MM" shapeType="0" shapeSizeX="0"/>
+           <shadow shadowOffsetGlobal="1" shadowOffsetMapUnitScale="3x:0,0,0,0,0,0" shadowDraw="0" shadowRadiusUnit="MM" shadowUnder="0" shadowOffsetAngle="135" shadowOffsetUnit="MM" shadowColor="0,0,0,255" shadowRadiusMapUnitScale="3x:0,0,0,0,0,0" shadowOpacity="0.7" shadowBlendMode="6" shadowRadiusAlphaOnly="0" shadowScale="100" shadowOffsetDist="1" shadowRadius="1.5"/>
+           <substitutions/>
+          </text-style>
+          <text-format placeDirectionSymbol="0" rightDirectionSymbol="  > >  " useMaxLineLengthForAutoWrap="1" leftDirectionSymbol="  &lt; &lt;  " multilineAlign="4294967295" plussign="0" addDirectionSymbol="1" formatNumbers="0" decimals="3" reverseDirectionSymbol="0" wrapChar="@" autoWrapLength="0"/>
+          <placement labelOffsetMapUnitScale="3x:0,0,0,0,0,0" distUnits="MM" rotationAngle="0" priority="5" maxCurvedCharAngleOut="-25" repeatDistanceUnits="MM" offsetUnits="MapUnit" offsetType="0" preserveRotation="1" placementFlags="10" placement="2" centroidWhole="0" maxCurvedCharAngleIn="25" dist="1.1" xOffset="0" fitInPolygonOnly="0" quadOffset="4" centroidInside="0" repeatDistance="0" yOffset="0" distMapUnitScale="3x:0,0,0,0,0,0" predefinedPositionOrder="TR,TL,BR,BL,R,L,TSR,BSR" repeatDistanceMapUnitScale="3x:0,0,0,0,0,0"/>
+          <rendering scaleMax="10000000" minFeatureSize="0" scaleVisibility="0" maxNumLabels="2000" mergeLines="0" obstacleFactor="1" labelPerPart="0" drawLabels="1" zIndex="0" scaleMin="1" upsidedownLabels="0" limitNumLabels="0" obstacleType="0" fontLimitPixelSize="0" displayAll="0" fontMaxPixelSize="10000" fontMinPixelSize="3" obstacle="1"/>
+          <dd_properties>
+           <Option type="Map">
+            <Option name="name" type="QString" value=""/>
+            <Option name="properties"/>
+            <Option name="type" type="QString" value="collection"/>
+           </Option>
+          </dd_properties>
+         </settings>
+        </rule>
+       </rules>
+      </labeling>
+      <customproperties>
+       <property key="embeddedWidgets/count" value="0"/>
+       <property key="variableNames"/>
+       <property key="variableValues"/>
+      </customproperties>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+       <DiagramCategory minScaleDenominator="inf" barWidth="5" opacity="1" enabled="0" height="15" diagramOrientation="Up" lineSizeScale="3x:0,0,0,0,0,0" penAlpha="255" penWidth="0" sizeType="MM" rotationOffset="270" penColor="#000000" backgroundColor="#ffffff" backgroundAlpha="255" minimumSize="0" scaleDependency="Area" scaleBasedVisibility="0" labelPlacementMethod="XHeight" sizeScale="3x:0,0,0,0,0,0" width="15" lineSizeType="MM" maxScaleDenominator="1e+8">
+        <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""/>
+        <attribute field="" color="#000000" label=""/>
+       </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings priority="0" showAll="1" zIndex="0" dist="0" linePlacementFlags="10" obstacle="0" placement="2">
+       <properties>
+        <Option type="Map">
+         <Option name="name" type="QString" value=""/>
+         <Option name="properties"/>
+         <Option name="type" type="QString" value="collection"/>
+        </Option>
+       </properties>
+      </DiagramLayerSettings>
+      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+       <activeChecks/>
+       <checkConfiguration/>
+      </geometryOptions>
+      <fieldConfiguration>
+       <field name="idcana">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="mouvrage">
+        <editWidget type="ValueRelation">
+         <config>
+          <Option type="Map">
+           <Option name="AllowMulti" type="QString" value="0"/>
+           <Option name="AllowNull" type="QString" value="1"/>
+           <Option name="FilterExpression" type="QString" value=""/>
+           <Option name="Key" type="QString" value="nom"/>
+           <Option name="Layer" type="QString" value="sys_organisme_gestionnaire20171214110503227"/>
+           <Option name="OrderByValue" type="QString" value="1"/>
+           <Option name="UseCompleter" type="QString" value="0"/>
+           <Option name="Value" type="QString" value="nom"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="gexploit">
+        <editWidget type="ValueRelation">
+         <config>
+          <Option type="Map">
+           <Option name="AllowMulti" type="QString" value="0"/>
+           <Option name="AllowNull" type="QString" value="1"/>
+           <Option name="FilterExpression" type="QString" value=""/>
+           <Option name="Key" type="QString" value="nom"/>
+           <Option name="Layer" type="QString" value="sys_organisme_gestionnaire20171214110503227"/>
+           <Option name="OrderByValue" type="QString" value="1"/>
+           <Option name="UseCompleter" type="QString" value="0"/>
+           <Option name="Value" type="QString" value="nom"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="enservice">
+        <editWidget type="CheckBox">
+         <config>
+          <Option type="Map">
+           <Option name="CheckedState" type="QString" value="1"/>
+           <Option name="UncheckedState" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="branchemnt">
+        <editWidget type="CheckBox">
+         <config>
+          <Option type="Map">
+           <Option name="CheckedState" type="QString" value="1"/>
+           <Option name="UncheckedState" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="typreseau">
+        <editWidget type="ValueRelation">
+         <config>
+          <Option type="Map">
+           <Option name="AllowMulti" type="QString" value="0"/>
+           <Option name="AllowNull" type="QString" value="1"/>
+           <Option name="FilterExpression" type="QString" value=""/>
+           <Option name="Key" type="QString" value="code"/>
+           <Option name="Layer" type="QString" value="val_raepa_typ_reseau_ass20171204083216386"/>
+           <Option name="OrderByValue" type="QString" value="1"/>
+           <Option name="UseCompleter" type="QString" value="0"/>
+           <Option name="Value" type="QString" value="description"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="materiau">
+        <editWidget type="ValueRelation">
+         <config>
+          <Option type="Map">
+           <Option name="AllowMulti" type="QString" value="0"/>
+           <Option name="AllowNull" type="QString" value="1"/>
+           <Option name="FilterExpression" type="QString" value=""/>
+           <Option name="Key" type="QString" value="code"/>
+           <Option name="Layer" type="QString" value="val_raepa_materiau20171204083216335"/>
+           <Option name="OrderByValue" type="QString" value="1"/>
+           <Option name="UseCompleter" type="QString" value="0"/>
+           <Option name="Value" type="QString" value="libelle"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="diametre">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="_dimensionhorizontale">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="_forme">
+        <editWidget type="ValueRelation">
+         <config>
+          <Option type="Map">
+           <Option name="AllowMulti" type="QString" value="0"/>
+           <Option name="AllowNull" type="QString" value="1"/>
+           <Option name="FilterExpression" type="QString" value=""/>
+           <Option name="Key" type="QString" value="code"/>
+           <Option name="Layer" type="QString" value="_val_raepa_forme_canal_ass20171204083216218"/>
+           <Option name="OrderByValue" type="QString" value="1"/>
+           <Option name="UseCompleter" type="QString" value="0"/>
+           <Option name="Value" type="QString" value="libelle"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="_etat">
+        <editWidget type="ValueRelation">
+         <config>
+          <Option type="Map">
+           <Option name="AllowMulti" type="QString" value="0"/>
+           <Option name="AllowNull" type="QString" value="1"/>
+           <Option name="FilterExpression" type="QString" value=""/>
+           <Option name="Key" type="QString" value="code"/>
+           <Option name="Layer" type="QString" value="_val_raepa_etat_canal_ass20171204083216181"/>
+           <Option name="OrderByValue" type="QString" value="1"/>
+           <Option name="UseCompleter" type="QString" value="0"/>
+           <Option name="Value" type="QString" value="libelle"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="anfinpose">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="modecirc">
+        <editWidget type="ValueRelation">
+         <config>
+          <Option type="Map">
+           <Option name="AllowMulti" type="QString" value="0"/>
+           <Option name="AllowNull" type="QString" value="1"/>
+           <Option name="FilterExpression" type="QString" value=""/>
+           <Option name="Key" type="QString" value="code"/>
+           <Option name="Layer" type="QString" value="val_raepa_mode_circulation20171204083216345"/>
+           <Option name="OrderByValue" type="QString" value="1"/>
+           <Option name="UseCompleter" type="QString" value="0"/>
+           <Option name="Value" type="QString" value="libelle"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="contcanass">
+        <editWidget type="ValueRelation">
+         <config>
+          <Option type="Map">
+           <Option name="AllowMulti" type="QString" value="0"/>
+           <Option name="AllowNull" type="QString" value="1"/>
+           <Option name="FilterExpression" type="QString" value=""/>
+           <Option name="Key" type="QString" value="code"/>
+           <Option name="Layer" type="QString" value="val_raepa_cat_canal_ass20171204083216263"/>
+           <Option name="OrderByValue" type="QString" value="1"/>
+           <Option name="UseCompleter" type="QString" value="0"/>
+           <Option name="Value" type="QString" value="libelle"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="fonccanass">
+        <editWidget type="ValueRelation">
+         <config>
+          <Option type="Map">
+           <Option name="AllowMulti" type="QString" value="0"/>
+           <Option name="AllowNull" type="QString" value="1"/>
+           <Option name="FilterExpression" type="QString" value=""/>
+           <Option name="Key" type="QString" value="code"/>
+           <Option name="Layer" type="QString" value="val_raepa_fonc_canal_ass20171204083216304"/>
+           <Option name="OrderByValue" type="QString" value="1"/>
+           <Option name="UseCompleter" type="QString" value="0"/>
+           <Option name="Value" type="QString" value="libelle"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="idnini">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="idnterm">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="idcanppale">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="zamont">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="zaval">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="sensecoul">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="andebpose">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="_precisionannee">
+        <editWidget type="ValueRelation">
+         <config>
+          <Option type="Map">
+           <Option name="AllowMulti" type="QString" value="0"/>
+           <Option name="AllowNull" type="QString" value="1"/>
+           <Option name="FilterExpression" type="QString" value=""/>
+           <Option name="Key" type="QString" value="code"/>
+           <Option name="Layer" type="QString" value="_val_raepa_precision_annee20171204083216232"/>
+           <Option name="OrderByValue" type="QString" value="1"/>
+           <Option name="UseCompleter" type="QString" value="0"/>
+           <Option name="Value" type="QString" value="libelle"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="longcana">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="_longcana_cm">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="_longcana_reelle">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="_pente">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="nbranche">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="qualglocxy">
+        <editWidget type="ValueRelation">
+         <config>
+          <Option type="Map">
+           <Option name="AllowMulti" type="QString" value="0"/>
+           <Option name="AllowNull" type="QString" value="1"/>
+           <Option name="FilterExpression" type="QString" value=""/>
+           <Option name="Key" type="QString" value="code"/>
+           <Option name="Layer" type="QString" value="val_raepa_qualite_geoloc20171204083216366"/>
+           <Option name="OrderByValue" type="QString" value="1"/>
+           <Option name="UseCompleter" type="QString" value="0"/>
+           <Option name="Value" type="QString" value="libelle"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="qualglocz">
+        <editWidget type="ValueRelation">
+         <config>
+          <Option type="Map">
+           <Option name="AllowMulti" type="QString" value="0"/>
+           <Option name="AllowNull" type="QString" value="1"/>
+           <Option name="FilterExpression" type="QString" value=""/>
+           <Option name="Key" type="QString" value="code"/>
+           <Option name="Layer" type="QString" value="val_raepa_qualite_geoloc20171204083216366"/>
+           <Option name="OrderByValue" type="QString" value="1"/>
+           <Option name="UseCompleter" type="QString" value="0"/>
+           <Option name="Value" type="QString" value="libelle"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="datemaj">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="sourmaj">
+        <editWidget type="ValueRelation">
+         <config>
+          <Option type="Map">
+           <Option name="AllowMulti" type="QString" value="0"/>
+           <Option name="AllowNull" type="QString" value="1"/>
+           <Option name="FilterExpression" type="QString" value=""/>
+           <Option name="Key" type="QString" value="nom"/>
+           <Option name="Layer" type="QString" value="sys_organisme_gestionnaire20171214110503227"/>
+           <Option name="OrderByValue" type="QString" value="1"/>
+           <Option name="UseCompleter" type="QString" value="0"/>
+           <Option name="Value" type="QString" value="nom"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="qualannee">
+        <editWidget type="ValueRelation">
+         <config>
+          <Option type="Map">
+           <Option name="AllowMulti" type="QString" value="0"/>
+           <Option name="AllowNull" type="QString" value="1"/>
+           <Option name="FilterExpression" type="QString" value=""/>
+           <Option name="Key" type="QString" value="code"/>
+           <Option name="Layer" type="QString" value="val_raepa_qualite_anpose20171204083216356"/>
+           <Option name="OrderByValue" type="QString" value="1"/>
+           <Option name="UseCompleter" type="QString" value="0"/>
+           <Option name="Value" type="QString" value="libelle"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="dategeoloc">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="sourgeoloc">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="sourattrib">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="_source_historique">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="_code_chantier">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="_date_import">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+       <field name="_temp_data">
+        <editWidget type="TextEdit">
+         <config>
+          <Option type="Map">
+           <Option name="IsMultiline" type="QString" value="0"/>
+           <Option name="UseHtml" type="QString" value="0"/>
+          </Option>
+         </config>
+        </editWidget>
+       </field>
+      </fieldConfiguration>
+      <aliases>
+       <alias name="" field="idcana" index="0"/>
+       <alias name="" field="mouvrage" index="1"/>
+       <alias name="" field="gexploit" index="2"/>
+       <alias name="" field="enservice" index="3"/>
+       <alias name="" field="branchemnt" index="4"/>
+       <alias name="" field="typreseau" index="5"/>
+       <alias name="" field="materiau" index="6"/>
+       <alias name="" field="diametre" index="7"/>
+       <alias name="" field="_dimensionhorizontale" index="8"/>
+       <alias name="" field="_forme" index="9"/>
+       <alias name="" field="_etat" index="10"/>
+       <alias name="" field="anfinpose" index="11"/>
+       <alias name="" field="modecirc" index="12"/>
+       <alias name="" field="contcanass" index="13"/>
+       <alias name="" field="fonccanass" index="14"/>
+       <alias name="" field="idnini" index="15"/>
+       <alias name="" field="idnterm" index="16"/>
+       <alias name="" field="idcanppale" index="17"/>
+       <alias name="" field="zamont" index="18"/>
+       <alias name="" field="zaval" index="19"/>
+       <alias name="" field="sensecoul" index="20"/>
+       <alias name="" field="andebpose" index="21"/>
+       <alias name="" field="_precisionannee" index="22"/>
+       <alias name="" field="longcana" index="23"/>
+       <alias name="" field="_longcana_cm" index="24"/>
+       <alias name="" field="_longcana_reelle" index="25"/>
+       <alias name="" field="_pente" index="26"/>
+       <alias name="" field="nbranche" index="27"/>
+       <alias name="" field="qualglocxy" index="28"/>
+       <alias name="" field="qualglocz" index="29"/>
+       <alias name="" field="datemaj" index="30"/>
+       <alias name="" field="sourmaj" index="31"/>
+       <alias name="" field="qualannee" index="32"/>
+       <alias name="" field="dategeoloc" index="33"/>
+       <alias name="" field="sourgeoloc" index="34"/>
+       <alias name="" field="sourattrib" index="35"/>
+       <alias name="" field="_source_historique" index="36"/>
+       <alias name="" field="_code_chantier" index="37"/>
+       <alias name="" field="_date_import" index="38"/>
+       <alias name="" field="_temp_data" index="39"/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <defaults>
+       <default applyOnUpdate="0" field="idcana" expression=""/>
+       <default applyOnUpdate="0" field="mouvrage" expression=""/>
+       <default applyOnUpdate="0" field="gexploit" expression=""/>
+       <default applyOnUpdate="0" field="enservice" expression=""/>
+       <default applyOnUpdate="0" field="branchemnt" expression=""/>
+       <default applyOnUpdate="0" field="typreseau" expression=""/>
+       <default applyOnUpdate="0" field="materiau" expression=""/>
+       <default applyOnUpdate="0" field="diametre" expression=""/>
+       <default applyOnUpdate="0" field="_dimensionhorizontale" expression=""/>
+       <default applyOnUpdate="0" field="_forme" expression=""/>
+       <default applyOnUpdate="0" field="_etat" expression=""/>
+       <default applyOnUpdate="0" field="anfinpose" expression=""/>
+       <default applyOnUpdate="0" field="modecirc" expression=""/>
+       <default applyOnUpdate="0" field="contcanass" expression=""/>
+       <default applyOnUpdate="0" field="fonccanass" expression=""/>
+       <default applyOnUpdate="0" field="idnini" expression=""/>
+       <default applyOnUpdate="0" field="idnterm" expression=""/>
+       <default applyOnUpdate="0" field="idcanppale" expression=""/>
+       <default applyOnUpdate="0" field="zamont" expression=""/>
+       <default applyOnUpdate="0" field="zaval" expression=""/>
+       <default applyOnUpdate="0" field="sensecoul" expression=""/>
+       <default applyOnUpdate="0" field="andebpose" expression=""/>
+       <default applyOnUpdate="0" field="_precisionannee" expression=""/>
+       <default applyOnUpdate="0" field="longcana" expression=""/>
+       <default applyOnUpdate="0" field="_longcana_cm" expression=""/>
+       <default applyOnUpdate="0" field="_longcana_reelle" expression=""/>
+       <default applyOnUpdate="0" field="_pente" expression=""/>
+       <default applyOnUpdate="0" field="nbranche" expression=""/>
+       <default applyOnUpdate="0" field="qualglocxy" expression=""/>
+       <default applyOnUpdate="0" field="qualglocz" expression=""/>
+       <default applyOnUpdate="0" field="datemaj" expression=""/>
+       <default applyOnUpdate="0" field="sourmaj" expression=""/>
+       <default applyOnUpdate="0" field="qualannee" expression=""/>
+       <default applyOnUpdate="0" field="dategeoloc" expression=""/>
+       <default applyOnUpdate="0" field="sourgeoloc" expression=""/>
+       <default applyOnUpdate="0" field="sourattrib" expression=""/>
+       <default applyOnUpdate="0" field="_source_historique" expression=""/>
+       <default applyOnUpdate="0" field="_code_chantier" expression=""/>
+       <default applyOnUpdate="0" field="_date_import" expression=""/>
+       <default applyOnUpdate="0" field="_temp_data" expression=""/>
+      </defaults>
+      <constraints>
+       <constraint field="idcana" notnull_strength="1" unique_strength="1" constraints="3" exp_strength="0"/>
+       <constraint field="mouvrage" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="gexploit" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="enservice" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="branchemnt" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="typreseau" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="materiau" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="diametre" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="_dimensionhorizontale" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="_forme" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="_etat" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="anfinpose" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="modecirc" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="contcanass" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="fonccanass" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="idnini" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="idnterm" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="idcanppale" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="zamont" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="zaval" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="sensecoul" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="andebpose" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="_precisionannee" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="longcana" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="_longcana_cm" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="_longcana_reelle" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="_pente" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="nbranche" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="qualglocxy" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="qualglocz" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="datemaj" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="sourmaj" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+       <constraint field="qualannee" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="dategeoloc" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="sourgeoloc" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="sourattrib" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="_source_historique" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="_code_chantier" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="_date_import" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+       <constraint field="_temp_data" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+      </constraints>
+      <constraintExpressions>
+       <constraint exp="" desc="" field="idcana"/>
+       <constraint exp="" desc="" field="mouvrage"/>
+       <constraint exp="" desc="" field="gexploit"/>
+       <constraint exp="" desc="" field="enservice"/>
+       <constraint exp="" desc="" field="branchemnt"/>
+       <constraint exp="" desc="" field="typreseau"/>
+       <constraint exp="" desc="" field="materiau"/>
+       <constraint exp="" desc="" field="diametre"/>
+       <constraint exp="" desc="" field="_dimensionhorizontale"/>
+       <constraint exp="" desc="" field="_forme"/>
+       <constraint exp="" desc="" field="_etat"/>
+       <constraint exp="" desc="" field="anfinpose"/>
+       <constraint exp="" desc="" field="modecirc"/>
+       <constraint exp="" desc="" field="contcanass"/>
+       <constraint exp="" desc="" field="fonccanass"/>
+       <constraint exp="" desc="" field="idnini"/>
+       <constraint exp="" desc="" field="idnterm"/>
+       <constraint exp="" desc="" field="idcanppale"/>
+       <constraint exp="" desc="" field="zamont"/>
+       <constraint exp="" desc="" field="zaval"/>
+       <constraint exp="" desc="" field="sensecoul"/>
+       <constraint exp="" desc="" field="andebpose"/>
+       <constraint exp="" desc="" field="_precisionannee"/>
+       <constraint exp="" desc="" field="longcana"/>
+       <constraint exp="" desc="" field="_longcana_cm"/>
+       <constraint exp="" desc="" field="_longcana_reelle"/>
+       <constraint exp="" desc="" field="_pente"/>
+       <constraint exp="" desc="" field="nbranche"/>
+       <constraint exp="" desc="" field="qualglocxy"/>
+       <constraint exp="" desc="" field="qualglocz"/>
+       <constraint exp="" desc="" field="datemaj"/>
+       <constraint exp="" desc="" field="sourmaj"/>
+       <constraint exp="" desc="" field="qualannee"/>
+       <constraint exp="" desc="" field="dategeoloc"/>
+       <constraint exp="" desc="" field="sourgeoloc"/>
+       <constraint exp="" desc="" field="sourattrib"/>
+       <constraint exp="" desc="" field="_source_historique"/>
+       <constraint exp="" desc="" field="_code_chantier"/>
+       <constraint exp="" desc="" field="_date_import"/>
+       <constraint exp="" desc="" field="_temp_data"/>
+      </constraintExpressions>
+      <expressionfields/>
+      <attributeactions>
+       <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="&quot;idcana&quot;">
+       <columns>
+        <column name="idcana" hidden="0" type="field" width="476"/>
+        <column name="mouvrage" hidden="0" type="field" width="-1"/>
+        <column name="gexploit" hidden="0" type="field" width="-1"/>
+        <column name="enservice" hidden="0" type="field" width="-1"/>
+        <column name="branchemnt" hidden="0" type="field" width="-1"/>
+        <column name="typreseau" hidden="0" type="field" width="-1"/>
+        <column name="materiau" hidden="0" type="field" width="-1"/>
+        <column name="diametre" hidden="0" type="field" width="-1"/>
+        <column name="_dimensionhorizontale" hidden="0" type="field" width="-1"/>
+        <column name="_forme" hidden="0" type="field" width="-1"/>
+        <column name="_etat" hidden="0" type="field" width="-1"/>
+        <column name="anfinpose" hidden="0" type="field" width="-1"/>
+        <column name="modecirc" hidden="0" type="field" width="-1"/>
+        <column name="contcanass" hidden="0" type="field" width="-1"/>
+        <column name="fonccanass" hidden="0" type="field" width="-1"/>
+        <column name="idnini" hidden="0" type="field" width="-1"/>
+        <column name="idnterm" hidden="0" type="field" width="-1"/>
+        <column name="idcanppale" hidden="0" type="field" width="-1"/>
+        <column name="zamont" hidden="0" type="field" width="-1"/>
+        <column name="zaval" hidden="0" type="field" width="-1"/>
+        <column name="sensecoul" hidden="0" type="field" width="-1"/>
+        <column name="andebpose" hidden="0" type="field" width="-1"/>
+        <column name="_precisionannee" hidden="0" type="field" width="-1"/>
+        <column name="longcana" hidden="0" type="field" width="-1"/>
+        <column name="nbranche" hidden="0" type="field" width="-1"/>
+        <column name="qualglocxy" hidden="0" type="field" width="-1"/>
+        <column name="qualglocz" hidden="0" type="field" width="-1"/>
+        <column name="datemaj" hidden="0" type="field" width="-1"/>
+        <column name="sourmaj" hidden="0" type="field" width="-1"/>
+        <column name="qualannee" hidden="0" type="field" width="-1"/>
+        <column name="dategeoloc" hidden="0" type="field" width="-1"/>
+        <column name="sourgeoloc" hidden="0" type="field" width="-1"/>
+        <column name="sourattrib" hidden="0" type="field" width="-1"/>
+        <column hidden="1" type="actions" width="-1"/>
+        <column name="_source_historique" hidden="0" type="field" width="-1"/>
+        <column name="_longcana_cm" hidden="0" type="field" width="-1"/>
+        <column name="_longcana_reelle" hidden="0" type="field" width="-1"/>
+        <column name="_pente" hidden="0" type="field" width="-1"/>
+        <column name="_code_chantier" hidden="0" type="field" width="-1"/>
+        <column name="_date_import" hidden="0" type="field" width="-1"/>
+        <column name="_temp_data" hidden="0" type="field" width="-1"/>
+       </columns>
+      </attributetableconfig>
+      <conditionalstyles>
+       <rowstyles/>
+       <fieldstyles/>
+      </conditionalstyles>
+      <editform tolerant="1">.</editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath>.</editforminitfilepath>
+      <editforminitcode># -*- coding: utf-8 -*-
+"""
+Les formulaires QGIS peuvent avoir une fonction Python qui sera appelée à l'ouverture du formulaire.
+
+Utilisez cette fonction pour ajouter plus de fonctionnalités à vos formulaires.
+
+Entrez le nom de la fonction dans le champ "Fonction d'initialisation Python".
+Voici un exemple à suivre:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+    geom = feature.geometry()
+    control = dialog.findChild(QWidget, "MyLineEdit")
+
+</editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <attributeEditorForm>
+       <attributeEditorContainer name="Canalisation d'assainissement" showLabel="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" groupBox="0">
+        <attributeEditorContainer name="Général" showLabel="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" groupBox="1">
+         <attributeEditorField name="idcana" showLabel="1" index="0"/>
+         <attributeEditorField name="typreseau" showLabel="1" index="5"/>
+         <attributeEditorField name="contcanass" showLabel="1" index="13"/>
+         <attributeEditorField name="fonccanass" showLabel="1" index="14"/>
+         <attributeEditorField name="modecirc" showLabel="1" index="12"/>
+         <attributeEditorField name="_forme" showLabel="1" index="9"/>
+         <attributeEditorField name="_etat" showLabel="1" index="10"/>
+         <attributeEditorField name="materiau" showLabel="1" index="6"/>
+         <attributeEditorField name="branchemnt" showLabel="1" index="4"/>
+         <attributeEditorField name="nbranche" showLabel="1" index="27"/>
+        </attributeEditorContainer>
+        <attributeEditorContainer name="Technique" showLabel="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" groupBox="1">
+         <attributeEditorField name="longcana" showLabel="1" index="23"/>
+         <attributeEditorField name="_longcana_cm" showLabel="1" index="24"/>
+         <attributeEditorField name="_longcana_reelle" showLabel="1" index="25"/>
+         <attributeEditorField name="diametre" showLabel="1" index="7"/>
+         <attributeEditorField name="_dimensionhorizontale" showLabel="1" index="8"/>
+         <attributeEditorField name="_pente" showLabel="1" index="26"/>
+         <attributeEditorField name="sensecoul" showLabel="1" index="20"/>
+        </attributeEditorContainer>
+        <attributeEditorContainer name="Relations" showLabel="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" groupBox="1">
+         <attributeEditorField name="zamont" showLabel="1" index="18"/>
+         <attributeEditorField name="zaval" showLabel="1" index="19"/>
+         <attributeEditorField name="idnini" showLabel="1" index="15"/>
+         <attributeEditorField name="idnterm" showLabel="1" index="16"/>
+         <attributeEditorField name="idcanppale" showLabel="1" index="17"/>
+        </attributeEditorContainer>
+        <attributeEditorContainer name="Historique" showLabel="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" groupBox="1">
+         <attributeEditorField name="mouvrage" showLabel="1" index="1"/>
+         <attributeEditorField name="gexploit" showLabel="1" index="2"/>
+         <attributeEditorField name="anfinpose" showLabel="1" index="11"/>
+         <attributeEditorField name="andebpose" showLabel="1" index="21"/>
+         <attributeEditorField name="_code_chantier" showLabel="1" index="37"/>
+         <attributeEditorField name="_date_import" showLabel="1" index="38"/>
+        </attributeEditorContainer>
+        <attributeEditorContainer name="Métadonnées" showLabel="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" groupBox="1">
+         <attributeEditorField name="qualglocxy" showLabel="1" index="28"/>
+         <attributeEditorField name="qualglocz" showLabel="1" index="29"/>
+         <attributeEditorField name="datemaj" showLabel="1" index="30"/>
+         <attributeEditorField name="sourmaj" showLabel="1" index="31"/>
+         <attributeEditorField name="qualannee" showLabel="1" index="32"/>
+         <attributeEditorField name="dategeoloc" showLabel="1" index="33"/>
+         <attributeEditorField name="sourgeoloc" showLabel="1" index="34"/>
+         <attributeEditorField name="sourattrib" showLabel="1" index="35"/>
+         <attributeEditorField name="_precisionannee" showLabel="1" index="22"/>
+         <attributeEditorField name="_source_historique" showLabel="1" index="36"/>
+        </attributeEditorContainer>
+       </attributeEditorContainer>
+      </attributeEditorForm>
+      <editable/>
+      <labelOnTop/>
+      <widgets>
+       <widget name="od_file20160921105557083_object_vw_qgep_reach_ws_obj_id">
+        <config/>
+       </widget>
+       <widget name="re_maintenance_wasterwaterstructure_reach">
+        <config/>
+       </widget>
+      </widgets>
+      <previewExpression>COALESCE( "idcana", '&lt;NULL>' )</previewExpression>
+      <mapTip/>
+      <layerGeometryType>1</layerGeometryType>
+     </qgis>
+    </map-layer-style>
+   </map-layer-style-manager>
+   <auxiliaryLayer/>
+   <flags>
+    <Identifiable>1</Identifiable>
+    <Removable>1</Removable>
+    <Searchable>1</Searchable>
+   </flags>
+   <renderer-v2 symbollevels="0" type="RuleRenderer" forceraster="0" enableorderby="0">
+    <rules key="{b3f3f0a1-c8d2-4416-8d68-3de95a17bc02}">
+     <rule symbol="0" scalemindenom="1" key="{9e580459-8bfa-4f04-be8f-68986341bd8e}" scalemaxdenom="2001" label="Canalisation, échelle &lt;= 2000"/>
+     <rule symbol="1" scalemindenom="2001" key="{d0a8418c-2231-46eb-abe3-d840c2c67437}" scalemaxdenom="500000" label="Canalisation, échelle > 2000"/>
+    </rules>
+    <symbols>
+     <symbol name="0" clip_to_extent="1" type="line" alpha="1" force_rhr="0">
+      <layer class="SimpleLine" locked="0" enabled="1" pass="0">
+       <prop k="capstyle" v="flat"/>
+       <prop k="customdash" v="5;2"/>
+       <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+       <prop k="customdash_unit" v="MM"/>
+       <prop k="draw_inside_polygon" v="0"/>
+       <prop k="joinstyle" v="bevel"/>
+       <prop k="line_color" v="0,0,0,255"/>
+       <prop k="line_style" v="solid"/>
+       <prop k="line_width" v="0.26"/>
+       <prop k="line_width_unit" v="MapUnit"/>
+       <prop k="offset" v="0"/>
+       <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+       <prop k="offset_unit" v="MM"/>
+       <prop k="ring_filter" v="0"/>
+       <prop k="use_custom_dash" v="0"/>
+       <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+       <effect type="effectStack" enabled="0">
+        <effect type="drawSource">
+         <prop k="blend_mode" v="0"/>
+         <prop k="draw_mode" v="2"/>
+         <prop k="enabled" v="1"/>
+         <prop k="opacity" v="1"/>
+        </effect>
+       </effect>
+       <data_defined_properties>
+        <Option type="Map">
+         <Option name="name" type="QString" value=""/>
+         <Option name="properties" type="Map">
+          <Option name="outlineColor" type="Map">
+           <Option name="active" type="bool" value="true"/>
+           <Option name="expression" type="QString" value="CASE &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('01') THEN '50,160,45,150' &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('02') THEN '255,0,0,150' &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('03') THEN '140,70,0,150' &#xa;&#x9;ELSE '161,161,161,150' &#xa;END"/>
+           <Option name="type" type="int" value="3"/>
+          </Option>
+          <Option name="outlineWidth" type="Map">
+           <Option name="active" type="bool" value="true"/>
+           <Option name="expression" type="QString" value="toreal(coalesce(&quot;_dimensionhorizontale&quot;, &quot;diametre&quot; ) ) / 1000"/>
+           <Option name="type" type="int" value="3"/>
+          </Option>
+         </Option>
+         <Option name="type" type="QString" value="collection"/>
+        </Option>
+       </data_defined_properties>
+      </layer>
+      <layer class="SimpleLine" locked="0" enabled="1" pass="0">
+       <prop k="capstyle" v="flat"/>
+       <prop k="customdash" v="5;2"/>
+       <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+       <prop k="customdash_unit" v="MM"/>
+       <prop k="draw_inside_polygon" v="0"/>
+       <prop k="joinstyle" v="bevel"/>
+       <prop k="line_color" v="203,176,112,255"/>
+       <prop k="line_style" v="solid"/>
+       <prop k="line_width" v="0.3"/>
+       <prop k="line_width_unit" v="MM"/>
+       <prop k="offset" v="0"/>
+       <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+       <prop k="offset_unit" v="MapUnit"/>
+       <prop k="ring_filter" v="0"/>
+       <prop k="use_custom_dash" v="0"/>
+       <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+       <effect type="effectStack" enabled="0">
+        <effect type="drawSource">
+         <prop k="blend_mode" v="0"/>
+         <prop k="draw_mode" v="2"/>
+         <prop k="enabled" v="1"/>
+         <prop k="opacity" v="1"/>
+        </effect>
+       </effect>
+       <data_defined_properties>
+        <Option type="Map">
+         <Option name="name" type="QString" value=""/>
+         <Option name="properties" type="Map">
+          <Option name="offset" type="Map">
+           <Option name="active" type="bool" value="true"/>
+           <Option name="expression" type="QString" value="toreal(coalesce(&quot;_dimensionhorizontale&quot;, &quot;diametre&quot; ) ) / 2000"/>
+           <Option name="type" type="int" value="3"/>
+          </Option>
+          <Option name="outlineColor" type="Map">
+           <Option name="active" type="bool" value="true"/>
+           <Option name="expression" type="QString" value="CASE &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('01') THEN '50,160,45,255' &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('02') THEN '255,0,0,255' &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('03') THEN '140,70,0,255' &#xa;&#x9;ELSE '161,161,161,255' &#xa;END"/>
+           <Option name="type" type="int" value="3"/>
+          </Option>
+         </Option>
+         <Option name="type" type="QString" value="collection"/>
+        </Option>
+       </data_defined_properties>
+      </layer>
+      <layer class="SimpleLine" locked="0" enabled="1" pass="0">
+       <prop k="capstyle" v="flat"/>
+       <prop k="customdash" v="5;2"/>
+       <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+       <prop k="customdash_unit" v="MM"/>
+       <prop k="draw_inside_polygon" v="0"/>
+       <prop k="joinstyle" v="bevel"/>
+       <prop k="line_color" v="0,0,0,255"/>
+       <prop k="line_style" v="solid"/>
+       <prop k="line_width" v="0.3"/>
+       <prop k="line_width_unit" v="MM"/>
+       <prop k="offset" v="0"/>
+       <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+       <prop k="offset_unit" v="MapUnit"/>
+       <prop k="ring_filter" v="0"/>
+       <prop k="use_custom_dash" v="0"/>
+       <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+       <effect type="effectStack" enabled="0">
+        <effect type="drawSource">
+         <prop k="blend_mode" v="0"/>
+         <prop k="draw_mode" v="2"/>
+         <prop k="enabled" v="1"/>
+         <prop k="opacity" v="1"/>
+        </effect>
+       </effect>
+       <data_defined_properties>
+        <Option type="Map">
+         <Option name="name" type="QString" value=""/>
+         <Option name="properties" type="Map">
+          <Option name="offset" type="Map">
+           <Option name="active" type="bool" value="true"/>
+           <Option name="expression" type="QString" value="toreal(coalesce(&quot;_dimensionhorizontale&quot;, &quot;diametre&quot; )) / - 2000"/>
+           <Option name="type" type="int" value="3"/>
+          </Option>
+          <Option name="outlineColor" type="Map">
+           <Option name="active" type="bool" value="true"/>
+           <Option name="expression" type="QString" value="CASE &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('01') THEN '50,160,45,255' &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('02') THEN '255,0,0,255' &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('03') THEN '140,70,0,255' &#xa;&#x9;ELSE '161,161,161,255' &#xa;END"/>
+           <Option name="type" type="int" value="3"/>
+          </Option>
+         </Option>
+         <Option name="type" type="QString" value="collection"/>
+        </Option>
+       </data_defined_properties>
+      </layer>
+     </symbol>
+     <symbol name="1" clip_to_extent="1" type="line" alpha="1" force_rhr="0">
+      <layer class="SimpleLine" locked="0" enabled="1" pass="0">
+       <prop k="capstyle" v="flat"/>
+       <prop k="customdash" v="5;2"/>
+       <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+       <prop k="customdash_unit" v="MM"/>
+       <prop k="draw_inside_polygon" v="0"/>
+       <prop k="joinstyle" v="bevel"/>
+       <prop k="line_color" v="0,0,0,255"/>
+       <prop k="line_style" v="solid"/>
+       <prop k="line_width" v="0.5"/>
+       <prop k="line_width_unit" v="MM"/>
+       <prop k="offset" v="0"/>
+       <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+       <prop k="offset_unit" v="MM"/>
+       <prop k="ring_filter" v="0"/>
+       <prop k="use_custom_dash" v="0"/>
+       <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+       <effect type="effectStack" enabled="0">
+        <effect type="drawSource">
+         <prop k="blend_mode" v="0"/>
+         <prop k="draw_mode" v="2"/>
+         <prop k="enabled" v="1"/>
+         <prop k="opacity" v="1"/>
+        </effect>
+       </effect>
+       <data_defined_properties>
+        <Option type="Map">
+         <Option name="name" type="QString" value=""/>
+         <Option name="properties" type="Map">
+          <Option name="outlineColor" type="Map">
+           <Option name="active" type="bool" value="true"/>
+           <Option name="expression" type="QString" value="CASE &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('01') THEN '50,160,45,255' &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('02') THEN '255,0,0,255' &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('03') THEN '140,70,0,255' &#xa;&#x9;ELSE '161,161,161,255' &#xa;END"/>
+           <Option name="type" type="int" value="3"/>
+          </Option>
+         </Option>
+         <Option name="type" type="QString" value="collection"/>
+        </Option>
+       </data_defined_properties>
+      </layer>
+     </symbol>
+    </symbols>
+    <effect type="effectStack" enabled="0">
+     <effect type="drawSource">
+      <prop k="blend_mode" v="0"/>
+      <prop k="draw_mode" v="2"/>
+      <prop k="enabled" v="1"/>
+      <prop k="opacity" v="1"/>
+     </effect>
+    </effect>
+   </renderer-v2>
+   <labeling type="simple">
+    <settings>
+     <text-style fontWordSpacing="0" useSubstitutions="0" fieldName="CONCAT(&#xa;&#x9;CASE &#xa;&#x9;WHEN &quot;typreseau&quot; = '01' THEN 'EP'&#xa;&#x9;WHEN &quot;typreseau&quot; = '02' THEN 'EU'&#xa;&#x9;WHEN &quot;typreseau&quot; = '03' THEN 'UN'&#xa;&#x9;ELSE 'IN' END,&#xa;&#x9;' ' ,&#xa;&#x9;COALESCE(&quot;diametre&quot;||' ', ''),&#xa;&#x9;COALESCE(&#xa;&#x9;&#x9;substr(attribute(&#xa;&#x9;&#x9;&#x9;get_feature(&#xa;&#x9;&#x9;&#x9;&#x9;'_val_raepa_forme_canal_ass',&#xa;&#x9;&#x9;&#x9;&#x9;'code', &#xa;&#x9;&#x9;&#x9;&#x9;&quot;_forme&quot;&#xa;&#x9;&#x9;&#x9;), &#xa;&#x9;&#x9;&#x9;'libelle'&#xa;&#x9;&#x9;), 1,1) ||' ', &#xa;&#x9;&#x9;''&#xa;&#x9;),&#xa;&#x9;'@',&#xa;&#x9;COALESCE(&quot;_longcana_cm&quot;|| 'm ', ''),&#xa;&#x9;COALESCE(to_string(round(100 * (&quot;zamont&quot; - &quot;zaval&quot;) / &quot;longcana&quot;, 1 ))  ||'%','' ) &#xa;)" multilineHeight="1" fontItalic="0" fontLetterSpacing="0" fontStrikeout="0" blendMode="0" previewBkgrdColor="#ffffff" isExpression="1" fontSizeUnit="Point" textOpacity="1" namedStyle="Regular" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontFamily="Ubuntu" fontUnderline="0" fontSize="8" textColor="0,0,0,255" fontCapitals="0" fontWeight="50">
+      <text-buffer bufferSize="1" bufferSizeUnits="MM" bufferDraw="1" bufferBlendMode="0" bufferJoinStyle="64" bufferOpacity="1" bufferNoFill="0" bufferColor="255,255,255,255" bufferSizeMapUnitScale="3x:0,0,0,0,0,0"/>
+      <background shapeSizeY="0" shapeOpacity="1" shapeRadiiUnit="MM" shapeOffsetMapUnitScale="3x:0,0,0,0,0,0" shapeOffsetX="0" shapeRadiiY="0" shapeBorderWidthMapUnitScale="3x:0,0,0,0,0,0" shapeOffsetUnit="MM" shapeJoinStyle="64" shapeBorderWidthUnit="MM" shapeSVGFile="" shapeBlendMode="0" shapeOffsetY="0" shapeRadiiX="0" shapeDraw="0" shapeRotation="0" shapeRadiiMapUnitScale="3x:0,0,0,0,0,0" shapeBorderColor="128,128,128,255" shapeBorderWidth="0" shapeSizeType="0" shapeSizeMapUnitScale="3x:0,0,0,0,0,0" shapeFillColor="255,255,255,255" shapeType="0" shapeRotationType="0" shapeSizeUnit="MM" shapeSizeX="0"/>
+      <shadow shadowOffsetMapUnitScale="3x:0,0,0,0,0,0" shadowOffsetGlobal="1" shadowDraw="0" shadowUnder="0" shadowRadiusUnit="MM" shadowOffsetAngle="135" shadowOffsetUnit="MM" shadowRadiusMapUnitScale="3x:0,0,0,0,0,0" shadowColor="0,0,0,255" shadowOpacity="0.7" shadowBlendMode="6" shadowRadiusAlphaOnly="0" shadowScale="100" shadowOffsetDist="1" shadowRadius="1.5"/>
+      <substitutions/>
+     </text-style>
+     <text-format placeDirectionSymbol="0" rightDirectionSymbol="  >" useMaxLineLengthForAutoWrap="1" multilineAlign="1" leftDirectionSymbol="&lt;  " plussign="0" addDirectionSymbol="1" formatNumbers="0" reverseDirectionSymbol="0" decimals="3" wrapChar="@" autoWrapLength="0"/>
+     <placement labelOffsetMapUnitScale="3x:0,0,0,0,0,0" distUnits="MapUnit" rotationAngle="0" maxCurvedCharAngleOut="-20" priority="5" repeatDistanceUnits="MM" offsetUnits="MapUnit" offsetType="0" preserveRotation="1" placementFlags="10" placement="2" centroidWhole="0" maxCurvedCharAngleIn="20" dist="0.3" xOffset="0" fitInPolygonOnly="0" quadOffset="4" centroidInside="0" repeatDistance="0" yOffset="0" distMapUnitScale="3x:0,0,0,0,0,0" predefinedPositionOrder="TR,TL,BR,BL,R,L,TSR,BSR" repeatDistanceMapUnitScale="3x:0,0,0,0,0,0"/>
+     <rendering scaleMax="2001" minFeatureSize="12" scaleVisibility="1" maxNumLabels="2000" mergeLines="0" obstacleFactor="1" labelPerPart="0" drawLabels="1" zIndex="0" scaleMin="1" upsidedownLabels="0" limitNumLabels="0" obstacleType="0" fontLimitPixelSize="0" displayAll="0" fontMaxPixelSize="10000" fontMinPixelSize="3" obstacle="1"/>
+     <dd_properties>
+      <Option type="Map">
+       <Option name="name" type="QString" value=""/>
+       <Option name="properties" type="Map">
+        <Option name="Color" type="Map">
+         <Option name="active" type="bool" value="true"/>
+         <Option name="expression" type="QString" value="CASE &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('01') THEN '50,160,45,255' &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('02') THEN '255,0,0,255' &#xa;&#x9;WHEN &quot;typreseau&quot; IN ('03') THEN '140,70,0,255' &#xa;&#x9;ELSE '161,161,161,255' &#xa;END"/>
+         <Option name="type" type="int" value="3"/>
+        </Option>
+        <Option name="LabelDistance" type="Map">
+         <Option name="active" type="bool" value="true"/>
+         <Option name="expression" type="QString" value="COALESCE(coalesce(&quot;_dimensionhorizontale&quot;, &quot;diametre&quot; ),0) / 2000.0 + 0.1"/>
+         <Option name="type" type="int" value="3"/>
+        </Option>
+       </Option>
+       <Option name="type" type="QString" value="collection"/>
+      </Option>
+     </dd_properties>
+    </settings>
+   </labeling>
+   <customproperties>
+    <property key="dualview/previewExpressions">
+     <value>COALESCE( "_code_chantier", '&lt;NULL>' )</value>
+     <value>COALESCE( "_code_chantier", '&lt;NULL>' )</value>
+     <value>COALESCE( "_code_chantier", '&lt;NULL>' )</value>
+    </property>
+    <property key="embeddedWidgets/count" value="0"/>
+    <property key="variableNames"/>
+    <property key="variableValues"/>
+   </customproperties>
+   <blendMode>0</blendMode>
+   <featureBlendMode>0</featureBlendMode>
+   <layerOpacity>1</layerOpacity>
+   <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+    <DiagramCategory minScaleDenominator="1" barWidth="5" opacity="1" enabled="0" height="15" diagramOrientation="Up" lineSizeScale="3x:0,0,0,0,0,0" penAlpha="255" penWidth="0" sizeType="MM" rotationOffset="270" penColor="#000000" backgroundColor="#ffffff" backgroundAlpha="255" minimumSize="0" scaleDependency="Area" scaleBasedVisibility="0" labelPlacementMethod="XHeight" sizeScale="3x:0,0,0,0,0,0" width="15" lineSizeType="MM" maxScaleDenominator="1e+8">
+     <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""/>
+     <attribute field="" color="#000000" label=""/>
+    </DiagramCategory>
+   </SingleCategoryDiagramRenderer>
+   <DiagramLayerSettings priority="0" showAll="1" zIndex="0" dist="0" linePlacementFlags="2" obstacle="0" placement="2">
+    <properties>
+     <Option type="Map">
+      <Option name="name" type="QString" value=""/>
+      <Option name="properties"/>
+      <Option name="type" type="QString" value="collection"/>
+     </Option>
+    </properties>
+   </DiagramLayerSettings>
+   <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+    <activeChecks/>
+    <checkConfiguration/>
+   </geometryOptions>
+   <fieldConfiguration>
+    <field name="id">
+     <editWidget type="Range">
+      <config>
+       <Option/>
+      </config>
+     </editWidget>
+    </field>
+    <field name="idcana">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="QString" value="0"/>
+        <Option name="UseHtml" type="QString" value="0"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="mouvrage">
+     <editWidget type="ValueRelation">
+      <config>
+       <Option type="Map">
+        <Option name="AllowMulti" type="bool" value="false"/>
+        <Option name="AllowNull" type="bool" value="true"/>
+        <Option name="FilterExpression" type="QString" value=""/>
+        <Option name="Key" type="QString" value="nom"/>
+        <Option name="Layer" type="QString" value="sys_organisme_gestionnaire2019100910365653369926340"/>
+        <Option name="NofColumns" type="int" value="1"/>
+        <Option name="OrderByValue" type="bool" value="true"/>
+        <Option name="UseCompleter" type="bool" value="false"/>
+        <Option name="Value" type="QString" value="nom"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="gexploit">
+     <editWidget type="ValueRelation">
+      <config>
+       <Option type="Map">
+        <Option name="AllowMulti" type="bool" value="false"/>
+        <Option name="AllowNull" type="bool" value="true"/>
+        <Option name="FilterExpression" type="QString" value=""/>
+        <Option name="Key" type="QString" value="nom"/>
+        <Option name="Layer" type="QString" value="sys_organisme_gestionnaire2019100910365653369926340"/>
+        <Option name="NofColumns" type="int" value="1"/>
+        <Option name="OrderByValue" type="bool" value="true"/>
+        <Option name="UseCompleter" type="bool" value="false"/>
+        <Option name="Value" type="QString" value="nom"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="enservice">
+     <editWidget type="CheckBox">
+      <config>
+       <Option type="Map">
+        <Option name="CheckedState" type="QString" value="1"/>
+        <Option name="UncheckedState" type="QString" value="0"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="branchemnt">
+     <editWidget type="CheckBox">
+      <config>
+       <Option type="Map">
+        <Option name="CheckedState" type="QString" value="1"/>
+        <Option name="UncheckedState" type="QString" value="0"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="typreseau">
+     <editWidget type="ValueRelation">
+      <config>
+       <Option type="Map">
+        <Option name="AllowMulti" type="bool" value="false"/>
+        <Option name="AllowNull" type="bool" value="true"/>
+        <Option name="FilterExpression" type="QString" value=""/>
+        <Option name="Key" type="QString" value="code"/>
+        <Option name="Layer" type="QString" value="val_raepa_typ_reseau_ass20191009103656540913278820"/>
+        <Option name="NofColumns" type="int" value="1"/>
+        <Option name="OrderByValue" type="bool" value="true"/>
+        <Option name="UseCompleter" type="bool" value="false"/>
+        <Option name="Value" type="QString" value="libelle"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="materiau">
+     <editWidget type="ValueRelation">
+      <config>
+       <Option type="Map">
+        <Option name="AllowMulti" type="bool" value="false"/>
+        <Option name="AllowNull" type="bool" value="true"/>
+        <Option name="FilterExpression" type="QString" value=""/>
+        <Option name="Key" type="QString" value="code"/>
+        <Option name="Layer" type="QString" value="val_raepa_materiau201910091036565381184808403"/>
+        <Option name="NofColumns" type="int" value="1"/>
+        <Option name="OrderByValue" type="bool" value="true"/>
+        <Option name="UseCompleter" type="bool" value="false"/>
+        <Option name="Value" type="QString" value="libelle"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="diametre">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="_dimensionhorizontale">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="_forme">
+     <editWidget type="ValueRelation">
+      <config>
+       <Option type="Map">
+        <Option name="AllowMulti" type="bool" value="false"/>
+        <Option name="AllowNull" type="bool" value="true"/>
+        <Option name="FilterExpression" type="QString" value=""/>
+        <Option name="Key" type="QString" value=""/>
+        <Option name="Layer" type="QString" value=""/>
+        <Option name="NofColumns" type="int" value="1"/>
+        <Option name="OrderByValue" type="bool" value="true"/>
+        <Option name="UseCompleter" type="bool" value="false"/>
+        <Option name="Value" type="QString" value=""/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="_etat">
+     <editWidget type="ValueRelation">
+      <config>
+       <Option type="Map">
+        <Option name="AllowMulti" type="bool" value="false"/>
+        <Option name="AllowNull" type="bool" value="true"/>
+        <Option name="FilterExpression" type="QString" value=""/>
+        <Option name="Key" type="QString" value=""/>
+        <Option name="Layer" type="QString" value=""/>
+        <Option name="NofColumns" type="int" value="1"/>
+        <Option name="OrderByValue" type="bool" value="true"/>
+        <Option name="UseCompleter" type="bool" value="false"/>
+        <Option name="Value" type="QString" value=""/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="anfinpose">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="modecirc">
+     <editWidget type="ValueRelation">
+      <config>
+       <Option type="Map">
+        <Option name="AllowMulti" type="bool" value="false"/>
+        <Option name="AllowNull" type="bool" value="true"/>
+        <Option name="FilterExpression" type="QString" value=""/>
+        <Option name="Key" type="QString" value="code"/>
+        <Option name="Layer" type="QString" value="val_raepa_mode_circulation20191009103656538101934309"/>
+        <Option name="NofColumns" type="int" value="1"/>
+        <Option name="OrderByValue" type="bool" value="true"/>
+        <Option name="UseCompleter" type="bool" value="false"/>
+        <Option name="Value" type="QString" value="libelle"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="contcanass">
+     <editWidget type="ValueRelation">
+      <config>
+       <Option type="Map">
+        <Option name="AllowMulti" type="bool" value="false"/>
+        <Option name="AllowNull" type="bool" value="true"/>
+        <Option name="FilterExpression" type="QString" value=""/>
+        <Option name="Key" type="QString" value="code"/>
+        <Option name="Layer" type="QString" value="val_raepa_cat_canal_ass201910091036565351029168003"/>
+        <Option name="NofColumns" type="int" value="1"/>
+        <Option name="OrderByValue" type="bool" value="true"/>
+        <Option name="UseCompleter" type="bool" value="false"/>
+        <Option name="Value" type="QString" value="libelle"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="fonccanass">
+     <editWidget type="ValueRelation">
+      <config>
+       <Option type="Map">
+        <Option name="AllowMulti" type="bool" value="false"/>
+        <Option name="AllowNull" type="bool" value="true"/>
+        <Option name="FilterExpression" type="QString" value=""/>
+        <Option name="Key" type="QString" value="code"/>
+        <Option name="Layer" type="QString" value="val_raepa_fonc_canal_ass201910091036565371030512252"/>
+        <Option name="NofColumns" type="int" value="1"/>
+        <Option name="OrderByValue" type="bool" value="true"/>
+        <Option name="UseCompleter" type="bool" value="false"/>
+        <Option name="Value" type="QString" value="libelle"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="idnini">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="idnterm">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="idcanppale">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="zamont">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="zaval">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="sensecoul">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="andebpose">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="_precisionannee">
+     <editWidget type="ValueRelation">
+      <config>
+       <Option type="Map">
+        <Option name="AllowMulti" type="bool" value="false"/>
+        <Option name="AllowNull" type="bool" value="true"/>
+        <Option name="FilterExpression" type="QString" value=""/>
+        <Option name="Key" type="QString" value="code"/>
+        <Option name="Layer" type="QString" value="_val_raepa_precision_annee201910091036565341587659498"/>
+        <Option name="NofColumns" type="int" value="1"/>
+        <Option name="OrderByValue" type="bool" value="true"/>
+        <Option name="UseCompleter" type="bool" value="false"/>
+        <Option name="Value" type="QString" value="libelle"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="longcana">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="_longcana_cm">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="_longcana_reelle">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="_pente">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="nbranche">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="qualglocxy">
+     <editWidget type="ValueRelation">
+      <config>
+       <Option type="Map">
+        <Option name="AllowMulti" type="bool" value="false"/>
+        <Option name="AllowNull" type="bool" value="true"/>
+        <Option name="FilterExpression" type="QString" value=""/>
+        <Option name="Key" type="QString" value="code"/>
+        <Option name="Layer" type="QString" value="val_raepa_qualite_geoloc201910091036565392031560565"/>
+        <Option name="NofColumns" type="int" value="1"/>
+        <Option name="OrderByValue" type="bool" value="true"/>
+        <Option name="UseCompleter" type="bool" value="false"/>
+        <Option name="Value" type="QString" value="libelle"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="qualglocz">
+     <editWidget type="ValueRelation">
+      <config>
+       <Option type="Map">
+        <Option name="AllowMulti" type="bool" value="false"/>
+        <Option name="AllowNull" type="bool" value="true"/>
+        <Option name="FilterExpression" type="QString" value=""/>
+        <Option name="Key" type="QString" value="code"/>
+        <Option name="Layer" type="QString" value="val_raepa_qualite_geoloc201910091036565392031560565"/>
+        <Option name="NofColumns" type="int" value="1"/>
+        <Option name="OrderByValue" type="bool" value="true"/>
+        <Option name="UseCompleter" type="bool" value="false"/>
+        <Option name="Value" type="QString" value="libelle"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="datemaj">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="sourmaj">
+     <editWidget type="ValueRelation">
+      <config>
+       <Option type="Map">
+        <Option name="AllowMulti" type="bool" value="false"/>
+        <Option name="AllowNull" type="bool" value="true"/>
+        <Option name="FilterExpression" type="QString" value=""/>
+        <Option name="Key" type="QString" value="nom"/>
+        <Option name="Layer" type="QString" value="sys_organisme_gestionnaire2019100910365653369926340"/>
+        <Option name="NofColumns" type="int" value="1"/>
+        <Option name="OrderByValue" type="bool" value="true"/>
+        <Option name="UseCompleter" type="bool" value="false"/>
+        <Option name="Value" type="QString" value="nom"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="qualannee">
+     <editWidget type="ValueRelation">
+      <config>
+       <Option type="Map">
+        <Option name="AllowMulti" type="bool" value="false"/>
+        <Option name="AllowNull" type="bool" value="true"/>
+        <Option name="FilterExpression" type="QString" value=""/>
+        <Option name="Key" type="QString" value="code"/>
+        <Option name="Layer" type="QString" value="val_raepa_qualite_anpose20191009103656539585994462"/>
+        <Option name="NofColumns" type="int" value="1"/>
+        <Option name="OrderByValue" type="bool" value="true"/>
+        <Option name="UseCompleter" type="bool" value="false"/>
+        <Option name="Value" type="QString" value="libelle"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="dategeoloc">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="sourgeoloc">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="sourattrib">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="_source_historique">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="QString" value="0"/>
+        <Option name="UseHtml" type="QString" value="0"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="_code_chantier">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="_date_import">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+    <field name="_temp_data">
+     <editWidget type="TextEdit">
+      <config>
+       <Option type="Map">
+        <Option name="IsMultiline" type="bool" value="false"/>
+        <Option name="UseHtml" type="bool" value="false"/>
+       </Option>
+      </config>
+     </editWidget>
+    </field>
+   </fieldConfiguration>
+   <aliases>
+    <alias name="" field="id" index="0"/>
+    <alias name="Identifiant" field="idcana" index="1"/>
+    <alias name="Maître d’ouvrage" field="mouvrage" index="2"/>
+    <alias name="Exploitant" field="gexploit" index="3"/>
+    <alias name="En service" field="enservice" index="4"/>
+    <alias name="Branchement" field="branchemnt" index="5"/>
+    <alias name="Type du réseau" field="typreseau" index="6"/>
+    <alias name="Matériau" field="materiau" index="7"/>
+    <alias name="Diamètre nominal [mm]" field="diametre" index="8"/>
+    <alias name="Diamètre nominal horizontal [mm]" field="_dimensionhorizontale" index="9"/>
+    <alias name="Forme" field="_forme" index="10"/>
+    <alias name="État" field="_etat" index="11"/>
+    <alias name="Année de fin de pose" field="anfinpose" index="12"/>
+    <alias name="Mode de circulation" field="modecirc" index="13"/>
+    <alias name="Catégorie" field="contcanass" index="14"/>
+    <alias name="Fonction" field="fonccanass" index="15"/>
+    <alias name="Noeud initial" field="idnini" index="16"/>
+    <alias name="Noeud terminal" field="idnterm" index="17"/>
+    <alias name="Canalisation principale" field="idcanppale" index="18"/>
+    <alias name="Fil d’eau amont [m]" field="zamont" index="19"/>
+    <alias name="Fil d’eau aval [m]" field="zaval" index="20"/>
+    <alias name="Sens d’écoulement" field="sensecoul" index="21"/>
+    <alias name="Année de début de pose" field="andebpose" index="22"/>
+    <alias name="Précision des années" field="_precisionannee" index="23"/>
+    <alias name="Longueur mesurée [m]" field="longcana" index="24"/>
+    <alias name="Longueur projetée calculée [m]" field="_longcana_cm" index="25"/>
+    <alias name="Longueur réelle calculée [m]" field="_longcana_reelle" index="26"/>
+    <alias name="Pente calculée [%]" field="_pente" index="27"/>
+    <alias name="Nombre de branchements" field="nbranche" index="28"/>
+    <alias name="Qualité de la géolocalisation XY" field="qualglocxy" index="29"/>
+    <alias name="Qualité de la géolocalisation Z" field="qualglocz" index="30"/>
+    <alias name="Date de mise à jour" field="datemaj" index="31"/>
+    <alias name="Source de la mise à jour" field="sourmaj" index="32"/>
+    <alias name="Qualité de l’année de pose" field="qualannee" index="33"/>
+    <alias name="Date de la géolocalisation" field="dategeoloc" index="34"/>
+    <alias name="Auteur de la géolocalisation" field="sourgeoloc" index="35"/>
+    <alias name="Auteur des données attributaires" field="sourattrib" index="36"/>
+    <alias name="Source historique" field="_source_historique" index="37"/>
+    <alias name="" field="_code_chantier" index="38"/>
+    <alias name="" field="_date_import" index="39"/>
+    <alias name="" field="_temp_data" index="40"/>
+   </aliases>
+   <excludeAttributesWMS/>
+   <excludeAttributesWFS/>
+   <defaults>
+    <default field="id" applyOnUpdate="0" expression=""/>
+    <default field="idcana" applyOnUpdate="0" expression=""/>
+    <default field="mouvrage" applyOnUpdate="0" expression=""/>
+    <default field="gexploit" applyOnUpdate="0" expression=""/>
+    <default field="enservice" applyOnUpdate="0" expression=""/>
+    <default field="branchemnt" applyOnUpdate="0" expression=""/>
+    <default field="typreseau" applyOnUpdate="0" expression=""/>
+    <default field="materiau" applyOnUpdate="0" expression=""/>
+    <default field="diametre" applyOnUpdate="0" expression=""/>
+    <default field="_dimensionhorizontale" applyOnUpdate="0" expression=""/>
+    <default field="_forme" applyOnUpdate="0" expression=""/>
+    <default field="_etat" applyOnUpdate="0" expression=""/>
+    <default field="anfinpose" applyOnUpdate="0" expression="year(now())"/>
+    <default field="modecirc" applyOnUpdate="0" expression=""/>
+    <default field="contcanass" applyOnUpdate="0" expression=""/>
+    <default field="fonccanass" applyOnUpdate="0" expression=""/>
+    <default field="idnini" applyOnUpdate="0" expression=""/>
+    <default field="idnterm" applyOnUpdate="0" expression=""/>
+    <default field="idcanppale" applyOnUpdate="0" expression=""/>
+    <default field="zamont" applyOnUpdate="0" expression=""/>
+    <default field="zaval" applyOnUpdate="0" expression=""/>
+    <default field="sensecoul" applyOnUpdate="0" expression=""/>
+    <default field="andebpose" applyOnUpdate="0" expression=""/>
+    <default field="_precisionannee" applyOnUpdate="0" expression=""/>
+    <default field="longcana" applyOnUpdate="0" expression=""/>
+    <default field="_longcana_cm" applyOnUpdate="0" expression=""/>
+    <default field="_longcana_reelle" applyOnUpdate="0" expression=""/>
+    <default field="_pente" applyOnUpdate="0" expression=""/>
+    <default field="nbranche" applyOnUpdate="0" expression=""/>
+    <default field="qualglocxy" applyOnUpdate="0" expression=""/>
+    <default field="qualglocz" applyOnUpdate="0" expression=""/>
+    <default field="datemaj" applyOnUpdate="0" expression=""/>
+    <default field="sourmaj" applyOnUpdate="0" expression=""/>
+    <default field="qualannee" applyOnUpdate="0" expression=""/>
+    <default field="dategeoloc" applyOnUpdate="0" expression=""/>
+    <default field="sourgeoloc" applyOnUpdate="0" expression=""/>
+    <default field="sourattrib" applyOnUpdate="0" expression=""/>
+    <default field="_source_historique" applyOnUpdate="0" expression=""/>
+    <default field="_code_chantier" applyOnUpdate="0" expression=""/>
+    <default field="_date_import" applyOnUpdate="0" expression=""/>
+    <default field="_temp_data" applyOnUpdate="0" expression=""/>
+   </defaults>
+   <constraints>
+    <constraint field="id" notnull_strength="1" unique_strength="1" constraints="3" exp_strength="0"/>
+    <constraint field="idcana" notnull_strength="1" unique_strength="1" constraints="3" exp_strength="0"/>
+    <constraint field="mouvrage" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="gexploit" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="enservice" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="branchemnt" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="typreseau" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="materiau" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="diametre" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="_dimensionhorizontale" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="_forme" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="_etat" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="anfinpose" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="modecirc" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="contcanass" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="fonccanass" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="idnini" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="idnterm" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="idcanppale" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="zamont" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="zaval" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="sensecoul" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="andebpose" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="_precisionannee" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="longcana" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="_longcana_cm" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="_longcana_reelle" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="_pente" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="nbranche" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="qualglocxy" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="qualglocz" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="datemaj" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="sourmaj" notnull_strength="1" unique_strength="0" constraints="1" exp_strength="0"/>
+    <constraint field="qualannee" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="dategeoloc" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="sourgeoloc" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="sourattrib" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="_source_historique" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="_code_chantier" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="_date_import" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+    <constraint field="_temp_data" notnull_strength="0" unique_strength="0" constraints="0" exp_strength="0"/>
+   </constraints>
+   <constraintExpressions>
+    <constraint exp="" desc="" field="id"/>
+    <constraint exp="" desc="" field="idcana"/>
+    <constraint exp="" desc="" field="mouvrage"/>
+    <constraint exp="" desc="" field="gexploit"/>
+    <constraint exp="" desc="" field="enservice"/>
+    <constraint exp="" desc="" field="branchemnt"/>
+    <constraint exp="" desc="" field="typreseau"/>
+    <constraint exp="" desc="" field="materiau"/>
+    <constraint exp="" desc="" field="diametre"/>
+    <constraint exp="" desc="" field="_dimensionhorizontale"/>
+    <constraint exp="" desc="" field="_forme"/>
+    <constraint exp="" desc="" field="_etat"/>
+    <constraint exp="" desc="" field="anfinpose"/>
+    <constraint exp="" desc="" field="modecirc"/>
+    <constraint exp="" desc="" field="contcanass"/>
+    <constraint exp="" desc="" field="fonccanass"/>
+    <constraint exp="" desc="" field="idnini"/>
+    <constraint exp="" desc="" field="idnterm"/>
+    <constraint exp="" desc="" field="idcanppale"/>
+    <constraint exp="" desc="" field="zamont"/>
+    <constraint exp="" desc="" field="zaval"/>
+    <constraint exp="" desc="" field="sensecoul"/>
+    <constraint exp="" desc="" field="andebpose"/>
+    <constraint exp="" desc="" field="_precisionannee"/>
+    <constraint exp="" desc="" field="longcana"/>
+    <constraint exp="" desc="" field="_longcana_cm"/>
+    <constraint exp="" desc="" field="_longcana_reelle"/>
+    <constraint exp="" desc="" field="_pente"/>
+    <constraint exp="" desc="" field="nbranche"/>
+    <constraint exp="" desc="" field="qualglocxy"/>
+    <constraint exp="" desc="" field="qualglocz"/>
+    <constraint exp="" desc="" field="datemaj"/>
+    <constraint exp="" desc="" field="sourmaj"/>
+    <constraint exp="" desc="" field="qualannee"/>
+    <constraint exp="" desc="" field="dategeoloc"/>
+    <constraint exp="" desc="" field="sourgeoloc"/>
+    <constraint exp="" desc="" field="sourattrib"/>
+    <constraint exp="" desc="" field="_source_historique"/>
+    <constraint exp="" desc="" field="_code_chantier"/>
+    <constraint exp="" desc="" field="_date_import"/>
+    <constraint exp="" desc="" field="_temp_data"/>
+   </constraintExpressions>
+   <expressionfields/>
+   <attributeactions>
+    <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+    <actionsetting name="Inverser la canalisation" shortTitle="Inverser la canalisation" icon="" capture="0" notificationMessage="" action="# active layer&#xa;layer = QgsProject.instance().mapLayer('[% @layer_id %]')&#xa;fid = [% $id %]&#xa;&#xa;# materialized feature in new layer&#xa;request = QgsFeatureRequest()&#xa;request.setFilterFids( [fid] )&#xa;mat = layer.materialize(request)&#xa;&#xa;# run the processing alg &quot;reverse line direction&quot;&#xa;import processing&#xa;out = processing.run(&#xa;    &quot;native:reverselinedirection&quot;, &#xa;    {&#xa;        'INPUT': mat,&#xa;        'OUTPUT':'memory:test'}&#xa;)&#xa;vout = out['OUTPUT']&#xa;for feat in vout.getFeatures():&#xa;    if layer.changeGeometry(fid, feat.geometry()):&#xa;        # message&#xa;        qgis.utils.iface.messageBar().pushMessage(&#xa;            u&quot;Line direction has been reversed&quot;, &#xa;            level=Qgis.Success,&#xa;            duration=2&#xa;        )&#xa;        qgis.utils.iface.mapCanvas().refresh()&#xa;    else:&#xa;        qgis.utils.iface.messageBar().pushMessage(&#xa;            u&quot;Line direction has NOT been reversed. Check if the layer is editable&quot;, &#xa;            level=Qgis.Critical,&#xa;            duration=2&#xa;        )&#xa;&#xa;" type="1" id="{ac9e8945-a072-4000-800d-2393890d0608}" isEnabledOnlyWhenEditable="0">
+     <actionScope id="Feature"/>
+     <actionScope id="Field"/>
+    </actionsetting>
+   </attributeactions>
+   <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="&quot;id&quot;">
+    <columns>
+     <column hidden="1" type="actions" width="-1"/>
+     <column name="idcana" hidden="0" type="field" width="-1"/>
+     <column name="typreseau" hidden="0" type="field" width="127"/>
+     <column name="contcanass" hidden="0" type="field" width="218"/>
+     <column name="fonccanass" hidden="0" type="field" width="-1"/>
+     <column name="modecirc" hidden="0" type="field" width="-1"/>
+     <column name="_forme" hidden="0" type="field" width="-1"/>
+     <column name="_etat" hidden="0" type="field" width="-1"/>
+     <column name="materiau" hidden="0" type="field" width="-1"/>
+     <column name="branchemnt" hidden="0" type="field" width="100"/>
+     <column name="nbranche" hidden="0" type="field" width="-1"/>
+     <column name="enservice" hidden="0" type="field" width="-1"/>
+     <column name="longcana" hidden="0" type="field" width="151"/>
+     <column name="_longcana_cm" hidden="0" type="field" width="245"/>
+     <column name="_longcana_reelle" hidden="0" type="field" width="146"/>
+     <column name="diametre" hidden="0" type="field" width="-1"/>
+     <column name="_dimensionhorizontale" hidden="0" type="field" width="278"/>
+     <column name="_pente" hidden="0" type="field" width="-1"/>
+     <column name="sensecoul" hidden="0" type="field" width="-1"/>
+     <column name="zamont" hidden="0" type="field" width="-1"/>
+     <column name="zaval" hidden="0" type="field" width="-1"/>
+     <column name="idnini" hidden="0" type="field" width="-1"/>
+     <column name="idnterm" hidden="0" type="field" width="-1"/>
+     <column name="idcanppale" hidden="0" type="field" width="-1"/>
+     <column name="mouvrage" hidden="0" type="field" width="-1"/>
+     <column name="gexploit" hidden="0" type="field" width="-1"/>
+     <column name="andebpose" hidden="0" type="field" width="-1"/>
+     <column name="anfinpose" hidden="0" type="field" width="-1"/>
+     <column name="_precisionannee" hidden="0" type="field" width="-1"/>
+     <column name="qualglocxy" hidden="1" type="field" width="-1"/>
+     <column name="qualglocz" hidden="1" type="field" width="-1"/>
+     <column name="datemaj" hidden="0" type="field" width="-1"/>
+     <column name="sourmaj" hidden="1" type="field" width="-1"/>
+     <column name="qualannee" hidden="1" type="field" width="-1"/>
+     <column name="dategeoloc" hidden="1" type="field" width="-1"/>
+     <column name="sourgeoloc" hidden="1" type="field" width="-1"/>
+     <column name="sourattrib" hidden="1" type="field" width="-1"/>
+     <column name="_source_historique" hidden="1" type="field" width="-1"/>
+     <column name="_code_chantier" hidden="0" type="field" width="-1"/>
+     <column name="_date_import" hidden="0" type="field" width="-1"/>
+     <column name="_temp_data" hidden="0" type="field" width="-1"/>
+     <column name="id" hidden="0" type="field" width="-1"/>
+    </columns>
+   </attributetableconfig>
+   <conditionalstyles>
+    <rowstyles/>
+    <fieldstyles/>
+   </conditionalstyles>
+   <editform tolerant="1">/../../../.local/share/QGIS/QGIS3/profiles</editform>
+   <editforminit/>
+   <editforminitcodesource>0</editforminitcodesource>
+   <editforminitfilepath>/home/mdouchin/.local/share/QGIS/.local/share/QGIS/QGIS3/profiles/default/3liz/Reapa</editforminitfilepath>
+   <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from PyQt4.QtGui import QWidget
+
+def my_form_open(dialog, layer, feature):
+  geom = feature.geometry()
+  control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
+   <featformsuppress>0</featformsuppress>
+   <editorlayout>tablayout</editorlayout>
+   <attributeEditorForm>
+    <attributeEditorContainer name="Canalisation d'assainissement" showLabel="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" groupBox="0">
+     <attributeEditorContainer name="Général" showLabel="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" groupBox="1">
+      <attributeEditorField name="idcana" showLabel="1" index="1"/>
+      <attributeEditorField name="typreseau" showLabel="1" index="6"/>
+      <attributeEditorField name="contcanass" showLabel="1" index="14"/>
+      <attributeEditorField name="fonccanass" showLabel="1" index="15"/>
+      <attributeEditorField name="modecirc" showLabel="1" index="13"/>
+      <attributeEditorField name="_forme" showLabel="1" index="10"/>
+      <attributeEditorField name="_etat" showLabel="1" index="11"/>
+      <attributeEditorField name="materiau" showLabel="1" index="7"/>
+      <attributeEditorField name="branchemnt" showLabel="1" index="5"/>
+      <attributeEditorField name="nbranche" showLabel="1" index="28"/>
+     </attributeEditorContainer>
+     <attributeEditorContainer name="Technique" showLabel="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" groupBox="1">
+      <attributeEditorField name="longcana" showLabel="1" index="24"/>
+      <attributeEditorField name="_longcana_cm" showLabel="1" index="25"/>
+      <attributeEditorField name="_longcana_reelle" showLabel="1" index="26"/>
+      <attributeEditorField name="diametre" showLabel="1" index="8"/>
+      <attributeEditorField name="_dimensionhorizontale" showLabel="1" index="9"/>
+      <attributeEditorField name="_pente" showLabel="1" index="27"/>
+      <attributeEditorField name="sensecoul" showLabel="1" index="21"/>
+     </attributeEditorContainer>
+     <attributeEditorContainer name="Relations" showLabel="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" groupBox="1">
+      <attributeEditorField name="zamont" showLabel="1" index="19"/>
+      <attributeEditorField name="zaval" showLabel="1" index="20"/>
+      <attributeEditorField name="idnini" showLabel="1" index="16"/>
+      <attributeEditorField name="idnterm" showLabel="1" index="17"/>
+      <attributeEditorField name="idcanppale" showLabel="1" index="18"/>
+     </attributeEditorContainer>
+     <attributeEditorContainer name="Historique" showLabel="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" groupBox="1">
+      <attributeEditorField name="mouvrage" showLabel="1" index="2"/>
+      <attributeEditorField name="gexploit" showLabel="1" index="3"/>
+      <attributeEditorField name="anfinpose" showLabel="1" index="12"/>
+      <attributeEditorField name="andebpose" showLabel="1" index="22"/>
+      <attributeEditorField name="_code_chantier" showLabel="1" index="38"/>
+      <attributeEditorField name="_date_import" showLabel="1" index="39"/>
+     </attributeEditorContainer>
+     <attributeEditorContainer name="Métadonnées" showLabel="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" groupBox="1">
+      <attributeEditorField name="qualglocxy" showLabel="1" index="29"/>
+      <attributeEditorField name="qualglocz" showLabel="1" index="30"/>
+      <attributeEditorField name="datemaj" showLabel="1" index="31"/>
+      <attributeEditorField name="sourmaj" showLabel="1" index="32"/>
+      <attributeEditorField name="qualannee" showLabel="1" index="33"/>
+      <attributeEditorField name="dategeoloc" showLabel="1" index="34"/>
+      <attributeEditorField name="sourgeoloc" showLabel="1" index="35"/>
+      <attributeEditorField name="sourattrib" showLabel="1" index="36"/>
+      <attributeEditorField name="_precisionannee" showLabel="1" index="23"/>
+      <attributeEditorField name="_source_historique" showLabel="1" index="37"/>
+     </attributeEditorContainer>
+    </attributeEditorContainer>
+   </attributeEditorForm>
+   <editable>
+    <field name="_code_chantier" editable="1"/>
+    <field name="_date_import" editable="1"/>
+    <field name="_dimensionhorizontale" editable="1"/>
+    <field name="_etat" editable="1"/>
+    <field name="_forme" editable="1"/>
+    <field name="_longcana_cm" editable="1"/>
+    <field name="_longcana_reelle" editable="1"/>
+    <field name="_pente" editable="1"/>
+    <field name="_precisionannee" editable="1"/>
+    <field name="_source_historique" editable="1"/>
+    <field name="_temp_data" editable="1"/>
+    <field name="andebpose" editable="1"/>
+    <field name="anfinpose" editable="1"/>
+    <field name="branchemnt" editable="1"/>
+    <field name="contcanass" editable="1"/>
+    <field name="dategeoloc" editable="1"/>
+    <field name="datemaj" editable="1"/>
+    <field name="diametre" editable="1"/>
+    <field name="enservice" editable="1"/>
+    <field name="fonccanass" editable="1"/>
+    <field name="gexploit" editable="1"/>
+    <field name="id" editable="1"/>
+    <field name="idcana" editable="1"/>
+    <field name="idcanppale" editable="1"/>
+    <field name="idnini" editable="1"/>
+    <field name="idnterm" editable="1"/>
+    <field name="longcana" editable="1"/>
+    <field name="materiau" editable="1"/>
+    <field name="modecirc" editable="1"/>
+    <field name="mouvrage" editable="1"/>
+    <field name="nbranche" editable="1"/>
+    <field name="qualannee" editable="1"/>
+    <field name="qualglocxy" editable="1"/>
+    <field name="qualglocz" editable="1"/>
+    <field name="sensecoul" editable="1"/>
+    <field name="sourattrib" editable="1"/>
+    <field name="sourgeoloc" editable="1"/>
+    <field name="sourmaj" editable="1"/>
+    <field name="typreseau" editable="1"/>
+    <field name="val_raepa_cat_canal_ass_libelle" editable="0"/>
+    <field name="val_raepa_fonc_canal_ass_libelle" editable="0"/>
+    <field name="val_raepa_materiau_libelle" editable="0"/>
+    <field name="val_raepa_mode_circulation_libelle" editable="0"/>
+    <field name="val_raepa_qualite_geoloc_libelle" editable="0"/>
+    <field name="zamont" editable="1"/>
+    <field name="zaval" editable="1"/>
+   </editable>
+   <labelOnTop>
+    <field name="_code_chantier" labelOnTop="0"/>
+    <field name="_date_import" labelOnTop="0"/>
+    <field name="_dimensionhorizontale" labelOnTop="0"/>
+    <field name="_etat" labelOnTop="0"/>
+    <field name="_forme" labelOnTop="0"/>
+    <field name="_longcana_cm" labelOnTop="0"/>
+    <field name="_longcana_reelle" labelOnTop="0"/>
+    <field name="_pente" labelOnTop="0"/>
+    <field name="_precisionannee" labelOnTop="0"/>
+    <field name="_source_historique" labelOnTop="0"/>
+    <field name="_temp_data" labelOnTop="0"/>
+    <field name="andebpose" labelOnTop="0"/>
+    <field name="anfinpose" labelOnTop="0"/>
+    <field name="branchemnt" labelOnTop="0"/>
+    <field name="contcanass" labelOnTop="0"/>
+    <field name="dategeoloc" labelOnTop="0"/>
+    <field name="datemaj" labelOnTop="0"/>
+    <field name="diametre" labelOnTop="0"/>
+    <field name="enservice" labelOnTop="0"/>
+    <field name="fonccanass" labelOnTop="0"/>
+    <field name="gexploit" labelOnTop="0"/>
+    <field name="id" labelOnTop="0"/>
+    <field name="idcana" labelOnTop="0"/>
+    <field name="idcanppale" labelOnTop="0"/>
+    <field name="idnini" labelOnTop="0"/>
+    <field name="idnterm" labelOnTop="0"/>
+    <field name="longcana" labelOnTop="0"/>
+    <field name="materiau" labelOnTop="0"/>
+    <field name="modecirc" labelOnTop="0"/>
+    <field name="mouvrage" labelOnTop="0"/>
+    <field name="nbranche" labelOnTop="0"/>
+    <field name="qualannee" labelOnTop="0"/>
+    <field name="qualglocxy" labelOnTop="0"/>
+    <field name="qualglocz" labelOnTop="0"/>
+    <field name="sensecoul" labelOnTop="0"/>
+    <field name="sourattrib" labelOnTop="0"/>
+    <field name="sourgeoloc" labelOnTop="0"/>
+    <field name="sourmaj" labelOnTop="0"/>
+    <field name="typreseau" labelOnTop="0"/>
+    <field name="val_raepa_cat_canal_ass_libelle" labelOnTop="0"/>
+    <field name="val_raepa_fonc_canal_ass_libelle" labelOnTop="0"/>
+    <field name="val_raepa_materiau_libelle" labelOnTop="0"/>
+    <field name="val_raepa_mode_circulation_libelle" labelOnTop="0"/>
+    <field name="val_raepa_qualite_geoloc_libelle" labelOnTop="0"/>
+    <field name="zamont" labelOnTop="0"/>
+    <field name="zaval" labelOnTop="0"/>
+   </labelOnTop>
+   <widgets>
+    <widget name="od_file20160921105557083_object_vw_qgep_reach_ws_obj_id">
+     <config/>
+    </widget>
+    <widget name="re_maintenance_wasterwaterstructure_reach">
+     <config/>
+    </widget>
+   </widgets>
+   <previewExpression>COALESCE( "_code_chantier", '&lt;NULL>' )</previewExpression>
+   <mapTip></mapTip>
+  </maplayer>
+ </maplayers>
+</qlr>
