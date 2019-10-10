@@ -24,6 +24,7 @@ from db_manager.db_plugins import createDbPlugin
 from qgis.core import (
     QgsProcessingAlgorithm,
     QgsProcessingParameterString,
+    QgsProcessingParameterCrs,
     QgsProcessingParameterBoolean,
     QgsProcessingOutputNumber,
     QgsProcessingOutputString,
@@ -43,6 +44,7 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
     # calling from the QGIS console.
 
     OVERRIDE = 'OVERRIDE'
+    SRID = 'SRID'
     NOM = 'NOM'
     SIREN = 'SIREN'
     CODE = 'CODE'
@@ -77,6 +79,13 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
             QgsProcessingParameterBoolean(
                 self.OVERRIDE, 'Ecraser le schéma raepa et toutes les données ? ** ATTENTION **',
                 defaultValue=False,
+                optional=False
+            )
+        )
+        self.addParameter(
+            QgsProcessingParameterCrs(
+                self.SRID, 'Projection des géométries',
+                defaultValue='EPSG:2154',
                 optional=False
             )
         )
@@ -212,6 +221,11 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
         alg_dir = os.path.dirname(__file__)
         plugin_dir = os.path.join(alg_dir, '../../')
 
+        # Get input srid
+        crs = parameters[self.SRID]
+        srid = crs.authid().replace('EPSG:', '')
+        feedback.pushInfo('SRID = %s' % srid)
+
         # Loop sql files and run SQL code
         for sf in sql_files:
             feedback.pushInfo(sf)
@@ -221,6 +235,7 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
                 if len(sql.strip()) == 0:
                     feedback.pushInfo('  Skipped (empty file)')
                     continue
+                sql = sql.replace('2154', srid)
 
                 [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
                     connection_name,

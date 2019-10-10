@@ -240,13 +240,6 @@ COMMENT ON COLUMN raepa.commune.nom IS 'Nom de la commune';
 COMMENT ON COLUMN raepa.commune.geom IS 'Géométrie';
 
 
--- endpoint
-CREATE TABLE raepa.endpoint (
-    idcana character varying(254),
-    geom public.geometry
-);
-
-
 -- raepa_apparaep_p
 CREATE TABLE raepa.raepa_apparaep_p (
     id integer NOT NULL,
@@ -1509,13 +1502,6 @@ CREATE SEQUENCE raepa.raepa_reparass_p_id_seq
 
 -- raepa_reparass_p_id_seq
 ALTER SEQUENCE raepa.raepa_reparass_p_id_seq OWNED BY raepa.raepa_reparass_p.id;
-
-
--- startpoint
-CREATE TABLE raepa.startpoint (
-    idcana character varying(254),
-    geom public.geometry
-);
 
 
 -- sys_liste_table

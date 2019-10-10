@@ -208,26 +208,6 @@ CREATE VIEW raepa.v_canalisation_sans_ouvrage AS
   WHERE ((r.idnini IS NULL) OR (r.idnterm IS NULL));
 
 
--- v_impasses_basses
-CREATE VIEW raepa.v_impasses_basses AS
- SELECT DISTINCT e1.idcana,
-    (e1.geom)::public.geometry(Point,2154) AS geom
-   FROM ((raepa.endpoint e1
-     JOIN raepa.endpoint e2 ON ((public.st_intersects(e1.geom, e2.geom) AND ((e1.idcana)::text <> (e2.idcana)::text))))
-     LEFT JOIN raepa.startpoint s ON (public.st_intersects(e1.geom, s.geom)))
-  WHERE (s.idcana IS NULL);
-
-
--- v_impasses_hautes
-CREATE VIEW raepa.v_impasses_hautes AS
- SELECT DISTINCT s1.idcana,
-    (s1.geom)::public.geometry(Point,2154) AS geom
-   FROM ((raepa.endpoint s1
-     JOIN raepa.endpoint s2 ON ((public.st_intersects(s1.geom, s2.geom) AND ((s1.idcana)::text <> (s2.idcana)::text))))
-     LEFT JOIN raepa.startpoint e ON (public.st_intersects(s1.geom, e.geom)))
-  WHERE (e.idcana IS NULL);
-
-
 --
 -- PostgreSQL database dump complete
 --

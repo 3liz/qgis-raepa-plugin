@@ -18,10 +18,6 @@ SET row_security = off;
 
 SET default_tablespace = '';
 
--- endpoint_geom_idx
-CREATE INDEX endpoint_geom_idx ON raepa.endpoint USING gist (geom);
-
-
 -- raepa_apparaep_p_geom_idx
 CREATE INDEX raepa_apparaep_p_geom_idx ON raepa.raepa_apparaep_p USING btree (geom);
 
@@ -184,10 +180,6 @@ CREATE INDEX raepa_reparass_p_idsuprepar_idx ON raepa.raepa_reparass_p USING btr
 
 -- raepa_reparass_p_mouvrage_idx
 CREATE INDEX raepa_reparass_p_mouvrage_idx ON raepa.raepa_reparass_p USING btree (mouvrage);
-
-
--- startpoint_geom_idx
-CREATE INDEX startpoint_geom_idx ON raepa.startpoint USING gist (geom);
 
 
 --
