@@ -34,6 +34,7 @@ from qgis.core import (
     QgsProcessingParameterCrs,
     QgsDataSourceUri
 )
+from processing.algs.gdal.GdalUtils import GdalUtils
 
 
 class ExportPackage(QgsProcessingAlgorithm):
@@ -153,12 +154,12 @@ class ExportPackage(QgsProcessingAlgorithm):
         tables = ','.join(ll)
 
         # Set PG source access string for ogr
-        ogr_source = '\'PG:service={} tables={}\''.format(service, tables)
+        ogr_source = 'PG:service={} tables={}'.format(service, tables)
         # feedback.pushInfo('OGR source = %s' % ogr_source)
 
         # Set options for ogr
         ogr_command = [
-            'ogr2ogr',
+            # 'ogr2ogr',
             '-f', 'SQLite',
             sqlite_path,
             ogr_source,
@@ -172,15 +173,10 @@ class ExportPackage(QgsProcessingAlgorithm):
             '--config', 'OGR_SQLITE_SYNCHRONOUS', 'OFF',
             '--config', 'OGR_SQLITE_CACHE', '1024'
         ]
-        feedback.pushInfo('OGR command = %s' % ' '.join(ogr_command))
+        feedback.pushInfo('OGR command = ogr2ogr {}'.format(' '.join(ogr_command)))
 
-        # Export with ogr2og:r
-        try:
-            subprocess.check_call(ogr_command, stderr=subprocess.STDOUT)
-        except subprocess.CalledProcessError as e:
-            raise QgsProcessingException(e)
-        except OSError:
-            raise QgsProcessingException('ogr2ogr has not been found.')
+        # Export with ogr2og
+        GdalUtils.runGdal(['ogr2ogr', GdalUtils.escapeAndJoin(ogr_command)], feedback)
 
         if not os.path.isfile(sqlite_path):
             raise QgsProcessingException('{} could not be created.'.format(sqlite_path))
