@@ -24,6 +24,7 @@ from db_manager.db_plugins import createDbPlugin
 from qgis.core import (
     QgsProcessingAlgorithm,
     QgsProcessingParameterBoolean,
+    QgsProcessingParameterCrs,
     QgsProcessingOutputNumber,
     QgsProcessingOutputString,
     QgsExpressionContextUtils
@@ -41,6 +42,7 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
     # used when calling the algorithm from another algorithm, or when
     # calling from the QGIS console.
     RUNIT = 'RUNIT'
+    SRID = 'SRID'
     OUTPUT_STATUS = 'OUTPUT_STATUS'
     OUTPUT_STRING = 'OUTPUT_STRING'
 
@@ -74,6 +76,13 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
                 self.RUNIT,
                 self.tr('Check this box to upgrade. No action will be done otherwise'),
                 defaultValue=False,
+                optional=False
+            )
+        )
+        self.addParameter(
+            QgsProcessingParameterCrs(
+                self.SRID, 'Projection des géométries',
+                defaultValue='EPSG:2154',
                 optional=False
             )
         )
@@ -196,6 +205,12 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
                 self.OUTPUT_STRING: self.tr('The database version already matches the plugin version. No upgrade needed.')
             }
 
+
+        # Get input srid
+        crs = parameters[self.SRID]
+        srid = crs.authid().replace('EPSG:', '')
+        feedback.pushInfo('SRID = %s' % srid)
+
         # Get all the upgrade SQL files between db versions and plugin version
         upgrade_dir = os.path.join(plugin_dir, 'install/sql/upgrade/')
         ff = {}
@@ -229,6 +244,9 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
                 if len(sql.strip()) == 0:
                     feedback.pushInfo('* ' + sf + ' -- SKIPPED (EMPTY FILE)')
                     continue
+
+                # Replace 2154 by given srid
+                sql = sql.replace('2154', srid)
 
                 # Add SQL database version in raepa.metadata
                 new_db_version = sf.replace('upgrade_to_', '').replace('.sql', '').strip()

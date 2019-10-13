@@ -83,7 +83,7 @@
       </table>
       <table name="raepa_apparaep_p" remarks="Table des appareillages du réseau d'AEP" schema="raepa" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('raepa.raepa_apparaep_p_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial"/>
-         <column autoUpdated="false" defaultValue="raepa.generate_oid('raepa_apparaep_p'::text)" digits="0" id="1" name="idappareil" nullable="false" remarks="Identifiant de l'appareillage" size="254" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="1" name="idappareil" nullable="false" remarks="Identifiant de l'appareillage" size="254" type="varchar"/>
          <column autoUpdated="false" digits="3" id="2" name="x" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric"/>
          <column autoUpdated="false" digits="3" id="3" name="y" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric"/>
          <column autoUpdated="false" digits="0" id="4" name="mouvrage" nullable="false" remarks="Maître d'ouvrage du réseau" size="100" type="varchar"/>
@@ -142,7 +142,7 @@
       </table>
       <table name="raepa_apparass_p" remarks="Table des appareillages du réseau d'assainissement collectif" schema="raepa" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('raepa.raepa_apparass_p_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial"/>
-         <column autoUpdated="false" defaultValue="raepa.generate_oid('raepa_apparass_p'::text)" digits="0" id="1" name="idappareil" nullable="false" remarks="Identifiant de l'appareillage" size="254" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="1" name="idappareil" nullable="false" remarks="Identifiant de l'appareillage" size="254" type="varchar"/>
          <column autoUpdated="false" digits="3" id="2" name="x" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric"/>
          <column autoUpdated="false" digits="3" id="3" name="y" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric"/>
          <column autoUpdated="false" digits="0" id="4" name="mouvrage" nullable="false" remarks="Maître d'ouvrage du réseau" size="100" type="varchar"/>
@@ -212,7 +212,7 @@
       </table>
       <table name="raepa_canalaep_l" remarks="Table des éléments linéaires du réseau d'AEP" schema="raepa" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('raepa.raepa_canalaep_l_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial"/>
-         <column autoUpdated="false" defaultValue="raepa.generate_oid('raepa_canalaep_l'::text)" digits="0" id="1" name="idcana" nullable="false" remarks="Identifiant de la canalisation (code textuel)" size="254" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="1" name="idcana" nullable="false" remarks="Identifiant de la canalisation (code textuel)" size="254" type="varchar"/>
          <column autoUpdated="false" digits="0" id="2" name="mouvrage" nullable="false" remarks="Maître d'ouvrage du réseau" size="100" type="varchar"/>
          <column autoUpdated="false" digits="0" id="3" name="gexploit" nullable="false" remarks="Gestionnaire exploitant du réseau" size="100" type="varchar"/>
          <column autoUpdated="false" digits="0" id="4" name="enservice" nullable="false" remarks="Canalisation en service / Canalisation abandonnée&#10;O / N" size="1" type="varchar"/>
@@ -280,7 +280,7 @@
       </table>
       <table name="raepa_canalass_l" remarks="Table des éléments linéaires du réseau d'assainissement collectif" schema="raepa" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('raepa.raepa_canalass_l_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial"/>
-         <column autoUpdated="false" defaultValue="raepa.generate_oid('raepa_canalass_l'::text)" digits="0" id="1" name="idcana" nullable="false" remarks="Identifiant de la canalisation" size="254" type="varchar">
+         <column autoUpdated="false" digits="0" id="1" name="idcana" nullable="false" remarks="Identifiant de la canalisation" size="254" type="varchar">
             <child column="idcanppale" foreignKey="raepa_apparass_p_idcanppale_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_apparass_p"/>
             <child column="idcanppale" foreignKey="raepa_ouvrass_p_idcanppale_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_ouvrass_p"/>
          </column>
@@ -377,7 +377,7 @@
       </table>
       <table name="raepa_ouvraep_p" remarks="Table des ouvrages du réseau d'AEP" schema="raepa" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('raepa.raepa_ouvraep_p_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial"/>
-         <column autoUpdated="false" defaultValue="raepa.generate_oid('raepa_ouvraep_p'::text)" digits="0" id="1" name="idouvrage" nullable="false" remarks="Identifiant de l'ouvrage" size="254" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="1" name="idouvrage" nullable="false" remarks="Identifiant de l'ouvrage" size="254" type="varchar"/>
          <column autoUpdated="false" digits="3" id="2" name="x" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric"/>
          <column autoUpdated="false" digits="3" id="3" name="y" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric"/>
          <column autoUpdated="false" digits="0" id="4" name="mouvrage" nullable="false" remarks="Maître d'ouvrage du réseau" size="100" type="varchar"/>
@@ -431,7 +431,7 @@
       </table>
       <table name="raepa_ouvrass_p" remarks="Table des ouvrages du réseau d'assainissement collectif" schema="raepa" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('raepa.raepa_ouvrass_p_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial"/>
-         <column autoUpdated="false" defaultValue="raepa.generate_oid('raepa_ouvrass_p'::text)" digits="0" id="1" name="idouvrage" nullable="false" remarks="Identifiant de l'ouvrage" size="254" type="varchar">
+         <column autoUpdated="false" digits="0" id="1" name="idouvrage" nullable="false" remarks="Identifiant de l'ouvrage" size="254" type="varchar">
             <child column="idouvrage" foreignKey="raepa_apparass_p_idouvrage_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_apparass_p"/>
             <child column="idnini" foreignKey="raepa_canalass_l_idnini_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
             <child column="idnterm" foreignKey="raepa_canalass_l_idnterm_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>

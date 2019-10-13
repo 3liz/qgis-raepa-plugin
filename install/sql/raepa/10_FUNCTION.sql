@@ -103,27 +103,76 @@ END;
 $$;
 
 
--- downstream(text)
-CREATE FUNCTION raepa.downstream(text) RETURNS public.geometry
-    LANGUAGE sql IMMUTABLE
-    AS $_$
-WITH RECURSIVE walk_network(id_canalisation, idnini, idnterm) AS (
-    SELECT idcana::text,
-    idnini, idnterm
-    FROM raepa.raepa_canalass_l
-    WHERE idnini = $1
-  UNION
-    SELECT n.idcana::text,
-    n.idnini, n.idnterm
-    FROM raepa.raepa_canalass_l n, walk_network w
-    WHERE TRUE
-    AND n.idnini = w.idnterm AND n.idnini != 'INCONNU'
-  )
-  SELECT ST_Union(r.geom) AS geom
-  FROM walk_network wn
-  INNER JOIN raepa.raepa_canalass_l r
-  ON wn.id_canalisation = r.idcana
-$_$;
+-- downstream_by_geom(text, regclass)
+CREATE FUNCTION raepa.downstream_by_geom(p_idouvrage text, p_table regclass) RETURNS public.geometry
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  parcours public.geometry;
+BEGIN
+  EXECUTE format('
+    WITH RECURSIVE walk_network(idcana, idnini, idnterm, geom) AS (
+        SELECT idcana::text,
+        idnini, idnterm, geom
+        FROM %s
+        WHERE idnini = ''%s''
+      UNION ALL
+        SELECT n.idcana::text,
+        n.idnini, n.idnterm, n.geom
+        FROM %s AS n, walk_network AS w
+        WHERE TRUE
+        AND st_startpoint(n.geom) = st_endpoint(w.geom)
+      )
+      SELECT ST_Union(DISTINCT r.geom) AS geom
+      FROM walk_network wn
+      INNER JOIN %s AS r
+      ON wn.idcana = r.idcana
+      ',
+      p_table,
+      p_idouvrage,
+      p_table,
+      p_table
+  ) INTO parcours;
+
+  RETURN parcours;
+END;
+$$;
+
+
+-- downstream_by_idn(text, regclass)
+CREATE FUNCTION raepa.downstream_by_idn(p_idouvrage text, p_table regclass) RETURNS public.geometry
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  parcours public.geometry;
+BEGIN
+  EXECUTE format('
+    WITH RECURSIVE walk_network(idcana, idnini, idnterm) AS (
+        SELECT idcana::text,
+        idnini, idnterm
+        FROM %s
+        WHERE idnini = ''%s''
+      UNION
+        SELECT n.idcana::text,
+        n.idnini, n.idnterm
+        FROM %s AS n, walk_network AS w
+        WHERE TRUE
+        AND n.idnini = w.idnterm AND n.idnini != ''INCONNU''
+      )
+      SELECT ST_Union(r.geom) AS geom
+      FROM walk_network wn
+      INNER JOIN %s AS r
+      ON wn.idcana = r.idcana
+      ',
+      p_table,
+      p_idouvrage,
+      p_table,
+      p_table
+  ) INTO parcours;
+
+  RETURN parcours;
+END;
+$$;
 
 
 -- generate_oid(text)
@@ -449,70 +498,97 @@ $$;
 CREATE FUNCTION raepa.trg_apres_modification_ouvrage() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
+DECLARE
+    table_canalisation text;
 BEGIN
 
     IF ( TG_OP = 'UPDATE' AND NOT ST_Equals(NEW.geom, OLD.geom) ) OR TG_OP = 'INSERT' THEN
 
         -- Modification des idnini et idnterm des canalisations qui touchent aux extrémités
+        table_canalisation = 'raepa.raepa_canalass_l';
+        IF TG_TABLE_NAME = 'raepa_ouvraep_p' THEN
+            table_canalisation = 'raepa.raepa_canalaep_l';
+        END IF;
+
         -- idnini
-        UPDATE raepa.raepa_canalass_l ca
-        SET idnini = NEW.idouvrage
-        WHERE idnini != NEW.idouvrage
-        AND ST_DWithin(ST_StartPoint(ca.geom), NEW.geom, 0.05)
+        EXECUTE format('
+        UPDATE raepa.%s AS ca
+        SET idnini = ''%s''
+        WHERE idnini != ''%s''
+        AND ST_DWithin(ST_StartPoint(ca.geom), ''%s''::geometry, 0.05)
+        ', table_canalisation,
+        NEW.idouvrage, NEW.idouvrage,
+        NEW.geom
+        )
         ;
         -- idnterm
-        UPDATE raepa.raepa_canalass_l ca
-        SET idnterm = NEW.idouvrage
-        WHERE idnterm != NEW.idouvrage
-        AND ST_DWithin(ST_EndPoint(ca.geom), NEW.geom, 0.05)
+        EXECUTE format('
+        UPDATE raepa.%s ca
+        SET idnterm = ''%s''
+        WHERE idnterm != ''%s''
+        AND ST_DWithin(ST_EndPoint(ca.geom), ''%s''::geometry, 0.05)
+        ', table_canalisation,
+        NEW.idouvrage, NEW.idouvrage,
+        NEW.geom
+        )
         ;
 
         -- Modification des géométries des canalisations amont et aval liées par idnini et idnterm
         -- Cela permet de faire toucher les canalisations à l'ouvrage
         -- Canalisation dont l'ouvrage est à l'aval
+        EXECUTE format('
         WITH
         aval AS (
             SELECT
             c.idcana,
             z.path[1] AS node_id, z.geom AS node_geom
-            FROM raepa.raepa_canalass_l AS c, ST_DumpPoints(geom) AS z
-            WHERE c.idnterm = NEW.idouvrage
+            FROM raepa.%s AS c, ST_DumpPoints(geom) AS z
+            WHERE c.idnterm = ''%s''
         )
-        UPDATE raepa.raepa_canalass_l c
+        UPDATE raepa.%s c
         SET
             geom = foo.geom
         FROM (
             SELECT aval.idcana AS cid,
             ST_MakeLine(
-                (array_agg(node_geom ORDER BY node_id))[1:count(node_id)-1] || ARRAY[NEW.geom]
+                (array_agg(node_geom ORDER BY node_id))[1:count(node_id)-1] || ARRAY[''%s''::geometry]
             ) AS geom
             FROM aval
             GROUP BY aval.idcana
         ) AS foo
-        WHERE c.idcana = foo.cid AND c.idnterm = NEW.idouvrage AND NOT ST_Intersects(ST_EndPoint(c.geom), NEW.geom)
-        ;
+        WHERE c.idcana = foo.cid AND c.idnterm = ''%s'' AND NOT ST_Intersects(ST_EndPoint(c.geom), ''%s''::geometry)
+        ',
+        table_canalisation, NEW.idouvrage,
+        table_canalisation, NEW.geom,
+        NEW.idouvrage, NEW.geom
+        );
 
         -- Canalisation dont l'ouvrage est à l'amont
+        EXECUTE format('
         WITH
         amont AS (
             SELECT
             c.idcana,
             z.path[1] AS node_id, z.geom AS node_geom
-            FROM raepa.raepa_canalass_l AS c, ST_DumpPoints(geom) AS z
-            WHERE c.idnini = NEW.idouvrage
+            FROM raepa.%s AS c, ST_DumpPoints(geom) AS z
+            WHERE c.idnini = ''%s''
         )
-        UPDATE raepa.raepa_canalass_l c
+        UPDATE raepa.%s c
         SET geom = foo.geom
         FROM (
             SELECT amont.idcana AS cid,
             ST_MakeLine(
-                ARRAY[NEW.geom] || (array_agg(node_geom ORDER BY node_id))[2:count(node_id)]
+                ARRAY[''%s''::geometry] || (array_agg(node_geom ORDER BY node_id))[2:count(node_id)]
             ) AS geom
             FROM amont
             GROUP BY amont.idcana
         ) AS foo
-        WHERE c.idcana = foo.cid AND c.idnini = NEW.idouvrage AND NOT ST_Intersects(ST_StartPoint(c.geom), NEW.geom)
-        ;
+        WHERE c.idcana = foo.cid AND c.idnini = ''%s'' AND NOT ST_Intersects(ST_StartPoint(c.geom), ''%s''::geometry)
+        ',
+        table_canalisation, NEW.idouvrage,
+        table_canalisation, NEW.geom,
+        NEW.idouvrage, NEW.geom
+        );
 
     END IF;
 
@@ -532,6 +608,7 @@ DECLARE
     ouvrage_terminal text;
     cid integer;
     organisme text;
+    table_ouvrage text;
 BEGIN
 
     IF TG_OP = 'UPDATE' OR TG_OP = 'INSERT' THEN
@@ -539,13 +616,24 @@ BEGIN
         new_init := ST_StartPoint(NEW.geom);
         new_term := ST_EndPoint(NEW.geom);
 
+        table_ouvrage = 'raepa.raepa_ouvrass_p';
+        IF TG_TABLE_NAME = 'raepa_canalaep_l' THEN
+            table_ouvrage = 'raepa.raepa_ouvraep_p';
+        END IF;
+
         -- Ouvrage initial
+        EXECUTE format('
         SELECT o.idouvrage
-        FROM raepa.raepa_ouvrass_p o
-        WHERE o.idouvrage != Coalesce(NEW.idnini, '') -- on trouve l'ouvrage à 5cm
-        AND ST_DWithin(new_init, o.geom, 0.05)
+        FROM raepa.%s AS o
+        WHERE o.idouvrage != Coalesce(''%s'', ''%s'' )
+        AND ST_DWithin(''%s''::geometry, o.geom, 0.05)
         LIMIT 1
+        ',
+        table_ouvrage, NEW.idnini,
+        '', new_init
+        )
         INTO ouvrage_initial;
+
         IF (ouvrage_initial IS NOT NULL ) THEN
             -- on déclare le noeud initial
             RAISE NOTICE 'canalisation % - ouvrage initial changé : %' , NEW.idcana, ouvrage_initial;
@@ -557,12 +645,19 @@ BEGIN
         END IF;
 
         -- Ouvrage aval
+        EXECUTE format('
         SELECT o.idouvrage
-        FROM raepa.raepa_ouvrass_p o
-        WHERE Coalesce(NEW.idnterm, '') != o.idouvrage
-        AND ST_DWithin(new_term, o.geom, 0.05) -- on trouve l'ouvrage à 5cm
+        FROM raepa.%s AS o
+        WHERE Coalesce(''%s'', ''%s'') != o.idouvrage
+        AND ST_DWithin(''%s''::geometry, o.geom, 0.05)
         LIMIT 1
+        ',
+        table_ouvrage,
+        NEW.idnterm, '',
+        new_term
+        )
         INTO ouvrage_terminal;
+
         IF ouvrage_terminal IS NOT NULL THEN
             -- on déclare le noeud final
             RAISE NOTICE 'canalisation % - ouvrage terminal changé : %' , NEW.idcana, ouvrage_terminal;
@@ -582,7 +677,8 @@ BEGIN
     END IF;
 
     -- Longueur réelle et Pente
-    IF ( TG_OP = 'UPDATE' AND ( NOT ST_Equals(NEW.geom, OLD.geom) OR OLD.zamont != NEW.zamont OR OLD.zaval != NEW.zaval ) )
+    -- Seulement pour ASS car sinon par de zamont ou zaval
+    IF ( TG_TABLE_NAME = 'raepa_canalass_l' AND TG_OP = 'UPDATE' AND ( NOT ST_Equals(NEW.geom, OLD.geom) OR OLD.zamont != NEW.zamont OR OLD.zaval != NEW.zaval ) )
         OR TG_OP = 'INSERT' THEN
         NEW._longcana_reelle :=
             CASE
@@ -602,7 +698,7 @@ BEGIN
 
     -- Calcul de l'identifiant si besoin
     IF NEW.idcana IS NULL OR trim(NEW.idcana) = '' THEN
-        NEW.idcana := raepa.generate_oid('raepa_canalass_l')::character varying;
+        NEW.idcana := raepa.generate_oid(TG_TABLE_NAME::text)::character varying;
     END IF;
 
     -- Champs requis
@@ -633,7 +729,6 @@ BEGIN
     END IF;
 
     NEW.datemaj := now();
-    NEW.datemaj := now();
     IF NEW.sourmaj IS NULL THEN
         NEW.sourmaj := organisme;
     END IF;
@@ -650,11 +745,12 @@ CREATE FUNCTION raepa.trg_avant_modification_appareil() RETURNS trigger
     AS $$
 DECLARE
     organisme text;
+    table_canalisation text;
 BEGIN
 
     -- Calcul de l'identifiant si besoin
     IF NEW.idappareil IS NULL OR trim(NEW.idappareil) = '' THEN
-        NEW.idappareil := raepa.generate_oid('raepa_apparass_p')::character varying;
+        NEW.idappareil := raepa.generate_oid(TG_TABLE_NAME::text)::character varying;
     END IF;
 
     -- Calcul de la géométrie à partir de X et Y
@@ -672,16 +768,34 @@ BEGIN
 
 
         -- Calcul des canalisation amont et aval
-        NEW.idcanamont := (
-            SELECT COALESCE(string_agg(c.idcana, ',' ORDER BY idcana), 'INCONNU')
-            FROM raepa.raepa_canalass_l c
-            WHERE ST_DWithin(ST_EndPoint(c.geom), NEW.geom, 0.05)
-        );
-        NEW.idcanaval := (
-            SELECT COALESCE(string_agg(c.idcana, ',' ORDER BY idcana), 'INCONNU')
-            FROM raepa.raepa_canalass_l c
-            WHERE ST_DWithin(ST_StartPoint(c.geom), NEW.geom, 0.05)
-        );
+        table_canalisation = 'raepa.raepa_canalass_l';
+        IF TG_TABLE_NAME = 'raepa_apparaep_p' THEN
+            table_canalisation = 'raepa.raepa_canalaep_l';
+        END IF;
+
+        -- idcanamont
+        EXECUTE format(
+            '
+            SELECT COALESCE(string_agg(c.idcana, '','' ORDER BY idcana), ''INCONNU'')
+            FROM %s AS c
+            WHERE ST_DWithin(ST_EndPoint(c.geom), ''%s''::geometry, 0.05)
+            ',
+            table_canalisation,
+            NEW.geom
+        )
+        INTO NEW.idcanamont;
+
+        -- idcanaval
+        EXECUTE format(
+            '
+            SELECT COALESCE(string_agg(c.idcana, '','' ORDER BY idcana), ''INCONNU'')
+            FROM %s AS c
+            WHERE ST_DWithin(ST_StartPoint(c.geom), ''%s''::geometry, 0.05)
+            ',
+            table_canalisation,
+            NEW.geom
+        )
+        INTO NEW.idcanaval;
         RAISE NOTICE 'appareil % - idcanamont changé à %', NEW.idappareil, NEW.idcanamont;
         RAISE NOTICE 'appareil % - idcanaval changé à %', NEW.idappareil, NEW.idcanaval;
 
@@ -724,11 +838,12 @@ CREATE FUNCTION raepa.trg_avant_modification_ouvrage() RETURNS trigger
     AS $$
 DECLARE
     organisme text;
+    table_canalisation text;
 BEGIN
 
     -- Calcul de l'identifiant si besoin
     IF NEW.idouvrage IS NULL OR trim(NEW.idouvrage) = '' THEN
-        NEW.idouvrage := raepa.generate_oid('raepa_ouvrass_p')::character varying;
+        NEW.idouvrage := raepa.generate_oid(TG_TABLE_NAME::text)::character varying;
     END IF;
 
     -- Calcul de la géométrie à partir de X et Y
@@ -745,16 +860,35 @@ BEGIN
         NEW.y := ST_Y(NEW.geom)::numeric(10,3);
 
         -- Calcul des canalisation amont et aval
-        NEW.idcanamont := (
-            SELECT COALESCE(string_agg(c.idcana, ',' ORDER BY idcana), 'INCONNU')
-            FROM raepa.raepa_canalass_l c
-            WHERE ST_DWithin(ST_EndPoint(c.geom), NEW.geom, 0.05)
-        );
-        NEW.idcanaval := (
-            SELECT COALESCE(string_agg(c.idcana, ',' ORDER BY idcana), 'INCONNU')
-            FROM raepa.raepa_canalass_l c
-            WHERE ST_DWithin(ST_StartPoint(c.geom), NEW.geom, 0.05)
-        );
+        table_canalisation = 'raepa.raepa_canalass_l';
+        IF TG_TABLE_NAME = 'raepa_ouvraep_p' THEN
+            table_canalisation = 'raepa.raepa_canalaep_l';
+        END IF;
+
+        -- idcanamont
+        EXECUTE format(
+            '
+            SELECT COALESCE(string_agg(c.idcana, '','' ORDER BY idcana), ''INCONNU'')
+            FROM %s AS c
+            WHERE ST_DWithin(ST_EndPoint(c.geom), ''%s''::geometry, 0.05)
+            ',
+            table_canalisation,
+            NEW.geom
+        )
+        INTO NEW.idcanamont;
+
+        -- idcanaval
+        EXECUTE format(
+            '
+            SELECT COALESCE(string_agg(c.idcana, '','' ORDER BY idcana), ''INCONNU'')
+            FROM %s AS c
+            WHERE ST_DWithin(ST_StartPoint(c.geom), ''%s''::geometry, 0.05)
+
+            ',
+            table_canalisation,
+            NEW.geom
+        )
+        INTO NEW.idcanaval;
         RAISE NOTICE 'ouvrage % - idcanamont changé à %', NEW.idouvrage, NEW.idcanamont;
         RAISE NOTICE 'ouvrage % - idcanaval changé à %', NEW.idouvrage, NEW.idcanaval;
 
@@ -790,27 +924,76 @@ END;
 $$;
 
 
--- upstream(text)
-CREATE FUNCTION raepa.upstream(text) RETURNS public.geometry
-    LANGUAGE sql IMMUTABLE
-    AS $_$
-WITH RECURSIVE walk_network(id_canalisation, idnini, idnterm) AS (
-    SELECT idcana::text,
-    idnini, idnterm
-    FROM raepa.raepa_canalass_l
-    WHERE idnterm = $1
-  UNION
-    SELECT n.idcana::text,
-    n.idnini, n.idnterm
-    FROM raepa.raepa_canalass_l n, walk_network w
-    WHERE TRUE
-    AND n.idnterm = w.idnini AND n.idnterm != 'INCONNU'
-  )
-  SELECT ST_Union(r.geom) AS geom
-  FROM walk_network wn
-  INNER JOIN raepa.raepa_canalass_l r
-  ON wn.id_canalisation = r.idcana
-$_$;
+-- upstream_by_geom(text, regclass)
+CREATE FUNCTION raepa.upstream_by_geom(p_idouvrage text, p_table regclass) RETURNS public.geometry
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  parcours public.geometry;
+BEGIN
+  EXECUTE format('
+    WITH RECURSIVE walk_network(idcana, idnini, idnterm, geom) AS (
+        SELECT idcana::text,
+        idnini, idnterm, geom
+        FROM %s
+        WHERE idnterm = ''%s''
+      UNION ALL
+        SELECT n.idcana::text,
+        n.idnini, n.idnterm, n.geom
+        FROM %s AS n, walk_network AS w
+        WHERE TRUE
+        AND st_startpoint(w.geom) = st_endpoint(n.geom)
+      )
+      SELECT ST_Union(DISTINCT r.geom) AS geom
+      FROM walk_network wn
+      INNER JOIN %s r
+      ON wn.idcana = r.idcana
+      ',
+      p_table,
+      p_idouvrage,
+      p_table,
+      p_table
+  ) INTO parcours;
+
+  RETURN parcours;
+END;
+$$;
+
+
+-- upstream_by_idn(text, regclass)
+CREATE FUNCTION raepa.upstream_by_idn(p_idouvrage text, p_table regclass) RETURNS public.geometry
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  parcours public.geometry;
+BEGIN
+  EXECUTE format('
+    WITH RECURSIVE walk_network(idcana, idnini, idnterm) AS (
+        SELECT idcana::text,
+        idnini, idnterm
+        FROM %s
+        WHERE idnterm = ''%s''
+      UNION
+        SELECT n.idcana::text,
+        n.idnini, n.idnterm
+        FROM %s AS n, walk_network AS w
+        WHERE TRUE
+        AND n.idnterm = w.idnini AND n.idnterm != ''INCONNU''
+      )
+      SELECT ST_Union(r.geom) AS geom
+      FROM walk_network wn
+      INNER JOIN %s AS r
+      ON wn.idcana = r.idcana
+      ',
+      p_table,
+      p_idouvrage,
+      p_table,
+      p_table
+  ) INTO parcours;
+
+  RETURN parcours;
+END;
+$$;
 
 
 --

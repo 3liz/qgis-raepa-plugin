@@ -243,7 +243,7 @@ COMMENT ON COLUMN raepa.commune.geom IS 'Géométrie';
 -- raepa_apparaep_p
 CREATE TABLE raepa.raepa_apparaep_p (
     id integer NOT NULL,
-    idappareil character varying(254) DEFAULT raepa.generate_oid('raepa_apparaep_p'::text) NOT NULL,
+    idappareil character varying(254) NOT NULL,
     x numeric(10,3) NOT NULL,
     y numeric(10,3) NOT NULL,
     mouvrage character varying(100) NOT NULL,
@@ -395,7 +395,7 @@ ALTER SEQUENCE raepa.raepa_apparaep_p_id_seq OWNED BY raepa.raepa_apparaep_p.id;
 -- raepa_apparass_p
 CREATE TABLE raepa.raepa_apparass_p (
     id integer NOT NULL,
-    idappareil character varying(254) DEFAULT raepa.generate_oid('raepa_apparass_p'::text) NOT NULL,
+    idappareil character varying(254) NOT NULL,
     x numeric(10,3) NOT NULL,
     y numeric(10,3) NOT NULL,
     mouvrage character varying(100) NOT NULL,
@@ -573,7 +573,7 @@ ALTER SEQUENCE raepa.raepa_apparass_p_id_seq OWNED BY raepa.raepa_apparass_p.id;
 -- raepa_canalaep_l
 CREATE TABLE raepa.raepa_canalaep_l (
     id integer NOT NULL,
-    idcana character varying(254) DEFAULT raepa.generate_oid('raepa_canalaep_l'::text) NOT NULL,
+    idcana character varying(254) NOT NULL,
     mouvrage character varying(100) NOT NULL,
     gexploit character varying(100) NOT NULL,
     enservice character varying(1) NOT NULL,
@@ -759,7 +759,7 @@ ALTER SEQUENCE raepa.raepa_canalaep_l_id_seq OWNED BY raepa.raepa_canalaep_l.id;
 -- raepa_canalass_l
 CREATE TABLE raepa.raepa_canalass_l (
     id integer NOT NULL,
-    idcana character varying(254) DEFAULT raepa.generate_oid('raepa_canalass_l'::text) NOT NULL,
+    idcana character varying(254) NOT NULL,
     mouvrage character varying(100) NOT NULL,
     gexploit character varying(100) NOT NULL,
     enservice character varying(1) NOT NULL,
@@ -1009,7 +1009,7 @@ ALTER SEQUENCE raepa.raepa_canalass_l_id_seq OWNED BY raepa.raepa_canalass_l.id;
 -- raepa_ouvraep_p
 CREATE TABLE raepa.raepa_ouvraep_p (
     id integer NOT NULL,
-    idouvrage character varying(254) DEFAULT raepa.generate_oid('raepa_ouvraep_p'::text) NOT NULL,
+    idouvrage character varying(254) NOT NULL,
     x numeric(10,3) NOT NULL,
     y numeric(10,3) NOT NULL,
     mouvrage character varying(100) NOT NULL,
@@ -1151,7 +1151,7 @@ ALTER SEQUENCE raepa.raepa_ouvraep_p_id_seq OWNED BY raepa.raepa_ouvraep_p.id;
 -- raepa_ouvrass_p
 CREATE TABLE raepa.raepa_ouvrass_p (
     id integer NOT NULL,
-    idouvrage character varying(254) DEFAULT raepa.generate_oid('raepa_ouvrass_p'::text) NOT NULL,
+    idouvrage character varying(254) NOT NULL,
     x numeric(10,3) NOT NULL,
     y numeric(10,3) NOT NULL,
     mouvrage character varying(100) NOT NULL,

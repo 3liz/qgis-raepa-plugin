@@ -130,22 +130,22 @@
   </layer-tree-group>
   <snapping-settings enabled="0" intersection-snapping="0" mode="2" tolerance="12" type="1" unit="1">
     <individual-layer-settings>
-      <layer-setting enabled="0" id="raepa_apparass_p201910101510186081018450509" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="raepa_canalass_l201910101510186331428872815" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="raepa_ouvrass_p_geom20191010150932600262752675" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="raepa_apparass_p201910101510186081018450509" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="raepa_canalass_l201910101510186331428872815" tolerance="12" type="1" units="1"></layer-setting>
     </individual-layer-settings>
   </snapping-settings>
   <relations></relations>
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>meters</units>
     <extent>
-      <xmin>656393.32948558253701776</xmin>
-      <ymin>1797345.91046609403565526</ymin>
-      <xmax>656431.51594615203794092</xmax>
-      <ymax>1797363.99590976955369115</ymax>
+      <xmin>656203.59963183314539492</xmin>
+      <ymin>1797180.4922352503053844</ymin>
+      <xmax>657635.13987451931461692</xmax>
+      <ymax>1798643.6105745630338788</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -312,7 +312,7 @@
   <mapViewDocks></mapViewDocks>
   <mapViewDocks3D></mapViewDocks3D>
   <projectlayers>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="raster">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="raster">
       <extent>
         <xmin>-20037508.34278924390673637</xmin>
         <ymin>-20037508.34278925508260727</ymin>
@@ -356,7 +356,7 @@
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>true</geographicflag>
+            <geographicflag>false</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -394,7 +394,7 @@
       </pipe>
       <blendMode>0</blendMode>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>_val_raepa_etat_canal_ass201910091036565341717548703</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."_val_raepa_etat_canal_ass" sql=</datasource>
       <keywordList>
@@ -553,7 +553,7 @@
       <previewExpression>COALESCE("code", '&lt;NULL&gt;')</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>_val_raepa_forme_canal_ass201910091036565342039766431</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."_val_raepa_forme_canal_ass" sql=</datasource>
       <keywordList>
@@ -712,7 +712,7 @@
       <previewExpression>COALESCE("code", '&lt;NULL&gt;')</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>_val_raepa_precision_annee201910091036565341587659498</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."_val_raepa_precision_annee" sql=</datasource>
       <keywordList>
@@ -871,7 +871,7 @@
       <previewExpression>COALESCE("code", '&lt;NULL&gt;')</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>_val_raepa_type_intervention_ass20191009103656535662717469</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."_val_raepa_type_intervention_ass" sql=</datasource>
       <keywordList>
@@ -1421,7 +1421,7 @@
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
-        <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="1" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" width="15">
+        <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+8" minScaleDenominator="1" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
           <attribute color="#000000" field="" label=""></attribute>
         </DiagramCategory>
@@ -2290,7 +2290,9 @@ def my_form_open(dialog, layer, feature):
         </symbols>
       </renderer-v2>
       <customproperties>
-        <property key="dualview/previewExpressions" value="COALESCE( &quot;idappareil&quot;, '&lt;NULL>' )"></property>
+        <property key="dualview/previewExpressions">
+          <value>COALESCE( "idappareil", '&lt;NULL&gt;' )</value>
+        </property>
         <property key="embeddedWidgets/count" value="0"></property>
         <property key="variableNames"></property>
         <property key="variableValues"></property>
@@ -2299,7 +2301,7 @@ def my_form_open(dialog, layer, feature):
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
-        <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="1" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" width="15">
+        <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+8" minScaleDenominator="1" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
           <attribute color="#000000" field="" label=""></attribute>
         </DiagramCategory>
@@ -5444,7 +5446,7 @@ def my_form_open(dialog, layer, feature):
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
-        <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="1" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" width="15">
+        <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+8" minScaleDenominator="1" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
           <attribute color="#000000" field="" label=""></attribute>
         </DiagramCategory>
@@ -6154,8 +6156,8 @@ def my_form_open(dialog, layer, feature):
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
         <actionsetting action="# active layer&#xA;layer = QgsProject.instance().mapLayer('[% @layer_id %]')&#xA;fid = [% $id %]&#xA;&#xA;# materialized feature in new layer&#xA;request = QgsFeatureRequest()&#xA;request.setFilterFids( [fid] )&#xA;mat = layer.materialize(request)&#xA;&#xA;# run the processing alg &quot;reverse line direction&quot;&#xA;import processing&#xA;out = processing.run(&#xA;    &quot;native:reverselinedirection&quot;, &#xA;    {&#xA;        'INPUT': mat,&#xA;        'OUTPUT':'memory:test'}&#xA;)&#xA;vout = out['OUTPUT']&#xA;for feat in vout.getFeatures():&#xA;    if layer.changeGeometry(fid, feat.geometry()):&#xA;        # message&#xA;        qgis.utils.iface.messageBar().pushMessage(&#xA;            u&quot;Line direction has been reversed&quot;, &#xA;            level=Qgis.Success,&#xA;            duration=2&#xA;        )&#xA;        qgis.utils.iface.mapCanvas().refresh()&#xA;    else:&#xA;        qgis.utils.iface.messageBar().pushMessage(&#xA;            u&quot;Line direction has NOT been reversed. Check if the layer is editable&quot;, &#xA;            level=Qgis.Critical,&#xA;            duration=2&#xA;        )&#xA;&#xA;" capture="0" icon="" id="{0df7d8eb-9b65-4ff7-9bcc-331c0e458906}" isEnabledOnlyWhenEditable="0" name="Inverser la canalisation" notificationMessage="" shortTitle="Inverser la canalisation" type="1">
-          <actionScope id="Field"></actionScope>
           <actionScope id="Feature"></actionScope>
+          <actionScope id="Field"></actionScope>
         </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="&quot;id&quot;" sortOrder="0">
@@ -9013,7 +9015,7 @@ def my_form_open(dialog, layer, feature):
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
-        <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="1" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" width="15">
+        <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+8" minScaleDenominator="1" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" width="15">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""></fontProperties>
           <attribute color="#000000" field="" label=""></attribute>
         </DiagramCategory>
@@ -9509,19 +9511,19 @@ def my_form_open(dialog, layer, feature):
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
-        <actionsetting action="# Identifiant de l'ouvrage&#xD;&#xA;idouvrage = '[%idouvrage%]'&#xD;&#xA;&#xA;# Use alg get_downstream_route and get_upstream_route&#xA;import processing&#xA;try:&#xD;&#xA;    down = processing.run(&#xA;        &quot;raepa:get_downstream_route&quot;, &#xA;        {&#xA;            'OUTPUT_LAYER_NAME': '',&#xA;            'SOURCE_ID': idouvrage&#xA;        }&#xA;    )&#xA;    if down['OUTPUT_STATUS'] == 1:&#xA;        layer = down['OUTPUT_LAYER']&#xA;        layer.setName(down['OUTPUT_LAYER_RESULT_NAME'])&#xA;        symbol = QgsLineSymbol.createSimple(&#xA;            {&#xA;                'line_color': '255,50,50,255', &#xA;                'line_style': 'solid', &#xA;                'line_width': '1.8'&#xA;            }&#xA;        )&#xA;        layer.renderer().setSymbol(symbol)&#xA;        QgsProject.instance().addMapLayer(layer)&#xA;except:&#xA;    print('error loading down')&#xA;&#xA;&#xA;try:&#xA;    up = processing.run(&#xA;        &quot;raepa:get_upstream_route&quot;, &#xA;        {&#xA;            'OUTPUT_LAYER_NAME': '',&#xA;            'SOURCE_ID': idouvrage&#xA;        }&#xA;    )&#xA;    if up['OUTPUT_STATUS'] == 1:&#xA;        layer = up['OUTPUT_LAYER']&#xA;        layer.setName(up['OUTPUT_LAYER_RESULT_NAME'])&#xA;        symbol = QgsLineSymbol.createSimple(&#xA;            {&#xA;                'line_color': '50,255,50,255', &#xA;                'line_style': 'solid', &#xA;                'line_width': '1.8'&#xA;            }&#xA;        )&#xA;        layer.renderer().setSymbol(symbol)&#xA;        QgsProject.instance().addMapLayer(layer)&#xA;except:&#xA;    print('error loading up')&#xA;" capture="0" icon="" id="{567da532-b575-45ee-bba5-b0799e54f24d}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet ouvrage" notificationMessage="" shortTitle="" type="1">
+        <actionsetting action="# Identifiant de l'ouvrage&#xD;&#xA;idouvrage = '[%idouvrage%]'&#xD;&#xA;&#xA;# Use alg get_downstream_route and get_upstream_route&#xA;import processing&#xA;try:&#xD;&#xA;    down = processing.run(&#xA;        &quot;raepa:get_downstream_route&quot;, &#xA;        {&#xA;            'OUTPUT_LAYER_NAME': '',&#xA;            'SOURCE_ID': idouvrage,&#xA;            'TARGET_TABLE': 0&#xA;        }&#xA;    )&#xA;    if down['OUTPUT_STATUS'] == 1:&#xA;        layer = down['OUTPUT_LAYER']&#xA;        layer.setName(down['OUTPUT_LAYER_RESULT_NAME'])&#xA;        symbol = QgsLineSymbol.createSimple(&#xA;            {&#xA;                'line_color': '255,50,50,255', &#xA;                'line_style': 'solid', &#xA;                'line_width': '1.8'&#xA;            }&#xA;        )&#xA;        layer.renderer().setSymbol(symbol)&#xA;        QgsProject.instance().addMapLayer(layer)&#xA;except:&#xA;    print('error loading down')&#xA;&#xA;&#xA;try:&#xA;    up = processing.run(&#xA;        &quot;raepa:get_upstream_route&quot;, &#xA;        {&#xA;            'OUTPUT_LAYER_NAME': '',&#xA;            'SOURCE_ID': idouvrage,&#xA;            'TARGET_TABLE': 0&#xA;        }&#xA;    )&#xA;    if up['OUTPUT_STATUS'] == 1:&#xA;        layer = up['OUTPUT_LAYER']&#xA;        layer.setName(up['OUTPUT_LAYER_RESULT_NAME'])&#xA;        symbol = QgsLineSymbol.createSimple(&#xA;            {&#xA;                'line_color': '50,255,50,255', &#xA;                'line_style': 'solid', &#xA;                'line_width': '1.8'&#xA;            }&#xA;        )&#xA;        layer.renderer().setSymbol(symbol)&#xA;        QgsProject.instance().addMapLayer(layer)&#xA;except:&#xA;    print('error loading up')&#xA;" capture="0" icon="" id="{371c6d47-0ff5-4f38-9e75-52734a1c9c0c}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet ouvrage" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Canvas"></actionScope>
+          <actionScope id="Feature"></actionScope>
           <actionScope id="Field"></actionScope>
+        </actionsetting>
+        <actionsetting action="# Identifiant de l'ouvrage&#xA;id = '[%id%]'&#xA;&#xA;# Get layer&#xA;layer = QgsProject.instance().mapLayer('[% @layer_id %]')&#xA;&#xA;# use processing alg cancel_last_modification&#xA;import processing&#xA;processing.run(&#xA;    &quot;raepa:cancel_last_modification&quot;, &#xA;    {&#xA;        'SOURCE_LAYER': layer,&#xA;        'SOURCE_ID': id&#xA;    }&#xA;)&#xA;&#xA;# Refresh upstream and downstream&#xA;for layername in [layer.name(), 'Canalisations']:&#xA;    gl = QgsProject.instance().mapLayersByName(layername)&#xA;    if gl:&#xA;        gl[0].triggerRepaint()" capture="0" icon="" id="{5f7b6861-8336-4329-913b-8d944b4fb673}" isEnabledOnlyWhenEditable="0" name="Annuler la dernière modification" notificationMessage="" shortTitle="" type="1">
+          <actionScope id="Canvas"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
-        <actionsetting action="# Identifiant de l'ouvrage&#xA;id = '[%id%]'&#xA;&#xA;# Get layer&#xA;layer = QgsProject.instance().mapLayer('[% @layer_id %]')&#xA;&#xA;# use processing alg cancel_last_modification&#xA;import processing&#xA;processing.run(&#xA;    &quot;raepa:cancel_last_modification&quot;, &#xA;    {&#xA;        'SOURCE_LAYER': layer,&#xA;        'SOURCE_ID': id&#xA;    }&#xA;)&#xA;&#xA;# Refresh upstream and downstream&#xA;for layername in [layer.name(), 'Canalisations']:&#xA;    gl = QgsProject.instance().mapLayersByName(layername)&#xA;    if gl:&#xA;        gl[0].triggerRepaint()" capture="0" icon="" id="{7dd4052e-feb0-4b2a-b773-359d75414325}" isEnabledOnlyWhenEditable="0" name="Annuler la dernière modification" notificationMessage="" shortTitle="" type="1">
+        <actionsetting action="# layer&#xA;layer = QgsProject.instance().mapLayer('[% @layer_id %]')&#xA;&#xA;# Use alg to do cut_pipe_under_item&#xA;import processing&#xA;idouvrage = '[%idouvrage%]'&#xA;sql = &quot;SELECT raepa.decoupage_canalisation_par_ouvrage('%s');&quot; % idouvrage&#xA;processing.run(&#xA;    &quot;raepa:execute_sql&quot;, &#xA;    {&#xA;        'INPUT_SQL': sql&#xA;    }&#xA;)&#xA;&#xA;# Refresh layers&#xA;for layername in [layer.name(), 'Canalisations']:&#xA;    gl = QgsProject.instance().mapLayersByName(layername)&#xA;    if gl:&#xA;        gl[0].triggerRepaint()" capture="0" icon="" id="{bec7b2ea-3e1e-4b3c-8fb3-c1d263c3a14d}" isEnabledOnlyWhenEditable="0" name="Couper la canalisation sous cet ouvrage" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Canvas"></actionScope>
           <actionScope id="Feature"></actionScope>
-        </actionsetting>
-        <actionsetting action="# layer&#xA;layer = QgsProject.instance().mapLayer('[% @layer_id %]')&#xA;&#xA;# Use alg to do cut_pipe_under_item&#xA;import processing&#xA;idouvrage = '[%idouvrage%]'&#xA;sql = &quot;SELECT raepa.decoupage_canalisation_par_ouvrage('%s');&quot; % idouvrage&#xA;processing.run(&#xA;    &quot;raepa:execute_sql&quot;, &#xA;    {&#xA;        'INPUT_SQL': sql&#xA;    }&#xA;)&#xA;&#xA;# Refresh layers&#xA;for layername in [layer.name(), 'Canalisations']:&#xA;    gl = QgsProject.instance().mapLayersByName(layername)&#xA;    if gl:&#xA;        gl[0].triggerRepaint()" capture="0" icon="" id="{cf50bf2c-32d1-4f41-b622-5a89ffea2b92}" isEnabledOnlyWhenEditable="0" name="Couper la canalisation sous cet ouvrage" notificationMessage="" shortTitle="" type="1">
-          <actionScope id="Canvas"></actionScope>
           <actionScope id="Field"></actionScope>
-          <actionScope id="Feature"></actionScope>
         </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="&quot;idouvrage&quot;" sortOrder="1">
@@ -9731,7 +9733,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>idouvrage</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>sys_organisme_gestionnaire2019100910365653369926340</id>
       <datasource>service='raepa' sslmode=disable key='id' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."sys_organisme_gestionnaire" sql=</datasource>
       <keywordList>
@@ -9907,7 +9909,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>"id"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_cat_canal_ae201910091036565351118540387</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_cat_canal_ae" sql=</datasource>
       <keywordList>
@@ -10070,7 +10072,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>"description"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_cat_canal_ass201910091036565351029168003</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_cat_canal_ass" sql=</datasource>
       <keywordList>
@@ -10229,7 +10231,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>COALESCE("code", '&lt;NULL&gt;')</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_fonc_app_ae201910091036565361229466762</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_fonc_app_ae" sql=</datasource>
       <keywordList>
@@ -10390,7 +10392,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>COALESCE("code", '&lt;NULL&gt;')</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_fonc_app_ass201910091036565361879483657</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_fonc_app_ass" sql=</datasource>
       <keywordList>
@@ -10549,7 +10551,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>COALESCE("code", '&lt;NULL&gt;')</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_fonc_canal_ae201910091036565371961455885</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_fonc_canal_ae" sql=</datasource>
       <keywordList>
@@ -10702,7 +10704,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_fonc_canal_ass201910091036565371030512252</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_fonc_canal_ass" sql=</datasource>
       <keywordList>
@@ -10861,7 +10863,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>COALESCE("code", '&lt;NULL&gt;')</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_fonc_ouv_ae201910091036565371693200831</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_fonc_ouv_ae" sql=</datasource>
       <keywordList>
@@ -11024,7 +11026,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>"description"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_fonc_ouv_ass201910091036565381417192028</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_fonc_ouv_ass" sql=</datasource>
       <keywordList>
@@ -11187,7 +11189,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>"description"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_materiau201910091036565381184808403</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_materiau" sql=</datasource>
       <keywordList>
@@ -11346,7 +11348,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>COALESCE("code", '&lt;NULL&gt;')</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_mode_circulation20191009103656538101934309</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_mode_circulation" sql=</datasource>
       <keywordList>
@@ -11505,7 +11507,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>COALESCE("code", '&lt;NULL&gt;')</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_qualite_anpose20191009103656539585994462</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_qualite_anpose" sql=</datasource>
       <keywordList>
@@ -11664,7 +11666,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>COALESCE("code", '&lt;NULL&gt;')</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_qualite_geoloc201910091036565392031560565</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_qualite_geoloc" sql=</datasource>
       <keywordList>
@@ -11823,7 +11825,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>COALESCE("code", '&lt;NULL&gt;')</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_support_reparation20191009103656539619292860</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_support_reparation" sql=</datasource>
       <keywordList>
@@ -11978,7 +11980,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_typ_reseau_ass20191009103656540913278820</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_typ_reseau_ass" sql=</datasource>
       <keywordList>
@@ -12139,7 +12141,7 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>COALESCE("code", '&lt;NULL&gt;')</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+08" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="No geometry" hasScaleBasedVisibilityFlag="0" maxScale="0" minScale="1e+8" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="vector">
       <id>val_raepa_type_defaillance201910091036565401337614604</id>
       <datasource>service='raepa' sslmode=disable key='code' estimatedmetadata=true checkPrimaryKeyUnicity='1' table="raepa"."val_raepa_type_defaillance" sql=</datasource>
       <keywordList>
@@ -12303,40 +12305,124 @@ def my_form_open(dialog, layer, feature):
     <layer id="raepa_canalass_l201910101510186331428872815"></layer>
   </layerorder>
   <properties>
-    <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
+    <WCSUrl type="QString"></WCSUrl>
+    <PAL>
+      <ShowingPartialsLabels type="bool">true</ShowingPartialsLabels>
+      <ShowingCandidates type="bool">false</ShowingCandidates>
+      <CandidatesLine type="int">50</CandidatesLine>
+      <TextFormat type="int">0</TextFormat>
+      <SearchMethod type="int">0</SearchMethod>
+      <CandidatesPoint type="int">16</CandidatesPoint>
+      <CandidatesPolygon type="int">30</CandidatesPolygon>
+      <DrawRectOnly type="bool">false</DrawRectOnly>
+      <ShowingAllLabels type="bool">false</ShowingAllLabels>
+    </PAL>
+    <WMSUrl type="QString"></WMSUrl>
+    <WMSAccessConstraints type="QString">None</WMSAccessConstraints>
+    <WMSCrsList type="QStringList">
+      <value>EPSG:3857</value>
+    </WMSCrsList>
+    <WMTSUrl type="QString"></WMTSUrl>
+    <WMSImageQuality type="int">90</WMSImageQuality>
+    <WMSRequestDefinedDataSources type="bool">false</WMSRequestDefinedDataSources>
+    <WMSOnlineResource type="QString"></WMSOnlineResource>
+    <WMSRootName type="QString"></WMSRootName>
     <WFSLayersPrecision>
       <raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279 type="int">8</raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279>
-      <raepa_apparass_p201910101510186081018450509 type="int">8</raepa_apparass_p201910101510186081018450509>
-      <raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41 type="int">8</raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41>
       <raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3 type="int">8</raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3>
+      <raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41 type="int">8</raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41>
       <raepa_canalass_l201910101510186331428872815 type="int">8</raepa_canalass_l201910101510186331428872815>
       <raepa_ouvrass_p_geom20191010150932600262752675 type="int">8</raepa_ouvrass_p_geom20191010150932600262752675>
+      <raepa_apparass_p201910101510186081018450509 type="int">8</raepa_apparass_p201910101510186081018450509>
     </WFSLayersPrecision>
-    <WMSRequestDefinedDataSources type="bool">false</WMSRequestDefinedDataSources>
+    <Gui>
+      <CanvasColorBluePart type="int">255</CanvasColorBluePart>
+      <CanvasColorRedPart type="int">255</CanvasColorRedPart>
+      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
+      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
+      <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
+      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
+      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
+    </Gui>
+    <WMSPrecision type="QString">8</WMSPrecision>
+    <WMSSegmentizeFeatureInfoGeometry type="bool">false</WMSSegmentizeFeatureInfoGeometry>
+    <WMSFees type="QString">conditions unknown</WMSFees>
+    <WFSUrl type="QString"></WFSUrl>
+    <WMSDefaultMapUnitsPerMm type="double">1</WMSDefaultMapUnitsPerMm>
+    <WMSContactMail type="QString"></WMSContactMail>
+    <WMSKeywordList type="QStringList">
+      <value></value>
+    </WMSKeywordList>
+    <Measurement>
+      <DistanceUnits type="QString">meters</DistanceUnits>
+      <AreaUnits type="QString">m2</AreaUnits>
+    </Measurement>
+    <WMSContactPosition type="QString"></WMSContactPosition>
+    <SpatialRefSys>
+      <ProjectionsEnabled type="int">1</ProjectionsEnabled>
+    </SpatialRefSys>
+    <WMSRestrictedComposers type="QStringList"></WMSRestrictedComposers>
+    <WMSServiceTitle type="QString">Raepa</WMSServiceTitle>
+    <WMSContactOrganization type="QString"></WMSContactOrganization>
+    <WCSLayers type="QStringList"></WCSLayers>
     <Measure>
       <Ellipsoid type="QString">WGS84</Ellipsoid>
     </Measure>
-    <PAL>
-      <SearchMethod type="int">0</SearchMethod>
-      <CandidatesLine type="int">50</CandidatesLine>
-      <TextFormat type="int">0</TextFormat>
-      <CandidatesPolygon type="int">30</CandidatesPolygon>
-      <ShowingAllLabels type="bool">false</ShowingAllLabels>
-      <CandidatesPoint type="int">16</CandidatesPoint>
-      <ShowingPartialsLabels type="bool">true</ShowingPartialsLabels>
-      <DrawRectOnly type="bool">false</DrawRectOnly>
-      <ShowingCandidates type="bool">false</ShowingCandidates>
-    </PAL>
+    <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
+    <WMTSMinScale type="int">5000</WMTSMinScale>
+    <DefaultStyles>
+      <ColorRamp type="QString"></ColorRamp>
+      <Line type="QString"></Line>
+      <Opacity type="double">1</Opacity>
+      <Marker type="QString"></Marker>
+      <RandomColors type="bool">true</RandomColors>
+      <Fill type="QString"></Fill>
+    </DefaultStyles>
+    <WMSContactPhone type="QString"></WMSContactPhone>
+    <WMTSPngLayers>
+      <Project type="bool">false</Project>
+      <Group type="QStringList"></Group>
+      <Layer type="QStringList"></Layer>
+    </WMTSPngLayers>
+    <WMTSJpegLayers>
+      <Project type="bool">false</Project>
+      <Group type="QStringList"></Group>
+      <Layer type="QStringList"></Layer>
+    </WMTSJpegLayers>
+    <WMSRestrictedLayers type="QStringList"></WMSRestrictedLayers>
     <WMSServiceCapabilities type="bool">true</WMSServiceCapabilities>
-    <Measurement>
-      <AreaUnits type="QString">m2</AreaUnits>
-      <DistanceUnits type="QString">meters</DistanceUnits>
-    </Measurement>
+    <WFSLayers type="QStringList">
+      <value>raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279</value>
+      <value>raepa_apparass_p201910101510186081018450509</value>
+      <value>raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41</value>
+      <value>raepa_canalass_l201910101510186331428872815</value>
+      <value>raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3</value>
+      <value>raepa_ouvrass_p_geom20191010150932600262752675</value>
+    </WFSLayers>
+    <PositionPrecision>
+      <DecimalPlaces type="int">2</DecimalPlaces>
+      <DegreeFormat type="QString">MU</DegreeFormat>
+      <Automatic type="bool">true</Automatic>
+    </PositionPrecision>
+    <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
     <Legend>
       <filterByMap type="bool">false</filterByMap>
     </Legend>
-    <WMSSegmentizeFeatureInfoGeometry type="bool">false</WMSSegmentizeFeatureInfoGeometry>
+    <Digitizing>
+      <TopologicalEditing type="int">0</TopologicalEditing>
+    </Digitizing>
+    <Paths>
+      <Absolute type="bool">false</Absolute>
+    </Paths>
     <WFSTLayers>
+      <Delete type="QStringList">
+        <value>raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279</value>
+        <value>raepa_apparass_p201910101510186081018450509</value>
+        <value>raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41</value>
+        <value>raepa_canalass_l201910101510186331428872815</value>
+        <value>raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3</value>
+        <value>raepa_ouvrass_p_geom20191010150932600262752675</value>
+      </Delete>
       <Insert type="QStringList">
         <value>raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279</value>
         <value>raepa_apparass_p201910101510186081018450509</value>
@@ -12353,107 +12439,23 @@ def my_form_open(dialog, layer, feature):
         <value>raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3</value>
         <value>raepa_ouvrass_p_geom20191010150932600262752675</value>
       </Update>
-      <Delete type="QStringList">
-        <value>raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279</value>
-        <value>raepa_apparass_p201910101510186081018450509</value>
-        <value>raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41</value>
-        <value>raepa_canalass_l201910101510186331428872815</value>
-        <value>raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3</value>
-        <value>raepa_ouvrass_p_geom20191010150932600262752675</value>
-      </Delete>
     </WFSTLayers>
-    <Digitizing>
-      <TopologicalEditing type="int">0</TopologicalEditing>
-    </Digitizing>
-    <Gui>
-      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
-      <CanvasColorRedPart type="int">255</CanvasColorRedPart>
-      <CanvasColorBluePart type="int">255</CanvasColorBluePart>
-      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
-      <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
-      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
-      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
-    </Gui>
-    <WCSLayers type="QStringList"></WCSLayers>
-    <WMTSMinScale type="int">5000</WMTSMinScale>
-    <WMSContactOrganization type="QString"></WMSContactOrganization>
+    <Macros>
+      <pythonCode type="QString"></pythonCode>
+    </Macros>
     <WMSContactPerson type="QString"></WMSContactPerson>
-    <WMSOnlineResource type="QString"></WMSOnlineResource>
-    <WFSLayers type="QStringList">
-      <value>raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279</value>
-      <value>raepa_apparass_p201910101510186081018450509</value>
-      <value>raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41</value>
-      <value>raepa_canalass_l201910101510186331428872815</value>
-      <value>raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3</value>
-      <value>raepa_ouvrass_p_geom20191010150932600262752675</value>
-    </WFSLayers>
-    <WMSServiceTitle type="QString">Raepa</WMSServiceTitle>
-    <WMSContactPhone type="QString"></WMSContactPhone>
-    <WMSRestrictedComposers type="QStringList"></WMSRestrictedComposers>
-    <WMSImageQuality type="int">90</WMSImageQuality>
+    <WMTSLayers>
+      <Project type="bool">false</Project>
+      <Group type="QStringList"></Group>
+      <Layer type="QStringList"></Layer>
+    </WMTSLayers>
     <WMSExtent type="QStringList">
       <value>644001.3338799175</value>
       <value>1789128.0303741677</value>
       <value>667916.4094819099</value>
       <value>1807328.502698858</value>
     </WMSExtent>
-    <WMSAccessConstraints type="QString">None</WMSAccessConstraints>
-    <WMSContactPosition type="QString"></WMSContactPosition>
-    <WMTSPngLayers>
-      <Group type="QStringList"></Group>
-      <Layer type="QStringList"></Layer>
-      <Project type="bool">false</Project>
-    </WMTSPngLayers>
-    <WMSRootName type="QString"></WMSRootName>
-    <WMSPrecision type="QString">8</WMSPrecision>
-    <WMTSLayers>
-      <Group type="QStringList"></Group>
-      <Layer type="QStringList"></Layer>
-      <Project type="bool">false</Project>
-    </WMTSLayers>
-    <Macros>
-      <pythonCode type="QString"></pythonCode>
-    </Macros>
-    <WMSKeywordList type="QStringList">
-      <value></value>
-    </WMSKeywordList>
-    <WMSFees type="QString">conditions unknown</WMSFees>
-    <DefaultStyles>
-      <RandomColors type="bool">true</RandomColors>
-      <Marker type="QString"></Marker>
-      <Line type="QString"></Line>
-      <Opacity type="double">1</Opacity>
-      <ColorRamp type="QString"></ColorRamp>
-      <Fill type="QString"></Fill>
-    </DefaultStyles>
-    <WMSCrsList type="QStringList">
-      <value>EPSG:3857</value>
-    </WMSCrsList>
-    <WMSRestrictedLayers type="QStringList"></WMSRestrictedLayers>
-    <WMTSJpegLayers>
-      <Group type="QStringList"></Group>
-      <Layer type="QStringList"></Layer>
-      <Project type="bool">false</Project>
-    </WMTSJpegLayers>
-    <SpatialRefSys>
-      <ProjectionsEnabled type="int">1</ProjectionsEnabled>
-    </SpatialRefSys>
     <WMSServiceAbstract type="QString"></WMSServiceAbstract>
-    <WFSUrl type="QString"></WFSUrl>
-    <PositionPrecision>
-      <DecimalPlaces type="int">2</DecimalPlaces>
-      <DegreeFormat type="QString">MU</DegreeFormat>
-      <Automatic type="bool">true</Automatic>
-    </PositionPrecision>
-    <WMTSUrl type="QString"></WMTSUrl>
-    <WCSUrl type="QString"></WCSUrl>
-    <WMSDefaultMapUnitsPerMm type="double">1</WMSDefaultMapUnitsPerMm>
-    <WMSUrl type="QString"></WMSUrl>
-    <WMSContactMail type="QString"></WMSContactMail>
-    <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
-    <Paths>
-      <Absolute type="bool">false</Absolute>
-    </Paths>
   </properties>
   <visibility-presets></visibility-presets>
   <transformContext></transformContext>

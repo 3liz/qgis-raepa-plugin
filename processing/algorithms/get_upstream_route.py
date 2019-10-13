@@ -19,6 +19,9 @@ __revision__ = '$Format:%H$'
 
 from qgis.PyQt.QtCore import QCoreApplication
 from .get_data_as_layer import *
+from qgis.core import (
+    QgsProcessingParameterEnum
+)
 
 
 class GetUpstreamRoute(GetDataAsLayer):
@@ -29,6 +32,11 @@ class GetUpstreamRoute(GetDataAsLayer):
     GEOM_FIELD = 'geom'
     LAYER_NAME = ''
     SOURCE_ID = 'SOURCE_ID'
+    TARGET_TABLE = 'TARGET_TABLE'
+    TARGET_TABLES = [
+        "ASS",
+        "AEP"
+    ]
 
     def name(self):
         return 'get_upstream_route'
@@ -49,13 +57,29 @@ class GetUpstreamRoute(GetDataAsLayer):
                 optional=False
             )
         )
+        self.addParameter(
+            QgsProcessingParameterEnum(
+                self.TARGET_TABLE, 'Target table',
+                defaultValue='ASS',
+                options=self.TARGET_TABLES,
+                optional=False
+            )
+        )
 
     def setSql(self, parameters, context, feedback):
         # Build SQL
+        target_table = self.TARGET_TABLES[parameters[self.TARGET_TABLE]]
+        target = 'raepa.raepa_canalass_l'
+        if target_table == 'AEP':
+            target = 'raepa.raepa_canalaep_l'
         sql = '''
-            SELECT 1 AS id, raepa.upstream('{0}') AS geom
+            SELECT 1 AS id,
+            raepa.upstream_by_idn(
+                '{0}', '{1}'
+            ) AS geom
         '''.format(
-            parameters[self.SOURCE_ID]
+            parameters[self.SOURCE_ID],
+            target
         )
         self.SQL = sql.replace('\n', ' ').rstrip(';')
 

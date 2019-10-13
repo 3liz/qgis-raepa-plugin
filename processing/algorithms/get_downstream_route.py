@@ -18,7 +18,9 @@ __copyright__ = '(C) 2019 by 3liz'
 __revision__ = '$Format:%H$'
 
 from .get_data_as_layer import *
-
+from qgis.core import (
+    QgsProcessingParameterEnum
+)
 
 class GetDownstreamRoute(GetDataAsLayer):
     """
@@ -28,6 +30,11 @@ class GetDownstreamRoute(GetDataAsLayer):
     GEOM_FIELD = 'geom'
     LAYER_NAME = ''
     SOURCE_ID = 'SOURCE_ID'
+    TARGET_TABLE = 'TARGET_TABLE'
+    TARGET_TABLES = [
+        "ASS",
+        "AEP"
+    ]
 
     def name(self):
         return 'get_downstream_route'
@@ -48,13 +55,30 @@ class GetDownstreamRoute(GetDataAsLayer):
                 optional=False
             )
         )
+        self.addParameter(
+            QgsProcessingParameterEnum(
+                self.TARGET_TABLE, 'Target table',
+                defaultValue='ASS',
+                options=self.TARGET_TABLES,
+                optional=False
+            )
+        )
 
     def setSql(self, parameters, context, feedback):
+        target_table = self.TARGET_TABLES[parameters[self.TARGET_TABLE]]
+        target = 'raepa.raepa_canalass_l'
+        if target_table == 'AEP':
+            target = 'raepa.raepa_canalaep_l'
+
         # Build SQL
         sql = '''
-            SELECT 1 AS id, raepa.downstream('{0}') AS geom
+            SELECT 1 AS id,
+            raepa.downstream_by_idn(
+                '{0}', '{1}'
+            ) AS geom
         '''.format(
-            parameters[self.SOURCE_ID]
+            parameters[self.SOURCE_ID],
+            target
         )
         self.SQL = sql.replace('\n', ' ').rstrip(';')
 
