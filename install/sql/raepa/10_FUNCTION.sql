@@ -512,7 +512,7 @@ BEGIN
 
         -- idnini
         EXECUTE format('
-        UPDATE raepa.%s AS ca
+        UPDATE %s AS ca
         SET idnini = ''%s''
         WHERE idnini != ''%s''
         AND ST_DWithin(ST_StartPoint(ca.geom), ''%s''::geometry, 0.05)
@@ -523,7 +523,7 @@ BEGIN
         ;
         -- idnterm
         EXECUTE format('
-        UPDATE raepa.%s ca
+        UPDATE %s ca
         SET idnterm = ''%s''
         WHERE idnterm != ''%s''
         AND ST_DWithin(ST_EndPoint(ca.geom), ''%s''::geometry, 0.05)
@@ -542,10 +542,10 @@ BEGIN
             SELECT
             c.idcana,
             z.path[1] AS node_id, z.geom AS node_geom
-            FROM raepa.%s AS c, ST_DumpPoints(geom) AS z
+            FROM %s AS c, ST_DumpPoints(geom) AS z
             WHERE c.idnterm = ''%s''
         )
-        UPDATE raepa.%s c
+        UPDATE %s c
         SET
             geom = foo.geom
         FROM (
@@ -570,10 +570,10 @@ BEGIN
             SELECT
             c.idcana,
             z.path[1] AS node_id, z.geom AS node_geom
-            FROM raepa.%s AS c, ST_DumpPoints(geom) AS z
+            FROM %s AS c, ST_DumpPoints(geom) AS z
             WHERE c.idnini = ''%s''
         )
-        UPDATE raepa.%s c
+        UPDATE %s c
         SET geom = foo.geom
         FROM (
             SELECT amont.idcana AS cid,
@@ -624,7 +624,7 @@ BEGIN
         -- Ouvrage initial
         EXECUTE format('
         SELECT o.idouvrage
-        FROM raepa.%s AS o
+        FROM %s AS o
         WHERE o.idouvrage != Coalesce(''%s'', ''%s'' )
         AND ST_DWithin(''%s''::geometry, o.geom, 0.05)
         LIMIT 1
@@ -647,7 +647,7 @@ BEGIN
         -- Ouvrage aval
         EXECUTE format('
         SELECT o.idouvrage
-        FROM raepa.%s AS o
+        FROM %s AS o
         WHERE Coalesce(''%s'', ''%s'') != o.idouvrage
         AND ST_DWithin(''%s''::geometry, o.geom, 0.05)
         LIMIT 1
