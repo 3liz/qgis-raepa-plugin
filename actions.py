@@ -15,9 +15,10 @@ __email__ = 'info@3liz.org'
 __revision__ = '$Format:%H$'
 
 
-def aep_ouvrage_parcourir_reseau_depuis_cet_ouvrage(*args):
+def parcourir_reseau_depuis_cet_ouvrage(*args):
     # Identifiant de l'ouvrage
     idouvrage = args[0]
+    target_table = args[1]
 
     # Use alg get_downstream_route and get_upstream_route
     down = processing.run(
@@ -25,7 +26,7 @@ def aep_ouvrage_parcourir_reseau_depuis_cet_ouvrage(*args):
         {
             'OUTPUT_LAYER_NAME': '',
             'SOURCE_ID': idouvrage,
-            'TARGET_TABLE': 0
+            'TARGET_TABLE': target_table
         }
     )
     if down['OUTPUT_STATUS'] == 1:
@@ -47,7 +48,7 @@ def aep_ouvrage_parcourir_reseau_depuis_cet_ouvrage(*args):
         {
             'OUTPUT_LAYER_NAME': '',
             'SOURCE_ID': idouvrage,
-            'TARGET_TABLE': 0
+            'TARGET_TABLE': target_table
         }
     )
     if up['OUTPUT_STATUS'] == 1:

@@ -36,7 +36,7 @@ from qgis.core import QgsApplication, QgsMessageLog
 from qgis.PyQt.QtWidgets import QMessageBox
 
 from .actions import (
-    aep_ouvrage_parcourir_reseau_depuis_cet_ouvrage,
+    parcourir_reseau_depuis_cet_ouvrage,
 )
 from .processing.provider import RaepaProvider
 
@@ -69,10 +69,12 @@ class RaepaPlugin(object):
         plugins['qgis-raepa-plugin'].run_action('action_name', params)
         """
         # Dictionary of actions
-        # with the number of arguments they expect and the function to call
+        # number of arguments it expects
+        # function to call
+        # extra args to add
         actions = {
             'aep_ouvrage_parcourir_reseau_depuis_cet_ouvrage':
-                [1, aep_ouvrage_parcourir_reseau_depuis_cet_ouvrage],
+                [1, parcourir_reseau_depuis_cet_ouvrage, 0],
             'aep_ouvrage_annuler_derniere_modification':
                 [None, None],
             'aep_ouvrage_couper_canalisation_sous_cet_ouvrage':
@@ -80,7 +82,7 @@ class RaepaPlugin(object):
             'aep_canalisation_inverser':
                 [None, None],
             'ass_ouvrage_parcourir_reseau_depuis_cet_ouvrage':
-                [None, None],
+                [1, parcourir_reseau_depuis_cet_ouvrage, 1],
             'ass_ouvrage_annuler_derniere_modification':
                 [None, None],
             'ass_ouvrage_couper_canalisation_sous_cet_ouvrage':
@@ -103,7 +105,11 @@ class RaepaPlugin(object):
                 None, 'Wrong Number of Arguments', 'Wrong number of argument for the action.')
             return
 
+        params = list(args)
+        if len(actions[name]) > 2:
+            params += actions[name][2:]
+
         QgsMessageLog.logMessage(
-            'Calling action {} with arguments: {}'.format(name, ', '.join(args)),
+            'Calling action {} with arguments: {}'.format(name, ', '.join(['{}'.format(i) for i in params])),
             'RAEPA')
-        actions[name][1](*args)
+        actions[name][1](*params)
