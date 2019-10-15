@@ -28,17 +28,17 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-import inspect
-import os
-import sys
-
 from qgis.core import QgsApplication, QgsMessageLog
 from qgis.PyQt.QtWidgets import QMessageBox
 
 from .actions import (
     parcourir_reseau_depuis_cet_ouvrage,
+    couper_la_canalisation_sous_cet_ouvrage,
+    annuler_la_derniere_modification,
+    inverser,
 )
 from .processing.provider import RaepaProvider
+
 
 class Raepa:
 
@@ -65,33 +65,28 @@ class Raepa:
         # Dictionary of actions
         # number of arguments it expects
         # function to call
-        # extra args to add
+        # extra args to add on runtime
         actions = {
             'aep_ouvrage_parcourir_reseau_depuis_cet_ouvrage':
-                [1, parcourir_reseau_depuis_cet_ouvrage, 1],
-            'aep_ouvrage_annuler_derniere_modification':
-                [None, None],
-            'aep_ouvrage_couper_canalisation_sous_cet_ouvrage':
-                [None, None],
-            'aep_canalisation_inverser':
-                [None, None],
-            'ass_ouvrage_parcourir_reseau_depuis_cet_ouvrage':
                 [1, parcourir_reseau_depuis_cet_ouvrage, 0],
+            'aep_ouvrage_annuler_derniere_modification':
+                [2, annuler_la_derniere_modification],
+            'aep_ouvrage_couper_canalisation_sous_cet_ouvrage':
+                [2, couper_la_canalisation_sous_cet_ouvrage],
+            'aep_canalisation_inverser':
+                [2, inverser],
+            'ass_ouvrage_parcourir_reseau_depuis_cet_ouvrage':
+                [1, parcourir_reseau_depuis_cet_ouvrage, 1],
             'ass_ouvrage_annuler_derniere_modification':
-                [None, None],
+                [2, annuler_la_derniere_modification],
             'ass_ouvrage_couper_canalisation_sous_cet_ouvrage':
-                [None, None],
+                [2, couper_la_canalisation_sous_cet_ouvrage],
             'ass_canalisation_inverser':
-                [None, None],
+                [2, inverser],
         }
         if name not in actions:
             QMessageBox.critical(
                 None, 'Action Not Found', 'The action has not been found.')
-            return
-
-        if actions[name][0] is None:
-            QMessageBox.critical(
-                None, 'Action Not Supported', 'The action is not supported.')
             return
 
         if actions[name][0] != len(args):
