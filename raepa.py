@@ -32,8 +32,12 @@ import inspect
 import os
 import sys
 
-from qgis.core import QgsApplication
+from qgis.core import QgsApplication, QgsMessageLog
+from qgis.PyQt.QtWidgets import QMessageBox
 
+from .actions import (
+    aep_ouvrage_parcourir_reseau_depuis_cet_ouvrage,
+)
 from .processing.provider import RaepaProvider
 
 cmd_folder = os.path.split(inspect.getfile(inspect.currentframe()))[0]
@@ -52,3 +56,54 @@ class RaepaPlugin(object):
 
     def unload(self):
         QgsApplication.processingRegistry().removeProvider(self.provider)
+
+    @staticmethod
+    def run_action(name, *args):
+        """Run a specific action.
+
+        Do not rename this function, it's part of the public API of the plugin.
+
+        These lines are included in the QGIS project.
+
+        from qgis.utils import plugins
+        plugins['qgis-raepa-plugin'].run_action('action_name', params)
+        """
+        # Dictionary of actions
+        # with the number of arguments they expect and the function to call
+        actions = {
+            'aep_ouvrage_parcourir_reseau_depuis_cet_ouvrage':
+                [1, aep_ouvrage_parcourir_reseau_depuis_cet_ouvrage],
+            'aep_ouvrage_annuler_derniere_modification':
+                [None, None],
+            'aep_ouvrage_couper_canalisation_sous_cet_ouvrage':
+                [None, None],
+            'aep_canalisation_inverser':
+                [None, None],
+            'ass_ouvrage_parcourir_reseau_depuis_cet_ouvrage':
+                [None, None],
+            'ass_ouvrage_annuler_derniere_modification':
+                [None, None],
+            'ass_ouvrage_couper_canalisation_sous_cet_ouvrage':
+                [None, None],
+            'ass_canalisation_inverser':
+                [None, None],
+        }
+        if name not in actions:
+            QMessageBox.critical(
+                None, 'Action Not Found', 'The action has not been found.')
+            return
+
+        if actions[name][0] is None:
+            QMessageBox.critical(
+                None, 'Action Not Supported', 'The action is not supported.')
+            return
+
+        if actions[name][0] != len(args):
+            QMessageBox.critical(
+                None, 'Wrong Number of Arguments', 'Wrong number of argument for the action.')
+            return
+
+        QgsMessageLog.logMessage(
+            'Calling action {} with arguments: {}'.format(name, ', '.join(args)),
+            'RAEPA')
+        actions[name][1](*args)
