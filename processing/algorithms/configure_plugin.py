@@ -71,7 +71,7 @@ class ConfigurePlugin(QgsProcessingAlgorithm):
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
         db_param = QgsProcessingParameterString(
             self.CONNECTION_NAME,
-            self.tr('PostgreSQL connection to G-Obs database'),
+            self.tr('PostgreSQL connection to RAEPA database'),
             defaultValue=connection_name,
             optional=False
         )
