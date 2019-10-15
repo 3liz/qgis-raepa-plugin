@@ -3780,7 +3780,7 @@ def my_form_open(dialog, layer, feature):
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
-        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'aep_canalisation_inverser',&#xa;    '[% id %]'&#xa;    '[% @layer_id %]'&#xa;)" capture="0" icon="" id="{0df7d8eb-9b65-4ff7-9bcc-331c0e458906}" isEnabledOnlyWhenEditable="0" name="Inverser la canalisation" notificationMessage="" shortTitle="Inverser la canalisation" type="1">
+        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'inverser_canalisation',&#xa;    '[% id %]',&#xa;    '[% @layer_id %]'&#xa;)" capture="0" icon="" id="{0df7d8eb-9b65-4ff7-9bcc-331c0e458906}" isEnabledOnlyWhenEditable="0" name="Inverser la canalisation" notificationMessage="" shortTitle="Inverser la canalisation" type="1">
           <actionScope id="Field"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
@@ -6164,7 +6164,7 @@ def my_form_open(dialog, layer, feature):
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
-        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'aep_canalisation_inverser',&#xa;    '[% id %]'&#xa;    '[% @layer_id %]'&#xa;)" capture="0" icon="" id="{0df7d8eb-9b65-4ff7-9bcc-331c0e458906}" isEnabledOnlyWhenEditable="0" name="Inverser la canalisation" notificationMessage="" shortTitle="Inverser la canalisation" type="1">
+        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'inverser_canalisation',&#xa;    '[% id %]',&#xa;    '[% @layer_id %]'&#xa;)" capture="0" icon="" id="{0df7d8eb-9b65-4ff7-9bcc-331c0e458906}" isEnabledOnlyWhenEditable="0" name="Inverser la canalisation" notificationMessage="" shortTitle="Inverser la canalisation" type="1">
           <actionScope id="Field"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
@@ -7169,11 +7169,11 @@ def my_form_open(dialog, layer, feature):
           <actionScope id="Feature"></actionScope>
           <actionScope id="Canvas"></actionScope>
         </actionsetting>
-        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'aep_ouvrage_annuler_derniere_modification',&#xa;    '[% idouvrage %]'&#xa;    '[% @layer_id %]'&#xa;)" capture="0" icon="" id="{5f7b6861-8336-4329-913b-8d944b4fb673}" isEnabledOnlyWhenEditable="0" name="Annuler la dernière modification" notificationMessage="" shortTitle="" type="1">
+        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'ouvrage_annuler_derniere_modification',&#xa;    '[% idouvrage %]',&#xa;    '[% @layer_id %]'&#xa;)" capture="0" icon="" id="{5f7b6861-8336-4329-913b-8d944b4fb673}" isEnabledOnlyWhenEditable="0" name="Annuler la dernière modification" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Feature"></actionScope>
           <actionScope id="Canvas"></actionScope>
         </actionsetting>
-        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'aep_ouvrage_couper_canalisation_sous_cet_ouvrage',&#xa;    '[% idouvrage %]'&#xa;    '[% @layer_id %]'&#xa;)" capture="0" icon="" id="{bec7b2ea-3e1e-4b3c-8fb3-c1d263c3a14d}" isEnabledOnlyWhenEditable="0" name="Couper la canalisation sous cet ouvrage" notificationMessage="" shortTitle="" type="1">
+        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'ouvrage_couper_canalisation_sous_cet_ouvrage',&#xa;    '[% idouvrage %]',&#xa;    '[% @layer_id %]'&#xa;)" capture="0" icon="" id="{bec7b2ea-3e1e-4b3c-8fb3-c1d263c3a14d}" isEnabledOnlyWhenEditable="0" name="Couper la canalisation sous cet ouvrage" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
           <actionScope id="Feature"></actionScope>
           <actionScope id="Canvas"></actionScope>
@@ -9539,11 +9539,11 @@ def my_form_open(dialog, layer, feature):
           <actionScope id="Feature"></actionScope>
           <actionScope id="Canvas"></actionScope>
         </actionsetting>
-        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'aep_ouvrage_annuler_derniere_modification',&#xa;    '[% idouvrage %]'&#xa;    '[% @layer_id %]'&#xa;)" capture="0" icon="" id="{5f7b6861-8336-4329-913b-8d944b4fb673}" isEnabledOnlyWhenEditable="0" name="Annuler la dernière modification" notificationMessage="" shortTitle="" type="1">
+        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'ouvrage_annuler_derniere_modification',&#xa;    '[% idouvrage %]',&#xa;    '[% @layer_id %]'&#xa;)" capture="0" icon="" id="{5f7b6861-8336-4329-913b-8d944b4fb673}" isEnabledOnlyWhenEditable="0" name="Annuler la dernière modification" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Feature"></actionScope>
           <actionScope id="Canvas"></actionScope>
         </actionsetting>
-        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'aep_ouvrage_couper_canalisation_sous_cet_ouvrage',&#xa;    '[% idouvrage %]'&#xa;    '[% @layer_id %]'&#xa;)" capture="0" icon="" id="{bec7b2ea-3e1e-4b3c-8fb3-c1d263c3a14d}" isEnabledOnlyWhenEditable="0" name="Couper la canalisation sous cet ouvrage" notificationMessage="" shortTitle="" type="1">
+        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'ouvrage_couper_canalisation_sous_cet_ouvrage',&#xa;    '[% idouvrage %]',&#xa;    '[% @layer_id %]'&#xa;)" capture="0" icon="" id="{bec7b2ea-3e1e-4b3c-8fb3-c1d263c3a14d}" isEnabledOnlyWhenEditable="0" name="Couper la canalisation sous cet ouvrage" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
           <actionScope id="Feature"></actionScope>
           <actionScope id="Canvas"></actionScope>
