@@ -28,14 +28,14 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-from qgis.core import QgsApplication, QgsMessageLog
+from qgis.core import QgsApplication, QgsMessageLog, Qgis
 from qgis.PyQt.QtWidgets import QMessageBox
 
 from .actions import (
     parcourir_reseau_depuis_cet_ouvrage,
     couper_la_canalisation_sous_cet_ouvrage,
     annuler_la_derniere_modification,
-    inverser,
+    inverser_canalisation,
 )
 from .processing.provider import RaepaProvider
 
@@ -67,22 +67,16 @@ class Raepa:
         # function to call
         # extra args to add on runtime
         actions = {
+            'inverser_canalisation':
+                [2, inverser_canalisation],
+            'ouvrage_annuler_derniere_modification':
+                [2, annuler_la_derniere_modification],
+            'ouvrage_couper_canalisation_sous_cet_ouvrage':
+                [2, couper_la_canalisation_sous_cet_ouvrage],
             'aep_ouvrage_parcourir_reseau_depuis_cet_ouvrage':
-                [1, parcourir_reseau_depuis_cet_ouvrage, 0],
-            'aep_ouvrage_annuler_derniere_modification':
-                [2, annuler_la_derniere_modification],
-            'aep_ouvrage_couper_canalisation_sous_cet_ouvrage':
-                [2, couper_la_canalisation_sous_cet_ouvrage],
-            'aep_canalisation_inverser':
-                [2, inverser],
-            'ass_ouvrage_parcourir_reseau_depuis_cet_ouvrage':
                 [1, parcourir_reseau_depuis_cet_ouvrage, 1],
-            'ass_ouvrage_annuler_derniere_modification':
-                [2, annuler_la_derniere_modification],
-            'ass_ouvrage_couper_canalisation_sous_cet_ouvrage':
-                [2, couper_la_canalisation_sous_cet_ouvrage],
-            'ass_canalisation_inverser':
-                [2, inverser],
+            'ass_ouvrage_parcourir_reseau_depuis_cet_ouvrage':
+                [1, parcourir_reseau_depuis_cet_ouvrage, 0],
         }
         if name not in actions:
             QMessageBox.critical(
@@ -100,5 +94,5 @@ class Raepa:
 
         QgsMessageLog.logMessage(
             'Calling action {} with arguments: {}'.format(name, ', '.join(['{}'.format(i) for i in params])),
-            'RAEPA')
+            'RAEPA', Qgis.Info)
         actions[name][1](*params)
