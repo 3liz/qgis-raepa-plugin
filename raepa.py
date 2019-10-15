@@ -40,13 +40,7 @@ from .actions import (
 )
 from .processing.provider import RaepaProvider
 
-cmd_folder = os.path.split(inspect.getfile(inspect.currentframe()))[0]
-
-if cmd_folder not in sys.path:
-    sys.path.insert(0, cmd_folder)
-
-
-class RaepaPlugin(object):
+class Raepa:
 
     def __init__(self):
         self.provider = RaepaProvider()
@@ -74,7 +68,7 @@ class RaepaPlugin(object):
         # extra args to add
         actions = {
             'aep_ouvrage_parcourir_reseau_depuis_cet_ouvrage':
-                [1, parcourir_reseau_depuis_cet_ouvrage, 0],
+                [1, parcourir_reseau_depuis_cet_ouvrage, 1],
             'aep_ouvrage_annuler_derniere_modification':
                 [None, None],
             'aep_ouvrage_couper_canalisation_sous_cet_ouvrage':
@@ -82,7 +76,7 @@ class RaepaPlugin(object):
             'aep_canalisation_inverser':
                 [None, None],
             'ass_ouvrage_parcourir_reseau_depuis_cet_ouvrage':
-                [1, parcourir_reseau_depuis_cet_ouvrage, 1],
+                [1, parcourir_reseau_depuis_cet_ouvrage, 0],
             'ass_ouvrage_annuler_derniere_modification':
                 [None, None],
             'ass_ouvrage_couper_canalisation_sous_cet_ouvrage':

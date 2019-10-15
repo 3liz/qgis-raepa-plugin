@@ -34,5 +34,5 @@ def classFactory(iface):  # pylint: disable=invalid-name
     :type iface: QgsInterface
     """
     #
-    from .raepa import RaepaPlugin
-    return RaepaPlugin()
+    from .raepa import Raepa
+    return Raepa()
