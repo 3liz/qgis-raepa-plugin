@@ -18,21 +18,17 @@ __copyright__ = '(C) 2018 by 3liz'
 __revision__ = '$Format:%H$'
 
 import os
-import subprocess
 
 from qgis.PyQt.QtCore import (
     QCoreApplication,
-    QFileInfo
 )
 from qgis.core import (
-    QgsExpression,
-    QgsExpressionContext,
-    QgsExpressionContextUtils,
     QgsProcessingAlgorithm,
     QgsProcessingException,
     QgsProcessingParameterString,
     QgsProcessingParameterCrs,
-    QgsDataSourceUri
+    QgsDataSourceUri,
+    QgsProcessingParameterFileDestination,
 )
 from processing.algs.gdal.GdalUtils import GdalUtils
 
@@ -44,6 +40,7 @@ class ExportPackage(QgsProcessingAlgorithm):
 
     PGSERVICE = 'PGSERVICE'
     SRID = 'SRID'
+    DESTINATION = 'DESTINATION'
 
     def name(self):
         return 'export_package'
@@ -90,8 +87,15 @@ class ExportPackage(QgsProcessingAlgorithm):
         self.addParameter(
             QgsProcessingParameterCrs(
                 self.SRID, 'Projection',
-                defaultValue='EPSG:2154',
+                defaultValue='EPSG:32620',
                 optional=False
+            )
+        )
+        self.addParameter(
+            QgsProcessingParameterFileDestination(
+                self.DESTINATION,
+                self.tr('Sqlite file'),
+                fileFilter='sqlite'
             )
         )
 
@@ -99,22 +103,13 @@ class ExportPackage(QgsProcessingAlgorithm):
         """
         Here is where the processing itself takes place.
         """
-        # Create directory
-        # TODO fix use of unix path
-        exp = QgsExpression("'/home/' || @user_account_name || '/sup/'")
-        expression_context = QgsExpressionContext()
-        expression_context.appendScope(QgsExpressionContextUtils.globalScope())
-        output_dir = exp.evaluate(expression_context)
-        if not os.path.isdir(output_dir):
-            os.mkdir(output_dir)
-
         service = self.parameterAsString(parameters, self.PGSERVICE, context)
         crs = self.parameterAsCrs(parameters, self.SRID, context)
+        sqlite_path = self.parameterAsString(parameters, self.DESTINATION, context)
 
-        # Set sqlite file path
-        project_file = context.project().fileName()
-        sqlite_path = os.path.join(output_dir, QFileInfo(project_file).fileName())
-        sqlite_path = sqlite_path.replace('.qgs', '.sqlite')
+        if not sqlite_path.lower().endswith('.sqlite'):
+            sqlite_path += '.sqlite'
+
         if os.path.exists(sqlite_path):
             feedback.pushDebugInfo('Previous SQLite file has been deleted.')
             os.remove(sqlite_path)
