@@ -1097,6 +1097,14 @@
       <dataDependencies></dataDependencies>
       <legend type="default-vector"></legend>
       <expressionfields></expressionfields>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
+        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'parcourir_reseau_depuis_cet_objet',&#xa;    '[% idappareil %]',&#xa;    0&#xa;)" capture="0" icon="" id="{371c6d47-0ff5-4f38-9e75-52734a1c9c0c}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
+          <actionScope id="Field"></actionScope>
+          <actionScope id="Feature"></actionScope>
+          <actionScope id="Canvas"></actionScope>
+        </actionsetting>
+      </attributeactions>
       <map-layer-style-manager current="1_visualisation">
         <map-layer-style name="1_visualisation"></map-layer-style>
       </map-layer-style-manager>
@@ -2064,6 +2072,14 @@ def my_form_open(dialog, layer, feature):
       <dataDependencies></dataDependencies>
       <legend type="default-vector"></legend>
       <expressionfields></expressionfields>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
+        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'parcourir_reseau_depuis_cet_objet',&#xa;    '[% idappareil %]',&#xa;    0&#xa;)" capture="0" icon="" id="{371c6d47-0ff5-4f38-9e75-52734a1c9c0c}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
+          <actionScope id="Field"></actionScope>
+          <actionScope id="Feature"></actionScope>
+          <actionScope id="Canvas"></actionScope>
+        </actionsetting>
+      </attributeactions>
       <map-layer-style-manager current="défaut">
         <map-layer-style name="défaut"></map-layer-style>
       </map-layer-style-manager>
@@ -3783,6 +3799,11 @@ def my_form_open(dialog, layer, feature):
         <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'inverser_canalisation',&#xa;    '[% id %]',&#xa;    '[% @layer_id %]'&#xa;)" capture="0" icon="" id="{0df7d8eb-9b65-4ff7-9bcc-331c0e458906}" isEnabledOnlyWhenEditable="0" name="Inverser la canalisation" notificationMessage="" shortTitle="Inverser la canalisation" type="1">
           <actionScope id="Field"></actionScope>
           <actionScope id="Feature"></actionScope>
+        </actionsetting>
+        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'parcourir_reseau_depuis_cet_objet',&#xa;    '[% idcana %]',&#xa;    0&#xa;)" capture="0" icon="" id="{371c6d47-0ff5-4f38-9e75-52734a1c9c0c}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
+          <actionScope id="Field"></actionScope>
+          <actionScope id="Feature"></actionScope>
+          <actionScope id="Canvas"></actionScope>
         </actionsetting>
       </attributeactions>
       <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
@@ -6165,6 +6186,11 @@ def my_form_open(dialog, layer, feature):
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
         <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'inverser_canalisation',&#xa;    '[% id %]',&#xa;    '[% @layer_id %]'&#xa;)" capture="0" icon="" id="{0df7d8eb-9b65-4ff7-9bcc-331c0e458906}" isEnabledOnlyWhenEditable="0" name="Inverser la canalisation" notificationMessage="" shortTitle="Inverser la canalisation" type="1">
+        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'parcourir_reseau_depuis_cet_objet',&#xa;    '[% idcana %]',&#xa;    0&#xa;)" capture="0" icon="" id="{371c6d47-0ff5-4f38-9e75-52734a1c9c0c}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
+          <actionScope id="Field"></actionScope>
+          <actionScope id="Feature"></actionScope>
+          <actionScope id="Canvas"></actionScope>
+        </actionsetting>
           <actionScope id="Field"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
@@ -7164,7 +7190,7 @@ def my_form_open(dialog, layer, feature):
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
-        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'aep_ouvrage_parcourir_reseau_depuis_cet_ouvrage',&#xa;    '[% idouvrage %]'&#xa;)" capture="0" icon="" id="{371c6d47-0ff5-4f38-9e75-52734a1c9c0c}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet ouvrage" notificationMessage="" shortTitle="" type="1">
+        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'parcourir_reseau_depuis_cet_objet',&#xa;    '[% idouvrage %]',&#xa;    0&#xa;)" capture="0" icon="" id="{371c6d47-0ff5-4f38-9e75-52734a1c9c0c}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
           <actionScope id="Feature"></actionScope>
           <actionScope id="Canvas"></actionScope>
@@ -9534,7 +9560,7 @@ def my_form_open(dialog, layer, feature):
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
-        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'ass_ouvrage_parcourir_reseau_depuis_cet_ouvrage',&#xa;    '[% idouvrage %]'&#xa;)" capture="0" icon="" id="{371c6d47-0ff5-4f38-9e75-52734a1c9c0c}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet ouvrage" notificationMessage="" shortTitle="" type="1">
+        <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'parcourir_reseau_depuis_cet_objet',&#xa;    '[% idouvrage %]',&#xa;    0&#xa;)" capture="0" icon="" id="{371c6d47-0ff5-4f38-9e75-52734a1c9c0c}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
           <actionScope id="Feature"></actionScope>
           <actionScope id="Canvas"></actionScope>

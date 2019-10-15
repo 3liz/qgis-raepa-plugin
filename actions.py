@@ -85,7 +85,7 @@ def annuler_la_derniere_modification(*args):
         return
 
     # Refresh upstream and downstream
-    for layername in [layer.name(), 'Canalisations']:
+    for layername in [layer.name(), 'Canalisations ASS, Canalisations AEP']:
         gl = QgsProject.instance().mapLayersByName(layername)
         if gl:
             gl[0].triggerRepaint()
@@ -111,21 +111,21 @@ def couper_la_canalisation_sous_cet_ouvrage(*args):
         return
 
     # Refresh layers
-    for layername in [layer.name(), 'Canalisations']:
+    for layername in [layer.name(), 'Canalisations ASS, Canalisations AEP']:
         gl = QgsProject.instance().mapLayersByName(layername)
         if gl:
             gl[0].triggerRepaint()
 
 
-def parcourir_reseau_depuis_cet_ouvrage(*args):
-    idouvrage = args[0]
-    target_table = args[1]
+def parcourir_reseau_depuis_cet_objet(*args):
+    id_objet = args[0]
+    method = args[1]
 
     # Use alg get_downstream_route and get_upstream_route
     params = {
         'OUTPUT_LAYER_NAME': '',
-        'SOURCE_ID': idouvrage,
-        'TARGET_TABLE': target_table
+        'SOURCE_ID': id_objet,
+        'METHOD': method
     }
     try:
         down = processing.run('raepa:get_downstream_route', params)
@@ -150,8 +150,8 @@ def parcourir_reseau_depuis_cet_ouvrage(*args):
 
     params = {
         'OUTPUT_LAYER_NAME': '',
-        'SOURCE_ID': idouvrage,
-        'TARGET_TABLE': target_table
+        'SOURCE_ID': id_objet,
+        'METHOD': method
     }
     try:
         up = processing.run('raepa:get_upstream_route', params)

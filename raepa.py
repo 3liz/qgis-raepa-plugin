@@ -32,7 +32,7 @@ from qgis.core import QgsApplication, QgsMessageLog, Qgis
 from qgis.PyQt.QtWidgets import QMessageBox
 
 from .actions import (
-    parcourir_reseau_depuis_cet_ouvrage,
+    parcourir_reseau_depuis_cet_objet,
     couper_la_canalisation_sous_cet_ouvrage,
     annuler_la_derniere_modification,
     inverser_canalisation,
@@ -73,10 +73,8 @@ class Raepa:
                 [2, annuler_la_derniere_modification],
             'ouvrage_couper_canalisation_sous_cet_ouvrage':
                 [2, couper_la_canalisation_sous_cet_ouvrage],
-            'aep_ouvrage_parcourir_reseau_depuis_cet_ouvrage':
-                [1, parcourir_reseau_depuis_cet_ouvrage, 1],
-            'ass_ouvrage_parcourir_reseau_depuis_cet_ouvrage':
-                [1, parcourir_reseau_depuis_cet_ouvrage, 0],
+            'parcourir_reseau_depuis_cet_objet':
+                [2, parcourir_reseau_depuis_cet_objet, 0]
         }
         if name not in actions:
             QMessageBox.critical(
