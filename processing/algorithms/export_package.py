@@ -18,20 +18,19 @@ __copyright__ = '(C) 2018 by 3liz'
 __revision__ = '$Format:%H$'
 
 import os
-import subprocess
 
 from qgis.PyQt.QtCore import (
     QCoreApplication,
-    QFileInfo
 )
 from qgis.core import (
     QgsProcessingAlgorithm,
     QgsProcessingException,
     QgsProcessingParameterString,
-    QgsProcessingOutputString,
-    QgsProject,
-    QgsDataSourceUri
+    QgsProcessingParameterCrs,
+    QgsDataSourceUri,
+    QgsProcessingParameterFileDestination,
 )
+from processing.algs.gdal.GdalUtils import GdalUtils
 
 
 class ExportPackage(QgsProcessingAlgorithm):
@@ -41,7 +40,7 @@ class ExportPackage(QgsProcessingAlgorithm):
 
     PGSERVICE = 'PGSERVICE'
     SRID = 'SRID'
-    OUTPUT_STRING = 'OUTPUT_STRING'
+    DESTINATION = 'DESTINATION'
 
     def name(self):
         return 'export_package'
@@ -55,11 +54,22 @@ class ExportPackage(QgsProcessingAlgorithm):
     def groupId(self):
         return 'raepa_export'
 
-    def tr(self, string):
+    @staticmethod
+    def tr(string):
         return QCoreApplication.translate('Processing', string)
 
     def createInstance(self):
         return self.__class__()
+
+    def flags(self):
+        # noinspection PyTypeChecker
+        return super().flags() | QgsProcessingAlgorithm.FlagNoThreading
+
+    def shortHelpString(self) -> str:
+        return self.tr(
+            'Export all layers from your canvas which belong to '
+            'the specified PostgreSQL service in a SQLite file. \n'
+            'A custom CRS can be specified.')
 
     def initAlgorithm(self, config):
         """
@@ -75,17 +85,17 @@ class ExportPackage(QgsProcessingAlgorithm):
             )
         )
         self.addParameter(
-            QgsProcessingParameterString(
-                self.SRID, 'SRID',
-                defaultValue='2154',
+            QgsProcessingParameterCrs(
+                self.SRID, 'Projection',
+                defaultValue='EPSG:32620',
                 optional=False
             )
         )
-
-        # OUTPUTS
-        self.addOutput(
-            QgsProcessingOutputString(
-                self.OUTPUT_STRING, self.tr('Output message')
+        self.addParameter(
+            QgsProcessingParameterFileDestination(
+                self.DESTINATION,
+                self.tr('Sqlite file'),
+                fileFilter='sqlite'
             )
         )
 
@@ -93,27 +103,43 @@ class ExportPackage(QgsProcessingAlgorithm):
         """
         Here is where the processing itself takes place.
         """
-        plugin_dir = os.path.dirname(os.path.abspath(__file__))
+        service = self.parameterAsString(parameters, self.PGSERVICE, context)
+        crs = self.parameterAsCrs(parameters, self.SRID, context)
+        sqlite_path = self.parameterAsString(parameters, self.DESTINATION, context)
 
-        # Create directory
-        output_dir = '/home/mdouchin/sup/'
-        if not os.path.isdir(output_dir):
-            os.mkdir(output_dir)
+        if not sqlite_path.lower().endswith('.sqlite'):
+            sqlite_path += '.sqlite'
 
-        # Set sqlite file path
-        projectFile = QgsProject.instance().fileName()
-        sqlite_path = os.path.join(output_dir, QFileInfo(projectFile).fileName())
-        sqlite_path = sqlite_path.replace('.qgs', '.sqlite')
         if os.path.exists(sqlite_path):
+            feedback.pushDebugInfo('Previous SQLite file has been deleted.')
             os.remove(sqlite_path)
 
         # Get layers and corresponding PostgreSQL tables
         ll = []
-        p = QgsProject.instance()
+        p = context.project()
         layers = p.mapLayers()
         for lid, layer in layers.items():
+            if not layer.isValid():
+                feedback.reportError(self.tr(
+                    'Layer {} is not valid. It is not included in the package.'
+                ).format(layer.id()))
+                continue
+
             src = layer.source()
             uri = QgsDataSourceUri(src)
+            if not uri.service() == service:
+                feedback.reportError(self.tr(
+                    'Layer {} does not belong to the service "{}". It is not included in the package.'
+                ).format(layer.id(), service))
+                continue
+
+            # TODO fix this layer
+            if uri.table() in ['raepa_ouvrass_p']:
+                feedback.reportError(self.tr(
+                    'Layer {} is not supported for now. It is not included in the package.'
+                ).format(layer.id(), service))
+                continue
+
             ll.append(
                 "%s.%s" % (
                     uri.schema(),
@@ -123,20 +149,17 @@ class ExportPackage(QgsProcessingAlgorithm):
         tables = ','.join(ll)
 
         # Set PG source access string for ogr
-        ogr_source = 'PG:service=%s tables=%s' % (
-            parameters[self.PGSERVICE],
-            tables
-        )
-        feedback.pushInfo('OGR source = %s' % ogr_source)
+        ogr_source = 'PG:service={} tables={}'.format(service, tables)
+        # feedback.pushInfo('OGR source = %s' % ogr_source)
 
         # Set options for ogr
         ogr_command = [
-            "ogr2ogr",
+            # 'ogr2ogr',
             '-f', 'SQLite',
             sqlite_path,
             ogr_source,
             '-lco', 'GEOMETRY_NAME=geom',
-            '-lco', 'SRID=%s' % parameters[self.SRID],
+            '-lco', 'SRID={}'.format(crs.postgisSrid()),
             '-gt', '50000',
             '-dsco', 'SPATIALITE=YES',
             '-lco', 'SPATIAL_INDEX=YES',
@@ -145,16 +168,14 @@ class ExportPackage(QgsProcessingAlgorithm):
             '--config', 'OGR_SQLITE_SYNCHRONOUS', 'OFF',
             '--config', 'OGR_SQLITE_CACHE', '1024'
         ]
-        feedback.pushInfo('OGR command = %s' % ' '.join(ogr_command))
+        feedback.pushInfo('OGR command = ogr2ogr {}'.format(' '.join(ogr_command)))
 
-        # Export with ogr2og:r
-        try:
-            subprocess.check_call(ogr_command, stderr=subprocess.STDOUT)
-        except subprocess.CalledProcessError as e:
-            raise QgsProcessingException(str(e.output))
+        # Export with ogr2og
+        GdalUtils.runGdal(['ogr2ogr', GdalUtils.escapeAndJoin(ogr_command)], feedback)
 
-        feedback.pushInfo('Export - OK')
+        if not os.path.isfile(sqlite_path):
+            raise QgsProcessingException('{} could not be created.'.format(sqlite_path))
 
-        return {
-            self.OUTPUT_STRING: 'Export dans %s -> OK' % sqlite_path
-        }
+        feedback.pushInfo('Export - OK in {}'.format(sqlite_path))
+
+        return {}
