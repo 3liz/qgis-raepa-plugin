@@ -19,7 +19,7 @@ SET row_security = off;
 SET default_tablespace = '';
 
 -- raepa_apparaep_p_geom_idx
-CREATE INDEX raepa_apparaep_p_geom_idx ON raepa.raepa_apparaep_p USING btree (geom);
+CREATE INDEX raepa_apparaep_p_geom_idx ON raepa.raepa_apparaep_p USING gist (geom);
 
 
 -- raepa_apparaep_p_idappareil_idx
@@ -43,7 +43,11 @@ CREATE INDEX raepa_apparaep_p_idouvrage_idx ON raepa.raepa_apparaep_p USING btre
 
 
 -- raepa_apparass_p_geom_idx
-CREATE INDEX raepa_apparass_p_geom_idx ON raepa.raepa_apparass_p USING btree (geom);
+CREATE INDEX raepa_apparass_p_geom_idx ON raepa.raepa_apparass_p USING gist (geom);
+
+
+-- raepa_apparass_p_geom_idx1
+CREATE INDEX raepa_apparass_p_geom_idx1 ON raepa.raepa_apparass_p USING gist (geom);
 
 
 -- raepa_apparass_p_idappareil_idx
@@ -67,7 +71,11 @@ CREATE INDEX raepa_apparass_p_idouvrage_idx ON raepa.raepa_apparass_p USING btre
 
 
 -- raepa_canalaep_l_geom_idx
-CREATE INDEX raepa_canalaep_l_geom_idx ON raepa.raepa_canalaep_l USING btree (geom);
+CREATE INDEX raepa_canalaep_l_geom_idx ON raepa.raepa_canalaep_l USING gist (geom);
+
+
+-- raepa_canalaep_l_geom_idx1
+CREATE INDEX raepa_canalaep_l_geom_idx1 ON raepa.raepa_canalaep_l USING gist (geom);
 
 
 -- raepa_canalaep_l_idcana_idx
@@ -86,12 +94,32 @@ CREATE INDEX raepa_canalaep_l_idnini_idx ON raepa.raepa_canalaep_l USING btree (
 CREATE INDEX raepa_canalaep_l_idnterm_idx ON raepa.raepa_canalaep_l USING btree (idnterm);
 
 
+-- raepa_canalaep_l_st_endpoint_idx
+CREATE INDEX raepa_canalaep_l_st_endpoint_idx ON raepa.raepa_canalaep_l USING gist (public.st_endpoint(geom));
+
+
+-- raepa_canalaep_l_st_endpoint_idx1
+CREATE INDEX raepa_canalaep_l_st_endpoint_idx1 ON raepa.raepa_canalaep_l USING gist (public.st_endpoint(geom));
+
+
+-- raepa_canalaep_l_st_startpoint_idx
+CREATE INDEX raepa_canalaep_l_st_startpoint_idx ON raepa.raepa_canalaep_l USING gist (public.st_startpoint(geom));
+
+
+-- raepa_canalaep_l_st_startpoint_idx1
+CREATE INDEX raepa_canalaep_l_st_startpoint_idx1 ON raepa.raepa_canalaep_l USING gist (public.st_startpoint(geom));
+
+
 -- raepa_canalass_l_endpoint_geom_idx
 CREATE INDEX raepa_canalass_l_endpoint_geom_idx ON raepa.raepa_canalass_l USING gist (public.st_endpoint(geom));
 
 
 -- raepa_canalass_l_geom_idx
-CREATE INDEX raepa_canalass_l_geom_idx ON raepa.raepa_canalass_l USING btree (geom);
+CREATE INDEX raepa_canalass_l_geom_idx ON raepa.raepa_canalass_l USING gist (geom);
+
+
+-- raepa_canalass_l_geom_idx1
+CREATE INDEX raepa_canalass_l_geom_idx1 ON raepa.raepa_canalass_l USING gist (geom);
 
 
 -- raepa_canalass_l_idcana_idx
@@ -115,7 +143,11 @@ CREATE INDEX raepa_canalass_l_startpoint_geom_idx ON raepa.raepa_canalass_l USIN
 
 
 -- raepa_ouvraep_p_geom_idx
-CREATE INDEX raepa_ouvraep_p_geom_idx ON raepa.raepa_ouvraep_p USING btree (geom);
+CREATE INDEX raepa_ouvraep_p_geom_idx ON raepa.raepa_ouvraep_p USING gist (geom);
+
+
+-- raepa_ouvraep_p_geom_idx1
+CREATE INDEX raepa_ouvraep_p_geom_idx1 ON raepa.raepa_ouvraep_p USING gist (geom);
 
 
 -- raepa_ouvraep_p_idcanamont_idx
@@ -135,7 +167,11 @@ CREATE INDEX raepa_ouvraep_p_idouvrage_idx ON raepa.raepa_ouvraep_p USING btree 
 
 
 -- raepa_ouvrass_p_geom_idx
-CREATE INDEX raepa_ouvrass_p_geom_idx ON raepa.raepa_ouvrass_p USING btree (geom);
+CREATE INDEX raepa_ouvrass_p_geom_idx ON raepa.raepa_ouvrass_p USING gist (geom);
+
+
+-- raepa_ouvrass_p_geom_idx1
+CREATE INDEX raepa_ouvrass_p_geom_idx1 ON raepa.raepa_ouvrass_p USING gist (geom);
 
 
 -- raepa_ouvrass_p_idcanamont_idx
@@ -155,7 +191,11 @@ CREATE INDEX raepa_ouvrass_p_idouvrage_idx ON raepa.raepa_ouvrass_p USING btree 
 
 
 -- raepa_reparaep_p_geom_idx
-CREATE INDEX raepa_reparaep_p_geom_idx ON raepa.raepa_reparaep_p USING btree (geom);
+CREATE INDEX raepa_reparaep_p_geom_idx ON raepa.raepa_reparaep_p USING gist (geom);
+
+
+-- raepa_reparaep_p_geom_idx1
+CREATE INDEX raepa_reparaep_p_geom_idx1 ON raepa.raepa_reparaep_p USING gist (geom);
 
 
 -- raepa_reparaep_p_idrepar_idx
@@ -167,7 +207,11 @@ CREATE INDEX raepa_reparaep_p_idsuprepar_idx ON raepa.raepa_reparaep_p USING btr
 
 
 -- raepa_reparass_p_geom_idx
-CREATE INDEX raepa_reparass_p_geom_idx ON raepa.raepa_reparass_p USING btree (geom);
+CREATE INDEX raepa_reparass_p_geom_idx ON raepa.raepa_reparass_p USING gist (geom);
+
+
+-- raepa_reparass_p_geom_idx1
+CREATE INDEX raepa_reparass_p_geom_idx1 ON raepa.raepa_reparass_p USING gist (geom);
 
 
 -- raepa_reparass_p_idrepar_idx

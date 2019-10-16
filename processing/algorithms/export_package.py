@@ -114,64 +114,59 @@ class ExportPackage(QgsProcessingAlgorithm):
             feedback.pushDebugInfo('Previous SQLite file has been deleted.')
             os.remove(sqlite_path)
 
-        # Get layers and corresponding PostgreSQL tables
-        ll = []
         p = context.project()
         layers = p.mapLayers()
-        for lid, layer in layers.items():
+        for i, layer in enumerate(layers.values()):
             if not layer.isValid():
                 feedback.reportError(self.tr(
                     'Layer {} is not valid. It is not included in the package.'
                 ).format(layer.id()))
                 continue
 
-            src = layer.source()
-            uri = QgsDataSourceUri(src)
+            uri = QgsDataSourceUri(layer.source())
             if not uri.service() == service:
                 feedback.reportError(self.tr(
                     'Layer {} does not belong to the service "{}". It is not included in the package.'
                 ).format(layer.id(), service))
                 continue
 
-            # TODO fix this layer
-            if uri.table() in ['raepa_ouvrass_p']:
-                feedback.reportError(self.tr(
-                    'Layer {} is not supported for now. It is not included in the package.'
-                ).format(layer.id(), service))
-                continue
+            ogr_source = 'PG:service={} tables={}.{}'.format(service, uri.schema(), uri.table())
 
-            ll.append(
-                "%s.%s" % (
-                    uri.schema(),
-                    uri.table()
-                )
-            )
-        tables = ','.join(ll)
+            # Set options for ogr
+            ogr_arguments = [
+                '-f', 'SQLite',
+                sqlite_path,
+                ogr_source,
+                '-lco', 'GEOMETRY_NAME=geom',
+                '-lco', 'SRID={}'.format(crs.postgisSrid()),
+                '-gt', '50000',
+                '-lco', 'SPATIAL_INDEX=YES',
+                '--config', 'PG_LIST_ALL_TABLES', 'YES',
+                '--config', 'PG_SKIP_VIEWS', 'YES',
+                '--config', 'OGR_SQLITE_SYNCHRONOUS', 'OFF',
+                '--config', 'OGR_SQLITE_CACHE', '1024'
+            ]
 
-        # Set PG source access string for ogr
-        ogr_source = 'PG:service={} tables={}'.format(service, tables)
-        # feedback.pushInfo('OGR source = %s' % ogr_source)
+            primary_key = uri.keyColumn()
+            if layer.fields().field(primary_key).isNumeric():
+                ogr_arguments.insert(4, '-where')
+                ogr_arguments.insert(5, '{} >= 0'.format(primary_key))
 
-        # Set options for ogr
-        ogr_command = [
-            # 'ogr2ogr',
-            '-f', 'SQLite',
-            sqlite_path,
-            ogr_source,
-            '-lco', 'GEOMETRY_NAME=geom',
-            '-lco', 'SRID={}'.format(crs.postgisSrid()),
-            '-gt', '50000',
-            '-dsco', 'SPATIALITE=YES',
-            '-lco', 'SPATIAL_INDEX=YES',
-            '--config', 'PG_LIST_ALL_TABLES', 'YES',
-            '--config', 'PG_SKIP_VIEWS', 'YES',
-            '--config', 'OGR_SQLITE_SYNCHRONOUS', 'OFF',
-            '--config', 'OGR_SQLITE_CACHE', '1024'
-        ]
-        feedback.pushInfo('OGR command = ogr2ogr {}'.format(' '.join(ogr_command)))
+            if layer.isSpatial():
+                ogr_arguments.insert(4, '-geomfield')
+                ogr_arguments.insert(5, 'geom')
 
-        # Export with ogr2og
-        GdalUtils.runGdal(['ogr2ogr', GdalUtils.escapeAndJoin(ogr_command)], feedback)
+            if i == 1:
+                ogr_arguments.insert(4, '-dsco')
+                ogr_arguments.insert(5, 'SPATIALITE=YES')
+            else:
+                ogr_arguments.insert(0, '-update')
+
+            feedback.pushInfo('OGR command = ogr2ogr {}'.format(' '.join(ogr_arguments)))
+            GdalUtils.runGdal(['ogr2ogr', GdalUtils.escapeAndJoin(ogr_arguments)], feedback)
+
+            if feedback.isCanceled():
+                break
 
         if not os.path.isfile(sqlite_path):
             raise QgsProcessingException('{} could not be created.'.format(sqlite_path))

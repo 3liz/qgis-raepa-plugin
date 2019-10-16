@@ -127,13 +127,16 @@ def parcourir_reseau_depuis_cet_objet(*args):
         'SOURCE_ID': id_objet,
         'METHOD': method
     }
+    down = {}
     try:
         down = processing.run('raepa:get_downstream_route', params)
     except QgsProcessingException:
+        # If the object is at the end of the network, the SQL does not provide Geometry
+        # so the layer is invalid but we have to continue to test upstream
         QgsMessageLog.logMessage('Error in the Processing/Postgis logs.', 'RAEPA', Qgis.Critical)
         iface.messageBar().pushMessage(
             'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
-        return
+        down['OUTPUT_STATUS'] = 0
 
     if down['OUTPUT_STATUS'] == 1:
         layer = down['OUTPUT_LAYER']
@@ -153,13 +156,16 @@ def parcourir_reseau_depuis_cet_objet(*args):
         'SOURCE_ID': id_objet,
         'METHOD': method
     }
+    up = {}
     try:
         up = processing.run('raepa:get_upstream_route', params)
     except QgsProcessingException:
+        # If the objetc is at the end of the network, the SQL does not provide Geometry
+        # so the layer is invalid but we have to continue to provide downstream
         QgsMessageLog.logMessage('Error in the Processing/Postgis logs.', 'RAEPA', Qgis.Critical)
         iface.messageBar().pushMessage(
             'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
-        return
+        up['OUTPUT_STATUS'] = 0
 
     if up['OUTPUT_STATUS'] == 1:
         layer = up['OUTPUT_LAYER']
