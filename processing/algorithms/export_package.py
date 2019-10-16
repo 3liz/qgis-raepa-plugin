@@ -147,6 +147,11 @@ class ExportPackage(QgsProcessingAlgorithm):
                 '--config', 'OGR_SQLITE_CACHE', '1024'
             ]
 
+            primary_key = uri.keyColumn()
+            if layer.fields().field(primary_key).isNumeric():
+                ogr_arguments.insert(4, '-where')
+                ogr_arguments.insert(5, '{} >= 0'.format(primary_key))
+
             if layer.isSpatial():
                 ogr_arguments.insert(4, '-geomfield')
                 ogr_arguments.insert(5, 'geom')
