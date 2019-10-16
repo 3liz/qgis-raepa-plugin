@@ -191,6 +191,9 @@
          <index name="raepa_apparass_p_geom_idx" unique="false">
             <column ascending="true" name="geom"/>
          </index>
+         <index name="raepa_apparass_p_geom_idx1" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
          <index name="raepa_apparass_p_idappareil_idx" unique="false">
             <column ascending="true" name="idappareil"/>
          </index>
@@ -262,6 +265,9 @@
          <index name="raepa_canalaep_l_geom_idx" unique="false">
             <column ascending="true" name="geom"/>
          </index>
+         <index name="raepa_canalaep_l_geom_idx1" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
          <index name="raepa_canalaep_l_idcana_idx" unique="false">
             <column ascending="true" name="idcana"/>
          </index>
@@ -277,6 +283,10 @@
          <index name="raepa_canalaep_l_idnterm_idx" unique="false">
             <column ascending="true" name="idnterm"/>
          </index>
+         <index name="raepa_canalaep_l_st_endpoint_idx" unique="false"/>
+         <index name="raepa_canalaep_l_st_endpoint_idx1" unique="false"/>
+         <index name="raepa_canalaep_l_st_startpoint_idx" unique="false"/>
+         <index name="raepa_canalaep_l_st_startpoint_idx1" unique="false"/>
       </table>
       <table name="raepa_canalass_l" remarks="Table des éléments linéaires du réseau d'assainissement collectif" schema="raepa" type="TABLE">
          <column autoUpdated="true" defaultValue="nextval('raepa.raepa_canalass_l_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial"/>
@@ -358,6 +368,9 @@
          <index name="raepa_canalass_l_geom_idx" unique="false">
             <column ascending="true" name="geom"/>
          </index>
+         <index name="raepa_canalass_l_geom_idx1" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
          <index name="raepa_canalass_l_idcana_idx" unique="false">
             <column ascending="true" name="idcana"/>
          </index>
@@ -411,6 +424,9 @@
             <column ascending="true" name="id"/>
          </index>
          <index name="raepa_ouvraep_p_geom_idx" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_ouvraep_p_geom_idx1" unique="false">
             <column ascending="true" name="geom"/>
          </index>
          <index name="raepa_ouvraep_p_idcanamont_idx" unique="false">
@@ -483,6 +499,9 @@
          <index name="raepa_ouvrass_p_geom_idx" unique="false">
             <column ascending="true" name="geom"/>
          </index>
+         <index name="raepa_ouvrass_p_geom_idx1" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
          <index name="raepa_ouvrass_p_idcanamont_idx" unique="false">
             <column ascending="true" name="idcanamont"/>
          </index>
@@ -519,6 +538,9 @@
             <column ascending="true" name="id"/>
          </index>
          <index name="raepa_reparaep_p_geom_idx" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_reparaep_p_geom_idx1" unique="false">
             <column ascending="true" name="geom"/>
          </index>
          <index name="raepa_reparaep_p_idrepar_idx" unique="false">
@@ -560,6 +582,9 @@
             <column ascending="true" name="id"/>
          </index>
          <index name="raepa_reparass_p_geom_idx" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_reparass_p_geom_idx1" unique="false">
             <column ascending="true" name="geom"/>
          </index>
          <index name="raepa_reparass_p_idrepar_idx" unique="false">
