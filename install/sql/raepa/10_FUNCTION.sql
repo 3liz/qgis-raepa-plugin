@@ -798,8 +798,9 @@ BEGIN
 
     -- Longueur réelle et Pente
     -- Seulement pour ASS car sinon par de zamont ou zaval
-    IF ( TG_TABLE_NAME = 'raepa_canalass_l' AND TG_OP = 'UPDATE' AND ( NOT ST_Equals(NEW.geom, OLD.geom) OR OLD.zamont != NEW.zamont OR OLD.zaval != NEW.zaval ) )
-        OR TG_OP = 'INSERT' THEN
+    IF  TG_TABLE_NAME = 'raepa_canalass_l' THEN
+        IF (TG_OP = 'UPDATE' AND ( NOT ST_Equals(NEW.geom, OLD.geom) OR OLD.zamont != NEW.zamont OR OLD.zaval != NEW.zaval ) )
+            OR TG_OP = 'INSERT' THEN
         NEW._longcana_reelle :=
             CASE
                 WHEN NEW.zamont > 0 AND NEW.zaval > 0
@@ -814,6 +815,7 @@ BEGIN
                 ELSE 0
             END
             ;
+        END IF;
     END IF;
 
     -- Calcul de l'identifiant si besoin

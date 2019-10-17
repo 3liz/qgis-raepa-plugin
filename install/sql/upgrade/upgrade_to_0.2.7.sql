@@ -5,8 +5,8 @@ CREATE OR REPLACE FUNCTION raepa.trg_avant_ajout_ou_modification_canalisation() 
     LANGUAGE plpgsql
     AS $$
 DECLARE
-    new_init geometry(POINT,32620);
-    new_term geometry(POINT,32620);
+    new_init geometry(POINT,2154);
+    new_term geometry(POINT,2154);
     ouvrage_initial text;
     ouvrage_terminal text;
     cid integer;
@@ -142,7 +142,7 @@ BEGIN
     RETURN NEW;
 END;
 $$
-
+;
 
 
 COMMIT;
