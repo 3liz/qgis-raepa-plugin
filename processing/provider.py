@@ -42,6 +42,7 @@ from .algorithms.get_upstream_route import GetUpstreamRoute
 from .algorithms.import_shapefile import ImportShapefile
 from .algorithms.insert_converted_data import InsertConvertedData
 from .algorithms.upgrade_database_structure import UpgradeDatabaseStructure
+from .algorithms.get_orientation_appareil import GetOrientationAppareil
 
 
 class RaepaProvider(QgsProcessingProvider):
@@ -66,6 +67,7 @@ class RaepaProvider(QgsProcessingProvider):
         self.addAlgorithm(GetUpstreamRoute())
         self.addAlgorithm(GetDownstreamRoute())
         self.addAlgorithm(CancelLastModification())
+        self.addAlgorithm(GetOrientationAppareil())
 
     def id(self):
         return 'raepa'

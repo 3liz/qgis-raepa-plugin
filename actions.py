@@ -179,3 +179,16 @@ def parcourir_reseau_depuis_cet_objet(*args):
         )
         layer.renderer().setSymbol(symbol)
         QgsProject.instance().addMapLayer(layer)
+
+def calcul_orientation_appareil(*args):
+    id_appar = args[0]
+    params = {
+        'SOURCE_ID': id_appar
+    }
+    try:
+        processing.run('raepa:get_orientation_appareil', params)
+    except QgsProcessingException:
+        QgsMessageLog.logMessage('Error in the Processing/Postgis logs.', 'RAEPA', Qgis.Critical)
+        iface.messageBar().pushMessage(
+            'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
+        return
