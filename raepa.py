@@ -36,6 +36,7 @@ from .actions import (
     couper_la_canalisation_sous_cet_ouvrage,
     annuler_la_derniere_modification,
     inverser_canalisation,
+    calcul_orientation_appareil,
 )
 from .processing.provider import RaepaProvider
 
@@ -74,7 +75,9 @@ class Raepa:
             'ouvrage_couper_canalisation_sous_cet_ouvrage':
                 [2, couper_la_canalisation_sous_cet_ouvrage],
             'parcourir_reseau_depuis_cet_objet':
-                [2, parcourir_reseau_depuis_cet_objet, 0]
+                [2, parcourir_reseau_depuis_cet_objet, 0],
+            'calcul_orientation_appareil':
+                [1, calcul_orientation_appareil]
         }
         if name not in actions:
             QMessageBox.critical(
