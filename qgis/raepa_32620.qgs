@@ -30,7 +30,7 @@
         <customproperties></customproperties>
       </layer-tree-layer>
     </layer-tree-group>
-    <layer-tree-group checked="Qt::Checked" expanded="1" name="ASS">
+    <layer-tree-group checked="Qt::Unchecked" expanded="1" name="ASS">
       <customproperties></customproperties>
       <layer-tree-layer checked="Qt::Checked" expanded="0" id="raepa_apparass_p201910101510186081018450509" name="Appareils ASS" providerKey="postgres" source="service='raepa' sslmode=disable key='id' estimatedmetadata=true checkPrimaryKeyUnicity='1' table=&quot;raepa&quot;.&quot;raepa_apparass_p&quot; (geom) sql=">
         <customproperties></customproperties>
@@ -130,22 +130,22 @@
   </layer-tree-group>
   <snapping-settings enabled="1" intersection-snapping="0" mode="2" tolerance="12" type="1" unit="1">
     <individual-layer-settings>
+      <layer-setting enabled="0" id="raepa_apparass_p201910101510186081018450509" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="raepa_canalass_l201910101510186331428872815" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="raepa_ouvrass_p_geom20191010150932600262752675" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="raepa_apparass_p201910101510186081018450509" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41" tolerance="12" type="1" units="1"></layer-setting>
     </individual-layer-settings>
   </snapping-settings>
   <relations></relations>
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>meters</units>
     <extent>
-      <xmin>650396.74755645717959851</xmin>
-      <ymin>1798615.52600369299761951</ymin>
-      <xmax>650509.4760077967075631</xmax>
-      <ymax>1798730.74111228878609836</ymax>
+      <xmin>650359.98896032571792603</xmin>
+      <ymin>1798752.42835203930735588</ymin>
+      <xmax>650472.71741169691085815</xmax>
+      <ymax>1798867.64346067234873772</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -162,6 +162,7 @@
     </destinationsrs>
     <rendermaptile>0</rendermaptile>
   </mapcanvas>
+  <projectModels></projectModels>
   <legend updateDrawingOrder="true">
     <legendgroup checked="Qt::Checked" name="AEP" open="true">
       <legendlayer checked="Qt::Checked" drawingOrder="-1" name="Appareils AEP" open="false" showFeatureCount="0">
@@ -180,20 +181,20 @@
         </filegroup>
       </legendlayer>
     </legendgroup>
-    <legendgroup checked="Qt::Checked" name="ASS" open="true">
+    <legendgroup checked="Qt::Unchecked" name="ASS" open="true">
       <legendlayer checked="Qt::Checked" drawingOrder="-1" name="Appareils ASS" open="false" showFeatureCount="0">
         <filegroup hidden="false" open="false">
-          <legendlayerfile isInOverview="0" layerid="raepa_apparass_p201910101510186081018450509" visible="1"></legendlayerfile>
+          <legendlayerfile isInOverview="0" layerid="raepa_apparass_p201910101510186081018450509" visible="0"></legendlayerfile>
         </filegroup>
       </legendlayer>
       <legendlayer checked="Qt::Checked" drawingOrder="-1" name="Ouvrages ASS" open="false" showFeatureCount="0">
         <filegroup hidden="false" open="false">
-          <legendlayerfile isInOverview="0" layerid="raepa_ouvrass_p_geom20191010150932600262752675" visible="1"></legendlayerfile>
+          <legendlayerfile isInOverview="0" layerid="raepa_ouvrass_p_geom20191010150932600262752675" visible="0"></legendlayerfile>
         </filegroup>
       </legendlayer>
       <legendlayer checked="Qt::Checked" drawingOrder="-1" name="Canalisations ASS" open="false" showFeatureCount="0">
         <filegroup hidden="false" open="false">
-          <legendlayerfile isInOverview="0" layerid="raepa_canalass_l201910101510186331428872815" visible="1"></legendlayerfile>
+          <legendlayerfile isInOverview="0" layerid="raepa_canalass_l201910101510186331428872815" visible="0"></legendlayerfile>
         </filegroup>
       </legendlayer>
     </legendgroup>
@@ -355,7 +356,7 @@
             <description></description>
             <projectionacronym></projectionacronym>
             <ellipsoidacronym></ellipsoidacronym>
-            <geographicflag>false</geographicflag>
+            <geographicflag>true</geographicflag>
           </spatialrefsys>
         </crs>
         <extent></extent>
@@ -1412,6 +1413,7 @@
         </symbols>
       </renderer-v2>
       <customproperties>
+        <property key="dualview/previewExpressions" value="id"></property>
         <property key="embeddedWidgets/count" value="0"></property>
         <property key="variableNames"></property>
         <property key="variableValues"></property>
@@ -1729,9 +1731,12 @@
           </editWidget>
         </field>
         <field name="_ferme">
-          <editWidget type="TextEdit">
+          <editWidget type="CheckBox">
             <config>
-              <Option></Option>
+              <Option type="Map">
+                <Option name="CheckedState" type="QString" value=""></Option>
+                <Option name="UncheckedState" type="QString" value=""></Option>
+              </Option>
             </config>
           </editWidget>
         </field>
@@ -1739,6 +1744,16 @@
           <editWidget type="TextEdit">
             <config>
               <Option></Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="_observation">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option name="IsMultiline" type="bool" value="true"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
+              </Option>
             </config>
           </editWidget>
         </field>
@@ -1767,8 +1782,9 @@
         <alias field="dategeoloc" index="20" name="Date de la géolocalisation"></alias>
         <alias field="sourgeoloc" index="21" name="Auteur de la géolocalisation"></alias>
         <alias field="sourattrib" index="22" name="Auteur des données attributaires"></alias>
-        <alias field="_ferme" index="23" name=""></alias>
+        <alias field="_ferme" index="23" name="Fermeture appareil"></alias>
         <alias field="_orientation" index="24" name=""></alias>
+        <alias field="_observation" index="25" name="Obsevation"></alias>
       </aliases>
       <excludeAttributesWMS></excludeAttributesWMS>
       <excludeAttributesWFS></excludeAttributesWFS>
@@ -1798,6 +1814,7 @@
         <default applyOnUpdate="0" expression="" field="sourattrib"></default>
         <default applyOnUpdate="0" expression="" field="_ferme"></default>
         <default applyOnUpdate="0" expression="" field="_orientation"></default>
+        <default applyOnUpdate="0" expression="" field="_observation"></default>
       </defaults>
       <constraints>
         <constraint constraints="3" exp_strength="0" field="id" notnull_strength="1" unique_strength="1"></constraint>
@@ -1825,6 +1842,7 @@
         <constraint constraints="0" exp_strength="0" field="sourattrib" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="1" exp_strength="0" field="_ferme" notnull_strength="1" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="_orientation" notnull_strength="0" unique_strength="0"></constraint>
+        <constraint constraints="0" exp_strength="0" field="_observation" notnull_strength="0" unique_strength="0"></constraint>
       </constraints>
       <constraintExpressions>
         <constraint desc="" exp="" field="id"></constraint>
@@ -1852,18 +1870,19 @@
         <constraint desc="" exp="" field="sourattrib"></constraint>
         <constraint desc="" exp="" field="_ferme"></constraint>
         <constraint desc="" exp="" field="_orientation"></constraint>
+        <constraint desc="" exp="" field="_observation"></constraint>
       </constraintExpressions>
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
-        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'parcourir_reseau_depuis_cet_objet',&#xA;    '[% idappareil %]',&#xA;    0&#xA;)" capture="0" icon="" id="{af895aed-b17d-443f-bc2c-ec6613a65c28}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
-          <actionScope id="Canvas"></actionScope>
+        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'parcourir_reseau_depuis_cet_objet',&#xA;    '[% idappareil %]',&#xA;    0&#xA;)" capture="0" icon="" id="{085dc614-f242-4727-abf7-e6555db622cc}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
+          <actionScope id="Canvas"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
-        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'calcul_orientation_appareil',&#xA;    '[% idappareil %]',&#xA;)" capture="0" icon="" id="{263a20ed-918c-4b72-8ab5-98040516fe08}" isEnabledOnlyWhenEditable="0" name="Calcul de l'orientation de l'appareil" notificationMessage="" shortTitle="" type="1">
-          <actionScope id="Canvas"></actionScope>
+        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'calcul_orientation_appareil',&#xA;    '[% idappareil %]',&#xA;)" capture="0" icon="" id="{e221931f-8faf-421c-bc55-a7109cc8cce0}" isEnabledOnlyWhenEditable="0" name="Calcul de l'orientation de l'appareil" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
+          <actionScope id="Canvas"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
       </attributeactions>
@@ -1895,6 +1914,7 @@
           <column hidden="1" type="actions" width="-1"></column>
           <column hidden="0" name="_ferme" type="field" width="-1"></column>
           <column hidden="0" name="_orientation" type="field" width="-1"></column>
+          <column hidden="0" name="_observation" type="field" width="-1"></column>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -1930,6 +1950,7 @@ def my_form_open(dialog, layer, feature):
             <attributeEditorField index="1" name="idappareil" showLabel="1"></attributeEditorField>
             <attributeEditorField index="-1" name="typreseau" showLabel="1"></attributeEditorField>
             <attributeEditorField index="6" name="fnappaep" showLabel="1"></attributeEditorField>
+            <attributeEditorField index="25" name="_observation" showLabel="1"></attributeEditorField>
           </attributeEditorContainer>
           <attributeEditorContainer columnCount="1" groupBox="1" name="Technique" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
             <attributeEditorField index="2" name="x" showLabel="1"></attributeEditorField>
@@ -1938,6 +1959,7 @@ def my_form_open(dialog, layer, feature):
             <attributeEditorField index="8" name="diametre" showLabel="1"></attributeEditorField>
             <attributeEditorField index="15" name="qualglocxy" showLabel="1"></attributeEditorField>
             <attributeEditorField index="16" name="qualglocz" showLabel="1"></attributeEditorField>
+            <attributeEditorField index="23" name="_ferme" showLabel="1"></attributeEditorField>
           </attributeEditorContainer>
           <attributeEditorContainer columnCount="1" groupBox="1" name="Relations" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
             <attributeEditorField index="9" name="idcanamont" showLabel="1"></attributeEditorField>
@@ -1964,6 +1986,7 @@ def my_form_open(dialog, layer, feature):
         <field editable="1" name="_code_chantier"></field>
         <field editable="1" name="_date_import"></field>
         <field editable="1" name="_ferme"></field>
+        <field editable="1" name="_observation"></field>
         <field editable="1" name="_orientation"></field>
         <field editable="1" name="_source_historique"></field>
         <field editable="1" name="_temp_data"></field>
@@ -1997,6 +2020,7 @@ def my_form_open(dialog, layer, feature):
         <field labelOnTop="0" name="_code_chantier"></field>
         <field labelOnTop="0" name="_date_import"></field>
         <field labelOnTop="0" name="_ferme"></field>
+        <field labelOnTop="0" name="_observation"></field>
         <field labelOnTop="0" name="_orientation"></field>
         <field labelOnTop="0" name="_source_historique"></field>
         <field labelOnTop="0" name="_temp_data"></field>
@@ -2696,6 +2720,16 @@ def my_form_open(dialog, layer, feature):
             </config>
           </editWidget>
         </field>
+        <field name="_observation">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option name="IsMultiline" type="bool" value="true"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
       </fieldConfiguration>
       <aliases>
         <alias field="id" index="0" name="Identifiant automatique"></alias>
@@ -2726,6 +2760,7 @@ def my_form_open(dialog, layer, feature):
         <alias field="_code_chantier" index="25" name="Code du chantier"></alias>
         <alias field="_date_import" index="26" name="Date de l'import"></alias>
         <alias field="_temp_data" index="27" name=""></alias>
+        <alias field="_observation" index="28" name="Observation"></alias>
       </aliases>
       <excludeAttributesWMS></excludeAttributesWMS>
       <excludeAttributesWFS></excludeAttributesWFS>
@@ -2758,6 +2793,7 @@ def my_form_open(dialog, layer, feature):
         <default applyOnUpdate="0" expression="" field="_code_chantier"></default>
         <default applyOnUpdate="0" expression="" field="_date_import"></default>
         <default applyOnUpdate="0" expression="" field="_temp_data"></default>
+        <default applyOnUpdate="0" expression="" field="_observation"></default>
       </defaults>
       <constraints>
         <constraint constraints="3" exp_strength="0" field="id" notnull_strength="1" unique_strength="1"></constraint>
@@ -2788,6 +2824,7 @@ def my_form_open(dialog, layer, feature):
         <constraint constraints="0" exp_strength="0" field="_code_chantier" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="_date_import" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="_temp_data" notnull_strength="0" unique_strength="0"></constraint>
+        <constraint constraints="0" exp_strength="0" field="_observation" notnull_strength="0" unique_strength="0"></constraint>
       </constraints>
       <constraintExpressions>
         <constraint desc="" exp="" field="id"></constraint>
@@ -2818,13 +2855,14 @@ def my_form_open(dialog, layer, feature):
         <constraint desc="" exp="" field="_code_chantier"></constraint>
         <constraint desc="" exp="" field="_date_import"></constraint>
         <constraint desc="" exp="" field="_temp_data"></constraint>
+        <constraint desc="" exp="" field="_observation"></constraint>
       </constraintExpressions>
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
-        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'parcourir_reseau_depuis_cet_objet',&#xA;    '[% idappareil %]',&#xA;    0&#xA;)" capture="0" icon="" id="{5593091c-67a3-4fb3-9a33-1815af5bbef0}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
-          <actionScope id="Canvas"></actionScope>
+        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'parcourir_reseau_depuis_cet_objet',&#xA;    '[% idappareil %]',&#xA;    0&#xA;)" capture="0" icon="" id="{9c6e720d-d49f-48da-bc45-40a65e98fd5e}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
+          <actionScope id="Canvas"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
       </attributeactions>
@@ -2859,6 +2897,7 @@ def my_form_open(dialog, layer, feature):
           <column hidden="0" name="_source_historique" type="field" width="-1"></column>
           <column hidden="0" name="_temp_data" type="field" width="-1"></column>
           <column hidden="0" name="id" type="field" width="-1"></column>
+          <column hidden="0" name="_observation" type="field" width="-1"></column>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -2894,6 +2933,7 @@ def my_form_open(dialog, layer, feature):
             <attributeEditorField index="1" name="idappareil" showLabel="1"></attributeEditorField>
             <attributeEditorField index="6" name="typreseau" showLabel="1"></attributeEditorField>
             <attributeEditorField index="7" name="fnappass" showLabel="1"></attributeEditorField>
+            <attributeEditorField index="28" name="_observation" showLabel="1"></attributeEditorField>
           </attributeEditorContainer>
           <attributeEditorContainer columnCount="1" groupBox="1" name="Technique" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
             <attributeEditorField index="2" name="x" showLabel="1"></attributeEditorField>
@@ -2930,6 +2970,7 @@ def my_form_open(dialog, layer, feature):
       <editable>
         <field editable="1" name="_code_chantier"></field>
         <field editable="1" name="_date_import"></field>
+        <field editable="1" name="_observation"></field>
         <field editable="1" name="_source_historique"></field>
         <field editable="1" name="_temp_data"></field>
         <field editable="1" name="andebpose"></field>
@@ -2960,6 +3001,7 @@ def my_form_open(dialog, layer, feature):
       <labelOnTop>
         <field labelOnTop="0" name="_code_chantier"></field>
         <field labelOnTop="0" name="_date_import"></field>
+        <field labelOnTop="0" name="_observation"></field>
         <field labelOnTop="0" name="_source_historique"></field>
         <field labelOnTop="0" name="_temp_data"></field>
         <field labelOnTop="0" name="andebpose"></field>
@@ -3694,6 +3736,16 @@ def my_form_open(dialog, layer, feature):
             </config>
           </editWidget>
         </field>
+        <field name="_observation">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option name="IsMultiline" type="bool" value="true"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
       </fieldConfiguration>
       <aliases>
         <alias field="id" index="0" name="Identifiant automatique"></alias>
@@ -3725,6 +3777,7 @@ def my_form_open(dialog, layer, feature):
         <alias field="dategeoloc" index="26" name="Date de la géolocalisation"></alias>
         <alias field="sourgeoloc" index="27" name="Auteur de la géolocalisation"></alias>
         <alias field="sourattrib" index="28" name="Auteur des données attributaires"></alias>
+        <alias field="_observation" index="29" name="Observation"></alias>
       </aliases>
       <excludeAttributesWMS></excludeAttributesWMS>
       <excludeAttributesWFS></excludeAttributesWFS>
@@ -3758,6 +3811,7 @@ def my_form_open(dialog, layer, feature):
         <default applyOnUpdate="0" expression="" field="dategeoloc"></default>
         <default applyOnUpdate="0" expression="" field="sourgeoloc"></default>
         <default applyOnUpdate="0" expression="" field="sourattrib"></default>
+        <default applyOnUpdate="0" expression="" field="_observation"></default>
       </defaults>
       <constraints>
         <constraint constraints="3" exp_strength="0" field="id" notnull_strength="1" unique_strength="1"></constraint>
@@ -3789,6 +3843,7 @@ def my_form_open(dialog, layer, feature):
         <constraint constraints="0" exp_strength="0" field="dategeoloc" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="sourgeoloc" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="sourattrib" notnull_strength="0" unique_strength="0"></constraint>
+        <constraint constraints="0" exp_strength="0" field="_observation" notnull_strength="0" unique_strength="0"></constraint>
       </constraints>
       <constraintExpressions>
         <constraint desc="" exp="" field="id"></constraint>
@@ -3820,17 +3875,18 @@ def my_form_open(dialog, layer, feature):
         <constraint desc="" exp="" field="dategeoloc"></constraint>
         <constraint desc="" exp="" field="sourgeoloc"></constraint>
         <constraint desc="" exp="" field="sourattrib"></constraint>
+        <constraint desc="" exp="" field="_observation"></constraint>
       </constraintExpressions>
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
-        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'inverser_canalisation',&#xA;    '[% id %]',&#xA;    '[% @layer_id %]'&#xA;)" capture="0" icon="" id="{bfcbfdb7-50b3-4a49-8409-31a221d69438}" isEnabledOnlyWhenEditable="0" name="Inverser la canalisation" notificationMessage="" shortTitle="Inverser la canalisation" type="1">
+        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'inverser_canalisation',&#xA;    '[% id %]',&#xA;    '[% @layer_id %]'&#xA;)" capture="0" icon="" id="{b444a94c-6feb-4426-a5a6-fe4cd3f448ad}" isEnabledOnlyWhenEditable="0" name="Inverser la canalisation" notificationMessage="" shortTitle="Inverser la canalisation" type="1">
           <actionScope id="Field"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
-        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'parcourir_reseau_depuis_cet_objet',&#xA;    '[% idcana %]',&#xA;    0&#xA;)" capture="0" icon="" id="{80c9e5f6-ac1a-466a-b5c1-903d1cebd658}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
-          <actionScope id="Canvas"></actionScope>
+        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'parcourir_reseau_depuis_cet_objet',&#xA;    '[% idcana %]',&#xA;    0&#xA;)" capture="0" icon="" id="{8f0712c6-37ca-4b48-9dd3-9b0be2017020}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
+          <actionScope id="Canvas"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
       </attributeactions>
@@ -3866,6 +3922,7 @@ def my_form_open(dialog, layer, feature):
           <column hidden="0" name="sourgeoloc" type="field" width="-1"></column>
           <column hidden="0" name="sourattrib" type="field" width="-1"></column>
           <column hidden="1" type="actions" width="-1"></column>
+          <column hidden="0" name="_observation" type="field" width="-1"></column>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -3907,6 +3964,7 @@ def my_form_open(dialog, layer, feature):
             <attributeEditorField index="6" name="materiau" showLabel="1"></attributeEditorField>
             <attributeEditorField index="5" name="branchemnt" showLabel="1"></attributeEditorField>
             <attributeEditorField index="20" name="nbranche" showLabel="1"></attributeEditorField>
+            <attributeEditorField index="29" name="_observation" showLabel="1"></attributeEditorField>
           </attributeEditorContainer>
           <attributeEditorContainer columnCount="1" groupBox="1" name="Technique" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
             <attributeEditorField index="17" name="longcana" showLabel="1"></attributeEditorField>
@@ -3948,6 +4006,7 @@ def my_form_open(dialog, layer, feature):
         <field editable="1" name="_forme"></field>
         <field editable="1" name="_longcana_cm"></field>
         <field editable="1" name="_longcana_reelle"></field>
+        <field editable="1" name="_observation"></field>
         <field editable="1" name="_pente"></field>
         <field editable="1" name="_precisionannee"></field>
         <field editable="1" name="_source_historique"></field>
@@ -3999,6 +4058,7 @@ def my_form_open(dialog, layer, feature):
         <field labelOnTop="0" name="_forme"></field>
         <field labelOnTop="0" name="_longcana_cm"></field>
         <field labelOnTop="0" name="_longcana_reelle"></field>
+        <field labelOnTop="0" name="_observation"></field>
         <field labelOnTop="0" name="_pente"></field>
         <field labelOnTop="0" name="_precisionannee"></field>
         <field labelOnTop="0" name="_source_historique"></field>
@@ -6036,6 +6096,16 @@ def my_form_open(dialog, layer, feature):
             </config>
           </editWidget>
         </field>
+        <field name="_observation">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option name="IsMultiline" type="bool" value="false"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
       </fieldConfiguration>
       <aliases>
         <alias field="id" index="0" name="Identifiant automatique"></alias>
@@ -6079,6 +6149,7 @@ def my_form_open(dialog, layer, feature):
         <alias field="_code_chantier" index="38" name=""></alias>
         <alias field="_date_import" index="39" name=""></alias>
         <alias field="_temp_data" index="40" name=""></alias>
+        <alias field="_observation" index="41" name="Observation"></alias>
       </aliases>
       <excludeAttributesWMS></excludeAttributesWMS>
       <excludeAttributesWFS></excludeAttributesWFS>
@@ -6124,6 +6195,7 @@ def my_form_open(dialog, layer, feature):
         <default applyOnUpdate="0" expression="" field="_code_chantier"></default>
         <default applyOnUpdate="0" expression="" field="_date_import"></default>
         <default applyOnUpdate="0" expression="" field="_temp_data"></default>
+        <default applyOnUpdate="0" expression="" field="_observation"></default>
       </defaults>
       <constraints>
         <constraint constraints="3" exp_strength="0" field="id" notnull_strength="1" unique_strength="1"></constraint>
@@ -6167,6 +6239,7 @@ def my_form_open(dialog, layer, feature):
         <constraint constraints="0" exp_strength="0" field="_code_chantier" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="_date_import" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="_temp_data" notnull_strength="0" unique_strength="0"></constraint>
+        <constraint constraints="0" exp_strength="0" field="_observation" notnull_strength="0" unique_strength="0"></constraint>
       </constraints>
       <constraintExpressions>
         <constraint desc="" exp="" field="id"></constraint>
@@ -6210,18 +6283,19 @@ def my_form_open(dialog, layer, feature):
         <constraint desc="" exp="" field="_code_chantier"></constraint>
         <constraint desc="" exp="" field="_date_import"></constraint>
         <constraint desc="" exp="" field="_temp_data"></constraint>
+        <constraint desc="" exp="" field="_observation"></constraint>
       </constraintExpressions>
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
-        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'inverser_canalisation',&#xA;    '[% id %]',&#xA;    '[% @layer_id %]'&#xA;)" capture="0" icon="" id="{686f5430-e0b3-466f-ba5f-8b38884374da}" isEnabledOnlyWhenEditable="0" name="Inverser la canalisation" notificationMessage="" shortTitle="Inverser la canalisation" type="1">
-          <actionScope id="Canvas"></actionScope>
+        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'inverser_canalisation',&#xA;    '[% id %]',&#xA;    '[% @layer_id %]'&#xA;)" capture="0" icon="" id="{dcc0e31c-af36-4842-9d50-4bb9b47b2183}" isEnabledOnlyWhenEditable="0" name="Inverser la canalisation" notificationMessage="" shortTitle="Inverser la canalisation" type="1">
           <actionScope id="Field"></actionScope>
+          <actionScope id="Canvas"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
-        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'parcourir_reseau_depuis_cet_objet',&#xA;    '[% idcana %]',&#xA;    0&#xA;)" capture="0" icon="" id="{4053a227-a32b-4e5e-bc2a-183fd819fca6}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
-          <actionScope id="Canvas"></actionScope>
+        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'parcourir_reseau_depuis_cet_objet',&#xA;    '[% idcana %]',&#xA;    0&#xA;)" capture="0" icon="" id="{900c0d44-39e5-43c3-91e7-19d6b6319621}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
+          <actionScope id="Canvas"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
       </attributeactions>
@@ -6269,6 +6343,7 @@ def my_form_open(dialog, layer, feature):
           <column hidden="0" name="_date_import" type="field" width="-1"></column>
           <column hidden="0" name="_temp_data" type="field" width="-1"></column>
           <column hidden="0" name="id" type="field" width="-1"></column>
+          <column hidden="0" name="_observation" type="field" width="-1"></column>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -6312,6 +6387,7 @@ def my_form_open(dialog, layer, feature):
             <attributeEditorField index="7" name="materiau" showLabel="1"></attributeEditorField>
             <attributeEditorField index="5" name="branchemnt" showLabel="1"></attributeEditorField>
             <attributeEditorField index="28" name="nbranche" showLabel="1"></attributeEditorField>
+            <attributeEditorField index="41" name="_observation" showLabel="1"></attributeEditorField>
           </attributeEditorContainer>
           <attributeEditorContainer columnCount="1" groupBox="1" name="Technique" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
             <attributeEditorField index="24" name="longcana" showLabel="1"></attributeEditorField>
@@ -6359,6 +6435,7 @@ def my_form_open(dialog, layer, feature):
         <field editable="1" name="_forme"></field>
         <field editable="1" name="_longcana_cm"></field>
         <field editable="1" name="_longcana_reelle"></field>
+        <field editable="1" name="_observation"></field>
         <field editable="1" name="_pente"></field>
         <field editable="1" name="_precisionannee"></field>
         <field editable="1" name="_source_historique"></field>
@@ -6407,6 +6484,7 @@ def my_form_open(dialog, layer, feature):
         <field labelOnTop="0" name="_forme"></field>
         <field labelOnTop="0" name="_longcana_cm"></field>
         <field labelOnTop="0" name="_longcana_reelle"></field>
+        <field labelOnTop="0" name="_observation"></field>
         <field labelOnTop="0" name="_pente"></field>
         <field labelOnTop="0" name="_precisionannee"></field>
         <field labelOnTop="0" name="_source_historique"></field>
@@ -7123,6 +7201,16 @@ def my_form_open(dialog, layer, feature):
             </config>
           </editWidget>
         </field>
+        <field name="_observation">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option name="IsMultiline" type="bool" value="true"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
       </fieldConfiguration>
       <aliases>
         <alias field="id" index="0" name="Identifiant automatique"></alias>
@@ -7146,6 +7234,7 @@ def my_form_open(dialog, layer, feature):
         <alias field="dategeoloc" index="18" name="Date de la géolocalisation"></alias>
         <alias field="sourgeoloc" index="19" name="Auteur de la géolocalisation"></alias>
         <alias field="sourattrib" index="20" name="Auteur des données attributaires"></alias>
+        <alias field="_observation" index="21" name="Observation"></alias>
       </aliases>
       <excludeAttributesWMS></excludeAttributesWMS>
       <excludeAttributesWFS></excludeAttributesWFS>
@@ -7171,6 +7260,7 @@ def my_form_open(dialog, layer, feature):
         <default applyOnUpdate="0" expression="" field="dategeoloc"></default>
         <default applyOnUpdate="0" expression="" field="sourgeoloc"></default>
         <default applyOnUpdate="0" expression="" field="sourattrib"></default>
+        <default applyOnUpdate="0" expression="" field="_observation"></default>
       </defaults>
       <constraints>
         <constraint constraints="3" exp_strength="0" field="id" notnull_strength="1" unique_strength="1"></constraint>
@@ -7194,6 +7284,7 @@ def my_form_open(dialog, layer, feature):
         <constraint constraints="0" exp_strength="0" field="dategeoloc" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="sourgeoloc" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="sourattrib" notnull_strength="0" unique_strength="0"></constraint>
+        <constraint constraints="0" exp_strength="0" field="_observation" notnull_strength="0" unique_strength="0"></constraint>
       </constraints>
       <constraintExpressions>
         <constraint desc="" exp="" field="id"></constraint>
@@ -7217,22 +7308,23 @@ def my_form_open(dialog, layer, feature):
         <constraint desc="" exp="" field="dategeoloc"></constraint>
         <constraint desc="" exp="" field="sourgeoloc"></constraint>
         <constraint desc="" exp="" field="sourattrib"></constraint>
+        <constraint desc="" exp="" field="_observation"></constraint>
       </constraintExpressions>
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
-        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'parcourir_reseau_depuis_cet_objet',&#xA;    '[% idouvrage %]',&#xA;    0&#xA;)" capture="0" icon="" id="{05d33314-6572-4813-bfc6-b5e86e6111de}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
-          <actionScope id="Canvas"></actionScope>
+        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'parcourir_reseau_depuis_cet_objet',&#xA;    '[% idouvrage %]',&#xA;    0&#xA;)" capture="0" icon="" id="{9717cd43-64e9-48b1-a0b7-68abd48c9540}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
-          <actionScope id="Feature"></actionScope>
-        </actionsetting>
-        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'ouvrage_annuler_derniere_modification',&#xA;    '[% idouvrage %]',&#xA;    '[% @layer_id %]'&#xA;)" capture="0" icon="" id="{8a122ad1-bc0b-4a80-a0e5-06db0c13834d}" isEnabledOnlyWhenEditable="0" name="Annuler la dernière modification" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Canvas"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
-        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'ouvrage_couper_canalisation_sous_cet_ouvrage',&#xA;    '[% idouvrage %]',&#xA;    '[% @layer_id %]'&#xA;)" capture="0" icon="" id="{e5595239-e4c2-4dd0-9567-4880eeb4a581}" isEnabledOnlyWhenEditable="0" name="Couper la canalisation sous cet ouvrage" notificationMessage="" shortTitle="" type="1">
+        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'ouvrage_annuler_derniere_modification',&#xA;    '[% idouvrage %]',&#xA;    '[% @layer_id %]'&#xA;)" capture="0" icon="" id="{65e3b0ea-9d03-46ba-a804-1f8ed32465e8}" isEnabledOnlyWhenEditable="0" name="Annuler la dernière modification" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Canvas"></actionScope>
+          <actionScope id="Feature"></actionScope>
+        </actionsetting>
+        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'ouvrage_couper_canalisation_sous_cet_ouvrage',&#xA;    '[% idouvrage %]',&#xA;    '[% @layer_id %]'&#xA;)" capture="0" icon="" id="{b64d6a22-46c6-4a5e-8b41-e21902930fdc}" isEnabledOnlyWhenEditable="0" name="Couper la canalisation sous cet ouvrage" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
+          <actionScope id="Canvas"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
       </attributeactions>
@@ -7260,6 +7352,7 @@ def my_form_open(dialog, layer, feature):
           <column hidden="0" name="sourgeoloc" type="field" width="-1"></column>
           <column hidden="0" name="sourattrib" type="field" width="-1"></column>
           <column hidden="1" type="actions" width="-1"></column>
+          <column hidden="0" name="_observation" type="field" width="-1"></column>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -7281,6 +7374,7 @@ def my_form_open(dialog, layer, feature):
             <attributeEditorField index="1" name="idouvrage" showLabel="1"></attributeEditorField>
             <attributeEditorField index="-1" name="typreseau" showLabel="1"></attributeEditorField>
             <attributeEditorField index="6" name="fnouvaep" showLabel="1"></attributeEditorField>
+            <attributeEditorField index="21" name="_observation" showLabel="1"></attributeEditorField>
           </attributeEditorContainer>
           <attributeEditorContainer columnCount="1" groupBox="1" name="Technique" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
             <attributeEditorField index="2" name="x" showLabel="1"></attributeEditorField>
@@ -7315,6 +7409,7 @@ def my_form_open(dialog, layer, feature):
         <field editable="1" name="_code_chantier"></field>
         <field editable="1" name="_date_import"></field>
         <field editable="1" name="_geom_emprise"></field>
+        <field editable="1" name="_observation"></field>
         <field editable="1" name="_source_historique"></field>
         <field editable="1" name="_temp_data"></field>
         <field editable="1" name="_ztampon"></field>
@@ -7347,6 +7442,7 @@ def my_form_open(dialog, layer, feature):
         <field labelOnTop="0" name="_code_chantier"></field>
         <field labelOnTop="0" name="_date_import"></field>
         <field labelOnTop="0" name="_geom_emprise"></field>
+        <field labelOnTop="0" name="_observation"></field>
         <field labelOnTop="0" name="_source_historique"></field>
         <field labelOnTop="0" name="_temp_data"></field>
         <field labelOnTop="0" name="_ztampon"></field>
@@ -9462,6 +9558,16 @@ def my_form_open(dialog, layer, feature):
             </config>
           </editWidget>
         </field>
+        <field name="_observation">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option name="IsMultiline" type="bool" value="true"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
       </fieldConfiguration>
       <aliases>
         <alias field="id" index="0" name="Identifiant automatique"></alias>
@@ -9493,6 +9599,7 @@ def my_form_open(dialog, layer, feature):
         <alias field="_date_import" index="26" name=""></alias>
         <alias field="_geom_emprise" index="27" name=""></alias>
         <alias field="_temp_data" index="28" name=""></alias>
+        <alias field="_observation" index="29" name="Observation"></alias>
       </aliases>
       <excludeAttributesWMS></excludeAttributesWMS>
       <excludeAttributesWFS></excludeAttributesWFS>
@@ -9526,6 +9633,7 @@ def my_form_open(dialog, layer, feature):
         <default applyOnUpdate="0" expression="" field="_date_import"></default>
         <default applyOnUpdate="0" expression="" field="_geom_emprise"></default>
         <default applyOnUpdate="0" expression="" field="_temp_data"></default>
+        <default applyOnUpdate="0" expression="" field="_observation"></default>
       </defaults>
       <constraints>
         <constraint constraints="3" exp_strength="0" field="id" notnull_strength="1" unique_strength="1"></constraint>
@@ -9557,6 +9665,7 @@ def my_form_open(dialog, layer, feature):
         <constraint constraints="0" exp_strength="0" field="_date_import" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="_geom_emprise" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="0" exp_strength="0" field="_temp_data" notnull_strength="0" unique_strength="0"></constraint>
+        <constraint constraints="0" exp_strength="0" field="_observation" notnull_strength="0" unique_strength="0"></constraint>
       </constraints>
       <constraintExpressions>
         <constraint desc="" exp="" field="id"></constraint>
@@ -9588,22 +9697,23 @@ def my_form_open(dialog, layer, feature):
         <constraint desc="" exp="" field="_date_import"></constraint>
         <constraint desc="" exp="" field="_geom_emprise"></constraint>
         <constraint desc="" exp="" field="_temp_data"></constraint>
+        <constraint desc="" exp="" field="_observation"></constraint>
       </constraintExpressions>
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
-        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'parcourir_reseau_depuis_cet_objet',&#xA;    '[% idouvrage %]',&#xA;    0&#xA;)" capture="0" icon="" id="{0268e617-d493-4d95-9597-13c6f075cd0e}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
-          <actionScope id="Canvas"></actionScope>
+        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'parcourir_reseau_depuis_cet_objet',&#xA;    '[% idouvrage %]',&#xA;    0&#xA;)" capture="0" icon="" id="{61fbfa13-c4ba-47f7-9876-642e32aeafab}" isEnabledOnlyWhenEditable="0" name="Parcourir le réseau depuis cet objet" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
-          <actionScope id="Feature"></actionScope>
-        </actionsetting>
-        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'ouvrage_annuler_derniere_modification',&#xA;    '[% idouvrage %]',&#xA;    '[% @layer_id %]'&#xA;)" capture="0" icon="" id="{87374bc3-9bae-43e5-82ac-d3e703c6fc80}" isEnabledOnlyWhenEditable="0" name="Annuler la dernière modification" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Canvas"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
-        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'ouvrage_couper_canalisation_sous_cet_ouvrage',&#xA;    '[% idouvrage %]',&#xA;    '[% @layer_id %]'&#xA;)" capture="0" icon="" id="{deec9fe4-302b-4d0a-b642-4d8fe10f2573}" isEnabledOnlyWhenEditable="0" name="Couper la canalisation sous cet ouvrage" notificationMessage="" shortTitle="" type="1">
+        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'ouvrage_annuler_derniere_modification',&#xA;    '[% idouvrage %]',&#xA;    '[% @layer_id %]'&#xA;)" capture="0" icon="" id="{6d8a5ef5-1bcb-4699-9b69-39f8757279e2}" isEnabledOnlyWhenEditable="0" name="Annuler la dernière modification" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Canvas"></actionScope>
+          <actionScope id="Feature"></actionScope>
+        </actionsetting>
+        <actionsetting action="from qgis.utils import plugins&#xA;plugins['raepa'].run_action(&#xA;    'ouvrage_couper_canalisation_sous_cet_ouvrage',&#xA;    '[% idouvrage %]',&#xA;    '[% @layer_id %]'&#xA;)" capture="0" icon="" id="{c48c5f12-701c-4ab8-beac-f4e0d2951a6d}" isEnabledOnlyWhenEditable="0" name="Couper la canalisation sous cet ouvrage" notificationMessage="" shortTitle="" type="1">
           <actionScope id="Field"></actionScope>
+          <actionScope id="Canvas"></actionScope>
           <actionScope id="Feature"></actionScope>
         </actionsetting>
       </attributeactions>
@@ -9639,6 +9749,7 @@ def my_form_open(dialog, layer, feature):
           <column hidden="0" name="_date_import" type="field" width="-1"></column>
           <column hidden="0" name="_temp_data" type="field" width="-1"></column>
           <column hidden="0" name="id" type="field" width="-1"></column>
+          <column hidden="0" name="_observation" type="field" width="-1"></column>
         </columns>
       </attributetableconfig>
       <conditionalstyles>
@@ -9660,6 +9771,7 @@ def my_form_open(dialog, layer, feature):
             <attributeEditorField index="1" name="idouvrage" showLabel="1"></attributeEditorField>
             <attributeEditorField index="6" name="typreseau" showLabel="1"></attributeEditorField>
             <attributeEditorField index="7" name="fnouvass" showLabel="1"></attributeEditorField>
+            <attributeEditorField index="29" name="_observation" showLabel="1"></attributeEditorField>
           </attributeEditorContainer>
           <attributeEditorContainer columnCount="1" groupBox="1" name="Technique" showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0">
             <attributeEditorField index="2" name="x" showLabel="1"></attributeEditorField>
@@ -9699,6 +9811,7 @@ def my_form_open(dialog, layer, feature):
         <field editable="1" name="_code_chantier"></field>
         <field editable="1" name="_date_import"></field>
         <field editable="1" name="_geom_emprise"></field>
+        <field editable="1" name="_observation"></field>
         <field editable="1" name="_source_historique"></field>
         <field editable="1" name="_temp_data"></field>
         <field editable="1" name="_ztampon"></field>
@@ -9730,6 +9843,7 @@ def my_form_open(dialog, layer, feature):
         <field labelOnTop="0" name="_code_chantier"></field>
         <field labelOnTop="0" name="_date_import"></field>
         <field labelOnTop="0" name="_geom_emprise"></field>
+        <field labelOnTop="0" name="_observation"></field>
         <field labelOnTop="0" name="_source_historique"></field>
         <field labelOnTop="0" name="_temp_data"></field>
         <field labelOnTop="0" name="_ztampon"></field>
@@ -12387,133 +12501,15 @@ def my_form_open(dialog, layer, feature):
     <layer id="raepa_canalass_l201910101510186331428872815"></layer>
   </layerorder>
   <properties>
-    <SpatialRefSys>
-      <ProjectionsEnabled type="int">1</ProjectionsEnabled>
-    </SpatialRefSys>
-    <Measure>
-      <Ellipsoid type="QString">WGS84</Ellipsoid>
-    </Measure>
-    <WMSSegmentizeFeatureInfoGeometry type="bool">false</WMSSegmentizeFeatureInfoGeometry>
-    <WMSRootName type="QString"></WMSRootName>
-    <WFSLayers type="QStringList">
-      <value>raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279</value>
-      <value>raepa_apparass_p201910101510186081018450509</value>
-      <value>raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41</value>
-      <value>raepa_canalass_l201910101510186331428872815</value>
-      <value>raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3</value>
-      <value>raepa_ouvrass_p_geom20191010150932600262752675</value>
-    </WFSLayers>
-    <WMSAccessConstraints type="QString">None</WMSAccessConstraints>
-    <WMTSUrl type="QString"></WMTSUrl>
-    <WMSPrecision type="QString">8</WMSPrecision>
-    <WMSContactOrganization type="QString"></WMSContactOrganization>
-    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
-    <Gui>
-      <CanvasColorRedPart type="int">255</CanvasColorRedPart>
-      <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
-      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
-      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
-      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
-      <CanvasColorBluePart type="int">255</CanvasColorBluePart>
-      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
-    </Gui>
-    <Legend>
-      <filterByMap type="bool">false</filterByMap>
-    </Legend>
-    <Macros>
-      <pythonCode type="QString"></pythonCode>
-    </Macros>
     <WMSContactPerson type="QString"></WMSContactPerson>
-    <WMSServiceTitle type="QString">Raepa</WMSServiceTitle>
-    <WMSContactPosition type="QString"></WMSContactPosition>
-    <WMSCrsList type="QStringList">
-      <value>EPSG:3857</value>
-    </WMSCrsList>
-    <WMSContactMail type="QString"></WMSContactMail>
-    <WMSKeywordList type="QStringList">
-      <value></value>
-    </WMSKeywordList>
-    <PositionPrecision>
-      <DegreeFormat type="QString">MU</DegreeFormat>
-      <DecimalPlaces type="int">2</DecimalPlaces>
-      <Automatic type="bool">true</Automatic>
-    </PositionPrecision>
-    <WFSLayersPrecision>
-      <raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279 type="int">8</raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279>
-      <raepa_canalass_l201910101510186331428872815 type="int">8</raepa_canalass_l201910101510186331428872815>
-      <raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41 type="int">8</raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41>
-      <raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3 type="int">8</raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3>
-      <raepa_ouvrass_p_geom20191010150932600262752675 type="int">8</raepa_ouvrass_p_geom20191010150932600262752675>
-      <raepa_apparass_p201910101510186081018450509 type="int">8</raepa_apparass_p201910101510186081018450509>
-    </WFSLayersPrecision>
-    <WMSRestrictedLayers type="QStringList"></WMSRestrictedLayers>
-    <WMTSMinScale type="int">5000</WMTSMinScale>
-    <WMSDefaultMapUnitsPerMm type="double">1</WMSDefaultMapUnitsPerMm>
-    <WMSOnlineResource type="QString"></WMSOnlineResource>
-    <WMSRestrictedComposers type="QStringList"></WMSRestrictedComposers>
-    <WMSRequestDefinedDataSources type="bool">false</WMSRequestDefinedDataSources>
-    <WMSImageQuality type="int">90</WMSImageQuality>
-    <DefaultStyles>
-      <Marker type="QString"></Marker>
-      <ColorRamp type="QString"></ColorRamp>
-      <Line type="QString"></Line>
-      <RandomColors type="bool">true</RandomColors>
-      <Fill type="QString"></Fill>
-      <Opacity type="double">1</Opacity>
-    </DefaultStyles>
-    <PAL>
-      <SearchMethod type="int">0</SearchMethod>
-      <CandidatesPolygon type="int">30</CandidatesPolygon>
-      <ShowingPartialsLabels type="bool">true</ShowingPartialsLabels>
-      <ShowingAllLabels type="bool">false</ShowingAllLabels>
-      <DrawRectOnly type="bool">false</DrawRectOnly>
-      <TextFormat type="int">0</TextFormat>
-      <CandidatesPoint type="int">16</CandidatesPoint>
-      <CandidatesLine type="int">50</CandidatesLine>
-      <ShowingCandidates type="bool">false</ShowingCandidates>
-    </PAL>
-    <WMTSJpegLayers>
-      <Layer type="QStringList"></Layer>
-      <Project type="bool">false</Project>
-      <Group type="QStringList"></Group>
-    </WMTSJpegLayers>
-    <Digitizing>
-      <TopologicalEditing type="int">0</TopologicalEditing>
-    </Digitizing>
+    <WMSContactOrganization type="QString"></WMSContactOrganization>
     <WMTSLayers>
-      <Layer type="QStringList"></Layer>
-      <Project type="bool">false</Project>
       <Group type="QStringList"></Group>
+      <Project type="bool">false</Project>
+      <Layer type="QStringList"></Layer>
     </WMTSLayers>
-    <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
-    <WMTSPngLayers>
-      <Layer type="QStringList"></Layer>
-      <Project type="bool">false</Project>
-      <Group type="QStringList"></Group>
-    </WMTSPngLayers>
-    <WCSLayers type="QStringList"></WCSLayers>
-    <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
-    <Paths>
-      <Absolute type="bool">false</Absolute>
-    </Paths>
-    <WFSUrl type="QString"></WFSUrl>
+    <WMSFees type="QString">conditions unknown</WMSFees>
     <WFSTLayers>
-      <Delete type="QStringList">
-        <value>raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279</value>
-        <value>raepa_apparass_p201910101510186081018450509</value>
-        <value>raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41</value>
-        <value>raepa_canalass_l201910101510186331428872815</value>
-        <value>raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3</value>
-        <value>raepa_ouvrass_p_geom20191010150932600262752675</value>
-      </Delete>
-      <Update type="QStringList">
-        <value>raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279</value>
-        <value>raepa_apparass_p201910101510186081018450509</value>
-        <value>raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41</value>
-        <value>raepa_canalass_l201910101510186331428872815</value>
-        <value>raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3</value>
-        <value>raepa_ouvrass_p_geom20191010150932600262752675</value>
-      </Update>
       <Insert type="QStringList">
         <value>raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279</value>
         <value>raepa_apparass_p201910101510186081018450509</value>
@@ -12522,22 +12518,140 @@ def my_form_open(dialog, layer, feature):
         <value>raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3</value>
         <value>raepa_ouvrass_p_geom20191010150932600262752675</value>
       </Insert>
+      <Update type="QStringList">
+        <value>raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279</value>
+        <value>raepa_apparass_p201910101510186081018450509</value>
+        <value>raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41</value>
+        <value>raepa_canalass_l201910101510186331428872815</value>
+        <value>raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3</value>
+        <value>raepa_ouvrass_p_geom20191010150932600262752675</value>
+      </Update>
+      <Delete type="QStringList">
+        <value>raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279</value>
+        <value>raepa_apparass_p201910101510186081018450509</value>
+        <value>raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41</value>
+        <value>raepa_canalass_l201910101510186331428872815</value>
+        <value>raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3</value>
+        <value>raepa_ouvrass_p_geom20191010150932600262752675</value>
+      </Delete>
     </WFSTLayers>
+    <WMSContactPhone type="QString"></WMSContactPhone>
+    <WMSServiceTitle type="QString">Raepa</WMSServiceTitle>
+    <WMSPrecision type="QString">8</WMSPrecision>
+    <WFSLayers type="QStringList">
+      <value>raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279</value>
+      <value>raepa_apparass_p201910101510186081018450509</value>
+      <value>raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41</value>
+      <value>raepa_canalass_l201910101510186331428872815</value>
+      <value>raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3</value>
+      <value>raepa_ouvrass_p_geom20191010150932600262752675</value>
+    </WFSLayers>
+    <WFSLayersPrecision>
+      <raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41 type="int">8</raepa_canalaep_l_00a3a573_c2d3_4156_81ab_a1ad25cfcf41>
+      <raepa_canalass_l201910101510186331428872815 type="int">8</raepa_canalass_l201910101510186331428872815>
+      <raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279 type="int">8</raepa_apparaep_p_354ffbd7_ee1e_46c8_bf89_850f37e9f279>
+      <raepa_apparass_p201910101510186081018450509 type="int">8</raepa_apparass_p201910101510186081018450509>
+      <raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3 type="int">8</raepa_ouvraep_p_54d95ab7_a095_4bc3_868f_f2e6c02538d3>
+      <raepa_ouvrass_p_geom20191010150932600262752675 type="int">8</raepa_ouvrass_p_geom20191010150932600262752675>
+    </WFSLayersPrecision>
+    <WMSRestrictedComposers type="QStringList"></WMSRestrictedComposers>
+    <Measurement>
+      <DistanceUnits type="QString">meters</DistanceUnits>
+      <AreaUnits type="QString">m2</AreaUnits>
+    </Measurement>
+    <WMSDefaultMapUnitsPerMm type="double">1</WMSDefaultMapUnitsPerMm>
+    <WMSAccessConstraints type="QString">None</WMSAccessConstraints>
+    <WMSRequestDefinedDataSources type="bool">false</WMSRequestDefinedDataSources>
+    <WMSOnlineResource type="QString"></WMSOnlineResource>
+    <WCSLayers type="QStringList"></WCSLayers>
+    <DefaultStyles>
+      <Fill type="QString"></Fill>
+      <RandomColors type="bool">true</RandomColors>
+      <Line type="QString"></Line>
+      <Marker type="QString"></Marker>
+      <ColorRamp type="QString"></ColorRamp>
+      <Opacity type="double">1</Opacity>
+    </DefaultStyles>
+    <WMTSJpegLayers>
+      <Group type="QStringList"></Group>
+      <Project type="bool">false</Project>
+      <Layer type="QStringList"></Layer>
+    </WMTSJpegLayers>
+    <WFSUrl type="QString"></WFSUrl>
+    <WMSRestrictedLayers type="QStringList"></WMSRestrictedLayers>
+    <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
+    <WMSKeywordList type="QStringList">
+      <value></value>
+    </WMSKeywordList>
+    <Paths>
+      <Absolute type="bool">false</Absolute>
+    </Paths>
+    <Gui>
+      <CanvasColorBluePart type="int">255</CanvasColorBluePart>
+      <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
+      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
+      <CanvasColorRedPart type="int">255</CanvasColorRedPart>
+      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
+      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
+      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
+    </Gui>
+    <WMTSPngLayers>
+      <Group type="QStringList"></Group>
+      <Project type="bool">false</Project>
+      <Layer type="QStringList"></Layer>
+    </WMTSPngLayers>
     <WMSExtent type="QStringList">
       <value>644001.3338799175</value>
       <value>1789128.0303741677</value>
       <value>667916.4094819099</value>
       <value>1807328.502698858</value>
     </WMSExtent>
-    <WMSFees type="QString">conditions unknown</WMSFees>
-    <Measurement>
-      <DistanceUnits type="QString">meters</DistanceUnits>
-      <AreaUnits type="QString">m2</AreaUnits>
-    </Measurement>
-    <WMSContactPhone type="QString"></WMSContactPhone>
-    <WMSServiceCapabilities type="bool">true</WMSServiceCapabilities>
+    <WMSContactMail type="QString"></WMSContactMail>
+    <WMSImageQuality type="int">90</WMSImageQuality>
+    <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
+    <WMSSegmentizeFeatureInfoGeometry type="bool">false</WMSSegmentizeFeatureInfoGeometry>
+    <WMSCrsList type="QStringList">
+      <value>EPSG:3857</value>
+    </WMSCrsList>
     <WMSUrl type="QString"></WMSUrl>
+    <SpatialRefSys>
+      <ProjectionsEnabled type="int">1</ProjectionsEnabled>
+    </SpatialRefSys>
+    <Digitizing>
+      <TopologicalEditing type="int">0</TopologicalEditing>
+    </Digitizing>
+    <WMTSMinScale type="int">5000</WMTSMinScale>
+    <WMTSUrl type="QString"></WMTSUrl>
+    <PositionPrecision>
+      <Automatic type="bool">true</Automatic>
+      <DegreeFormat type="QString">MU</DegreeFormat>
+      <DecimalPlaces type="int">2</DecimalPlaces>
+    </PositionPrecision>
     <WCSUrl type="QString"></WCSUrl>
+    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
+    <WMSRootName type="QString"></WMSRootName>
+    <PAL>
+      <CandidatesPoint type="int">16</CandidatesPoint>
+      <ShowingAllLabels type="bool">false</ShowingAllLabels>
+      <DrawRectOnly type="bool">false</DrawRectOnly>
+      <SearchMethod type="int">0</SearchMethod>
+      <CandidatesPolygon type="int">30</CandidatesPolygon>
+      <TextFormat type="int">0</TextFormat>
+      <ShowingCandidates type="bool">false</ShowingCandidates>
+      <ShowingPartialsLabels type="bool">true</ShowingPartialsLabels>
+      <CandidatesLine type="int">50</CandidatesLine>
+    </PAL>
+    <Macros>
+      <pythonCode type="QString"></pythonCode>
+    </Macros>
+    <Measure>
+      <Ellipsoid type="QString">WGS84</Ellipsoid>
+    </Measure>
+    <WMSServiceCapabilities type="bool">true</WMSServiceCapabilities>
+    <WMSContactPosition type="QString"></WMSContactPosition>
+    <Legend>
+      <filterByMap type="bool">false</filterByMap>
+    </Legend>
   </properties>
   <visibility-presets></visibility-presets>
   <transformContext></transformContext>
