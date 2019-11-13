@@ -23,4 +23,11 @@ BEGIN
 END; $$
 LANGUAGE PLPGSQL;
 
+ALTER TABLE raepa.raepa_apparaep_p ADD COLUMN _observation text;
+ALTER TABLE raepa.raepa_apparass_p ADD COLUMN _observation text;
+ALTER TABLE raepa.raepa_canalaep_l ADD COLUMN _observation text;
+ALTER TABLE raepa.raepa_canalass_l ADD COLUMN _observation text;
+ALTER TABLE raepa.raepa_ouvraep_p ADD COLUMN _observation text;
+ALTER TABLE raepa.raepa_ouvrass_p ADD COLUMN _observation text;
+
 COMMIT;
