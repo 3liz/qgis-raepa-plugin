@@ -192,3 +192,35 @@ def calcul_orientation_appareil(*args):
         iface.messageBar().pushMessage(
             'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
         return
+
+def network_to_end(*args):
+    id_objet = args[0]
+
+    # Use alg get_downstream_route and get_upstream_route
+    params = {
+        'OUTPUT_LAYER_NAME': '',
+        'SOURCE_ID': id_objet
+    }
+    down = {}
+    try:
+        down = processing.run('raepa:get_network_to_end', params)
+    except QgsProcessingException:
+        # If the object is at the end of the network, the SQL does not provide Geometry
+        # so the layer is invalid but we have to continue to test upstream
+        QgsMessageLog.logMessage('Error in the Processing/Postgis logs.', 'RAEPA', Qgis.Critical)
+        iface.messageBar().pushMessage(
+            'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
+        down['OUTPUT_STATUS'] = 0
+
+    if down['OUTPUT_STATUS'] == 1:
+        layer = down['OUTPUT_LAYER']
+        layer.setName(down['OUTPUT_LAYER_RESULT_NAME'])
+        symbol = QgsLineSymbol.createSimple(
+            {
+                'line_color': '255,50,50,255',
+                'line_style': 'solid',
+                'line_width': '1.8'
+            }
+        )
+        layer.renderer().setSymbol(symbol)
+        QgsProject.instance().addMapLayer(layer)

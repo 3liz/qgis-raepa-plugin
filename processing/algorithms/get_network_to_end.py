@@ -17,25 +17,29 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
+from qgis.PyQt.QtCore import QCoreApplication
+from .get_data_as_layer import *
 from qgis.core import (
-    QgsProcessingParameterVectorLayer
+    QgsProcessingParameterEnum
 )
 
 from .execute_sql import *
 
 
-class GetOrientationAppareil(ExecuteSql):
+class GetNetworkToEnd(GetDataAsLayer):
     """
     Insert imported and converted data into the schema raepa
     """
 
+    GEOM_FIELD = 'geom'
+    LAYER_NAME = ''
     SOURCE_ID = 'SOURCE_ID'
 
     def name(self):
-        return 'get_orientation_appareil'
+        return 'get_network_to_end'
 
     def displayName(self):
-        return self.tr('Get orientation appareil')
+        return self.tr('Get network to end')
 
     def group(self):
         return self.tr('Tools')
@@ -60,25 +64,25 @@ class GetOrientationAppareil(ExecuteSql):
         # INPUTS
         self.addParameter(
             QgsProcessingParameterString(
-                self.SOURCE_ID, 'Unique ID (idappareil)',
+                self.SOURCE_ID, 'Unique ID (idcana)',
                 defaultValue=-1,
                 optional=False
             )
         )
 
     def checkParameterValues(self, parameters, context):
-        return super(GetOrientationAppareil, self).checkParameterValues(parameters, context)
+        return super(GetNetworkToEnd, self).checkParameterValues(parameters, context)
 
     def setSql(self, parameters, context, feedback):
         # Get source layer uri and table name + id name
         leid = self.parameterAsString(parameters, self.SOURCE_ID, context)
         sql = '''
-        SELECT raepa.network_to_end('{0}')
+        SELECT 1 AS id, raepa.network_to_end('{0}') AS geom
         '''.format(
             leid
         )
 
-        feedback.pushInfo(self.tr('Parcours du réseau jusqu\'à un ouvrage ou une vanne fermée' + ' on %s' % leid))
-        feedback.pushInfo(sql)
-
         self.SQL = sql.replace('\n', ' ').rstrip(';')
+
+    def setLayerName(self, parameters, context, feedback):
+        self.LAYER_NAME = self.tr('Network to end from') + ' %s' % parameters[self.SOURCE_ID]
