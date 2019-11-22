@@ -26,7 +26,7 @@ from qgis.core import (
 from .execute_sql import *
 
 
-class GetNetworkToEnd(GetDataAsLayer):
+class GetNetworkToVanne(GetDataAsLayer):
     """
     Insert imported and converted data into the schema raepa
     """
@@ -36,10 +36,10 @@ class GetNetworkToEnd(GetDataAsLayer):
     SOURCE_ID = 'SOURCE_ID'
 
     def name(self):
-        return 'get_network_to_end'
+        return 'get_network_to_vanne'
 
     def displayName(self):
-        return self.tr('Get network to end')
+        return self.tr('Get network to vanne')
 
     def group(self):
         return self.tr('Tools')
@@ -71,13 +71,13 @@ class GetNetworkToEnd(GetDataAsLayer):
         )
 
     def checkParameterValues(self, parameters, context):
-        return super(GetNetworkToEnd, self).checkParameterValues(parameters, context)
+        return super(GetNetworkToVanne, self).checkParameterValues(parameters, context)
 
     def setSql(self, parameters, context, feedback):
         # Get source layer uri and table name + id name
         leid = self.parameterAsString(parameters, self.SOURCE_ID, context)
         sql = '''
-        SELECT 1 AS id, raepa.network_to_end('{0}') AS geom
+        SELECT 1 AS id, raepa.nectwork_to_vanne('{0}') AS geom
         '''.format(
             leid
         )
@@ -85,4 +85,4 @@ class GetNetworkToEnd(GetDataAsLayer):
         self.SQL = sql.replace('\n', ' ').rstrip(';')
 
     def setLayerName(self, parameters, context, feedback):
-        self.LAYER_NAME = self.tr('Network to end from') + ' %s' % parameters[self.SOURCE_ID]
+        self.LAYER_NAME = self.tr('Network to vanne from') + ' %s' % parameters[self.SOURCE_ID]

@@ -37,7 +37,7 @@ from .actions import (
     annuler_la_derniere_modification,
     inverser_canalisation,
     calcul_orientation_appareil,
-    network_to_end,
+    network_to_vanne,
 )
 from .processing.provider import RaepaProvider
 
@@ -79,8 +79,8 @@ class Raepa:
                 [2, parcourir_reseau_depuis_cet_objet, 0],
             'calcul_orientation_appareil':
                 [1, calcul_orientation_appareil],
-            'network_to_end':
-                [1, network_to_end]
+            'network_to_vanne':
+                [1, network_to_vanne]
         }
         if name not in actions:
             QMessageBox.critical(

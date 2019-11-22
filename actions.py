@@ -193,7 +193,7 @@ def calcul_orientation_appareil(*args):
             'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
         return
 
-def network_to_end(*args):
+def network_to_vanne(*args):
     id_objet = args[0]
 
     # Use alg get_downstream_route and get_upstream_route
@@ -203,7 +203,7 @@ def network_to_end(*args):
     }
     down = {}
     try:
-        down = processing.run('raepa:get_network_to_end', params)
+        down = processing.run('raepa:get_network_to_vanne', params)
     except QgsProcessingException:
         # If the object is at the end of the network, the SQL does not provide Geometry
         # so the layer is invalid but we have to continue to test upstream
