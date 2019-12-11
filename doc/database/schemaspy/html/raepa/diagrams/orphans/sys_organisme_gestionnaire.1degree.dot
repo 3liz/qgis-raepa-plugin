@@ -1,4 +1,4 @@
-// dot 2.40 on Linux 4.15.0-65-generic
+// dot 2.40 on Linux 4.15.0-72-generic
 // SchemaSpy rev Unknown
 digraph "sys_organisme_gestionnaire" {
   graph [

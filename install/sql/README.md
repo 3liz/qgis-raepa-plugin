@@ -25,6 +25,19 @@ It splits the content of the SQL dump into one file per database object type:
 * triggers
 * constraints (pk, unique, fk, etc.)
 
+TODO 
+NB: if you have a SRID different from 2154, use this kind of sed command to replace your SRID by 2154
+
+```bash
+sed -i "s/32620/2154/g" raepa/10_FUNCTION.sql 
+sed -i "s/32620/2154/g" raepa/20_TABLE_COMMENT_SEQUENCE_DEFAULT.sql 
+sed -i "s/32620/2154/g" raepa/30_VIEW.sql 
+sed -i "s/32620/2154/g" raepa/40_INDEX.sql 
+sed -i "s/32620/2154/g" raepa/50_TRIGGER.sql 
+sed -i "s/32620/2154/g" raepa/60_CONSTRAINT.sql 
+sed -i "s/32620/2154/g" raepa/90_GLOSSARY.sql 
+```
+
 ### Schema imports
 
 This schema is created manually via the file [00_initialize_database](install/sql/00_initialize_database.sql)

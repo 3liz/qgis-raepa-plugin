@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.15
--- Dumped by pg_dump version 9.6.15
+-- Dumped from database version 9.6.16
+-- Dumped by pg_dump version 9.6.16
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -16,36 +16,36 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
--- raepa_ouvrass_p raepa_apres_modification_ouvrage
-CREATE TRIGGER raepa_apres_modification_ouvrage AFTER INSERT OR UPDATE ON raepa.raepa_ouvrass_p FOR EACH ROW EXECUTE PROCEDURE raepa.trg_apres_modification_ouvrage();
-
-
 -- raepa_ouvraep_p raepa_apres_modification_ouvrage
 CREATE TRIGGER raepa_apres_modification_ouvrage AFTER INSERT OR UPDATE ON raepa.raepa_ouvraep_p FOR EACH ROW EXECUTE PROCEDURE raepa.trg_apres_modification_ouvrage();
 
 
--- raepa_canalass_l raepa_avant_ajout_ou_modification_canalisation
-CREATE TRIGGER raepa_avant_ajout_ou_modification_canalisation BEFORE INSERT OR UPDATE ON raepa.raepa_canalass_l FOR EACH ROW EXECUTE PROCEDURE raepa.trg_avant_ajout_ou_modification_canalisation();
+-- raepa_ouvrass_p raepa_apres_modification_ouvrage
+CREATE TRIGGER raepa_apres_modification_ouvrage AFTER INSERT OR UPDATE ON raepa.raepa_ouvrass_p FOR EACH ROW EXECUTE PROCEDURE raepa.trg_apres_modification_ouvrage();
 
 
 -- raepa_canalaep_l raepa_avant_ajout_ou_modification_canalisation
 CREATE TRIGGER raepa_avant_ajout_ou_modification_canalisation BEFORE INSERT OR UPDATE ON raepa.raepa_canalaep_l FOR EACH ROW EXECUTE PROCEDURE raepa.trg_avant_ajout_ou_modification_canalisation();
 
 
--- raepa_apparass_p raepa_avant_modification_appareil
-CREATE TRIGGER raepa_avant_modification_appareil BEFORE INSERT OR UPDATE ON raepa.raepa_apparass_p FOR EACH ROW EXECUTE PROCEDURE raepa.trg_avant_modification_appareil();
+-- raepa_canalass_l raepa_avant_ajout_ou_modification_canalisation
+CREATE TRIGGER raepa_avant_ajout_ou_modification_canalisation BEFORE INSERT OR UPDATE ON raepa.raepa_canalass_l FOR EACH ROW EXECUTE PROCEDURE raepa.trg_avant_ajout_ou_modification_canalisation();
 
 
 -- raepa_apparaep_p raepa_avant_modification_appareil
 CREATE TRIGGER raepa_avant_modification_appareil BEFORE INSERT OR UPDATE ON raepa.raepa_apparaep_p FOR EACH ROW EXECUTE PROCEDURE raepa.trg_avant_modification_appareil();
 
 
--- raepa_ouvrass_p raepa_avant_modification_ouvrage
-CREATE TRIGGER raepa_avant_modification_ouvrage BEFORE INSERT OR UPDATE ON raepa.raepa_ouvrass_p FOR EACH ROW EXECUTE PROCEDURE raepa.trg_avant_modification_ouvrage();
+-- raepa_apparass_p raepa_avant_modification_appareil
+CREATE TRIGGER raepa_avant_modification_appareil BEFORE INSERT OR UPDATE ON raepa.raepa_apparass_p FOR EACH ROW EXECUTE PROCEDURE raepa.trg_avant_modification_appareil();
 
 
 -- raepa_ouvraep_p raepa_avant_modification_ouvrage
 CREATE TRIGGER raepa_avant_modification_ouvrage BEFORE INSERT OR UPDATE ON raepa.raepa_ouvraep_p FOR EACH ROW EXECUTE PROCEDURE raepa.trg_avant_modification_ouvrage();
+
+
+-- raepa_ouvrass_p raepa_avant_modification_ouvrage
+CREATE TRIGGER raepa_avant_modification_ouvrage BEFORE INSERT OR UPDATE ON raepa.raepa_ouvrass_p FOR EACH ROW EXECUTE PROCEDURE raepa.trg_avant_modification_ouvrage();
 
 
 --

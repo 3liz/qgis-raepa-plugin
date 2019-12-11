@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<database name="raepa" schema="raepa" type="PostgreSQL - 9.6.15">
+<database name="raepa" schema="raepa" type="PostgreSQL - 9.6.16">
    <tables>
       <table name="_val_raepa_etat_canal_ass" remarks="Nomenclature pour l’état de la canalisation" schema="raepa" type="TABLE">
          <column autoUpdated="false" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar">
@@ -114,6 +114,9 @@
          <column autoUpdated="false" digits="0" id="21" name="sourgeoloc" nullable="true" remarks="Auteur de la géolocalisation" size="100" type="varchar"/>
          <column autoUpdated="false" digits="0" id="22" name="sourattrib" nullable="true" remarks="Auteur de la saisie des données attributaires (lorsque différent&#10;de l'auteur de la géolocalisation)" size="100" type="varchar"/>
          <column autoUpdated="false" digits="0" id="23" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="24" name="_ferme" nullable="false" remarks="Décrit si l'appareil est fermé ou non. True si l'appareil est fermé." size="1" type="bool"/>
+         <column autoUpdated="false" digits="17" id="25" name="_orientation" nullable="true" remarks="Orientation de l'appareil en degrés." size="17" type="float8"/>
+         <column autoUpdated="false" digits="0" id="26" name="_observation" nullable="true" remarks="Observations diverses sur l'objet. Texte libre." size="2147483647" type="text"/>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="raepa_apparaep_p_pkey" unique="true">
             <column ascending="true" name="id"/>
@@ -184,6 +187,7 @@
          <column autoUpdated="false" digits="0" id="26" name="_date_import" nullable="true" remarks="Date de l'import" size="2147483647" type="text"/>
          <column autoUpdated="false" digits="0" id="27" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry"/>
          <column autoUpdated="false" digits="0" id="28" name="_temp_data" nullable="true" remarks="Champ pour ajouter des données temporaires pendant l'import" size="2147483647" type="hstore"/>
+         <column autoUpdated="false" digits="0" id="29" name="_observation" nullable="true" remarks="Observations diverses sur l'objet. Texte libre." size="2147483647" type="text"/>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="raepa_apparass_p_pkey" unique="true">
             <column ascending="true" name="id"/>
@@ -258,6 +262,7 @@
          <column autoUpdated="false" digits="0" id="27" name="sourgeoloc" nullable="true" remarks="Auteur de la géolocalisation" size="100" type="varchar"/>
          <column autoUpdated="false" digits="0" id="28" name="sourattrib" nullable="true" remarks="Auteur de la saisie des données attributaires (lorsque différent&#10;de l'auteur de la géolocalisation)" size="100" type="varchar"/>
          <column autoUpdated="false" digits="0" id="29" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry"/>
+         <column autoUpdated="false" digits="0" id="30" name="_observation" nullable="true" remarks="Observations diverses sur l'objet. Texte libre." size="2147483647" type="text"/>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="raepa_canalaep_l_pkey" unique="true">
             <column ascending="true" name="id"/>
@@ -360,6 +365,7 @@
          <column autoUpdated="false" digits="0" id="39" name="_date_import" nullable="true" remarks="Date de l'import" size="2147483647" type="text"/>
          <column autoUpdated="false" digits="0" id="40" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry"/>
          <column autoUpdated="false" digits="0" id="41" name="_temp_data" nullable="true" remarks="Champ pour ajouter des données temporaires pendant l'import" size="2147483647" type="hstore"/>
+         <column autoUpdated="false" digits="0" id="42" name="_observation" nullable="true" remarks="Observations diverses sur l'objet. Texte libre." size="2147483647" type="text"/>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="raepa_canalass_l_pkey" unique="true">
             <column ascending="true" name="id"/>
@@ -419,6 +425,7 @@
          <column autoUpdated="false" digits="0" id="19" name="sourgeoloc" nullable="true" remarks="Auteur de la géolocalisation" size="100" type="varchar"/>
          <column autoUpdated="false" digits="0" id="20" name="sourattrib" nullable="true" remarks="Auteur de la saisie des données attributaires (lorsque différent&#10;de l'auteur de la géolocalisation)" size="100" type="varchar"/>
          <column autoUpdated="false" digits="0" id="21" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry"/>
+         <column autoUpdated="false" digits="0" id="22" name="_observation" nullable="true" remarks="Observations diverses sur l'objet. Texte libre." size="2147483647" type="text"/>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="raepa_ouvraep_p_pkey" unique="true">
             <column ascending="true" name="id"/>
@@ -492,6 +499,7 @@
          <column autoUpdated="false" digits="0" id="27" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry"/>
          <column autoUpdated="false" digits="0" id="28" name="_geom_emprise" nullable="true" remarks="Emprise de l’ouvrage (polygone). Optionnel" size="2147483647" type="geometry"/>
          <column autoUpdated="false" digits="0" id="29" name="_temp_data" nullable="true" remarks="Champ pour ajouter des données temporaires pendant l'import" size="2147483647" type="hstore"/>
+         <column autoUpdated="false" digits="0" id="30" name="_observation" nullable="true" remarks="Observations diverses sur l'objet. Texte libre." size="2147483647" type="text"/>
          <primaryKey column="id" sequenceNumberInPK="1"/>
          <index name="raepa_ouvrass_p_pkey" unique="true">
             <column ascending="true" name="id"/>

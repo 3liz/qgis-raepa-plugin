@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.15
--- Dumped by pg_dump version 9.6.15
+-- Dumped from database version 9.6.16
+-- Dumped by pg_dump version 9.6.16
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -265,7 +265,10 @@ CREATE TABLE raepa.raepa_apparaep_p (
     dategeoloc date,
     sourgeoloc character varying(100),
     sourattrib character varying(100),
-    geom public.geometry(Point,2154) NOT NULL
+    geom public.geometry(Point,2154) NOT NULL,
+    _ferme boolean DEFAULT false NOT NULL,
+    _orientation double precision,
+    _observation text
 );
 
 
@@ -379,6 +382,18 @@ de l''auteur de la géolocalisation)';
 COMMENT ON COLUMN raepa.raepa_apparaep_p.geom IS 'Géométrie';
 
 
+-- raepa_apparaep_p._ferme
+COMMENT ON COLUMN raepa.raepa_apparaep_p._ferme IS 'Décrit si l''appareil est fermé ou non. True si l''appareil est fermé.';
+
+
+-- raepa_apparaep_p._orientation
+COMMENT ON COLUMN raepa.raepa_apparaep_p._orientation IS 'Orientation de l''appareil en degrés.';
+
+
+-- raepa_apparaep_p._observation
+COMMENT ON COLUMN raepa.raepa_apparaep_p._observation IS 'Observations diverses sur l''objet. Texte libre.';
+
+
 -- raepa_apparaep_p_id_seq
 CREATE SEQUENCE raepa.raepa_apparaep_p_id_seq
     START WITH 1
@@ -422,7 +437,8 @@ CREATE TABLE raepa.raepa_apparass_p (
     _code_chantier text,
     _date_import text,
     geom public.geometry(Point,2154) NOT NULL,
-    _temp_data public.hstore
+    _temp_data public.hstore,
+    _observation text
 );
 
 
@@ -557,6 +573,10 @@ COMMENT ON COLUMN raepa.raepa_apparass_p.geom IS 'Géométrie';
 COMMENT ON COLUMN raepa.raepa_apparass_p._temp_data IS 'Champ pour ajouter des données temporaires pendant l''import';
 
 
+-- raepa_apparass_p._observation
+COMMENT ON COLUMN raepa.raepa_apparass_p._observation IS 'Observations diverses sur l''objet. Texte libre.';
+
+
 -- raepa_apparass_p_id_seq
 CREATE SEQUENCE raepa.raepa_apparass_p_id_seq
     START WITH 1
@@ -601,7 +621,8 @@ CREATE TABLE raepa.raepa_canalaep_l (
     dategeoloc date,
     sourgeoloc character varying(100),
     sourattrib character varying(100),
-    geom public.geometry(LineString,2154) NOT NULL
+    geom public.geometry(LineString,2154) NOT NULL,
+    _observation text
 );
 
 
@@ -743,6 +764,10 @@ de l''auteur de la géolocalisation)';
 COMMENT ON COLUMN raepa.raepa_canalaep_l.geom IS 'Géométrie';
 
 
+-- raepa_canalaep_l._observation
+COMMENT ON COLUMN raepa.raepa_canalaep_l._observation IS 'Observations diverses sur l''objet. Texte libre.';
+
+
 -- raepa_canalaep_l_id_seq
 CREATE SEQUENCE raepa.raepa_canalaep_l_id_seq
     START WITH 1
@@ -799,7 +824,8 @@ CREATE TABLE raepa.raepa_canalass_l (
     _code_chantier text,
     _date_import text,
     geom public.geometry(LineString,2154) NOT NULL,
-    _temp_data public.hstore
+    _temp_data public.hstore,
+    _observation text
 );
 
 
@@ -993,6 +1019,10 @@ COMMENT ON COLUMN raepa.raepa_canalass_l.geom IS 'Géométrie';
 COMMENT ON COLUMN raepa.raepa_canalass_l._temp_data IS 'Champ pour ajouter des données temporaires pendant l''import';
 
 
+-- raepa_canalass_l._observation
+COMMENT ON COLUMN raepa.raepa_canalass_l._observation IS 'Observations diverses sur l''objet. Texte libre.';
+
+
 -- raepa_canalass_l_id_seq
 CREATE SEQUENCE raepa.raepa_canalass_l_id_seq
     START WITH 1
@@ -1029,7 +1059,8 @@ CREATE TABLE raepa.raepa_ouvraep_p (
     dategeoloc date,
     sourgeoloc character varying(100),
     sourattrib character varying(100),
-    geom public.geometry(Point,2154) NOT NULL
+    geom public.geometry(Point,2154) NOT NULL,
+    _observation text
 );
 
 
@@ -1135,6 +1166,10 @@ de l''auteur de la géolocalisation)';
 COMMENT ON COLUMN raepa.raepa_ouvraep_p.geom IS 'Géométrie';
 
 
+-- raepa_ouvraep_p._observation
+COMMENT ON COLUMN raepa.raepa_ouvraep_p._observation IS 'Observations diverses sur l''objet. Texte libre.';
+
+
 -- raepa_ouvraep_p_id_seq
 CREATE SEQUENCE raepa.raepa_ouvraep_p_id_seq
     START WITH 1
@@ -1179,7 +1214,8 @@ CREATE TABLE raepa.raepa_ouvrass_p (
     _date_import date,
     geom public.geometry(Point,2154) NOT NULL,
     _geom_emprise public.geometry(MultiPolygon,2154),
-    _temp_data public.hstore
+    _temp_data public.hstore,
+    _observation text
 );
 
 
@@ -1316,6 +1352,10 @@ COMMENT ON COLUMN raepa.raepa_ouvrass_p._geom_emprise IS 'Emprise de l’ouvrage
 
 -- raepa_ouvrass_p._temp_data
 COMMENT ON COLUMN raepa.raepa_ouvrass_p._temp_data IS 'Champ pour ajouter des données temporaires pendant l''import';
+
+
+-- raepa_ouvrass_p._observation
+COMMENT ON COLUMN raepa.raepa_ouvrass_p._observation IS 'Observations diverses sur l''objet. Texte libre.';
 
 
 -- raepa_ouvrass_p_id_seq

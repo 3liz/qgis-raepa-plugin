@@ -1,4 +1,4 @@
-// dot 2.40 on Linux 4.15.0-65-generic
+// dot 2.40 on Linux 4.15.0-72-generic
 // SchemaSpy rev Unknown
 digraph "twoDegreesRelationshipsDiagram" {
   graph [
@@ -84,6 +84,9 @@ digraph "twoDegreesRelationshipsDiagram" {
       <TR><TD PORT="sourgeoloc" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="123" HEIGHT="16">sourgeoloc</TD></TR></TABLE></TD><TD PORT="sourgeoloc.type" ALIGN="LEFT">varchar[100]</TD></TR>
       <TR><TD PORT="sourattrib" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="123" HEIGHT="16">sourattrib</TD></TR></TABLE></TD><TD PORT="sourattrib.type" ALIGN="LEFT">varchar[100]</TD></TR>
       <TR><TD PORT="geom" COLSPAN="2" BGCOLOR="#ffffff" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="123" HEIGHT="16">geom</TD></TR></TABLE></TD><TD PORT="geom.type" ALIGN="LEFT">geometry[2147483647]</TD></TR>
+      <TR><TD PORT="_ferme" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="123" HEIGHT="16">_ferme</TD></TR></TABLE></TD><TD PORT="_ferme.type" ALIGN="LEFT">bool[1]</TD></TR>
+      <TR><TD PORT="_orientation" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="123" HEIGHT="16">_orientation</TD></TR></TABLE></TD><TD PORT="_orientation.type" ALIGN="LEFT">float8[17,17]</TD></TR>
+      <TR><TD PORT="_observation" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="123" HEIGHT="16">_observation</TD></TR></TABLE></TD><TD PORT="_observation.type" ALIGN="LEFT">text[2147483647]</TD></TR>
       <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 4</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 &gt;</TD></TR>
     </TABLE>>
     URL="raepa_apparaep_p.html"
