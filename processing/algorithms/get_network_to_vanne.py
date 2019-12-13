@@ -17,25 +17,29 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
+from qgis.PyQt.QtCore import QCoreApplication
+from .get_data_as_layer import *
 from qgis.core import (
-    QgsProcessingParameterVectorLayer
+    QgsProcessingParameterEnum
 )
 
 from .execute_sql import *
 
 
-class GetOrientationAppareil(ExecuteSql):
+class GetNetworkToVanne(GetDataAsLayer):
     """
     Insert imported and converted data into the schema raepa
     """
 
+    GEOM_FIELD = 'geom'
+    LAYER_NAME = ''
     SOURCE_ID = 'SOURCE_ID'
 
     def name(self):
-        return 'get_orientation_appareil'
+        return 'get_network_to_vanne'
 
     def displayName(self):
-        return self.tr('Get orientation appareil')
+        return self.tr('Get network to vanne')
 
     def group(self):
         return self.tr('Tools')
@@ -60,25 +64,25 @@ class GetOrientationAppareil(ExecuteSql):
         # INPUTS
         self.addParameter(
             QgsProcessingParameterString(
-                self.SOURCE_ID, 'Unique ID (idappareil)',
+                self.SOURCE_ID, 'Unique ID (idcana)',
                 defaultValue=-1,
                 optional=False
             )
         )
 
     def checkParameterValues(self, parameters, context):
-        return super(GetOrientationAppareil, self).checkParameterValues(parameters, context)
+        return super(GetNetworkToVanne, self).checkParameterValues(parameters, context)
 
     def setSql(self, parameters, context, feedback):
         # Get source layer uri and table name + id name
         leid = self.parameterAsString(parameters, self.SOURCE_ID, context)
         sql = '''
-        CALL raepa.calculate_apparaep_orientation('{0}');
+        SELECT 1 AS id, raepa.nectwork_to_vanne('{0}') AS geom
         '''.format(
             leid
         )
 
-        feedback.pushInfo(self.tr('Calcul de l\'orientation pour l\'appareil %s' % leid))
-        feedback.pushInfo(sql)
-
         self.SQL = sql.replace('\n', ' ').rstrip(';')
+
+    def setLayerName(self, parameters, context, feedback):
+        self.LAYER_NAME = self.tr('Network to vanne from') + ' %s' % parameters[self.SOURCE_ID]

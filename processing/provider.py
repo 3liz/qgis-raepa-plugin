@@ -43,6 +43,7 @@ from .algorithms.import_shapefile import ImportShapefile
 from .algorithms.insert_converted_data import InsertConvertedData
 from .algorithms.upgrade_database_structure import UpgradeDatabaseStructure
 from .algorithms.get_orientation_appareil import GetOrientationAppareil
+from .algorithms.get_network_to_vanne import GetNetworkToVanne
 
 
 class RaepaProvider(QgsProcessingProvider):
@@ -68,6 +69,7 @@ class RaepaProvider(QgsProcessingProvider):
         self.addAlgorithm(GetDownstreamRoute())
         self.addAlgorithm(CancelLastModification())
         self.addAlgorithm(GetOrientationAppareil())
+        self.addAlgorithm(GetNetworkToVanne())
 
     def id(self):
         return 'raepa'
