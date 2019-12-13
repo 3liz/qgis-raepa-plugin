@@ -73,12 +73,12 @@ class GetOrientationAppareil(ExecuteSql):
         # Get source layer uri and table name + id name
         leid = self.parameterAsString(parameters, self.SOURCE_ID, context)
         sql = '''
-        SELECT raepa.network_to_end('{0}')
+        CALL raepa.calculate_apparaep_orientation('{0}');
         '''.format(
             leid
         )
 
-        feedback.pushInfo(self.tr('Parcours du réseau jusqu\'à un ouvrage ou une vanne fermée' + ' on %s' % leid))
+        feedback.pushInfo(self.tr('Calcul de l\'orientation pour l\'appareil %s' % leid))
         feedback.pushInfo(sql)
 
         self.SQL = sql.replace('\n', ' ').rstrip(';')
