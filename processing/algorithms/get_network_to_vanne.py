@@ -77,7 +77,7 @@ class GetNetworkToVanne(GetDataAsLayer):
         # Get source layer uri and table name + id name
         leid = self.parameterAsString(parameters, self.SOURCE_ID, context)
         sql = '''
-        SELECT 1 AS id, raepa.nectwork_to_vanne('{0}') AS geom
+        SELECT 1 AS id, raepa.network_to_vanne('{0}') AS geom
         '''.format(
             leid
         )
