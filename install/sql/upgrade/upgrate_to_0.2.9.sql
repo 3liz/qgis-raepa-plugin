@@ -32,7 +32,7 @@ LANGUAGE PLPGSQL;
 -- Permet de parcourir le réseau d'une canalisation aux vanne les plus proche.
 -- DROP FUNCTION raepa.network_to_end(text);
 
-CREATE OR REPLACE FUNCTION raepa.nectwork_to_vanne(
+CREATE OR REPLACE FUNCTION raepa.network_to_vanne(
 	cana text)
     RETURNS geometry
     LANGUAGE 'plpgsql'
