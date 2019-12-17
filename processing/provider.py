@@ -44,6 +44,8 @@ from .algorithms.insert_converted_data import InsertConvertedData
 from .algorithms.upgrade_database_structure import UpgradeDatabaseStructure
 from .algorithms.get_orientation_appareil import GetOrientationAppareil
 from .algorithms.get_network_to_vanne import GetNetworkToVanne
+from .algorithms.load_project import LoadProject
+from .algorithms.add_styles import AddStyles
 
 
 class RaepaProvider(QgsProcessingProvider):
@@ -70,6 +72,8 @@ class RaepaProvider(QgsProcessingProvider):
         self.addAlgorithm(CancelLastModification())
         self.addAlgorithm(GetOrientationAppareil())
         self.addAlgorithm(GetNetworkToVanne())
+        self.addAlgorithm(LoadProject())
+        self.addAlgorithm(AddStyles())
 
     def id(self):
         return 'raepa'
