@@ -71,7 +71,7 @@ SELECT ST_Union(DISTINCT geom)  INTO parcours AS geom FROM walk_network;
 END;
 $BODY$;
 
-COMMENT ON FUNCTION raepa.network_to_vanne (geometry) IS 'Parcours du réseau de canalisation d''eau potable à partir d''une canalisation jusqu''aux vannes les plus proches';
+COMMENT ON FUNCTION raepa.network_to_vanne (text) IS 'Parcours du réseau de canalisation d''eau potable à partir d''une canalisation jusqu''aux vannes les plus proches';
 -- FUNCTION: raepa.get_vanne_cana(text, boolean)
 
 -- DROP FUNCTION raepa.get_vanne_cana(text, boolean);
