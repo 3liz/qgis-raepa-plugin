@@ -21,13 +21,15 @@ from qgis.core import (
     QgsProcessingAlgorithm,
     QgsProcessingParameterString,
     QgsProcessingOutputString,
-    QgsProcessingOutputNumber,
+    QgsProcessingParameterVectorLayer,
+    QgsProcessingParameterBoolean,
     QgsExpressionContextUtils,
     QgsVectorLayer,
     QgsProcessingOutputMultipleLayers,
     QgsProcessingContext,
     QgsApplication,
-    QgsProject
+    QgsProject,
+    QgsProcessing
 )
 from qgis.PyQt.QtSql import *
 from .tools import *
@@ -43,8 +45,13 @@ class AddStyles(QgsProcessingAlgorithm):
     # used when calling the algorithm from another algorithm, or when
     # calling from the QGIS console.
 
-    INPUT_SQL = 'INPUT_SQL'
-
+    APPARAEP = 'APPARAEP'
+    APPARASS = 'APPARASS'
+    OUVRAEP = 'OUVRAEP'
+    OUVRASS = 'OUVRASS'
+    CANALAEP = 'CANALAEP'
+    CANALASS = 'CANALASS'
+    STYLETYPE = 'STYLETYPE'
     OUTPUT_LAYERS = 'OUTPUT_LAYERS'
     OUTPUT_STRING = 'OUTPUT_STRING'
 
@@ -73,11 +80,60 @@ class AddStyles(QgsProcessingAlgorithm):
         """
         # INPUTS
         self.addParameter(
-            QgsProcessingParameterString(
-                self.INPUT_SQL, 'INPUT_SQL',
-                optional=True
+            QgsProcessingParameterVectorLayer(
+                self.APPARAEP,
+                self.tr('Couche Appareil AEP'),
+                types=[QgsProcessing.TypeVector]
             )
         )
+
+        self.addParameter(
+            QgsProcessingParameterVectorLayer(
+                self.APPARASS,
+                self.tr('Couche Appareil ASS'),
+                types=[QgsProcessing.TypeVector]
+            )
+        )
+
+        self.addParameter(
+            QgsProcessingParameterVectorLayer(
+                self.OUVRAEP,
+                self.tr('Couche Ouvrage AEP'),
+                types=[QgsProcessing.TypeVector]
+            )
+        )
+
+        self.addParameter(
+            QgsProcessingParameterVectorLayer(
+                self.OUVRASS,
+                self.tr('Couche Ouvrage ASS'),
+                types=[QgsProcessing.TypeVector]
+            )
+        )
+
+        self.addParameter(
+            QgsProcessingParameterVectorLayer(
+                self.CANALAEP,
+                self.tr('Couche Canalisation AEP'),
+                types=[QgsProcessing.TypeVector]
+            )
+        )
+
+        self.addParameter(
+            QgsProcessingParameterVectorLayer(
+                self.CANALASS,
+                self.tr('Couche Canalisation ASS'),
+                types=[QgsProcessing.TypeVector]
+            )
+        )
+
+        self.addParameter(
+            QgsProcessingParameterBoolean(
+                self.STYLETYPE, self.tr('Importer uniquement les actions'),
+                optional=False
+            )
+        )
+
 
 
         # OUTPUTS
@@ -96,32 +152,91 @@ class AddStyles(QgsProcessingAlgorithm):
         msg = ''
         msgl = ''
         Sdir_path = os.path.join(os.path.dirname(os.path.realpath(__file__)),'..','..','qgis', 'qml')
-        layers = QgsProject.instance().mapLayers()
-        for lyr in layers:
-            layer = context.project().mapLayer(lyr)
-            if layer.isValid():
-                name = layer.name()
-                fileName= ''
-                if name == "raepa_canalaep_l":
-                    fileName = "canalisations_AEP.qml"
-                if name == "raepa_canalass_l":
-                    fileName = "canalisations_ASS.qml"
-                if name == "raepa_ouvraep_p":
-                    fileName = "ouvrages_AEP.qml"
-                if name == "raepa_ouvrass_p":
-                    fileName = "ouvrages_ASS.qml"
-                if name == "raepa_apparaep_p":
-                    fileName = "appareils_AEP.qml"
-                if name == "raepa_apparass_p":
-                    fileName = "appareils_ASS.qml"
-                if fileName != '':
-                    layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
-                    layer.triggerRepaint()
-                    msg +=' path : '+ Sdir_path + fileName +' style: '+ layer.name()+ ' is load'
-                    msg = os.path.join(Sdir_path, fileName)
-
+        layer = self.parameterAsVectorLayer(parameters, self.APPARAEP, context)
+        style = self.parameterAsBool(parameters, self.STYLETYPE, context)
+        if layer.isValid():
+            filename = ''
+            if style:
+                fileName = 'actions_appareils_AEP.qml'
             else:
-                msgl += "!! "+layer.name()+" style not load !!"
+                fileName = 'appareils_AEP.qml'
+            layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
+            layer.triggerRepaint()
+            msg +=' path : '+ Sdir_path + fileName +' style: '+ layer.name()+ ' is load'
+            msg = os.path.join(Sdir_path, fileName)
+        else:
+            msgl += "!! "+layer.name()+" style not load !!"
+
+        layer = self.parameterAsVectorLayer(parameters, self.APPARASS, context)
+        if layer.isValid():
+            filename = ''
+            if style:
+                fileName = 'actions_appareils_ASS.qml'
+            else:
+                fileName = 'appareils_ASS.qml'
+            layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
+            layer.triggerRepaint()
+            msg +=' path : '+ Sdir_path + fileName +' style: '+ layer.name()+ ' is load'
+            msg = os.path.join(Sdir_path, fileName)
+        else:
+            msgl += "!! "+layer.name()+" style not load !!"
+
+        layer = self.parameterAsVectorLayer(parameters, self.OUVRAEP, context)
+        if layer.isValid():
+            filename = ''
+            if style:
+                fileName = 'actions_ouvrages_AEP.qml'
+            else:
+                fileName = 'ouvrages_AEP.qml'
+            layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
+            layer.triggerRepaint()
+            msg +=' path : '+ Sdir_path + fileName +' style: '+ layer.name()+ ' is load'
+            msg = os.path.join(Sdir_path, fileName)
+        else:
+            msgl += "!! "+layer.name()+" style not load !!"
+
+        layer = self.parameterAsVectorLayer(parameters, self.OUVRASS, context)
+        if layer.isValid():
+            filename = ''
+            if style:
+                fileName = 'actions_ouvrages_ASS.qml'
+            else:
+                fileName = 'ouvrages_ASS.qml'
+            layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
+            layer.triggerRepaint()
+            msg +=' path : '+ Sdir_path + fileName +' style: '+ layer.name()+ ' is load'
+            msg = os.path.join(Sdir_path, fileName)
+        else:
+            msgl += "!! "+layer.name()+" style not load !!"
+
+        layer = self.parameterAsVectorLayer(parameters, self.CANALAEP, context)
+        if layer.isValid():
+            filename = ''
+            if style:
+                fileName = 'actions_canalisations_AEP.qml'
+            else:
+                fileName = 'canalisations_AEP.qml'
+            layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
+            layer.triggerRepaint()
+            msg +=' path : '+ Sdir_path + fileName +' style: '+ layer.name()+ ' is load'
+            msg = os.path.join(Sdir_path, fileName)
+        else:
+            msgl += "!! "+layer.name()+" style not load !!"
+
+        layer = self.parameterAsVectorLayer(parameters, self.CANALASS, context)
+        if layer.isValid():
+            filename = ''
+            if style:
+                fileName = 'actions_canalisation_ASS.qml'
+            else:
+                fileName = 'canalisations_ASS.qml'
+            layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
+            layer.triggerRepaint()
+            msg +=' path : '+ Sdir_path + fileName +' style: '+ layer.name()+ ' is load'
+            msg = os.path.join(Sdir_path, fileName)
+        else:
+            msgl += "!! "+layer.name()+" style not load !!"
+
         return {
-            self.OUTPUT_STRING: msg
+            self.OUTPUT_STRING: msg + msgl
         }

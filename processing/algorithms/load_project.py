@@ -43,7 +43,7 @@ class LoadProject(QgsProcessingAlgorithm):
     # used when calling the algorithm from another algorithm, or when
     # calling from the QGIS console.
 
-    INPUT_SQL = 'INPUT_SQL'
+    RIEN = 'RIEN'
 
     OUTPUT_LAYERS = 'OUTPUT_LAYERS'
     OUTPUT_STRING = 'OUTPUT_STRING'
@@ -74,7 +74,7 @@ class LoadProject(QgsProcessingAlgorithm):
         # INPUTS
         self.addParameter(
             QgsProcessingParameterString(
-                self.INPUT_SQL, 'INPUT_SQL',
+                self.RIEN, 'Champ qui sert à rien !',
                 optional=True
             )
         )
@@ -96,71 +96,70 @@ class LoadProject(QgsProcessingAlgorithm):
             )
         )
 
+    def initLayer(self, context, uri, table, geom, sql, id):
+        layer = None
+        uri.setDataSource("raepa", table, geom, sql, id)
+        layer = QgsVectorLayer(uri.uri(), table, "postgres")
+        context.temporaryLayerStore().addMapLayer(layer)
+        context.addLayerToLoadOnCompletion(
+            layer.id(),
+            QgsProcessingContext.LayerDetails(table,
+                context.project(),
+                self.OUTPUT_LAYERS
+            )
+        )
+        return layer
+
     def processAlgorithm(self, parameters, context, feedback):
         """
         Here is where the processing itself takes place.
         """
         uri = uri_from_name(QgsExpressionContextUtils.globalScope().variable('raepa_connection_name'))
-        def initLayer(schema, table, geom, sql, id):
-            layer = None
-            uri.setDataSource(schema, table, geom, sql, id)
-            layer = QgsVectorLayer(uri.uri(), table, "postgres")
-            if not layer.isValid():
-                msgl = 'tt'
-            context.temporaryLayerStore().addMapLayer(layer)
-            context.addLayerToLoadOnCompletion(
-                layer.id(),
-                QgsProcessingContext.LayerDetails(table,
-                    context.project(),
-                    self.OUTPUT_LAYERS
-                )
-            )
-            return layer
+
 
         layers_name = {
-        "sys_structure_metadonnee": {'geomfield': None, 'pk': 'id'},
-        "sys_liste_table": {'geomfield': None, 'pk': 'id'},
-        "sys_organisme_gestionnaire": {'geomfield': None, 'pk': 'id'},
-        "val_raepa_cat_canal_ae": {'geomfield': None, 'pk': 'id'},
-        "val_raepa_cat_canal_ass": {'geomfield': None, 'pk': 'id'},
-        "val_raepa_fonc_app_ae":{'geomfield': None, 'pk': 'id'},
-        "val_raepa_fonc_app_ass":{'geomfield': None, 'pk': 'id'},
-        "val_raepa_fonc_canal_ae":{'geomfield': None, 'pk': 'id'},
-        "val_raepa_fonc_canal_ass":{'geomfield': None, 'pk': 'id'},
-        "val_raepa_fonc_ouv_ae":{'geomfield': None, 'pk': 'id'},
-        "commune": {'geomfield': "geom", 'pk': 'id'},
-        "_val_raepa_precision_annee":{'geomfield': None, 'pk': 'id'},
-        "_val_raepa_type_intervention_ass":{'geomfield': None, 'pk': 'id'},
-        "raepa_apparaep_p": {'geomfield': "geom", 'pk': 'id'},
-        "raepa_apparass_p": {'geomfield': "geom", 'pk': 'id'},
-        "affleurant_pcrs": {'geomfield': "geom", 'pk': 'id'},
-        "_val_raepa_etat_canal_ass":{'geomfield': None, 'pk': 'id'},
-        "_val_raepa_forme_canal_ass":{'geomfield': None, 'pk': 'id'},
-        "raepa_canalaep_l": {'geomfield': "geom", 'pk': 'id'},
-        "raepa_reparaep_p": {'geomfield': "geom", 'pk': 'id'},
-        "raepa_reparass_p": {'geomfield': "geom", 'pk': 'id'},
-        "raepa_ouvraep_p": {'geomfield': "geom", 'pk': 'id'},
-        "raepa_ouvrass_p": {'geomfield': "geom", 'pk': 'id'},
-        "raepa_canalass_l": {'geomfield': "geom", 'pk': 'id'},
-        "v_canalisation_avec_z_manquant":{'geomfield': "geom", 'pk': 'id'},
-        "v_canalisation_avec_zaval_manquant":{'geomfield': "geom", 'pk': 'id'},
-        "v_canalisation_branchement":{'geomfield': "geom", 'pk': 'id'},
-        "v_canalisation_sans_ouvrage":{'geomfield': "geom", 'pk': 'id'},
-        "val_raepa_qualite_geoloc":{'geomfield': None, 'pk': 'id'},
-        "val_raepa_qualite_anpose":{'geomfield': None, 'pk': 'id'},
-        "val_raepa_typ_reseau_ass":{'geomfield': None, 'pk': 'id'},
-        "val_raepa_materiau":{'geomfield': None, 'pk': 'id'},
-        "val_raepa_mode_circulation":{'geomfield': None, 'pk': 'id'},
-        "val_raepa_fonc_ouv_ass":{'geomfield': None, 'pk': 'id'},
-        "val_raepa_type_defaillance":{'geomfield': None, 'pk': 'id'},
-        "val_raepa_support_reparation":{'geomfield': None, 'pk': 'id'}
+            "sys_structure_metadonnee": {'geomfield': None, 'pk': 'id'},
+            "sys_liste_table": {'geomfield': None, 'pk': 'id'},
+            "sys_organisme_gestionnaire": {'geomfield': None, 'pk': 'id'},
+            "val_raepa_cat_canal_ae": {'geomfield': None, 'pk': 'id'},
+            "val_raepa_cat_canal_ass": {'geomfield': None, 'pk': 'id'},
+            "val_raepa_fonc_app_ae":{'geomfield': None, 'pk': 'id'},
+            "val_raepa_fonc_app_ass":{'geomfield': None, 'pk': 'id'},
+            "val_raepa_fonc_canal_ae":{'geomfield': None, 'pk': 'id'},
+            "val_raepa_fonc_canal_ass":{'geomfield': None, 'pk': 'id'},
+            "val_raepa_fonc_ouv_ae":{'geomfield': None, 'pk': 'id'},
+            "commune": {'geomfield': "geom", 'pk': 'id'},
+            "_val_raepa_precision_annee":{'geomfield': None, 'pk': 'id'},
+            "_val_raepa_type_intervention_ass":{'geomfield': None, 'pk': 'id'},
+            "raepa_apparaep_p": {'geomfield': "geom", 'pk': 'id'},
+            "raepa_apparass_p": {'geomfield': "geom", 'pk': 'id'},
+            "affleurant_pcrs": {'geomfield': "geom", 'pk': 'id'},
+            "_val_raepa_etat_canal_ass":{'geomfield': None, 'pk': 'id'},
+            "_val_raepa_forme_canal_ass":{'geomfield': None, 'pk': 'id'},
+            "raepa_canalaep_l": {'geomfield': "geom", 'pk': 'id'},
+            "raepa_reparaep_p": {'geomfield': "geom", 'pk': 'id'},
+            "raepa_reparass_p": {'geomfield': "geom", 'pk': 'id'},
+            "raepa_ouvraep_p": {'geomfield': "geom", 'pk': 'id'},
+            "raepa_ouvrass_p": {'geomfield': "geom", 'pk': 'id'},
+            "raepa_canalass_l": {'geomfield': "geom", 'pk': 'id'},
+            "v_canalisation_avec_z_manquant":{'geomfield': "geom", 'pk': 'id'},
+            "v_canalisation_avec_zaval_manquant":{'geomfield': "geom", 'pk': 'id'},
+            "v_canalisation_branchement":{'geomfield': "geom", 'pk': 'id'},
+            "v_canalisation_sans_ouvrage":{'geomfield': "geom", 'pk': 'id'},
+            "val_raepa_qualite_geoloc":{'geomfield': None, 'pk': 'id'},
+            "val_raepa_qualite_anpose":{'geomfield': None, 'pk': 'id'},
+            "val_raepa_typ_reseau_ass":{'geomfield': None, 'pk': 'id'},
+            "val_raepa_materiau":{'geomfield': None, 'pk': 'id'},
+            "val_raepa_mode_circulation":{'geomfield': None, 'pk': 'id'},
+            "val_raepa_fonc_ouv_ass":{'geomfield': None, 'pk': 'id'},
+            "val_raepa_type_defaillance":{'geomfield': None, 'pk': 'id'},
+            "val_raepa_support_reparation":{'geomfield': None, 'pk': 'id'}
         }
         output_layers = []
         msg = ''
         msgl = ''
-
         for e in layers_name:
-            layer = initLayer("raepa", e, layers_name[e]['geomfield'], "", layers_name[e]['pk'])
+            layer = self.initLayer(context, uri, e, layers_name[e]['geomfield'], "", layers_name[e]['pk'])
             if layer.isValid():
                 output_layers.append(layer)
                 msgl += " ## "+layer.name()+" loaded ##"
