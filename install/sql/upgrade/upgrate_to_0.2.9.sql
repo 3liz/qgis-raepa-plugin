@@ -1,16 +1,16 @@
 BEGIN;
 
 -- Function to calculate apparaep orientation
-DROP raepa.calculate_apparaep_orientation(idappaep text);
+DROP FUNCTION raepa.calculate_apparaep_orientation(idappaep text);
 CREATE OR REPLACE PROCEDURE raepa.calculate_apparaep_orientation(idappaep text)
-RETURNS double precision AS $$
+ AS $$
 BEGIN
     UPDATE raepa.raepa_apparaep_p ap SET _orientation =
     (
         SELECT
         CASE
             WHEN ST_LineLocatePoint(c.geom, p.geom) > 0.1 AND ST_LineLocatePoint(c.geom, p.geom) < 0.9
-                THEN round(CAST(degrees(ST_Azimuth(ST_StartPoint(ST_LineSubstring(c.geom, ST_LineLocatePoint(c.geom, p.geom) - 0.BEGIN;
+                THEN round(CAST(degrees(ST_Azimuth(ST_StartPoint(ST_LineSubstring(c.geom, ST_LineLocatePoint(c.geom, p.geom) - 0.1;
                 1, ST_LineLocatePoint(c.geom, p.geom) + 0.1)),
             ST_EndPoint(ST_LineSubstring(c.geom, ST_LineLocatePoint(c.geom, p.geom) - 0.1, ST_LineLocatePoint(c.geom, p.geom) + 0.1)))) as numeric),1)
             WHEN ST_LineLocatePoint(c.geom, p.geom) <= 0.1
