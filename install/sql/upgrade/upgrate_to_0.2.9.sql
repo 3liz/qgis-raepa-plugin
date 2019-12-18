@@ -10,7 +10,7 @@ BEGIN
         SELECT
         CASE
             WHEN ST_LineLocatePoint(c.geom, p.geom) > 0.1 AND ST_LineLocatePoint(c.geom, p.geom) < 0.9
-                THEN round(CAST(degrees(ST_Azimuth(ST_StartPoint(ST_LineSubstring(c.geom, ST_LineLocatePoint(c.geom, p.geom) - 0.1;
+                THEN round(CAST(degrees(ST_Azimuth(ST_StartPoint(ST_LineSubstring(c.geom, ST_LineLocatePoint(c.geom, p.geom) - 0.1,
                 1, ST_LineLocatePoint(c.geom, p.geom) + 0.1)),
             ST_EndPoint(ST_LineSubstring(c.geom, ST_LineLocatePoint(c.geom, p.geom) - 0.1, ST_LineLocatePoint(c.geom, p.geom) + 0.1)))) as numeric),1)
             WHEN ST_LineLocatePoint(c.geom, p.geom) <= 0.1
