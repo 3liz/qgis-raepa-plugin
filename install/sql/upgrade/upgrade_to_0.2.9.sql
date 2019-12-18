@@ -116,6 +116,6 @@ BEGIN
 	return locate;
 END;$BODY$;
 
-COMMENT ON FUNCTION raepa.get_vanne_cana (double precision) IS 'Calcul de la position de la vanne la plus proche sur une canalisation selon un point de départ (fin ou debut de canalisation)';
+COMMENT ON FUNCTION raepa.get_vanne_cana (text, boolean) IS 'Calcul de la position de la vanne la plus proche sur une canalisation selon un point de départ (fin ou debut de canalisation)';
 
 COMMIT;
