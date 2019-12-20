@@ -73,7 +73,7 @@ class GetOrientationAppareil(ExecuteSql):
         # Get source layer uri and table name + id name
         leid = self.parameterAsString(parameters, self.SOURCE_ID, context)
         sql = '''
-        CALL raepa.calculate_apparaep_orientation('{0}');
+        SELECT raepa.calculate_apparaep_orientation('{0}');
         '''.format(
             leid
         )
