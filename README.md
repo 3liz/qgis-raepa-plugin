@@ -21,6 +21,8 @@ Michaël Douchin (3liz)  @mdouchin
 ## Financeurs
 
 * Communauté d'Agglomération du Soissonnais
+* Régie du SDDEA
+* Eau d'Excellence Guadeloupe
 
 ## Licence
 
