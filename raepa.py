@@ -45,10 +45,16 @@ from .processing.provider import RaepaProvider
 class Raepa:
 
     def __init__(self):
+        self.provider = None
+
+    def initProcessing(self):
+        """Init Processing provider for QGIS >= 3.8."""
         self.provider = RaepaProvider()
+        QgsApplication.processingRegistry().addProvider(self.provider)
 
     def initGui(self):
-        QgsApplication.processingRegistry().addProvider(self.provider)
+        """Init the user interface."""
+        self.initProcessing()
 
     def unload(self):
         QgsApplication.processingRegistry().removeProvider(self.provider)
