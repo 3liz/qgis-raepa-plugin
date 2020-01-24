@@ -130,7 +130,7 @@ class GetDataAsLayer(QgsProcessingAlgorithm):
         dbpluginclass = createDbPlugin('postgis')
         connections = [c.connectionName() for c in dbpluginclass.connections()]
         if connection_name not in connections:
-            return False, self.tr('The configured connection name does not exists in QGIS')
+            return False, self.tr('The configured connection name "{}" does not exists in QGIS : {}'.format(connection_name, ', '.join(connections)))
 
         return super(GetDataAsLayer, self).checkParameterValues(parameters, context)
 

@@ -41,3 +41,11 @@ sed -i "s/32620/2154/g" raepa/90_GLOSSARY.sql
 ### Schema imports
 
 This schema is created manually via the file [00_initialize_database](install/sql/00_initialize_database.sql)
+
+### Installation from an existing dump
+
+* `createdb raepa`
+* Create the PostgreSQL service
+* In QGIS, you must create a connexion to your PostGIS database.
+* Then use the `Configure Raepa plugin` to set the connexion name.
+* `psql service=raepa < ~/Téléchargements/bdd_raepa_capex.sql`
