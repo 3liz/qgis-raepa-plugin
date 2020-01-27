@@ -17,11 +17,7 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-from qgis.PyQt.QtCore import QCoreApplication
 from .get_data_as_layer import *
-from qgis.core import (
-    QgsProcessingParameterEnum
-)
 
 from .execute_sql import *
 

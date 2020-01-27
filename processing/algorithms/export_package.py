@@ -67,9 +67,8 @@ class ExportPackage(QgsProcessingAlgorithm):
 
     def shortHelpString(self) -> str:
         return self.tr(
-            'Export all layers from your canvas which belong to '
-            'the specified PostgreSQL service in a SQLite file. \n'
-            'A custom CRS can be specified.')
+            'Exporte toutes les couches du canvas qui appartiennent au service PostgreSQL dans un fichier SQLite. '
+            'Un CRS peut-être spécifié.')
 
     def initAlgorithm(self, config):
         """

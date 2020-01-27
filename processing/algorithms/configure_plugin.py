@@ -54,6 +54,9 @@ class ConfigurePlugin(QgsProcessingAlgorithm):
     def groupId(self):
         return 'raepa_configuration'
 
+    def shortHelpString(self) -> str:
+        return 'Ajoute la variable "raepa_connection_name" à QGIS.'
+
     def tr(self, string):
         return QCoreApplication.translate('Processing', string)
 

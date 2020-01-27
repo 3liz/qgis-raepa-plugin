@@ -65,6 +65,9 @@ class GetDataAsLayer(QgsProcessingAlgorithm):
     def groupId(self):
         return 'raepa_tools'
 
+    def shortHelpString(self) -> str:
+        return 'Charger une couche vecteur'
+
     def tr(self, string):
         return QCoreApplication.translate('Processing', string)
 

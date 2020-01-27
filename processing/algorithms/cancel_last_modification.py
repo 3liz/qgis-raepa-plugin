@@ -25,9 +25,6 @@ from .execute_sql import *
 
 
 class CancelLastModification(ExecuteSql):
-    """
-    Insert imported and converted data into the schema raepa
-    """
 
     SOURCE_LAYER = 'SOURCE_LAYER'
     SOURCE_ID = 'SOURCE_ID'
@@ -43,6 +40,9 @@ class CancelLastModification(ExecuteSql):
 
     def groupId(self):
         return 'raepa_tools'
+
+    def shortHelpString(self) -> str:
+        return 'Annule la dernière modification sur la base de données.'
 
     def tr(self, string):
         return QCoreApplication.translate('Processing', string)

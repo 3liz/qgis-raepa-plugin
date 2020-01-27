@@ -50,6 +50,9 @@ class AddStyles(QgsProcessingAlgorithm):
     def groupId(self):
         return 'raepa_configuration'
 
+    def shortHelpString(self) -> str:
+        return 'Ajoute les styles et/ou les actions par défaut pour chacune des couches.'
+
     def tr(self, string):
         return QCoreApplication.translate('Processing', string)
 

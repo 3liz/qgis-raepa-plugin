@@ -44,6 +44,10 @@ class ConvertImportedData(ExecuteSql):
     def groupId(self):
         return 'raepa_import'
 
+    def shortHelpString(self) -> str:
+        # TODO
+        return None
+
     def tr(self, string):
         return QCoreApplication.translate('Processing', string)
 

@@ -21,18 +21,14 @@ from qgis.core import (
     QgsProcessingAlgorithm,
     QgsProcessingParameterString,
     QgsProcessingOutputString,
-    QgsProcessingOutputNumber,
     QgsExpressionContextUtils,
     QgsVectorLayer,
     QgsProcessingOutputMultipleLayers,
     QgsProcessingContext,
-    QgsApplication,
-    QgsProject
-)
-from qgis.PyQt.QtSql import *
+    QgsProcessingParameterDefinition)
 from .tools import *
 from processing.tools.postgis import uri_from_name, GeoDB
-import os
+
 
 class LoadProject(QgsProcessingAlgorithm):
     """
@@ -60,6 +56,9 @@ class LoadProject(QgsProcessingAlgorithm):
     def groupId(self):
         return 'raepa_configuration'
 
+    def shortHelpString(self) -> str:
+        return 'Charger les couches de la base de données.'
+
     def tr(self, string):
         return QCoreApplication.translate('Processing', string)
 
@@ -71,14 +70,11 @@ class LoadProject(QgsProcessingAlgorithm):
         Here we define the inputs and output of the algorithm, along
         with some other properties.
         """
-        # INPUTS
-        self.addParameter(
-            QgsProcessingParameterString(
-                self.RIEN, 'Champ qui sert à rien !',
-                optional=True
-            )
-        )
 
+        parameter = QgsProcessingParameterString(
+            self.RIEN, 'Champ qui ne sert à rien !', optional=True)
+        parameter.setFlags(parameter.flags() | QgsProcessingParameterDefinition.FlagHidden)
+        self.addParameter(parameter)
 
         # OUTPUTS
         # Add output for message
@@ -97,7 +93,6 @@ class LoadProject(QgsProcessingAlgorithm):
         )
 
     def initLayer(self, context, uri, table, geom, sql, id):
-        layer = None
         uri.setDataSource("raepa", table, geom, sql, id)
         layer = QgsVectorLayer(uri.uri(), table, "postgres")
         context.temporaryLayerStore().addMapLayer(layer)

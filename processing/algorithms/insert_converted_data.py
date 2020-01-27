@@ -39,6 +39,10 @@ class InsertConvertedData(ExecuteSql):
     def displayName(self):
         return self.tr('03 Insert converted data')
 
+    def shortHelpString(self) -> str:
+        # TODO
+        return None
+
     def group(self):
         return self.tr('Import')
 

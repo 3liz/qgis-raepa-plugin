@@ -63,6 +63,9 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
     def groupId(self):
         return 'raepa_structure'
 
+    def shortHelpString(self) -> str:
+        return 'Crée la base de données avec les schémas et les tables.'
+
     def tr(self, string):
         return QCoreApplication.translate('Processing', string)
 
@@ -201,7 +204,7 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
                 # raise Exception(msg)
                 return {
                     self.OUTPUT_STATUS: status,
-                    self.OUTPUT_STRING: msg
+                    self.OUTPUT_STRING: error_message
                 }
 
         # Create full structure

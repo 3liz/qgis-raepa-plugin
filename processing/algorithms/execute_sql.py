@@ -56,6 +56,9 @@ class ExecuteSql(QgsProcessingAlgorithm):
     def groupId(self):
         return 'raepa_tools'
 
+    def shortHelpString(self) -> str:
+        return 'Exécuter du SQL dans la base de données.'
+
     def tr(self, string):
         return QCoreApplication.translate('Processing', string)
 

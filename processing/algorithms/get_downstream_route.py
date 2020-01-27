@@ -22,6 +22,7 @@ from qgis.core import (
     QgsProcessingParameterEnum
 )
 
+
 class GetDownstreamRoute(GetDataAsLayer):
     """
 
@@ -41,6 +42,9 @@ class GetDownstreamRoute(GetDataAsLayer):
 
     def displayName(self):
         return self.tr('Get the downstream route')
+
+    def shortHelpString(self) -> str:
+        return 'Obtenir le réseau en aval d\'un ouvrage'
 
     def initAlgorithm(self, config):
         """

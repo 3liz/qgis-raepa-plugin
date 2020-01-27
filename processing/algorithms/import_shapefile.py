@@ -49,6 +49,9 @@ class ImportShapefile(QgsProcessingAlgorithm):
     def displayName(self):
         return self.tr('01 Import SHP into temporary tables')
 
+    def shortHelpString(self) -> str:
+        return 'Import des données vecteurs dans la base de données PostGIS.'
+
     def group(self):
         return self.tr('Import')
 

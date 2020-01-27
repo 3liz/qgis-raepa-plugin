@@ -17,9 +17,6 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-from qgis.core import (
-    QgsProcessingParameterVectorLayer
-)
 
 from .execute_sql import *
 
@@ -36,6 +33,9 @@ class GetOrientationAppareil(ExecuteSql):
 
     def displayName(self):
         return self.tr('Get orientation appareil')
+
+    def shortHelpString(self) -> str:
+        return 'Obtenir l\'orientation d\'un appareil.'
 
     def group(self):
         return self.tr('Tools')

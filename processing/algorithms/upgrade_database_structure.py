@@ -52,6 +52,11 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
     def displayName(self):
         return self.tr('Upgrade database structure')
 
+    def shortHelpString(self) -> str:
+        return (
+            'Applique les migrations SQL nécéssaires sur la base de données. '
+            'Cela est à faire lors d\'une mise à jour du plugin.')
+
     def group(self):
         return self.tr('Structure')
 
