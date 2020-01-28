@@ -22,7 +22,7 @@ tags=water network, france
 
 homepage=https://github.com/3liz/qgis-raepa-plugin
 category=Analysis
-icon=icon.png
+icon=resources/icons/icon.png
 # experimental flag
 experimental=True
 
