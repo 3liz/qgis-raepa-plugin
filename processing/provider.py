@@ -29,6 +29,9 @@ __copyright__ = '(C) 2019 by 3liz'
 __revision__ = '$Format:%H$'
 
 from qgis.core import QgsProcessingProvider
+from qgis.PyQt.QtGui import QIcon
+
+from ..qgis_plugin_tools.tools.resources import resources_path
 
 from .algorithms.cancel_last_modification import CancelLastModification
 from .algorithms.configure_plugin import ConfigurePlugin
@@ -50,12 +53,8 @@ from .algorithms.add_styles import AddStyles
 
 class RaepaProvider(QgsProcessingProvider):
 
-    def unload(self):
-        """
-        Unloads the provider. Any tear-down steps required by the provider
-        should be implemented here.
-        """
-        pass
+    def icon(self) -> QIcon:
+        return QIcon(resources_path('icons/icon.png'))
 
     def loadAlgorithms(self):
         self.addAlgorithm(GetDataAsLayer())
@@ -79,7 +78,7 @@ class RaepaProvider(QgsProcessingProvider):
         return 'raepa'
 
     def name(self):
-        return self.tr('Raepa')
+        return 'RAEPA'
 
     def longName(self):
-        return self.tr('Raepa')
+        return 'Réseaux d\'Adduction d\'Eau Potable et d\'Assainissement'
