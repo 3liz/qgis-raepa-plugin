@@ -29,6 +29,8 @@ __copyright__ = '(C) 2018 by 3liz'
 __revision__ = '$Format:%H$'
 
 from qgis.core import QgsApplication, QgsMessageLog, Qgis
+from qgis.utils import iface
+from qgis.PyQt.QtCore import Qt
 from qgis.PyQt.QtWidgets import QMessageBox
 
 from .actions import (
@@ -39,6 +41,7 @@ from .actions import (
     calcul_orientation_appareil,
     network_to_vanne,
 )
+from .dock import RaepaDock
 from .processing.provider import RaepaProvider
 
 
@@ -46,6 +49,7 @@ class Raepa:
 
     def __init__(self):
         self.provider = None
+        self.dock = None
 
     def initProcessing(self):
         """Init Processing provider for QGIS >= 3.8."""
@@ -55,9 +59,14 @@ class Raepa:
     def initGui(self):
         """Init the user interface."""
         self.initProcessing()
+        self.dock = RaepaDock()
+        iface.addDockWidget(Qt.RightDockWidgetArea, self.dock)
 
     def unload(self):
+        """Unload the plugin."""
         QgsApplication.processingRegistry().removeProvider(self.provider)
+        iface.removeDockWidget(self.dock)
+        self.dock.deleteLater()
 
     @staticmethod
     def run_action(name, *args):
