@@ -46,19 +46,16 @@ class ConfigurePlugin(QgsProcessingAlgorithm):
         return 'configure_plugin'
 
     def displayName(self):
-        return self.tr('Configure Raepa plugin')
+        return 'Configurer le plugin RAEPA'
 
     def group(self):
-        return self.tr('Configuration')
+        return 'Configuration'
 
     def groupId(self):
         return 'raepa_configuration'
 
     def shortHelpString(self) -> str:
         return 'Ajoute la variable "raepa_connection_name" à QGIS.'
-
-    def tr(self, string):
-        return QCoreApplication.translate('Processing', string)
 
     def createInstance(self):
         return self.__class__()
@@ -74,7 +71,7 @@ class ConfigurePlugin(QgsProcessingAlgorithm):
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
         db_param = QgsProcessingParameterString(
             self.CONNECTION_NAME,
-            self.tr('PostgreSQL connection to RAEPA database'),
+            'Connection PostgreSQL à la base à RAEPA',
             defaultValue=connection_name,
             optional=False
         )
@@ -90,14 +87,14 @@ class ConfigurePlugin(QgsProcessingAlgorithm):
         self.addOutput(
             QgsProcessingOutputNumber(
                 self.OUTPUT_STATUS,
-                self.tr('Output status')
+                'Statut de sortie'
             )
         )
         # Add output for message
         self.addOutput(
             QgsProcessingOutputString(
                 self.OUTPUT_STRING,
-                self.tr('Output message')
+                'Message de sortie'
             )
         )
 
@@ -108,10 +105,11 @@ class ConfigurePlugin(QgsProcessingAlgorithm):
         connection_name = parameters[self.CONNECTION_NAME]
 
         # Set global variable
+        # noinspection PyCallByClass,PyArgumentList
         QgsExpressionContextUtils.setGlobalVariable('raepa_connection_name', connection_name)
-        feedback.pushInfo(self.tr('PostgreSQL connection to Raepa database') + ' = ' + connection_name)
+        feedback.pushInfo('Connection PostgreSQL à la base RAEPA "{}"'.format(connection_name))
 
-        msg = self.tr('Configuration has been saved')
+        msg = 'La configuration a été faite'
         feedback.pushInfo(msg)
         status = 1
 

@@ -18,10 +18,11 @@ __copyright__ = '(C) 2018 by 3liz'
 __revision__ = '$Format:%H$'
 
 from qgis.core import (
-    QgsProcessingParameterVectorLayer
+    QgsProcessingParameterVectorLayer,
+    QgsProcessingParameterString,
 )
 
-from .execute_sql import *
+from .execute_sql import ExecuteSql
 
 
 class CancelLastModification(ExecuteSql):
@@ -33,19 +34,16 @@ class CancelLastModification(ExecuteSql):
         return 'cancel_last_modification'
 
     def displayName(self):
-        return self.tr('Cancel last modification')
+        return 'Annuler la dernière modification'
 
     def group(self):
-        return self.tr('Tools')
+        return 'Outils'
 
     def groupId(self):
         return 'raepa_tools'
 
     def shortHelpString(self) -> str:
         return 'Annule la dernière modification sur la base de données.'
-
-    def tr(self, string):
-        return QCoreApplication.translate('Processing', string)
 
     def createInstance(self):
         return self.__class__()
@@ -61,7 +59,7 @@ class CancelLastModification(ExecuteSql):
         # INPUTS
         self.addParameter(
             QgsProcessingParameterVectorLayer(
-                self.SOURCE_LAYER, self.tr('Source layer'),
+                self.SOURCE_LAYER, 'Source layer',
                 optional=False
             )
         )
