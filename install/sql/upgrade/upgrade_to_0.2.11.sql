@@ -1,5 +1,6 @@
 BEGIN;
 
+-- calcul_orientation(text, double)
 CREATE OR REPLACE FUNCTION raepa.calcul_orientation (cana text, pos double precision)
 RETURNS double precision
     LANGUAGE 'plpgsql'
@@ -27,7 +28,7 @@ BEGIN
     return res;
 END; $BODY$;
 
-
+-- calculate_apparaep_orientation(text)
 CREATE OR REPLACE FUNCTION raepa.calculate_apparaep_orientation(idappaep text)
   RETURNS double precision
     LANGUAGE 'plpgsql'
