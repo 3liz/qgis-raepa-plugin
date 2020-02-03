@@ -13,12 +13,6 @@ __author__ = '3liz'
 __date__ = '2019-02-15'
 __copyright__ = '(C) 2019 by 3liz'
 
-from qgis.PyQt.QtCore import QCoreApplication
-
-
-def tr(string):
-    return QCoreApplication.translate('Processing', string)
-
 
 def fetchDataFromSqlQuery(connection_name, sql):
     from db_manager.db_plugins.plugin import BaseError
@@ -43,7 +37,7 @@ def fetchDataFromSqlQuery(connection_name, sql):
         error_message = e.msg
     except:
         ok = False
-        error_message = 'Cannot connect to database'
+        error_message = 'Connexion à la base de données impossible'
 
     if not connection:
         return [header, data, rowCount, ok, error_message]
@@ -51,7 +45,7 @@ def fetchDataFromSqlQuery(connection_name, sql):
     db = dbpluginclass.database()
     if not db:
         ok = False
-        error_message = 'Unable to get database from connection'
+        error_message = 'Impossible de récupérer la base de données depuis la connexion'
         return [header, data, rowCount, ok, error_message]
 
     # Get URI
@@ -59,7 +53,7 @@ def fetchDataFromSqlQuery(connection_name, sql):
     try:
         connector = PostGisDBConnector(uri)
     except:
-        error_message = tr('Cannot connect to database')
+        error_message = 'Impossible de se connecer à la base de données'
         ok = False
         return [header, data, rowCount, ok, error_message]
 
@@ -89,7 +83,7 @@ def fetchDataFromSqlQuery(connection_name, sql):
 
     # Log errors
     if not ok:
-        error_message = tr('Unknown error occured while fetching data')
+        error_message = 'Une erreur inconnue lors de la récupération des données'
         return [header, data, rowCount, ok, error_message]
         print(error_message)
         print(sql)
@@ -110,10 +104,10 @@ def validateTimestamp(timestamp_text):
 
 
 def getVersionInteger(f):
-    '''
+    """
     Transform "0.1.2" into "000102"
     Transform "10.9.12" into "100912"
     to allow comparing versions
     and sorting the upgrade files
-    '''
+    """
     return ''.join([a.zfill(2) for a in f.strip().split('.')])
