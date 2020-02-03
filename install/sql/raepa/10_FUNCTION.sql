@@ -178,12 +178,13 @@ BEGIN
 
   EXECUTE format('
     WITH RECURSIVE walk_network(idcana, idnini, idnterm, all_parents, geom) AS (
-      SELECT idcana::text,
-      idnini, idnterm,
-      array[idcana::text] as all_parents,
-      geom
-      FROM %s
-      WHERE idcana = ''%s''
+      SELECT c.idcana::text,
+      c.idnini, c.idnterm,
+      array[c.idcana::text] as all_parents,
+      c.geom
+      FROM %s AS c
+      JOIN raepa.get_canalisations_by_object_id(''%s'', ''down'') AS s
+          ON c.idcana = s.idcana
     UNION ALL
       SELECT n.idcana::text,
       n.idnini, n.idnterm,
@@ -199,7 +200,7 @@ BEGIN
     INNER JOIN %s AS r
     ON wn.idcana = r.idcana
     ',
-    p_cana_table, p_cana_id,
+    p_cana_table, p_id_object,
     p_cana_table,
     p_cana_table
   ) INTO parcours;
@@ -233,11 +234,13 @@ BEGIN
 
   EXECUTE format('
     WITH RECURSIVE walk_network(idcana, idnini, idnterm, all_parents) AS (
-      SELECT idcana::text,
-      idnini, idnterm,
-      array[idcana::text] as all_parents
-      FROM %s
-      WHERE idcana = ''%s''
+      SELECT c.idcana::text,
+      c.idnini, c.idnterm,
+      array[c.idcana::text] as all_parents,
+      c.geom
+      FROM %s AS c
+      JOIN raepa.get_canalisations_by_object_id(''%s'', ''down'') AS s
+          ON c.idcana = s.idcana
     UNION
       SELECT n.idcana::text,
       n.idnini, n.idnterm,
@@ -252,7 +255,7 @@ BEGIN
     INNER JOIN %s AS r
     ON wn.idcana = r.idcana
     ',
-    p_cana_table, p_cana_id,
+    p_cana_table, p_id_object,
     p_cana_table,
     p_cana_table
   ) INTO parcours;
@@ -390,6 +393,89 @@ BEGIN
 
 END;
 $$;
+
+-- get_canalisation_ids_by_object_id(text, text)
+CREATE OR REPLACE FUNCTION raepa.get_canalisation_ids_by_object_id(
+    IN p_id_object text,
+    IN p_direction text)
+  RETURNS TABLE(idcana text, tablecana text)
+    LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE
+  p_cana_id text;
+  p_cana_table regclass;
+  p_object_table regclass;
+  p_object_id_column text;
+  p_node_col text;
+  p_function text;
+  sql_text text;
+  parcours public.geometry;
+BEGIN
+
+  -- Get target canalisation table
+  IF p_id_object similar to '%(ouvass|appass|canass)%' THEN
+    p_cana_table:= 'raepa.raepa_canalass_l';
+  ELSE
+    p_cana_table:= 'raepa.raepa_canalaep_l';
+  END IF;
+
+  -- Get first canalisation depending on object id given
+  -- ouvrage
+  p_cana_id = '';
+
+  -- ouvrage / appareil
+  IF p_id_object similar to '%(ouvass|ouvaep|appass|appaep)%' THEN
+
+    -- Get source object table
+    IF     p_id_object LIKE '%ouvass%' THEN
+      p_object_table:= 'raepa.raepa_ouvrass_p';
+      p_object_id_column:= 'idouvrage';
+    ELSEIF p_id_object LIKE '%ouvaep%' THEN
+      p_object_table:= 'raepa.raepa_ouvraep_p';
+      p_object_id_column:= 'idouvrage';
+    ELSEIF p_id_object LIKE '%appass%' THEN
+      p_object_table:= 'raepa.raepa_apparass_p';
+      p_object_id_column:= 'idappareil';
+    ELSEIF p_id_object LIKE '%appaep%' THEN
+      p_object_table:= 'raepa.raepa_apparaep_p';
+      p_object_id_column:= 'idappareil';
+    END IF;
+
+    -- Some parameters depend on given direction
+    IF p_direction = 'up' THEN
+      p_node_col = 'idnterm';
+      p_function = 'st_endpoint';
+    ELSE
+      p_node_col = 'idnini';
+      p_function = 'st_startpoint';
+    END IF;
+
+
+    -- Get canalisation id
+    RETURN QUERY EXECUTE format('
+      SELECT idcana::text, ''%s'' AS tablecana
+      FROM %s AS c
+      WHERE %s = ''%s''
+      OR ST_Dwithin(
+        %s(c.geom),
+        (SELECT geom FROM %s WHERE "%s" = ''%s''),
+        0.05
+      )
+    ',
+      p_cana_table, p_cana_table,
+      p_node_col, p_id_object,
+      p_function,
+      p_object_table, p_object_id_column, p_id_object
+    );
+  END IF;
+
+  -- canalisation
+  IF p_id_object similar to '%(canass|canaep)%' THEN
+    p_cana_id:= p_id_object;
+    RETURN QUERY EXECUTE format('SELECT ''%s''AS idcana, ''%s'' AS tablecana', p_cana_id, p_cana_table);
+  END IF;
+
+END; $BODY$;
 
 
 -- import_gabarit_dans_tables_temporaires(text, text, text, text, text, text)
@@ -1122,12 +1208,13 @@ BEGIN
   -- Build geometry
   EXECUTE format('
     WITH RECURSIVE walk_network(idcana, idnini, idnterm, all_parents, geom) AS (
-      SELECT idcana::text,
-      idnini, idnterm,
-      array[idcana::text] as all_parents,
-      geom
-      FROM %s
-      WHERE idcana = ''%s''
+      SELECT c.idcana::text,
+      c.idnini, c.idnterm,
+      array[c.idcana::text] as all_parents,
+      c.geom
+      FROM %s AS c
+      JOIN raepa.get_canalisations_by_object_id(''%s'', ''up'') AS s
+          ON c.idcana = s.idcana
     UNION ALL
       SELECT n.idcana::text,
       n.idnini, n.idnterm,
@@ -1143,7 +1230,7 @@ BEGIN
     INNER JOIN %s r
     ON wn.idcana = r.idcana
     ',
-    p_cana_table, p_cana_id,
+    p_cana_table, p_id_object,
     p_cana_table,
     p_cana_table
   ) INTO parcours;
@@ -1179,11 +1266,13 @@ BEGIN
   -- Build geometry
   EXECUTE format('
     WITH RECURSIVE walk_network(idcana, idnini, idnterm, all_parents) AS (
-      SELECT idcana::text,
-      idnini, idnterm,
-      array[idcana::text] as all_parents
-      FROM %s
-      WHERE idcana = ''%s''
+      SELECT c.idcana::text,
+      c.idnini, c.idnterm,
+      array[c.idcana::text] as all_parents,
+      c.geom
+      FROM %s AS c
+      JOIN raepa.get_canalisations_by_object_id(''%s'', ''up'') AS s
+          ON c.idcana = s.idcana
     UNION
       SELECT n.idcana::text,
       n.idnini, n.idnterm,
@@ -1198,7 +1287,7 @@ BEGIN
     INNER JOIN %s AS r
     ON wn.idcana = r.idcana
     ',
-    p_cana_table, p_cana_id,
+    p_cana_table, p_id_object,
     p_cana_table,
     p_cana_table
   ) INTO parcours;
