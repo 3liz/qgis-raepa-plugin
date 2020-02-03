@@ -34,13 +34,7 @@ from .tools import *
 
 
 class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
-    """
 
-    """
-
-    # Constants used to refer to parameters and outputs. They will be
-    # used when calling the algorithm from another algorithm, or when
-    # calling from the QGIS console.
     RUNIT = 'RUNIT'
     SRID = 'SRID'
     OUTPUT_STATUS = 'OUTPUT_STATUS'
@@ -50,7 +44,7 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
         return 'upgrade_database_structure'
 
     def displayName(self):
-        return self.tr('Upgrade database structure')
+        return 'Mise à jour de la structure de la BDD'
 
     def shortHelpString(self) -> str:
         return (
@@ -58,30 +52,21 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
             'Cela est à faire lors d\'une mise à jour du plugin.')
 
     def group(self):
-        return self.tr('Structure')
+        return 'Structure'
 
     def groupId(self):
         return 'raepa_structure'
-
-    def tr(self, string):
-        return QCoreApplication.translate('Processing', string)
 
     def createInstance(self):
         return self.__class__()
 
     def initAlgorithm(self, config):
-        """
-        Here we define the inputs and output of the algorithm, along
-        with some other properties.
-        """
-        # INPUTS
 
         self.addParameter(
             QgsProcessingParameterBoolean(
                 self.RUNIT,
-                self.tr('Check this box to upgrade. No action will be done otherwise'),
+                'Cocher cette case pour faire la mise à jour. Autrement, aucune action ne se passera.',
                 defaultValue=False,
-                optional=False
             )
         )
         self.addParameter(
@@ -91,18 +76,16 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
                 optional=False
             )
         )
-        # OUTPUTS
-        # Add output for status (integer) and message (string)
         self.addOutput(
             QgsProcessingOutputNumber(
                 self.OUTPUT_STATUS,
-                self.tr('Output status')
+                'Statut de sortie'
             )
         )
         self.addOutput(
             QgsProcessingOutputString(
                 self.OUTPUT_STRING,
-                self.tr('Output message')
+                'Message de sortie'
             )
         )
 
@@ -110,20 +93,26 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
         # Check if runit is checked
         runit = self.parameterAsBool(parameters, self.RUNIT, context)
         if not runit:
-            msg = self.tr('You must check the box to run the upgrade !')
+            msg = 'Vous devez cocher cette case à cocher pour faire la mise à jour !'
             ok = False
             return ok, msg
 
         # Check that the connection name has been configured
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
         if not connection_name:
-            return False, self.tr('You must use the "Configure RAEPA plugin" alg to set the database connection name')
+            msg = (
+                'Vous devez utiliser l\'algorithme "Configuration du plugin RAEPA" pour paramètrer le nom de la '
+                'connexion.')
+            return False, msg
 
         # Check that it corresponds to an existing connection
         dbpluginclass = createDbPlugin('postgis')
         connections = [c.connectionName() for c in dbpluginclass.connections()]
         if connection_name not in connections:
-            return False, self.tr('The configured connection name "{}" does not exists in QGIS : {}'.format(connection_name, ', '.join(connections)))
+            msg = (
+                'La connexion configurée "{}" n\'existe pas dans QGIS : {}'.format(
+                    connection_name, ', '.join(connections)))
+            return False, msg
 
         # Check database content
         ok, msg = self.checkSchema(parameters, context)
@@ -146,7 +135,7 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
         if not ok:
             return ok, error_message
         ok = False
-        msg = self.tr("Schema raepa does not exist in database !")
+        msg = 'Le schéma RAEPA n\'existe pas dans la base de données.'
         for a in data:
             schema = a[0]
             if schema == 'raepa':
@@ -155,17 +144,13 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
         return ok, msg
 
     def processAlgorithm(self, parameters, context, feedback):
-        """
-        Here is where the processing itself takes place.
-        """
-
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
 
         # Drop schema if needed
         runit = self.parameterAsBool(parameters, self.RUNIT, context)
         if not runit:
             status = 0
-            msg = self.tr('You must check the box to run the upgrade !')
+            msg = 'Vous devez cocher cette case à cocher pour faire la mise à jour !'
             # raise Exception(msg)
             return {
                 self.OUTPUT_STATUS: status,
@@ -191,9 +176,9 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
         for a in data:
             db_version = a[0]
         if not db_version:
-            error_message = self.tr('No installed version found in the database !')
+            error_message = 'Pas de version installée dans la base de données !'
             raise Exception(error_message)
-        feedback.pushInfo(self.tr('Database structure version') + ' = %s' % db_version)
+        feedback.pushInfo('Version de la structure de la base de données : {}'.format(db_version))
 
         # get plugin version
         alg_dir = os.path.dirname(__file__)
@@ -201,20 +186,22 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
         config = configparser.ConfigParser()
         config.read(os.path.join(plugin_dir, 'metadata.txt'))
         plugin_version = config['general']['version']
-        feedback.pushInfo(self.tr('Plugin version') + ' = %s' % plugin_version)
+        feedback.pushInfo('Version du plugin : {}'.format(plugin_version))
 
         # Return if nothing to do
         if db_version == plugin_version:
             return {
                 self.OUTPUT_STATUS: 1,
-                self.OUTPUT_STRING: self.tr('The database version already matches the plugin version. No upgrade needed.')
+                self.OUTPUT_STRING: (
+                    'La version de la base de données correspond déjà à la version du plugin. Pas de mise à jour '
+                    'nécessaire.')
             }
 
 
         # Get input srid
         crs = parameters[self.SRID]
         srid = crs.authid().replace('EPSG:', '')
-        feedback.pushInfo('SRID = %s' % srid)
+        feedback.pushInfo('SRID = {}'.format(srid))
 
         # Get all the upgrade SQL files between db versions and plugin version
         upgrade_dir = os.path.join(plugin_dir, 'install/sql/upgrade/')
@@ -279,5 +266,5 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
 
         return {
             self.OUTPUT_STATUS: 1,
-            self.OUTPUT_STRING: self.tr('*** RAEPA STRUCTURE HAS BEEN SUCCESSFULLY UPGRADED ***')
+            self.OUTPUT_STRING: '*** STRUCTURE RAEPA MISE À JOUR AVEC SUCCÈS ***'
         }
