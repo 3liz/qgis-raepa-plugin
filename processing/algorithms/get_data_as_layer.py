@@ -30,6 +30,7 @@ from qgis.core import (
     QgsProcessingOutputVectorLayer,
     QgsExpressionContextUtils
 )
+from qgis.PyQt.QtCore import QCoreApplication
 
 from .tools import *
 

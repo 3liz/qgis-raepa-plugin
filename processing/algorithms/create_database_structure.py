@@ -21,6 +21,7 @@ import configparser
 import os
 
 from db_manager.db_plugins import createDbPlugin
+from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (
     QgsProcessingAlgorithm,
     QgsProcessingParameterString,

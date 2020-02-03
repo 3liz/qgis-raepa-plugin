@@ -26,6 +26,7 @@ from qgis.core import (
     QgsProcessingOutputMultipleLayers,
     QgsProcessingContext,
     QgsProcessingParameterDefinition)
+from qgis.PyQt.QtCore import QCoreApplication
 from .tools import *
 from processing.tools.postgis import uri_from_name, GeoDB
 
