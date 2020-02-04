@@ -1,23 +1,23 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis simplifyDrawingHints="0" readOnly="0" hasScaleBasedVisibilityFlag="1" version="3.4.13-Madeira" styleCategories="AllStyleCategories" simplifyAlgorithm="0" maxScale="1" labelsEnabled="0" simplifyDrawingTol="1" simplifyMaxScale="1" minScale="2501" simplifyLocal="0">
+<qgis maxScale="1" simplifyLocal="0" minScale="2501" simplifyMaxScale="1" version="3.4.14-Madeira" simplifyDrawingHints="0" styleCategories="AllStyleCategories" labelsEnabled="0" simplifyDrawingTol="1" hasScaleBasedVisibilityFlag="1" simplifyAlgorithm="0" readOnly="0">
   <flags>
     <Identifiable>1</Identifiable>
     <Removable>1</Removable>
     <Searchable>1</Searchable>
   </flags>
-  <renderer-v2 symbollevels="0" forceraster="0" type="RuleRenderer" enableorderby="0">
+  <renderer-v2 forceraster="0" symbollevels="0" enableorderby="0" type="RuleRenderer">
     <rules key="{6736e613-3750-466f-8a9f-3310fefc92b3}">
-      <rule key="{85abc532-ce36-437d-b0cf-48fbebdc5b95}" filter="&quot;fnouvaep&quot; = '01'" label="Station de pompage" symbol="0"/>
-      <rule key="{3103a62c-d84c-43d5-ac41-0530a9873cd5}" filter="&quot;fnouvaep&quot; = '02'" label="Station de traitement" symbol="1"/>
-      <rule key="{e51c6d5a-9329-43d8-a377-e41b742e24d3}" filter="&quot;fnouvaep&quot; = '03'" label="Réservoir" symbol="2"/>
-      <rule key="{31322e09-08e1-4427-99ca-6abe3cf11756}" filter="&quot;fnouvaep&quot; = '04'" label="Chambre de comptage" symbol="3"/>
-      <rule key="{99742514-bc1e-4d8c-84df-493c1c0a4ee3}" filter="&quot;fnouvaep&quot; = '05'" label="Captage" symbol="4"/>
-      <rule key="{a58e9cd6-6bfa-482f-b54a-c2c5f08ad64e}" filter="&quot;fnouvaep&quot; = '00'" label="Indéterminé" symbol="5"/>
-      <rule key="{b56796d8-f43d-4594-9034-e3b57e012d40}" filter="&quot;fnouvaep&quot; = '99'" label="Autre" symbol="6"/>
+      <rule label="Station de pompage" filter="&quot;fnouvaep&quot; = '01'" key="{85abc532-ce36-437d-b0cf-48fbebdc5b95}" symbol="0"/>
+      <rule label="Station de traitement" filter="&quot;fnouvaep&quot; = '02'" key="{3103a62c-d84c-43d5-ac41-0530a9873cd5}" symbol="1"/>
+      <rule label="Réservoir" filter="&quot;fnouvaep&quot; = '03'" key="{e51c6d5a-9329-43d8-a377-e41b742e24d3}" symbol="2"/>
+      <rule label="Chambre de comptage" filter="&quot;fnouvaep&quot; = '04'" key="{31322e09-08e1-4427-99ca-6abe3cf11756}" symbol="3"/>
+      <rule label="Captage" filter="&quot;fnouvaep&quot; = '05'" key="{99742514-bc1e-4d8c-84df-493c1c0a4ee3}" symbol="4"/>
+      <rule label="Indéterminé" filter="&quot;fnouvaep&quot; = '00'" key="{a58e9cd6-6bfa-482f-b54a-c2c5f08ad64e}" symbol="5"/>
+      <rule label="Autre" filter="&quot;fnouvaep&quot; = '99'" key="{b56796d8-f43d-4594-9034-e3b57e012d40}" symbol="6"/>
     </rules>
     <symbols>
-      <symbol clip_to_extent="1" alpha="1" force_rhr="0" type="marker" name="0">
-        <layer class="SimpleMarker" locked="0" pass="3" enabled="1">
+      <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="0" type="marker">
+        <layer enabled="1" class="SimpleMarker" pass="3" locked="0">
           <prop k="angle" v="0"/>
           <prop k="color" v="255,255,255,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
@@ -36,7 +36,7 @@
           <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"/>
           <prop k="size_unit" v="MapUnit"/>
           <prop k="vertical_anchor_point" v="1"/>
-          <effect type="effectStack" enabled="0">
+          <effect enabled="0" type="effectStack">
             <effect type="drawSource">
               <prop k="blend_mode" v="0"/>
               <prop k="draw_mode" v="2"/>
@@ -46,19 +46,19 @@
           </effect>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
-              <Option type="Map" name="properties">
-                <Option type="Map" name="outlineColor">
-                  <Option type="bool" name="active" value="false"/>
-                  <Option type="QString" name="expression" value="CASE WHEN channel_usage_current IN (4514, 4520) THEN '50,160,45,255' WHEN channel_usage_current = 4516 THEN '140,70,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '140,70,0,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-                  <Option type="int" name="type" value="3"/>
+              <Option name="name" type="QString" value=""/>
+              <Option name="properties" type="Map">
+                <Option name="outlineColor" type="Map">
+                  <Option name="active" type="bool" value="false"/>
+                  <Option name="expression" type="QString" value="CASE WHEN channel_usage_current IN (4514, 4520) THEN '50,160,45,255' WHEN channel_usage_current = 4516 THEN '140,70,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '140,70,0,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+                  <Option name="type" type="int" value="3"/>
                 </Option>
               </Option>
-              <Option type="QString" name="type" value="collection"/>
+              <Option name="type" type="QString" value="collection"/>
             </Option>
           </data_defined_properties>
         </layer>
-        <layer class="SimpleMarker" locked="0" pass="3" enabled="1">
+        <layer enabled="1" class="SimpleMarker" pass="3" locked="0">
           <prop k="angle" v="0"/>
           <prop k="color" v="0,0,0,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
@@ -77,7 +77,7 @@
           <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"/>
           <prop k="size_unit" v="MapUnit"/>
           <prop k="vertical_anchor_point" v="1"/>
-          <effect type="effectStack" enabled="0">
+          <effect enabled="0" type="effectStack">
             <effect type="drawSource">
               <prop k="blend_mode" v="0"/>
               <prop k="draw_mode" v="2"/>
@@ -87,21 +87,21 @@
           </effect>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
-              <Option type="Map" name="properties">
-                <Option type="Map" name="fillColor">
-                  <Option type="bool" name="active" value="false"/>
-                  <Option type="QString" name="expression" value="CASE WHEN channel_usage_current IN (4514, 4520) THEN '50,160,45,255' WHEN channel_usage_current = 4516 THEN '140,70,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '140,70,0,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
-                  <Option type="int" name="type" value="3"/>
+              <Option name="name" type="QString" value=""/>
+              <Option name="properties" type="Map">
+                <Option name="fillColor" type="Map">
+                  <Option name="active" type="bool" value="false"/>
+                  <Option name="expression" type="QString" value="CASE WHEN channel_usage_current IN (4514, 4520) THEN '50,160,45,255' WHEN channel_usage_current = 4516 THEN '140,70,0,255' WHEN channel_usage_current = 4518 THEN '0,170,255,255' WHEN channel_usage_current = 4522 THEN '140,70,0,255' WHEN channel_usage_current IN (4524, 4526) THEN '255,0,0,255' ELSE '161,161,161,255' END"/>
+                  <Option name="type" type="int" value="3"/>
                 </Option>
               </Option>
-              <Option type="QString" name="type" value="collection"/>
+              <Option name="type" type="QString" value="collection"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol clip_to_extent="1" alpha="1" force_rhr="0" type="marker" name="1">
-        <layer class="SimpleMarker" locked="0" pass="0" enabled="1">
+      <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="1" type="marker">
+        <layer enabled="1" class="SimpleMarker" pass="0" locked="0">
           <prop k="angle" v="0"/>
           <prop k="color" v="255,255,255,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
@@ -122,15 +122,15 @@
           <prop k="vertical_anchor_point" v="1"/>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option name="name" type="QString" value=""/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option name="type" type="QString" value="collection"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol clip_to_extent="1" alpha="1" force_rhr="0" type="marker" name="2">
-        <layer class="SimpleMarker" locked="0" pass="0" enabled="1">
+      <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="2" type="marker">
+        <layer enabled="1" class="SimpleMarker" pass="0" locked="0">
           <prop k="angle" v="0"/>
           <prop k="color" v="72,123,182,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
@@ -151,15 +151,15 @@
           <prop k="vertical_anchor_point" v="1"/>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option name="name" type="QString" value=""/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option name="type" type="QString" value="collection"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol clip_to_extent="1" alpha="1" force_rhr="0" type="marker" name="3">
-        <layer class="SimpleMarker" locked="0" pass="0" enabled="1">
+      <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="3" type="marker">
+        <layer enabled="1" class="SimpleMarker" pass="0" locked="0">
           <prop k="angle" v="0"/>
           <prop k="color" v="255,255,255,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
@@ -180,15 +180,15 @@
           <prop k="vertical_anchor_point" v="1"/>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option name="name" type="QString" value=""/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option name="type" type="QString" value="collection"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol clip_to_extent="1" alpha="1" force_rhr="0" type="marker" name="4">
-        <layer class="SimpleMarker" locked="0" pass="0" enabled="1">
+      <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="4" type="marker">
+        <layer enabled="1" class="SimpleMarker" pass="0" locked="0">
           <prop k="angle" v="0"/>
           <prop k="color" v="100,175,255,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
@@ -209,15 +209,15 @@
           <prop k="vertical_anchor_point" v="1"/>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option name="name" type="QString" value=""/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option name="type" type="QString" value="collection"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol clip_to_extent="1" alpha="1" force_rhr="0" type="marker" name="5">
-        <layer class="SimpleMarker" locked="0" pass="3" enabled="1">
+      <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="5" type="marker">
+        <layer enabled="1" class="SimpleMarker" pass="3" locked="0">
           <prop k="angle" v="0"/>
           <prop k="color" v="115,115,115,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
@@ -238,21 +238,21 @@
           <prop k="vertical_anchor_point" v="1"/>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
-              <Option type="Map" name="properties">
-                <Option type="Map" name="angle">
-                  <Option type="bool" name="active" value="false"/>
-                  <Option type="QString" name="expression" value=""/>
-                  <Option type="int" name="type" value="3"/>
+              <Option name="name" type="QString" value=""/>
+              <Option name="properties" type="Map">
+                <Option name="angle" type="Map">
+                  <Option name="active" type="bool" value="false"/>
+                  <Option name="expression" type="QString" value=""/>
+                  <Option name="type" type="int" value="3"/>
                 </Option>
               </Option>
-              <Option type="QString" name="type" value="collection"/>
+              <Option name="type" type="QString" value="collection"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
-      <symbol clip_to_extent="1" alpha="1" force_rhr="0" type="marker" name="6">
-        <layer class="SimpleMarker" locked="0" pass="0" enabled="1">
+      <symbol alpha="1" clip_to_extent="1" force_rhr="0" name="6" type="marker">
+        <layer enabled="1" class="SimpleMarker" pass="0" locked="0">
           <prop k="angle" v="0"/>
           <prop k="color" v="0,0,0,255"/>
           <prop k="horizontal_anchor_point" v="1"/>
@@ -273,15 +273,15 @@
           <prop k="vertical_anchor_point" v="1"/>
           <data_defined_properties>
             <Option type="Map">
-              <Option type="QString" name="name" value=""/>
+              <Option name="name" type="QString" value=""/>
               <Option name="properties"/>
-              <Option type="QString" name="type" value="collection"/>
+              <Option name="type" type="QString" value="collection"/>
             </Option>
           </data_defined_properties>
         </layer>
       </symbol>
     </symbols>
-    <effect type="effectStack" enabled="0">
+    <effect enabled="0" type="effectStack">
       <effect type="drawSource">
         <prop k="blend_mode" v="0"/>
         <prop k="draw_mode" v="2"/>
@@ -300,21 +300,21 @@
   <featureBlendMode>0</featureBlendMode>
   <layerOpacity>1</layerOpacity>
   <SingleCategoryDiagramRenderer diagramType="Histogram" attributeLegend="1">
-    <DiagramCategory penAlpha="255" height="15" lineSizeType="MM" diagramOrientation="Up" minScaleDenominator="1" backgroundAlpha="255" enabled="0" sizeScale="3x:0,0,0,0,0,0" lineSizeScale="3x:0,0,0,0,0,0" minimumSize="0" width="15" barWidth="5" sizeType="MM" scaleDependency="Area" rotationOffset="270" scaleBasedVisibility="1" backgroundColor="#ffffff" opacity="1" labelPlacementMethod="XHeight" penColor="#000000" maxScaleDenominator="2501" penWidth="0">
-      <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""/>
-      <attribute field="" color="#000000" label=""/>
+    <DiagramCategory sizeScale="3x:0,0,0,0,0,0" rotationOffset="270" sizeType="MM" labelPlacementMethod="XHeight" backgroundColor="#ffffff" width="15" lineSizeScale="3x:0,0,0,0,0,0" penAlpha="255" penWidth="0" backgroundAlpha="255" scaleDependency="Area" minimumSize="0" enabled="0" diagramOrientation="Up" maxScaleDenominator="2501" barWidth="5" penColor="#000000" scaleBasedVisibility="1" lineSizeType="MM" opacity="1" height="15" minScaleDenominator="1">
+      <fontProperties style="" description="Ubuntu,11,-1,5,50,0,0,0,0,0"/>
+      <attribute label="" field="" color="#000000"/>
     </DiagramCategory>
   </SingleCategoryDiagramRenderer>
-  <DiagramLayerSettings zIndex="0" linePlacementFlags="18" obstacle="0" dist="0" showAll="1" placement="0" priority="0">
+  <DiagramLayerSettings showAll="1" dist="0" placement="0" priority="0" zIndex="0" linePlacementFlags="18" obstacle="0">
     <properties>
       <Option type="Map">
-        <Option type="QString" name="name" value=""/>
+        <Option name="name" type="QString" value=""/>
         <Option name="properties"/>
-        <Option type="QString" name="type" value="collection"/>
+        <Option name="type" type="QString" value="collection"/>
       </Option>
     </properties>
   </DiagramLayerSettings>
-  <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
+  <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
     <activeChecks/>
     <checkConfiguration/>
   </geometryOptions>
@@ -323,12 +323,12 @@
       <editWidget type="Range">
         <config>
           <Option type="Map">
-            <Option type="bool" name="AllowNull" value="true"/>
-            <Option type="int" name="Max" value="2147483647"/>
-            <Option type="int" name="Min" value="-2147483648"/>
-            <Option type="int" name="Precision" value="0"/>
-            <Option type="int" name="Step" value="1"/>
-            <Option type="QString" name="Style" value="SpinBox"/>
+            <Option name="AllowNull" type="bool" value="true"/>
+            <Option name="Max" type="int" value="2147483647"/>
+            <Option name="Min" type="int" value="-2147483648"/>
+            <Option name="Precision" type="int" value="0"/>
+            <Option name="Step" type="int" value="1"/>
+            <Option name="Style" type="QString" value="SpinBox"/>
           </Option>
         </config>
       </editWidget>
@@ -337,8 +337,8 @@
       <editWidget type="TextEdit">
         <config>
           <Option type="Map">
-            <Option type="bool" name="IsMultiline" value="false"/>
-            <Option type="bool" name="UseHtml" value="false"/>
+            <Option name="IsMultiline" type="bool" value="false"/>
+            <Option name="UseHtml" type="bool" value="false"/>
           </Option>
         </config>
       </editWidget>
@@ -347,8 +347,8 @@
       <editWidget type="TextEdit">
         <config>
           <Option type="Map">
-            <Option type="bool" name="IsMultiline" value="false"/>
-            <Option type="bool" name="UseHtml" value="false"/>
+            <Option name="IsMultiline" type="bool" value="false"/>
+            <Option name="UseHtml" type="bool" value="false"/>
           </Option>
         </config>
       </editWidget>
@@ -357,8 +357,8 @@
       <editWidget type="TextEdit">
         <config>
           <Option type="Map">
-            <Option type="bool" name="IsMultiline" value="false"/>
-            <Option type="bool" name="UseHtml" value="false"/>
+            <Option name="IsMultiline" type="bool" value="false"/>
+            <Option name="UseHtml" type="bool" value="false"/>
           </Option>
         </config>
       </editWidget>
@@ -367,15 +367,15 @@
       <editWidget type="ValueRelation">
         <config>
           <Option type="Map">
-            <Option type="bool" name="AllowMulti" value="false"/>
-            <Option type="bool" name="AllowNull" value="true"/>
-            <Option type="QString" name="FilterExpression" value=""/>
-            <Option type="QString" name="Key" value="nom"/>
-            <Option type="QString" name="Layer" value="sys_organisme_gestionnaire2019100910365653369926340"/>
-            <Option type="int" name="NofColumns" value="1"/>
-            <Option type="bool" name="OrderByValue" value="true"/>
-            <Option type="bool" name="UseCompleter" value="false"/>
-            <Option type="QString" name="Value" value="nom"/>
+            <Option name="AllowMulti" type="bool" value="false"/>
+            <Option name="AllowNull" type="bool" value="true"/>
+            <Option name="FilterExpression" type="QString" value=""/>
+            <Option name="Key" type="QString" value="nom"/>
+            <Option name="Layer" type="QString" value="sys_organisme_gestionnaire2019100910365653369926340"/>
+            <Option name="NofColumns" type="int" value="1"/>
+            <Option name="OrderByValue" type="bool" value="true"/>
+            <Option name="UseCompleter" type="bool" value="false"/>
+            <Option name="Value" type="QString" value="nom"/>
           </Option>
         </config>
       </editWidget>
@@ -384,15 +384,15 @@
       <editWidget type="ValueRelation">
         <config>
           <Option type="Map">
-            <Option type="bool" name="AllowMulti" value="false"/>
-            <Option type="bool" name="AllowNull" value="true"/>
-            <Option type="QString" name="FilterExpression" value=""/>
-            <Option type="QString" name="Key" value="nom"/>
-            <Option type="QString" name="Layer" value="sys_organisme_gestionnaire2019100910365653369926340"/>
-            <Option type="int" name="NofColumns" value="1"/>
-            <Option type="bool" name="OrderByValue" value="true"/>
-            <Option type="bool" name="UseCompleter" value="false"/>
-            <Option type="QString" name="Value" value="nom"/>
+            <Option name="AllowMulti" type="bool" value="false"/>
+            <Option name="AllowNull" type="bool" value="true"/>
+            <Option name="FilterExpression" type="QString" value=""/>
+            <Option name="Key" type="QString" value="nom"/>
+            <Option name="Layer" type="QString" value="sys_organisme_gestionnaire2019100910365653369926340"/>
+            <Option name="NofColumns" type="int" value="1"/>
+            <Option name="OrderByValue" type="bool" value="true"/>
+            <Option name="UseCompleter" type="bool" value="false"/>
+            <Option name="Value" type="QString" value="nom"/>
           </Option>
         </config>
       </editWidget>
@@ -401,15 +401,15 @@
       <editWidget type="ValueRelation">
         <config>
           <Option type="Map">
-            <Option type="bool" name="AllowMulti" value="false"/>
-            <Option type="bool" name="AllowNull" value="true"/>
-            <Option type="QString" name="FilterExpression" value=""/>
-            <Option type="QString" name="Key" value="code"/>
-            <Option type="QString" name="Layer" value="val_raepa_fonc_ouv_ae201910091036565371693200831"/>
-            <Option type="int" name="NofColumns" value="1"/>
-            <Option type="bool" name="OrderByValue" value="true"/>
-            <Option type="bool" name="UseCompleter" value="false"/>
-            <Option type="QString" name="Value" value="libelle"/>
+            <Option name="AllowMulti" type="bool" value="false"/>
+            <Option name="AllowNull" type="bool" value="true"/>
+            <Option name="FilterExpression" type="QString" value=""/>
+            <Option name="Key" type="QString" value="code"/>
+            <Option name="Layer" type="QString" value="val_raepa_fonc_ouv_ae201910091036565371693200831"/>
+            <Option name="NofColumns" type="int" value="1"/>
+            <Option name="OrderByValue" type="bool" value="true"/>
+            <Option name="UseCompleter" type="bool" value="false"/>
+            <Option name="Value" type="QString" value="libelle"/>
           </Option>
         </config>
       </editWidget>
@@ -418,8 +418,8 @@
       <editWidget type="TextEdit">
         <config>
           <Option type="Map">
-            <Option type="bool" name="IsMultiline" value="false"/>
-            <Option type="bool" name="UseHtml" value="false"/>
+            <Option name="IsMultiline" type="bool" value="false"/>
+            <Option name="UseHtml" type="bool" value="false"/>
           </Option>
         </config>
       </editWidget>
@@ -428,8 +428,8 @@
       <editWidget type="TextEdit">
         <config>
           <Option type="Map">
-            <Option type="bool" name="IsMultiline" value="false"/>
-            <Option type="bool" name="UseHtml" value="false"/>
+            <Option name="IsMultiline" type="bool" value="false"/>
+            <Option name="UseHtml" type="bool" value="false"/>
           </Option>
         </config>
       </editWidget>
@@ -438,8 +438,8 @@
       <editWidget type="TextEdit">
         <config>
           <Option type="Map">
-            <Option type="bool" name="IsMultiline" value="false"/>
-            <Option type="bool" name="UseHtml" value="false"/>
+            <Option name="IsMultiline" type="bool" value="false"/>
+            <Option name="UseHtml" type="bool" value="false"/>
           </Option>
         </config>
       </editWidget>
@@ -448,8 +448,8 @@
       <editWidget type="TextEdit">
         <config>
           <Option type="Map">
-            <Option type="bool" name="IsMultiline" value="false"/>
-            <Option type="bool" name="UseHtml" value="false"/>
+            <Option name="IsMultiline" type="bool" value="false"/>
+            <Option name="UseHtml" type="bool" value="false"/>
           </Option>
         </config>
       </editWidget>
@@ -458,8 +458,8 @@
       <editWidget type="TextEdit">
         <config>
           <Option type="Map">
-            <Option type="bool" name="IsMultiline" value="false"/>
-            <Option type="bool" name="UseHtml" value="false"/>
+            <Option name="IsMultiline" type="bool" value="false"/>
+            <Option name="UseHtml" type="bool" value="false"/>
           </Option>
         </config>
       </editWidget>
@@ -468,8 +468,8 @@
       <editWidget type="TextEdit">
         <config>
           <Option type="Map">
-            <Option type="bool" name="IsMultiline" value="false"/>
-            <Option type="bool" name="UseHtml" value="false"/>
+            <Option name="IsMultiline" type="bool" value="false"/>
+            <Option name="UseHtml" type="bool" value="false"/>
           </Option>
         </config>
       </editWidget>
@@ -478,15 +478,15 @@
       <editWidget type="ValueRelation">
         <config>
           <Option type="Map">
-            <Option type="bool" name="AllowMulti" value="false"/>
-            <Option type="bool" name="AllowNull" value="true"/>
-            <Option type="QString" name="FilterExpression" value=""/>
-            <Option type="QString" name="Key" value="code"/>
-            <Option type="QString" name="Layer" value="val_raepa_qualite_geoloc201910091036565392031560565"/>
-            <Option type="int" name="NofColumns" value="1"/>
-            <Option type="bool" name="OrderByValue" value="true"/>
-            <Option type="bool" name="UseCompleter" value="false"/>
-            <Option type="QString" name="Value" value="libelle"/>
+            <Option name="AllowMulti" type="bool" value="false"/>
+            <Option name="AllowNull" type="bool" value="true"/>
+            <Option name="FilterExpression" type="QString" value=""/>
+            <Option name="Key" type="QString" value="code"/>
+            <Option name="Layer" type="QString" value="val_raepa_qualite_geoloc201910091036565392031560565"/>
+            <Option name="NofColumns" type="int" value="1"/>
+            <Option name="OrderByValue" type="bool" value="true"/>
+            <Option name="UseCompleter" type="bool" value="false"/>
+            <Option name="Value" type="QString" value="libelle"/>
           </Option>
         </config>
       </editWidget>
@@ -495,15 +495,15 @@
       <editWidget type="ValueRelation">
         <config>
           <Option type="Map">
-            <Option type="bool" name="AllowMulti" value="false"/>
-            <Option type="bool" name="AllowNull" value="true"/>
-            <Option type="QString" name="FilterExpression" value=""/>
-            <Option type="QString" name="Key" value="code"/>
-            <Option type="QString" name="Layer" value="val_raepa_qualite_geoloc201910091036565392031560565"/>
-            <Option type="int" name="NofColumns" value="1"/>
-            <Option type="bool" name="OrderByValue" value="true"/>
-            <Option type="bool" name="UseCompleter" value="false"/>
-            <Option type="QString" name="Value" value="libelle"/>
+            <Option name="AllowMulti" type="bool" value="false"/>
+            <Option name="AllowNull" type="bool" value="true"/>
+            <Option name="FilterExpression" type="QString" value=""/>
+            <Option name="Key" type="QString" value="code"/>
+            <Option name="Layer" type="QString" value="val_raepa_qualite_geoloc201910091036565392031560565"/>
+            <Option name="NofColumns" type="int" value="1"/>
+            <Option name="OrderByValue" type="bool" value="true"/>
+            <Option name="UseCompleter" type="bool" value="false"/>
+            <Option name="Value" type="QString" value="libelle"/>
           </Option>
         </config>
       </editWidget>
@@ -512,11 +512,11 @@
       <editWidget type="DateTime">
         <config>
           <Option type="Map">
-            <Option type="bool" name="allow_null" value="true"/>
-            <Option type="bool" name="calendar_popup" value="true"/>
-            <Option type="QString" name="display_format" value="yyyy-MM-dd"/>
-            <Option type="QString" name="field_format" value="yyyy-MM-dd"/>
-            <Option type="bool" name="field_iso_format" value="false"/>
+            <Option name="allow_null" type="bool" value="true"/>
+            <Option name="calendar_popup" type="bool" value="true"/>
+            <Option name="display_format" type="QString" value="yyyy-MM-dd"/>
+            <Option name="field_format" type="QString" value="yyyy-MM-dd"/>
+            <Option name="field_iso_format" type="bool" value="false"/>
           </Option>
         </config>
       </editWidget>
@@ -525,15 +525,15 @@
       <editWidget type="ValueRelation">
         <config>
           <Option type="Map">
-            <Option type="bool" name="AllowMulti" value="false"/>
-            <Option type="bool" name="AllowNull" value="true"/>
-            <Option type="QString" name="FilterExpression" value=""/>
-            <Option type="QString" name="Key" value="nom"/>
-            <Option type="QString" name="Layer" value="sys_organisme_gestionnaire2019100910365653369926340"/>
-            <Option type="int" name="NofColumns" value="1"/>
-            <Option type="bool" name="OrderByValue" value="true"/>
-            <Option type="bool" name="UseCompleter" value="false"/>
-            <Option type="QString" name="Value" value="nom"/>
+            <Option name="AllowMulti" type="bool" value="false"/>
+            <Option name="AllowNull" type="bool" value="true"/>
+            <Option name="FilterExpression" type="QString" value=""/>
+            <Option name="Key" type="QString" value="nom"/>
+            <Option name="Layer" type="QString" value="sys_organisme_gestionnaire2019100910365653369926340"/>
+            <Option name="NofColumns" type="int" value="1"/>
+            <Option name="OrderByValue" type="bool" value="true"/>
+            <Option name="UseCompleter" type="bool" value="false"/>
+            <Option name="Value" type="QString" value="nom"/>
           </Option>
         </config>
       </editWidget>
@@ -542,15 +542,15 @@
       <editWidget type="ValueRelation">
         <config>
           <Option type="Map">
-            <Option type="bool" name="AllowMulti" value="false"/>
-            <Option type="bool" name="AllowNull" value="true"/>
-            <Option type="QString" name="FilterExpression" value=""/>
-            <Option type="QString" name="Key" value="code"/>
-            <Option type="QString" name="Layer" value="val_raepa_qualite_anpose20191009103656539585994462"/>
-            <Option type="int" name="NofColumns" value="1"/>
-            <Option type="bool" name="OrderByValue" value="true"/>
-            <Option type="bool" name="UseCompleter" value="false"/>
-            <Option type="QString" name="Value" value="libelle"/>
+            <Option name="AllowMulti" type="bool" value="false"/>
+            <Option name="AllowNull" type="bool" value="true"/>
+            <Option name="FilterExpression" type="QString" value=""/>
+            <Option name="Key" type="QString" value="code"/>
+            <Option name="Layer" type="QString" value="val_raepa_qualite_anpose20191009103656539585994462"/>
+            <Option name="NofColumns" type="int" value="1"/>
+            <Option name="OrderByValue" type="bool" value="true"/>
+            <Option name="UseCompleter" type="bool" value="false"/>
+            <Option name="Value" type="QString" value="libelle"/>
           </Option>
         </config>
       </editWidget>
@@ -559,11 +559,11 @@
       <editWidget type="DateTime">
         <config>
           <Option type="Map">
-            <Option type="bool" name="allow_null" value="true"/>
-            <Option type="bool" name="calendar_popup" value="true"/>
-            <Option type="QString" name="display_format" value="yyyy-MM-dd"/>
-            <Option type="QString" name="field_format" value="yyyy-MM-dd"/>
-            <Option type="bool" name="field_iso_format" value="false"/>
+            <Option name="allow_null" type="bool" value="true"/>
+            <Option name="calendar_popup" type="bool" value="true"/>
+            <Option name="display_format" type="QString" value="yyyy-MM-dd"/>
+            <Option name="field_format" type="QString" value="yyyy-MM-dd"/>
+            <Option name="field_iso_format" type="bool" value="false"/>
           </Option>
         </config>
       </editWidget>
@@ -572,8 +572,8 @@
       <editWidget type="TextEdit">
         <config>
           <Option type="Map">
-            <Option type="bool" name="IsMultiline" value="false"/>
-            <Option type="bool" name="UseHtml" value="false"/>
+            <Option name="IsMultiline" type="bool" value="false"/>
+            <Option name="UseHtml" type="bool" value="false"/>
           </Option>
         </config>
       </editWidget>
@@ -582,8 +582,8 @@
       <editWidget type="TextEdit">
         <config>
           <Option type="Map">
-            <Option type="bool" name="IsMultiline" value="false"/>
-            <Option type="bool" name="UseHtml" value="false"/>
+            <Option name="IsMultiline" type="bool" value="false"/>
+            <Option name="UseHtml" type="bool" value="false"/>
           </Option>
         </config>
       </editWidget>
@@ -592,8 +592,8 @@
       <editWidget type="TextEdit">
         <config>
           <Option type="Map">
-            <Option type="bool" name="IsMultiline" value="true"/>
-            <Option type="bool" name="UseHtml" value="false"/>
+            <Option name="IsMultiline" type="bool" value="true"/>
+            <Option name="UseHtml" type="bool" value="false"/>
           </Option>
         </config>
       </editWidget>
@@ -626,120 +626,120 @@
   <excludeAttributesWMS/>
   <excludeAttributesWFS/>
   <defaults>
-    <default field="id" expression="" applyOnUpdate="0"/>
-    <default field="idouvrage" expression="" applyOnUpdate="0"/>
-    <default field="x" expression="" applyOnUpdate="0"/>
-    <default field="y" expression="" applyOnUpdate="0"/>
-    <default field="mouvrage" expression="" applyOnUpdate="0"/>
-    <default field="gexploit" expression="" applyOnUpdate="0"/>
-    <default field="fnouvaep" expression="" applyOnUpdate="0"/>
-    <default field="anfinpose" expression=" year( now())" applyOnUpdate="0"/>
-    <default field="idcanamont" expression="" applyOnUpdate="0"/>
-    <default field="idcanaval" expression="" applyOnUpdate="0"/>
-    <default field="idcanppale" expression="" applyOnUpdate="0"/>
-    <default field="z" expression="" applyOnUpdate="0"/>
-    <default field="andebpose" expression="" applyOnUpdate="0"/>
-    <default field="qualglocxy" expression="" applyOnUpdate="0"/>
-    <default field="qualglocz" expression="" applyOnUpdate="0"/>
-    <default field="datemaj" expression="" applyOnUpdate="0"/>
-    <default field="sourmaj" expression="" applyOnUpdate="0"/>
-    <default field="qualannee" expression="" applyOnUpdate="0"/>
-    <default field="dategeoloc" expression="" applyOnUpdate="0"/>
-    <default field="sourgeoloc" expression="" applyOnUpdate="0"/>
-    <default field="sourattrib" expression="" applyOnUpdate="0"/>
-    <default field="_observation" expression="" applyOnUpdate="0"/>
+    <default applyOnUpdate="0" expression="" field="id"/>
+    <default applyOnUpdate="0" expression="'INCONNU'" field="idouvrage"/>
+    <default applyOnUpdate="0" expression="X( $geometry )" field="x"/>
+    <default applyOnUpdate="0" expression="Y( $geometry )" field="y"/>
+    <default applyOnUpdate="0" expression="" field="mouvrage"/>
+    <default applyOnUpdate="0" expression="" field="gexploit"/>
+    <default applyOnUpdate="0" expression="" field="fnouvaep"/>
+    <default applyOnUpdate="0" expression="year(now())" field="anfinpose"/>
+    <default applyOnUpdate="0" expression="'INCONNU'" field="idcanamont"/>
+    <default applyOnUpdate="0" expression="'INCONNU'" field="idcanaval"/>
+    <default applyOnUpdate="0" expression="'INCONNU'" field="idcanppale"/>
+    <default applyOnUpdate="0" expression="" field="z"/>
+    <default applyOnUpdate="0" expression="" field="andebpose"/>
+    <default applyOnUpdate="0" expression="" field="qualglocxy"/>
+    <default applyOnUpdate="0" expression="" field="qualglocz"/>
+    <default applyOnUpdate="0" expression="to_date(now())" field="datemaj"/>
+    <default applyOnUpdate="0" expression="" field="sourmaj"/>
+    <default applyOnUpdate="0" expression="" field="qualannee"/>
+    <default applyOnUpdate="0" expression="" field="dategeoloc"/>
+    <default applyOnUpdate="0" expression="" field="sourgeoloc"/>
+    <default applyOnUpdate="0" expression="" field="sourattrib"/>
+    <default applyOnUpdate="0" expression="''" field="_observation"/>
   </defaults>
   <constraints>
-    <constraint unique_strength="1" field="id" notnull_strength="1" exp_strength="0" constraints="3"/>
-    <constraint unique_strength="1" field="idouvrage" notnull_strength="1" exp_strength="0" constraints="3"/>
-    <constraint unique_strength="0" field="x" notnull_strength="2" exp_strength="0" constraints="1"/>
-    <constraint unique_strength="0" field="y" notnull_strength="2" exp_strength="0" constraints="1"/>
-    <constraint unique_strength="0" field="mouvrage" notnull_strength="1" exp_strength="0" constraints="1"/>
-    <constraint unique_strength="0" field="gexploit" notnull_strength="1" exp_strength="0" constraints="1"/>
-    <constraint unique_strength="0" field="fnouvaep" notnull_strength="1" exp_strength="0" constraints="1"/>
-    <constraint unique_strength="0" field="anfinpose" notnull_strength="1" exp_strength="0" constraints="1"/>
-    <constraint unique_strength="0" field="idcanamont" notnull_strength="2" exp_strength="0" constraints="1"/>
-    <constraint unique_strength="0" field="idcanaval" notnull_strength="2" exp_strength="0" constraints="1"/>
-    <constraint unique_strength="0" field="idcanppale" notnull_strength="0" exp_strength="0" constraints="0"/>
-    <constraint unique_strength="0" field="z" notnull_strength="0" exp_strength="0" constraints="0"/>
-    <constraint unique_strength="0" field="andebpose" notnull_strength="0" exp_strength="0" constraints="0"/>
-    <constraint unique_strength="0" field="qualglocxy" notnull_strength="1" exp_strength="0" constraints="1"/>
-    <constraint unique_strength="0" field="qualglocz" notnull_strength="1" exp_strength="0" constraints="1"/>
-    <constraint unique_strength="0" field="datemaj" notnull_strength="1" exp_strength="0" constraints="1"/>
-    <constraint unique_strength="0" field="sourmaj" notnull_strength="1" exp_strength="0" constraints="1"/>
-    <constraint unique_strength="0" field="qualannee" notnull_strength="0" exp_strength="0" constraints="0"/>
-    <constraint unique_strength="0" field="dategeoloc" notnull_strength="0" exp_strength="0" constraints="0"/>
-    <constraint unique_strength="0" field="sourgeoloc" notnull_strength="0" exp_strength="0" constraints="0"/>
-    <constraint unique_strength="0" field="sourattrib" notnull_strength="0" exp_strength="0" constraints="0"/>
-    <constraint unique_strength="0" field="_observation" notnull_strength="0" exp_strength="0" constraints="0"/>
+    <constraint unique_strength="1" notnull_strength="1" constraints="3" exp_strength="0" field="id"/>
+    <constraint unique_strength="1" notnull_strength="1" constraints="3" exp_strength="0" field="idouvrage"/>
+    <constraint unique_strength="0" notnull_strength="2" constraints="1" exp_strength="0" field="x"/>
+    <constraint unique_strength="0" notnull_strength="2" constraints="1" exp_strength="0" field="y"/>
+    <constraint unique_strength="0" notnull_strength="1" constraints="1" exp_strength="0" field="mouvrage"/>
+    <constraint unique_strength="0" notnull_strength="1" constraints="1" exp_strength="0" field="gexploit"/>
+    <constraint unique_strength="0" notnull_strength="1" constraints="1" exp_strength="0" field="fnouvaep"/>
+    <constraint unique_strength="0" notnull_strength="1" constraints="1" exp_strength="0" field="anfinpose"/>
+    <constraint unique_strength="0" notnull_strength="2" constraints="1" exp_strength="0" field="idcanamont"/>
+    <constraint unique_strength="0" notnull_strength="2" constraints="1" exp_strength="0" field="idcanaval"/>
+    <constraint unique_strength="0" notnull_strength="0" constraints="0" exp_strength="0" field="idcanppale"/>
+    <constraint unique_strength="0" notnull_strength="0" constraints="0" exp_strength="0" field="z"/>
+    <constraint unique_strength="0" notnull_strength="0" constraints="0" exp_strength="0" field="andebpose"/>
+    <constraint unique_strength="0" notnull_strength="1" constraints="1" exp_strength="0" field="qualglocxy"/>
+    <constraint unique_strength="0" notnull_strength="1" constraints="1" exp_strength="0" field="qualglocz"/>
+    <constraint unique_strength="0" notnull_strength="1" constraints="1" exp_strength="0" field="datemaj"/>
+    <constraint unique_strength="0" notnull_strength="1" constraints="1" exp_strength="0" field="sourmaj"/>
+    <constraint unique_strength="0" notnull_strength="0" constraints="0" exp_strength="0" field="qualannee"/>
+    <constraint unique_strength="0" notnull_strength="0" constraints="0" exp_strength="0" field="dategeoloc"/>
+    <constraint unique_strength="0" notnull_strength="0" constraints="0" exp_strength="0" field="sourgeoloc"/>
+    <constraint unique_strength="0" notnull_strength="0" constraints="0" exp_strength="0" field="sourattrib"/>
+    <constraint unique_strength="0" notnull_strength="0" constraints="0" exp_strength="0" field="_observation"/>
   </constraints>
   <constraintExpressions>
-    <constraint field="id" exp="" desc=""/>
-    <constraint field="idouvrage" exp="" desc=""/>
-    <constraint field="x" exp="" desc=""/>
-    <constraint field="y" exp="" desc=""/>
-    <constraint field="mouvrage" exp="" desc=""/>
-    <constraint field="gexploit" exp="" desc=""/>
-    <constraint field="fnouvaep" exp="" desc=""/>
-    <constraint field="anfinpose" exp="" desc=""/>
-    <constraint field="idcanamont" exp="" desc=""/>
-    <constraint field="idcanaval" exp="" desc=""/>
-    <constraint field="idcanppale" exp="" desc=""/>
-    <constraint field="z" exp="" desc=""/>
-    <constraint field="andebpose" exp="" desc=""/>
-    <constraint field="qualglocxy" exp="" desc=""/>
-    <constraint field="qualglocz" exp="" desc=""/>
-    <constraint field="datemaj" exp="" desc=""/>
-    <constraint field="sourmaj" exp="" desc=""/>
-    <constraint field="qualannee" exp="" desc=""/>
-    <constraint field="dategeoloc" exp="" desc=""/>
-    <constraint field="sourgeoloc" exp="" desc=""/>
-    <constraint field="sourattrib" exp="" desc=""/>
-    <constraint field="_observation" exp="" desc=""/>
+    <constraint desc="" exp="" field="id"/>
+    <constraint desc="" exp="" field="idouvrage"/>
+    <constraint desc="" exp="" field="x"/>
+    <constraint desc="" exp="" field="y"/>
+    <constraint desc="" exp="" field="mouvrage"/>
+    <constraint desc="" exp="" field="gexploit"/>
+    <constraint desc="" exp="" field="fnouvaep"/>
+    <constraint desc="" exp="" field="anfinpose"/>
+    <constraint desc="" exp="" field="idcanamont"/>
+    <constraint desc="" exp="" field="idcanaval"/>
+    <constraint desc="" exp="" field="idcanppale"/>
+    <constraint desc="" exp="" field="z"/>
+    <constraint desc="" exp="" field="andebpose"/>
+    <constraint desc="" exp="" field="qualglocxy"/>
+    <constraint desc="" exp="" field="qualglocz"/>
+    <constraint desc="" exp="" field="datemaj"/>
+    <constraint desc="" exp="" field="sourmaj"/>
+    <constraint desc="" exp="" field="qualannee"/>
+    <constraint desc="" exp="" field="dategeoloc"/>
+    <constraint desc="" exp="" field="sourgeoloc"/>
+    <constraint desc="" exp="" field="sourattrib"/>
+    <constraint desc="" exp="" field="_observation"/>
   </constraintExpressions>
   <expressionfields/>
   <attributeactions>
     <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
-    <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'parcourir_reseau_depuis_cet_objet',&#xa;    '[% idouvrage %]',&#xa;    0&#xa;)" capture="0" isEnabledOnlyWhenEditable="0" type="1" id="{0df194bc-4507-4097-8ef1-79df9802061c}" name="Parcourir le réseau depuis cet objet" shortTitle="" icon="" notificationMessage="">
-      <actionScope id="Feature"/>
+    <actionsetting notificationMessage="" isEnabledOnlyWhenEditable="0" id="{b29a2786-fbdd-462d-9d9a-ca6707ed5c70}" icon="" action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'parcourir_reseau_depuis_cet_objet',&#xa;    '[% idouvrage %]',&#xa;    0&#xa;)" shortTitle="" capture="0" name="Parcourir le réseau depuis cet objet" type="1">
+      <actionScope id="Canvas"/>
       <actionScope id="Field"/>
-      <actionScope id="Canvas"/>
-    </actionsetting>
-    <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'ouvrage_annuler_derniere_modification',&#xa;    '[% idouvrage %]',&#xa;    '[% @layer_id %]'&#xa;)" capture="0" isEnabledOnlyWhenEditable="0" type="1" id="{7fbc9de2-5eda-48d5-bc63-59d8b99b3aa7}" name="Annuler la dernière modification" shortTitle="" icon="" notificationMessage="">
       <actionScope id="Feature"/>
-      <actionScope id="Canvas"/>
     </actionsetting>
-    <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'ouvrage_couper_canalisation_sous_cet_ouvrage',&#xa;    '[% idouvrage %]',&#xa;    '[% @layer_id %]'&#xa;)" capture="0" isEnabledOnlyWhenEditable="0" type="1" id="{9f979e93-9fe8-474a-a7d3-0ed9baeb21e8}" name="Couper la canalisation sous cet ouvrage" shortTitle="" icon="" notificationMessage="">
+    <actionsetting notificationMessage="" isEnabledOnlyWhenEditable="0" id="{1cbb62ec-af9f-43ae-926a-0eed3512c6dd}" icon="" action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'ouvrage_annuler_derniere_modification',&#xa;    '[% idouvrage %]',&#xa;    '[% @layer_id %]'&#xa;)" shortTitle="" capture="0" name="Annuler la dernière modification" type="1">
+      <actionScope id="Canvas"/>
       <actionScope id="Feature"/>
+    </actionsetting>
+    <actionsetting notificationMessage="" isEnabledOnlyWhenEditable="0" id="{b1ba3622-cf3b-4d03-bd39-50ecb0d70f74}" icon="" action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'ouvrage_couper_canalisation_sous_cet_ouvrage',&#xa;    '[% idouvrage %]',&#xa;    '[% @layer_id %]'&#xa;)" shortTitle="" capture="0" name="Couper la canalisation sous cet ouvrage" type="1">
+      <actionScope id="Canvas"/>
       <actionScope id="Field"/>
-      <actionScope id="Canvas"/>
+      <actionScope id="Feature"/>
     </actionsetting>
   </attributeactions>
-  <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="&quot;fnouvaep&quot;">
+  <attributetableconfig actionWidgetStyle="dropDown" sortExpression="&quot;fnouvaep&quot;" sortOrder="0">
     <columns>
-      <column width="-1" type="field" name="id" hidden="0"/>
-      <column width="-1" type="field" name="idouvrage" hidden="0"/>
-      <column width="-1" type="field" name="x" hidden="0"/>
-      <column width="-1" type="field" name="y" hidden="0"/>
-      <column width="-1" type="field" name="mouvrage" hidden="0"/>
-      <column width="-1" type="field" name="gexploit" hidden="0"/>
-      <column width="236" type="field" name="fnouvaep" hidden="0"/>
-      <column width="-1" type="field" name="anfinpose" hidden="0"/>
-      <column width="-1" type="field" name="idcanamont" hidden="0"/>
-      <column width="-1" type="field" name="idcanaval" hidden="0"/>
-      <column width="-1" type="field" name="idcanppale" hidden="0"/>
-      <column width="-1" type="field" name="z" hidden="0"/>
-      <column width="-1" type="field" name="andebpose" hidden="0"/>
-      <column width="-1" type="field" name="qualglocxy" hidden="0"/>
-      <column width="-1" type="field" name="qualglocz" hidden="0"/>
-      <column width="-1" type="field" name="datemaj" hidden="0"/>
-      <column width="-1" type="field" name="sourmaj" hidden="0"/>
-      <column width="-1" type="field" name="qualannee" hidden="0"/>
-      <column width="-1" type="field" name="dategeoloc" hidden="0"/>
-      <column width="-1" type="field" name="sourgeoloc" hidden="0"/>
-      <column width="-1" type="field" name="sourattrib" hidden="0"/>
-      <column width="-1" type="actions" hidden="1"/>
-      <column width="-1" type="field" name="_observation" hidden="0"/>
+      <column width="-1" name="id" hidden="0" type="field"/>
+      <column width="-1" name="idouvrage" hidden="0" type="field"/>
+      <column width="-1" name="x" hidden="0" type="field"/>
+      <column width="-1" name="y" hidden="0" type="field"/>
+      <column width="-1" name="mouvrage" hidden="0" type="field"/>
+      <column width="-1" name="gexploit" hidden="0" type="field"/>
+      <column width="236" name="fnouvaep" hidden="0" type="field"/>
+      <column width="-1" name="anfinpose" hidden="0" type="field"/>
+      <column width="-1" name="idcanamont" hidden="0" type="field"/>
+      <column width="-1" name="idcanaval" hidden="0" type="field"/>
+      <column width="-1" name="idcanppale" hidden="0" type="field"/>
+      <column width="-1" name="z" hidden="0" type="field"/>
+      <column width="-1" name="andebpose" hidden="0" type="field"/>
+      <column width="-1" name="qualglocxy" hidden="0" type="field"/>
+      <column width="-1" name="qualglocz" hidden="0" type="field"/>
+      <column width="-1" name="datemaj" hidden="0" type="field"/>
+      <column width="-1" name="sourmaj" hidden="0" type="field"/>
+      <column width="-1" name="qualannee" hidden="0" type="field"/>
+      <column width="-1" name="dategeoloc" hidden="0" type="field"/>
+      <column width="-1" name="sourgeoloc" hidden="0" type="field"/>
+      <column width="-1" name="sourattrib" hidden="0" type="field"/>
+      <column width="-1" hidden="1" type="actions"/>
+      <column width="-1" name="_observation" hidden="0" type="field"/>
     </columns>
   </attributetableconfig>
   <conditionalstyles>
@@ -755,107 +755,107 @@
   <featformsuppress>0</featformsuppress>
   <editorlayout>tablayout</editorlayout>
   <attributeEditorForm>
-    <attributeEditorContainer groupBox="0" visibilityExpressionEnabled="0" showLabel="1" name="Ouvrage" columnCount="1" visibilityExpression="">
-      <attributeEditorContainer groupBox="1" visibilityExpressionEnabled="0" showLabel="1" name="Général" columnCount="1" visibilityExpression="">
-        <attributeEditorField index="0" showLabel="1" name="id"/>
-        <attributeEditorField index="1" showLabel="1" name="idouvrage"/>
-        <attributeEditorField index="-1" showLabel="1" name="typreseau"/>
-        <attributeEditorField index="6" showLabel="1" name="fnouvaep"/>
-        <attributeEditorField index="21" showLabel="1" name="_observation"/>
+    <attributeEditorContainer showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0" columnCount="1" groupBox="0" name="Ouvrage">
+      <attributeEditorContainer showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0" columnCount="1" groupBox="1" name="Général">
+        <attributeEditorField showLabel="1" index="0" name="id"/>
+        <attributeEditorField showLabel="1" index="1" name="idouvrage"/>
+        <attributeEditorField showLabel="1" index="-1" name="typreseau"/>
+        <attributeEditorField showLabel="1" index="6" name="fnouvaep"/>
+        <attributeEditorField showLabel="1" index="21" name="_observation"/>
       </attributeEditorContainer>
-      <attributeEditorContainer groupBox="1" visibilityExpressionEnabled="0" showLabel="1" name="Technique" columnCount="1" visibilityExpression="">
-        <attributeEditorField index="2" showLabel="1" name="x"/>
-        <attributeEditorField index="3" showLabel="1" name="y"/>
-        <attributeEditorField index="11" showLabel="1" name="z"/>
-        <attributeEditorField index="13" showLabel="1" name="qualglocxy"/>
-        <attributeEditorField index="14" showLabel="1" name="qualglocz"/>
+      <attributeEditorContainer showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0" columnCount="1" groupBox="1" name="Technique">
+        <attributeEditorField showLabel="1" index="2" name="x"/>
+        <attributeEditorField showLabel="1" index="3" name="y"/>
+        <attributeEditorField showLabel="1" index="11" name="z"/>
+        <attributeEditorField showLabel="1" index="13" name="qualglocxy"/>
+        <attributeEditorField showLabel="1" index="14" name="qualglocz"/>
       </attributeEditorContainer>
-      <attributeEditorContainer groupBox="1" visibilityExpressionEnabled="0" showLabel="1" name="Relations" columnCount="1" visibilityExpression="">
-        <attributeEditorField index="8" showLabel="1" name="idcanamont"/>
-        <attributeEditorField index="9" showLabel="1" name="idcanaval"/>
-        <attributeEditorField index="10" showLabel="1" name="idcanppale"/>
+      <attributeEditorContainer showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0" columnCount="1" groupBox="1" name="Relations">
+        <attributeEditorField showLabel="1" index="8" name="idcanamont"/>
+        <attributeEditorField showLabel="1" index="9" name="idcanaval"/>
+        <attributeEditorField showLabel="1" index="10" name="idcanppale"/>
       </attributeEditorContainer>
-      <attributeEditorContainer groupBox="1" visibilityExpressionEnabled="0" showLabel="1" name="Historique" columnCount="1" visibilityExpression="">
-        <attributeEditorField index="4" showLabel="1" name="mouvrage"/>
-        <attributeEditorField index="5" showLabel="1" name="gexploit"/>
-        <attributeEditorField index="12" showLabel="1" name="andebpose"/>
-        <attributeEditorField index="7" showLabel="1" name="anfinpose"/>
+      <attributeEditorContainer showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0" columnCount="1" groupBox="1" name="Historique">
+        <attributeEditorField showLabel="1" index="4" name="mouvrage"/>
+        <attributeEditorField showLabel="1" index="5" name="gexploit"/>
+        <attributeEditorField showLabel="1" index="12" name="andebpose"/>
+        <attributeEditorField showLabel="1" index="7" name="anfinpose"/>
       </attributeEditorContainer>
-      <attributeEditorContainer groupBox="1" visibilityExpressionEnabled="0" showLabel="1" name="Métadonnées" columnCount="1" visibilityExpression="">
-        <attributeEditorField index="15" showLabel="1" name="datemaj"/>
-        <attributeEditorField index="16" showLabel="1" name="sourmaj"/>
-        <attributeEditorField index="17" showLabel="1" name="qualannee"/>
-        <attributeEditorField index="18" showLabel="1" name="dategeoloc"/>
-        <attributeEditorField index="19" showLabel="1" name="sourgeoloc"/>
-        <attributeEditorField index="20" showLabel="1" name="sourattrib"/>
+      <attributeEditorContainer showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0" columnCount="1" groupBox="1" name="Métadonnées">
+        <attributeEditorField showLabel="1" index="15" name="datemaj"/>
+        <attributeEditorField showLabel="1" index="16" name="sourmaj"/>
+        <attributeEditorField showLabel="1" index="17" name="qualannee"/>
+        <attributeEditorField showLabel="1" index="18" name="dategeoloc"/>
+        <attributeEditorField showLabel="1" index="19" name="sourgeoloc"/>
+        <attributeEditorField showLabel="1" index="20" name="sourattrib"/>
       </attributeEditorContainer>
     </attributeEditorContainer>
   </attributeEditorForm>
   <editable>
-    <field editable="1" name="_angletampon"/>
-    <field editable="1" name="_code_chantier"/>
-    <field editable="1" name="_date_import"/>
-    <field editable="1" name="_geom_emprise"/>
-    <field editable="1" name="_observation"/>
-    <field editable="1" name="_source_historique"/>
-    <field editable="1" name="_temp_data"/>
-    <field editable="1" name="_ztampon"/>
-    <field editable="1" name="andebpose"/>
-    <field editable="1" name="anfinpose"/>
-    <field editable="1" name="dategeoloc"/>
-    <field editable="1" name="datemaj"/>
-    <field editable="1" name="fnouvaep"/>
-    <field editable="1" name="fnouvass"/>
-    <field editable="1" name="gexploit"/>
-    <field editable="0" name="id"/>
-    <field editable="1" name="idcanamont"/>
-    <field editable="1" name="idcanaval"/>
-    <field editable="1" name="idcanppale"/>
-    <field editable="0" name="idouvrage"/>
-    <field editable="1" name="mouvrage"/>
-    <field editable="1" name="qualannee"/>
-    <field editable="1" name="qualglocxy"/>
-    <field editable="1" name="qualglocz"/>
-    <field editable="1" name="sourattrib"/>
-    <field editable="1" name="sourgeoloc"/>
-    <field editable="1" name="sourmaj"/>
-    <field editable="1" name="typreseau"/>
-    <field editable="1" name="x"/>
-    <field editable="1" name="y"/>
-    <field editable="1" name="z"/>
+    <field name="_angletampon" editable="1"/>
+    <field name="_code_chantier" editable="1"/>
+    <field name="_date_import" editable="1"/>
+    <field name="_geom_emprise" editable="1"/>
+    <field name="_observation" editable="1"/>
+    <field name="_source_historique" editable="1"/>
+    <field name="_temp_data" editable="1"/>
+    <field name="_ztampon" editable="1"/>
+    <field name="andebpose" editable="1"/>
+    <field name="anfinpose" editable="1"/>
+    <field name="dategeoloc" editable="1"/>
+    <field name="datemaj" editable="1"/>
+    <field name="fnouvaep" editable="1"/>
+    <field name="fnouvass" editable="1"/>
+    <field name="gexploit" editable="1"/>
+    <field name="id" editable="0"/>
+    <field name="idcanamont" editable="1"/>
+    <field name="idcanaval" editable="1"/>
+    <field name="idcanppale" editable="1"/>
+    <field name="idouvrage" editable="0"/>
+    <field name="mouvrage" editable="1"/>
+    <field name="qualannee" editable="1"/>
+    <field name="qualglocxy" editable="1"/>
+    <field name="qualglocz" editable="1"/>
+    <field name="sourattrib" editable="1"/>
+    <field name="sourgeoloc" editable="1"/>
+    <field name="sourmaj" editable="1"/>
+    <field name="typreseau" editable="1"/>
+    <field name="x" editable="1"/>
+    <field name="y" editable="1"/>
+    <field name="z" editable="1"/>
   </editable>
   <labelOnTop>
-    <field labelOnTop="0" name="_angletampon"/>
-    <field labelOnTop="0" name="_code_chantier"/>
-    <field labelOnTop="0" name="_date_import"/>
-    <field labelOnTop="0" name="_geom_emprise"/>
-    <field labelOnTop="0" name="_observation"/>
-    <field labelOnTop="0" name="_source_historique"/>
-    <field labelOnTop="0" name="_temp_data"/>
-    <field labelOnTop="0" name="_ztampon"/>
-    <field labelOnTop="0" name="andebpose"/>
-    <field labelOnTop="0" name="anfinpose"/>
-    <field labelOnTop="0" name="dategeoloc"/>
-    <field labelOnTop="0" name="datemaj"/>
-    <field labelOnTop="0" name="fnouvaep"/>
-    <field labelOnTop="0" name="fnouvass"/>
-    <field labelOnTop="0" name="gexploit"/>
-    <field labelOnTop="0" name="id"/>
-    <field labelOnTop="0" name="idcanamont"/>
-    <field labelOnTop="0" name="idcanaval"/>
-    <field labelOnTop="0" name="idcanppale"/>
-    <field labelOnTop="0" name="idouvrage"/>
-    <field labelOnTop="0" name="mouvrage"/>
-    <field labelOnTop="0" name="qualannee"/>
-    <field labelOnTop="0" name="qualglocxy"/>
-    <field labelOnTop="0" name="qualglocz"/>
-    <field labelOnTop="0" name="sourattrib"/>
-    <field labelOnTop="0" name="sourgeoloc"/>
-    <field labelOnTop="0" name="sourmaj"/>
-    <field labelOnTop="0" name="typreseau"/>
-    <field labelOnTop="0" name="x"/>
-    <field labelOnTop="0" name="y"/>
-    <field labelOnTop="0" name="z"/>
+    <field name="_angletampon" labelOnTop="0"/>
+    <field name="_code_chantier" labelOnTop="0"/>
+    <field name="_date_import" labelOnTop="0"/>
+    <field name="_geom_emprise" labelOnTop="0"/>
+    <field name="_observation" labelOnTop="0"/>
+    <field name="_source_historique" labelOnTop="0"/>
+    <field name="_temp_data" labelOnTop="0"/>
+    <field name="_ztampon" labelOnTop="0"/>
+    <field name="andebpose" labelOnTop="0"/>
+    <field name="anfinpose" labelOnTop="0"/>
+    <field name="dategeoloc" labelOnTop="0"/>
+    <field name="datemaj" labelOnTop="0"/>
+    <field name="fnouvaep" labelOnTop="0"/>
+    <field name="fnouvass" labelOnTop="0"/>
+    <field name="gexploit" labelOnTop="0"/>
+    <field name="id" labelOnTop="0"/>
+    <field name="idcanamont" labelOnTop="0"/>
+    <field name="idcanaval" labelOnTop="0"/>
+    <field name="idcanppale" labelOnTop="0"/>
+    <field name="idouvrage" labelOnTop="0"/>
+    <field name="mouvrage" labelOnTop="0"/>
+    <field name="qualannee" labelOnTop="0"/>
+    <field name="qualglocxy" labelOnTop="0"/>
+    <field name="qualglocz" labelOnTop="0"/>
+    <field name="sourattrib" labelOnTop="0"/>
+    <field name="sourgeoloc" labelOnTop="0"/>
+    <field name="sourmaj" labelOnTop="0"/>
+    <field name="typreseau" labelOnTop="0"/>
+    <field name="x" labelOnTop="0"/>
+    <field name="y" labelOnTop="0"/>
+    <field name="z" labelOnTop="0"/>
   </labelOnTop>
   <widgets>
     <widget name="_label_x">

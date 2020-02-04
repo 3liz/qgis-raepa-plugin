@@ -18,7 +18,7 @@ from qgis.core import (
     QgsProcessingAlgorithm,
     QgsProcessingOutputString,
     QgsProcessingParameterVectorLayer,
-    QgsProcessingParameterBoolean,
+    QgsProcessingParameterEnum,
     QgsProcessing
 )
 import os
@@ -34,6 +34,11 @@ class AddStyles(QgsProcessingAlgorithm):
     CANALAEP = 'CANALAEP'
     CANALASS = 'CANALASS'
     STYLETYPE = 'STYLETYPE'
+    STYLETYPELIST = [
+        ('all', 'Tout'),
+        ('actions', 'Actions'),
+        ('forms', 'Forms'),
+    ]
     OUTPUT_LAYERS = 'OUTPUT_LAYERS'
     OUTPUT_STRING = 'OUTPUT_STRING'
 
@@ -60,7 +65,7 @@ class AddStyles(QgsProcessingAlgorithm):
             QgsProcessingParameterVectorLayer(
                 self.APPARAEP,
                 'Couche Appareil AEP',
-                types=[QgsProcessing.TypeVector]
+                types=[QgsProcessing.TypeVectorPoint]
             )
         )
 
@@ -68,7 +73,7 @@ class AddStyles(QgsProcessingAlgorithm):
             QgsProcessingParameterVectorLayer(
                 self.APPARASS,
                 'Couche Appareil ASS',
-                types=[QgsProcessing.TypeVector]
+                types=[QgsProcessing.TypeVectorPoint]
             )
         )
 
@@ -76,7 +81,7 @@ class AddStyles(QgsProcessingAlgorithm):
             QgsProcessingParameterVectorLayer(
                 self.OUVRAEP,
                 'Couche Ouvrage AEP',
-                types=[QgsProcessing.TypeVector]
+                types=[QgsProcessing.TypeVectorPoint]
             )
         )
 
@@ -84,7 +89,7 @@ class AddStyles(QgsProcessingAlgorithm):
             QgsProcessingParameterVectorLayer(
                 self.OUVRASS,
                 'Couche Ouvrage ASS',
-                types=[QgsProcessing.TypeVector]
+                types=[QgsProcessing.TypeVectorPoint]
             )
         )
 
@@ -92,7 +97,7 @@ class AddStyles(QgsProcessingAlgorithm):
             QgsProcessingParameterVectorLayer(
                 self.CANALAEP,
                 'Couche Canalisation AEP',
-                types=[QgsProcessing.TypeVector]
+                types=[QgsProcessing.TypeVectorLine]
             )
         )
 
@@ -100,14 +105,15 @@ class AddStyles(QgsProcessingAlgorithm):
             QgsProcessingParameterVectorLayer(
                 self.CANALASS,
                 'Couche Canalisation ASS',
-                types=[QgsProcessing.TypeVector]
+                types=[QgsProcessing.TypeVectorLine]
             )
         )
 
         self.addParameter(
-            QgsProcessingParameterBoolean(
+            QgsProcessingParameterEnum(
                 self.STYLETYPE, 'Importer uniquement les actions',
-                optional=False
+                options=[s[1] for s in self.STYLETYPELIST], allowMultiple=True,
+                defaultValue=[1,2]
             )
         )
 
@@ -120,82 +126,151 @@ class AddStyles(QgsProcessingAlgorithm):
         )
 
     def processAlgorithm(self, parameters, context, feedback):
-        msg = ''
-        msgl = ''
+        msg = []
+        msgl = []
         Sdir_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', 'qgis', 'qml')
+
+        styles = [self.STYLETYPELIST[i][0] for i in
+                    sorted(self.parameterAsEnums(parameters, self.STYLETYPE, context))]
+
         layer = self.parameterAsVectorLayer(parameters, self.APPARAEP, context)
-        style = self.parameterAsBool(parameters, self.STYLETYPE, context)
         if layer.isValid():
-            fileName = 'appareils_AEP.qml'
-            if style:
-                fileName = 'actions_appareils_AEP.qml'
-            layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
-            layer.triggerRepaint()
-            msg += ' path : ' + Sdir_path + fileName + ' style: ' + layer.name() + ' is load'
-            msg = os.path.join(Sdir_path, fileName)
+            fileNames = []
+            for s in styles:
+                fileName = 'appareils_AEP.qml'
+                if s == 'all':
+                    fileNames = [fileName]
+                    break
+                else:
+                    fileNames.append(s+'_'+fileName)
+            for fileName in fileNames:
+                layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
+                layer.triggerRepaint()
+                feed = ' QML file ' + fileName + ' has been loaded on ' + layer.name()
+                feedback.pushInfo(feed)
+                msg.append(feed)
         else:
-            msgl += "!! "+layer.name()+" style not load !!"
+            feed = "!! "+layer.name()+" not valid, style not loads !!"
+            feedback.reportError(feed)
+            msgl.append(feed)
+
+        feedback.setProgress(int(100 * 1/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.APPARASS, context)
         if layer.isValid():
-            fileName = 'appareils_ASS.qml'
-            if style:
-                fileName = 'actions_appareils_ASS.qml'
-            layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
-            layer.triggerRepaint()
-            msg += ' path : ' + Sdir_path + fileName + ' style: ' + layer.name() + ' is load'
-            msg = os.path.join(Sdir_path, fileName)
+            fileNames = []
+            for s in styles:
+                fileName = 'appareils_ASS.qml'
+                if s == 'all':
+                    fileNames = [fileName]
+                    break
+                else:
+                    fileNames.append(s+'_'+fileName)
+            for fileName in fileNames:
+                layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
+                layer.triggerRepaint()
+                feed = ' QML file ' + fileName + ' has been loaded on ' + layer.name()
+                feedback.pushInfo(feed)
+                msg.append(feed)
         else:
-            msgl += "!! "+layer.name()+" style not load !!"
+            feed = "!! "+layer.name()+" not valid, style not loads !!"
+            feedback.reportError(feed)
+            msgl.append(feed)
+
+        feedback.setProgress(int(100 * 2/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.OUVRAEP, context)
         if layer.isValid():
-            fileName = 'ouvrages_AEP.qml'
-            if style:
-                fileName = 'actions_ouvrages_AEP.qml'
-            layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
-            layer.triggerRepaint()
-            msg += ' path : ' + Sdir_path + fileName + ' style: ' + layer.name() + ' is load'
-            msg = os.path.join(Sdir_path, fileName)
+            fileNames = []
+            for s in styles:
+                fileName = 'ouvrages_AEP.qml'
+                if s == 'all':
+                    fileNames = [fileName]
+                    break
+                else:
+                    fileNames.append(s+'_'+fileName)
+            for fileName in fileNames:
+                layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
+                layer.triggerRepaint()
+                feed = ' QML file ' + fileName + ' has been loaded on ' + layer.name()
+                feedback.pushInfo(feed)
+                msg.append(feed)
         else:
-            msgl += "!! "+layer.name()+" style not load !!"
+            feed = "!! "+layer.name()+" not valid, style not loads !!"
+            feedback.reportError(feed)
+            msgl.append(feed)
+
+        feedback.setProgress(int(100 * 3/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.OUVRASS, context)
         if layer.isValid():
-            fileName = 'ouvrages_ASS.qml'
-            if style:
-                fileName = 'actions_ouvrages_ASS.qml'
-            layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
-            layer.triggerRepaint()
-            msg += ' path : ' + Sdir_path + fileName + ' style: ' + layer.name() + ' is load'
-            msg = os.path.join(Sdir_path, fileName)
+            fileNames = []
+            for s in styles:
+                fileName = 'ouvrages_ASS.qml'
+                if s == 'all':
+                    fileNames = [fileName]
+                    break
+                else:
+                    fileNames.append(s+'_'+fileName)
+            for fileName in fileNames:
+                layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
+                layer.triggerRepaint()
+                feed = ' QML file ' + fileName + ' has been loaded on ' + layer.name()
+                feedback.pushInfo(feed)
+                msg.append(feed)
         else:
-            msgl += "!! "+layer.name()+" style not load !!"
+            feed = "!! "+layer.name()+" not valid, style not loads !!"
+            feedback.reportError(feed)
+            msgl.append(feed)
+
+        feedback.setProgress(int(100 * 4/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.CANALAEP, context)
         if layer.isValid():
-            fileName = 'canalisations_AEP.qml'
-            if style:
-                fileName = 'actions_canalisations_AEP.qml'
-            layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
-            layer.triggerRepaint()
-            msg += ' path : ' + Sdir_path + fileName + ' style: ' + layer.name() + ' is load'
-            msg = os.path.join(Sdir_path, fileName)
+            fileNames = []
+            for s in styles:
+                fileName = 'canalisations_AEP.qml'
+                if s == 'all':
+                    fileNames = [fileName]
+                    break
+                else:
+                    fileNames.append(s+'_'+fileName)
+            for fileName in fileNames:
+                layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
+                layer.triggerRepaint()
+                feed = ' QML file ' + fileName + ' has been loaded on ' + layer.name()
+                feedback.pushInfo(feed)
+                msg.append(feed)
         else:
-            msgl += "!! "+layer.name()+" style not load !!"
+            feed = "!! "+layer.name()+" not valid, style not loads !!"
+            feedback.reportError(feed)
+            msgl.append(feed)
+
+        feedback.setProgress(int(100 * 5/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.CANALASS, context)
         if layer.isValid():
-            fileName = 'canalisations_ASS.qml'
-            if style:
-                fileName = 'actions_canalisation_ASS.qml'
-            layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
-            layer.triggerRepaint()
-            msg += ' path : ' + Sdir_path + fileName + ' style: ' + layer.name() + ' is load'
-            msg = os.path.join(Sdir_path, fileName)
+            fileNames = []
+            for s in styles:
+                fileName = 'canalisations_ASS.qml'
+                if s == 'all':
+                    fileNames = [fileName]
+                    break
+                else:
+                    fileNames.append(s+'_'+fileName)
+            for fileName in fileNames:
+                layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
+                layer.triggerRepaint()
+                feed = ' QML file ' + fileName + ' has been loaded on ' + layer.name()
+                feedback.pushInfo(feed)
+                msg.append(feed)
         else:
-            msgl += "!! "+layer.name()+" style not load !!"
+            feed = "!! "+layer.name()+" not valid, style not loads !!"
+            feedback.reportError(feed)
+            msgl.append(feed)
+
+        feedback.setProgress(int(100 * 6/6))
 
         return {
-            self.OUTPUT_STRING: msg + msgl
+            self.OUTPUT_STRING: '\n'.join(msg + msgl)
         }
