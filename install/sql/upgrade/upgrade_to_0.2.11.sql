@@ -38,11 +38,11 @@ DECLARE
 BEGIN
 
     SELECT r.res into res FROM (
-        SELECT raepa.calcul_orientation(c.idcana, ST_LineLocatePoint(c.geom, p.geom)) as res, ST_LineLocatePoint(c.geom, p.geom) as pos
+        SELECT raepa.calcul_orientation(c.idcana, ST_LineLocatePoint(c.geom, p.geom)) as res, ST_Distance(c.geom, p.geom) as dist, ST_LineLocatePoint(c.geom, p.geom) as pos
         FROM raepa.raepa_apparaep_p p
             JOIN raepa.raepa_canalaep_l c ON ST_DWithin(c.geom, p.geom, 0.05)
         WHERE p.idappareil = idappaep
-        ORDER BY pos
+        ORDER BY dist, pos
         LIMIT 1) r;
 
     UPDATE raepa.raepa_apparaep_p ap SET _orientation = res WHERE ap.idappareil = idappaep;
