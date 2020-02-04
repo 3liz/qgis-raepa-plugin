@@ -25,8 +25,8 @@ from qgis.core import (
     QgsVectorLayer,
     QgsProcessingOutputMultipleLayers,
     QgsProcessingContext,
-    QgsProcessingParameterDefinition)
-from qgis.PyQt.QtCore import QCoreApplication
+    QgsProcessingParameterDefinition,
+)
 from .tools import *
 from processing.tools.postgis import uri_from_name, GeoDB
 
@@ -49,19 +49,16 @@ class LoadProject(QgsProcessingAlgorithm):
         return 'load_project'
 
     def displayName(self):
-        return self.tr('Load project after generated database')
+        return 'Charger le projet après génération de la base de données'
 
     def group(self):
-        return self.tr('Configuration')
+        return 'Configuration'
 
     def groupId(self):
         return 'raepa_configuration'
 
     def shortHelpString(self) -> str:
         return 'Charger les couches de la base de données.'
-
-    def tr(self, string):
-        return QCoreApplication.translate('Processing', string)
 
     def createInstance(self):
         return self.__class__()
@@ -82,14 +79,14 @@ class LoadProject(QgsProcessingAlgorithm):
         self.addOutput(
             QgsProcessingOutputString(
                 self.OUTPUT_STRING,
-                self.tr('Output message')
+                'Message de sortie'
             )
         )
 
         self.addOutput(
             QgsProcessingOutputMultipleLayers(
                 self.OUTPUT_LAYERS,
-                self.tr('Output message')
+                'Couches de sortie'
             )
         )
 
