@@ -32,19 +32,16 @@ class GetOrientationAppareil(ExecuteSql):
         return 'get_orientation_appareil'
 
     def displayName(self):
-        return self.tr('Get orientation appareil')
+        return 'Orientation appareil'
 
     def shortHelpString(self) -> str:
         return 'Obtenir l\'orientation d\'un appareil.'
 
     def group(self):
-        return self.tr('Tools')
+        return 'Outils'
 
     def groupId(self):
         return 'raepa_tools'
-
-    def tr(self, string):
-        return QCoreApplication.translate('Processing', string)
 
     def createInstance(self):
         return self.__class__()
@@ -78,7 +75,7 @@ class GetOrientationAppareil(ExecuteSql):
             leid
         )
 
-        feedback.pushInfo(self.tr('Calcul de l\'orientation pour l\'appareil %s' % leid))
+        feedback.pushInfo('Calcul de l\'orientation pour l\'appareil {}'.format(leid))
         feedback.pushInfo(sql)
 
         self.SQL = sql.replace('\n', ' ').rstrip(';')

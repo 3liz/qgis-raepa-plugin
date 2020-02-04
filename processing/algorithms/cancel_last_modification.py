@@ -97,7 +97,7 @@ class CancelLastModification(ExecuteSql):
             parameters[self.SOURCE_ID]
         )
 
-        feedback.pushInfo(self.tr('Cancel last modification' + ' on %s' % table_name))
+        feedback.pushInfo('Annuler la dernière modication sur "{}"'.format(table_name))
         feedback.pushInfo(sql)
 
         self.SQL = sql.replace('\n', ' ').rstrip(';')

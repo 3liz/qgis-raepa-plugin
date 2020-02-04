@@ -19,9 +19,6 @@ __revision__ = '$Format:%H$'
 
 import os
 
-from qgis.PyQt.QtCore import (
-    QCoreApplication,
-)
 from qgis.core import (
     QgsProcessingAlgorithm,
     QgsProcessingException,
@@ -46,17 +43,13 @@ class ExportPackage(QgsProcessingAlgorithm):
         return 'export_package'
 
     def displayName(self):
-        return self.tr('Export data into one geopackage')
+        return 'Exporter les données en geopackage'
 
     def group(self):
-        return self.tr('Export')
+        return 'Export'
 
     def groupId(self):
         return 'raepa_export'
-
-    @staticmethod
-    def tr(string):
-        return QCoreApplication.translate('Processing', string)
 
     def createInstance(self):
         return self.__class__()
@@ -66,7 +59,7 @@ class ExportPackage(QgsProcessingAlgorithm):
         return super().flags() | QgsProcessingAlgorithm.FlagNoThreading
 
     def shortHelpString(self) -> str:
-        return self.tr(
+        return (
             'Exporte toutes les couches du canvas qui appartiennent au service PostgreSQL dans un fichier SQLite. '
             'Un CRS peut-être spécifié.')
 
@@ -93,7 +86,7 @@ class ExportPackage(QgsProcessingAlgorithm):
         self.addParameter(
             QgsProcessingParameterFileDestination(
                 self.DESTINATION,
-                self.tr('Sqlite file'),
+                'Fichier SQLite',
                 fileFilter='sqlite'
             )
         )
@@ -110,23 +103,23 @@ class ExportPackage(QgsProcessingAlgorithm):
             sqlite_path += '.sqlite'
 
         if os.path.exists(sqlite_path):
-            feedback.pushDebugInfo('Previous SQLite file has been deleted.')
+            feedback.pushDebugInfo('Le fichier SQLite précédent a été supprimé.')
             os.remove(sqlite_path)
 
         p = context.project()
         layers = p.mapLayers()
         for i, layer in enumerate(layers.values()):
             if not layer.isValid():
-                feedback.reportError(self.tr(
-                    'Layer {} is not valid. It is not included in the package.'
-                ).format(layer.id()))
+                feedback.reportError(
+                    'La couche "{}" n\'est pas valide. Elle ne sera pas inclus dans le package.'
+                ).format(layer.id())
                 continue
 
             uri = QgsDataSourceUri(layer.source())
             if not uri.service() == service:
-                feedback.reportError(self.tr(
-                    'Layer {} does not belong to the service "{}". It is not included in the package.'
-                ).format(layer.id(), service))
+                feedback.reportError(
+                    'La couche "{}" n\'appartient pas au service "{}". Elle ne sera pas inclus dans lepackage.'
+                ).format(layer.id(), service)
                 continue
 
             ogr_source = 'PG:service={} tables={}.{}'.format(service, uri.schema(), uri.table())
@@ -168,8 +161,8 @@ class ExportPackage(QgsProcessingAlgorithm):
                 break
 
         if not os.path.isfile(sqlite_path):
-            raise QgsProcessingException('{} could not be created.'.format(sqlite_path))
+            raise QgsProcessingException('"{}" n\'a pas être crée.'.format(sqlite_path))
 
-        feedback.pushInfo('Export - OK in {}'.format(sqlite_path))
+        feedback.pushInfo('Export - OK dans "{}"'.format(sqlite_path))
 
         return {}

@@ -37,20 +37,17 @@ class InsertConvertedData(ExecuteSql):
         return 'insert_converted_data'
 
     def displayName(self):
-        return self.tr('03 Insert converted data')
+        return '03 Insertion données converties'
 
     def shortHelpString(self) -> str:
         # TODO
         return None
 
     def group(self):
-        return self.tr('Import')
+        return 'Import'
 
     def groupId(self):
         return 'raepa_import'
-
-    def tr(self, string):
-        return QCoreApplication.translate('Processing', string)
 
     def createInstance(self):
         return self.__class__()
@@ -98,7 +95,7 @@ class InsertConvertedData(ExecuteSql):
             parameters[self.CODE_CHANTIER],
             parameters[self.NETTOYER_AVANT_INSERTION]
         )
-        feedback.pushInfo(self.tr('Insert converted data into the raepa schema.'))
+        feedback.pushInfo('Insertion données converties dans le schéma RAEPA.')
         feedback.pushInfo(sql)
 
         self.SQL = sql.replace('\n', ' ').rstrip(';')

@@ -41,7 +41,7 @@ class GetUpstreamRoute(GetDataAsLayer):
         return 'get_upstream_route'
 
     def displayName(self):
-        return self.tr('Get the upstream route')
+        return 'Récupération réseau amont'
 
     def shortHelpString(self) -> str:
         return 'Obtenir le réseau en amont d\'un ouvrage'
@@ -62,7 +62,7 @@ class GetUpstreamRoute(GetDataAsLayer):
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.METHOD,
-                self.tr('Method'),
+                'Méthode',
                 options=self.METHODS,
                 optional=False
             )
@@ -87,4 +87,4 @@ class GetUpstreamRoute(GetDataAsLayer):
         self.SQL = sql.replace('\n', ' ').rstrip(';')
 
     def setLayerName(self, parameters, context, feedback):
-        self.LAYER_NAME = self.tr('Upstream route from') + ' %s' % parameters[self.SOURCE_ID]
+        self.LAYER_NAME = 'Réseau amout depuis {}'.format(parameters[self.SOURCE_ID])

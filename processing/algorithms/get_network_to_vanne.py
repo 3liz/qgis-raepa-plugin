@@ -35,16 +35,13 @@ class GetNetworkToVanne(GetDataAsLayer):
         return 'get_network_to_vanne'
 
     def displayName(self):
-        return self.tr('Get network to vanne')
+        return 'Réseau vers une vanne'
 
     def group(self):
-        return self.tr('Tools')
+        return 'Outils'
 
     def groupId(self):
         return 'raepa_tools'
-
-    def tr(self, string):
-        return QCoreApplication.translate('Processing', string)
 
     def createInstance(self):
         return self.__class__()
@@ -81,4 +78,4 @@ class GetNetworkToVanne(GetDataAsLayer):
         self.SQL = sql.replace('\n', ' ').rstrip(';')
 
     def setLayerName(self, parameters, context, feedback):
-        self.LAYER_NAME = self.tr('Network to vanne from') + ' %s' % parameters[self.SOURCE_ID]
+        self.LAYER_NAME = 'Réseau vers la vanne depuis {}'.format(parameters[self.SOURCE_ID])

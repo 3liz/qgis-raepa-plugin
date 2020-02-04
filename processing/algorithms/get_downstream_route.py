@@ -41,7 +41,7 @@ class GetDownstreamRoute(GetDataAsLayer):
         return 'get_downstream_route'
 
     def displayName(self):
-        return self.tr('Get the downstream route')
+        return 'Récupération réseau aval'
 
     def shortHelpString(self) -> str:
         return 'Obtenir le réseau en aval d\'un ouvrage'
@@ -55,7 +55,7 @@ class GetDownstreamRoute(GetDataAsLayer):
         self.addParameter(
             QgsProcessingParameterString(
                 self.SOURCE_ID,
-                self.tr('Unique ID (idouvrage)'),
+                'Unique ID (idouvrage)',
                 defaultValue=-1,
                 optional=False
             )
@@ -63,7 +63,7 @@ class GetDownstreamRoute(GetDataAsLayer):
         self.addParameter(
             QgsProcessingParameterEnum(
                 self.METHOD,
-                self.tr('Method'),
+                'Méthode',
                 options=self.METHODS,
                 optional=False
             )
@@ -87,4 +87,4 @@ class GetDownstreamRoute(GetDataAsLayer):
         self.SQL = sql.replace('\n', ' ').rstrip(';')
 
     def setLayerName(self, parameters, context, feedback):
-        self.LAYER_NAME = self.tr('Downstream route from') + ' %s' % parameters[self.SOURCE_ID]
+        self.LAYER_NAME = 'Réseau aval depuis {}'.format(parameters[self.SOURCE_ID])

@@ -36,10 +36,10 @@ class ConvertImportedData(ExecuteSql):
         return 'convert_imported_data'
 
     def displayName(self):
-        return self.tr('02 Convert imported data into Raepa model')
+        return '02 Conversion données importées dans le modèle RAEPA'
 
     def group(self):
-        return self.tr('Import')
+        return 'Import'
 
     def groupId(self):
         return 'raepa_import'
@@ -47,9 +47,6 @@ class ConvertImportedData(ExecuteSql):
     def shortHelpString(self) -> str:
         # TODO
         return None
-
-    def tr(self, string):
-        return QCoreApplication.translate('Processing', string)
 
     def createInstance(self):
         return self.__class__()
@@ -121,7 +118,7 @@ class ConvertImportedData(ExecuteSql):
             parameters[self.ETAT],
             parameters[self.SOURCE_HISTORIQUE], parameters[self.CODE_CHANTIER]
         )
-        feedback.pushInfo(self.tr('Convert imported data'))
+        feedback.pushInfo('Conversion des données importées')
         feedback.pushInfo(sql)
 
         self.SQL = sql.replace('\n', ' ').rstrip(';')
