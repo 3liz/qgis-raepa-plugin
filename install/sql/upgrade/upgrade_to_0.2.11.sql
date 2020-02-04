@@ -162,7 +162,7 @@ BEGIN
       array[c.idcana::text] as all_parents,
       c.geom
       FROM %s AS c
-      JOIN raepa.get_canalisations_by_object_id(''%s'', ''down'') AS s
+      JOIN raepa.get_canalisation_ids_by_object_id(''%s'', ''down'') AS s
           ON c.idcana = s.idcana
     UNION ALL
       SELECT n.idcana::text,
@@ -216,7 +216,7 @@ BEGIN
       c.idnini, c.idnterm,
       array[c.idcana::text] as all_parents
       FROM %s AS c
-      JOIN raepa.get_canalisations_by_object_id(''%s'', ''down'') AS s
+      JOIN raepa.get_canalisation_ids_by_object_id(''%s'', ''down'') AS s
           ON c.idcana = s.idcana
     UNION
       SELECT n.idcana::text,
@@ -271,7 +271,7 @@ BEGIN
       array[c.idcana::text] as all_parents,
       c.geom
       FROM %s AS c
-      JOIN raepa.get_canalisations_by_object_id(''%s'', ''up'') AS s
+      JOIN raepa.get_canalisation_ids_by_object_id(''%s'', ''up'') AS s
           ON c.idcana = s.idcana
     UNION ALL
       SELECT n.idcana::text,
@@ -327,7 +327,7 @@ BEGIN
       c.idnini, c.idnterm,
       array[c.idcana::text] as all_parents
       FROM %s AS c
-      JOIN raepa.get_canalisations_by_object_id(''%s'', ''up'') AS s
+      JOIN raepa.get_canalisation_ids_by_object_id(''%s'', ''up'') AS s
           ON c.idcana = s.idcana
     UNION
       SELECT n.idcana::text,
