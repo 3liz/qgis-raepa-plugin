@@ -30,7 +30,6 @@ from qgis.core import (
     QgsProcessingOutputVectorLayer,
     QgsExpressionContextUtils
 )
-from qgis.PyQt.QtCore import QCoreApplication
 
 from .tools import *
 
@@ -58,19 +57,16 @@ class GetDataAsLayer(QgsProcessingAlgorithm):
         return 'get_data_as_layer'
 
     def displayName(self):
-        return self.tr('Get data as layer')
+        return 'Récupération des données dans une couche'
 
     def group(self):
-        return self.tr('Tools')
+        return 'Outils'
 
     def groupId(self):
         return 'raepa_tools'
 
     def shortHelpString(self) -> str:
         return 'Charger une couche vecteur'
-
-    def tr(self, string):
-        return QCoreApplication.translate('Processing', string)
 
     def createInstance(self):
         return self.__class__()
@@ -86,7 +82,7 @@ class GetDataAsLayer(QgsProcessingAlgorithm):
         self.addParameter(
             QgsProcessingParameterString(
                 self.OUTPUT_LAYER_NAME,
-                self.tr('Name of the output layer'),
+                'Nom de la couche de sortie',
                 optional=True
             )
         )
@@ -96,14 +92,14 @@ class GetDataAsLayer(QgsProcessingAlgorithm):
         self.addOutput(
             QgsProcessingOutputNumber(
                 self.OUTPUT_STATUS,
-                self.tr('Output status')
+                'Statut de sortie'
             )
         )
         # Add output for message
         self.addOutput(
             QgsProcessingOutputString(
                 self.OUTPUT_STRING,
-                self.tr('Output message')
+                'Message de sortie'
             )
         )
 
@@ -111,7 +107,7 @@ class GetDataAsLayer(QgsProcessingAlgorithm):
         self.addOutput(
             QgsProcessingOutputVectorLayer(
                 self.OUTPUT_LAYER,
-                self.tr('Output layer')
+                'Couche de sortie'
             )
         )
 
@@ -119,7 +115,7 @@ class GetDataAsLayer(QgsProcessingAlgorithm):
         self.addOutput(
             QgsProcessingOutputString(
                 self.OUTPUT_LAYER_RESULT_NAME,
-                self.tr('Output layer name')
+                'Nom de la couche de sortie'
             )
         )
 
@@ -128,13 +124,16 @@ class GetDataAsLayer(QgsProcessingAlgorithm):
         # Check that the connection name has been configured
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
         if not connection_name:
-            return False, self.tr('You must use the "Configure RAEPA plugin" alg to set the database connection name')
+            msg = 'Vous devez utiliser le l\'algorithme de configuration du plugin pour paramétrer le nom de connexion.'
+            return False, msg
 
         # Check that it corresponds to an existing connection
         dbpluginclass = createDbPlugin('postgis')
         connections = [c.connectionName() for c in dbpluginclass.connections()]
         if connection_name not in connections:
-            return False, self.tr('The configured connection name "{}" does not exists in QGIS : {}'.format(connection_name, ', '.join(connections)))
+            msg = 'La connexion "{}" n\'existe pas dans QGIS : {}'.format(
+                connection_name, ', '.join(connections))
+            return False, msg
 
         return super(GetDataAsLayer, self).checkParameterValues(parameters, context)
 
@@ -169,11 +168,9 @@ class GetDataAsLayer(QgsProcessingAlgorithm):
         uri.setDataSource("", "(" + self.SQL + ")", self.GEOM_FIELD, "", id_field)
         vlayer = QgsVectorLayer(uri.uri(), "layername", "postgres")
         if not vlayer.isValid():
-            feedback.pushInfo(
-                self.tr('SQL = \n' + self.SQL)
-            )
-            raise QgsProcessingException(self.tr("""This layer is invalid!
-                Please check the PostGIS log for error messages."""))
+            feedback.pushInfo('SQL = \n' + self.SQL)
+            raise QgsProcessingException("""Cette couche est invalide!
+                Vérifier les logs de PostGIS pour des messages d\'erreurs.""")
 
         # Load layer
         context.temporaryLayerStore().addMapLayer(vlayer)

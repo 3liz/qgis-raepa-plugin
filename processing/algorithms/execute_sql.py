@@ -18,7 +18,6 @@ __copyright__ = '(C) 2019 by 3liz'
 __revision__ = '$Format:%H$'
 
 from db_manager.db_plugins import createDbPlugin
-from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (
     QgsProcessingAlgorithm,
     QgsProcessingParameterString,
@@ -49,19 +48,16 @@ class ExecuteSql(QgsProcessingAlgorithm):
         return 'execute_sql'
 
     def displayName(self):
-        return self.tr('Execute SQL')
+        return 'Execute SQL'
 
     def group(self):
-        return self.tr('Tools')
+        return 'Outils'
 
     def groupId(self):
         return 'raepa_tools'
 
     def shortHelpString(self) -> str:
         return 'Exécuter du SQL dans la base de données.'
-
-    def tr(self, string):
-        return QCoreApplication.translate('Processing', string)
 
     def createInstance(self):
         return self.__class__()
@@ -84,14 +80,14 @@ class ExecuteSql(QgsProcessingAlgorithm):
         self.addOutput(
             QgsProcessingOutputNumber(
                 self.OUTPUT_STATUS,
-                self.tr('Output status')
+                'Statut de sortie'
             )
         )
         # Add output for message
         self.addOutput(
             QgsProcessingOutputString(
                 self.OUTPUT_STRING,
-                self.tr('Output message')
+                'Message de sortie'
             )
         )
 
@@ -100,13 +96,16 @@ class ExecuteSql(QgsProcessingAlgorithm):
         # Check that the connection name has been configured
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
         if not connection_name:
-            return False, self.tr('You must use the "Configure plugin" alg to set the database connection name')
+            msg = 'Vous devez utiliser le l\'algorithme de configuration du plugin pour paramétrer le nom de connexion.'
+            return False, msg
 
         # Check that it corresponds to an existing connection
         dbpluginclass = createDbPlugin('postgis')
         connections = [c.connectionName() for c in dbpluginclass.connections()]
         if connection_name not in connections:
-            return False, self.tr('The configured connection name "{}" does not exists in QGIS : {}'.format(connection_name, ', '.join(connections)))
+            msg = 'La connexion "{}" n\'existe pas dans QGIS : {}'.format(
+                connection_name, ', '.join(connections))
+            return False, msg
 
         return super(ExecuteSql, self).checkParameterValues(parameters, context)
 
@@ -139,7 +138,7 @@ class ExecuteSql(QgsProcessingAlgorithm):
             self.SQL
         )
         if ok:
-            msg = self.tr('SQL successfully executed')
+            msg = 'SQL exécuté avec succès'
             feedback.pushInfo(msg)
             status = 1
         else:

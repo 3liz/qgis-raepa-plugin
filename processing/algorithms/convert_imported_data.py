@@ -103,9 +103,6 @@ class ConvertImportedData(ExecuteSql):
             )
         )
 
-    def checkParameterValues(self, parameters, context):
-        return super(ConvertImportedData, self).checkParameterValues(parameters, context)
-
     def setSql(self, parameters, context, feedback):
         sql = '''
         SELECT raepa.import_gabarit_dans_tables_temporaires(

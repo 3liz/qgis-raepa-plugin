@@ -21,7 +21,6 @@ import configparser
 import os
 
 from db_manager.db_plugins import createDbPlugin
-from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (
     QgsProcessingAlgorithm,
     QgsProcessingParameterString,
@@ -56,19 +55,16 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
         return 'create_database_structure'
 
     def displayName(self):
-        return self.tr('Create database structure')
+        return 'Création de la structure BDD'
 
     def group(self):
-        return self.tr('Structure')
+        return 'Structure'
 
     def groupId(self):
         return 'raepa_structure'
 
     def shortHelpString(self) -> str:
         return 'Crée la base de données avec les schémas et les tables.'
-
-    def tr(self, string):
-        return QCoreApplication.translate('Processing', string)
 
     def createInstance(self):
         return self.__class__()
@@ -81,7 +77,7 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
         # INPUTS
         self.addParameter(
             QgsProcessingParameterBoolean(
-                self.OVERRIDE, 'Ecraser le schéma raepa et toutes les données ? ** ATTENTION **',
+                self.OVERRIDE, 'Écraser le schéma raepa et toutes les données ? ** ATTENTION **',
                 defaultValue=False,
                 optional=False
             )
@@ -120,12 +116,12 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
         self.addOutput(
             QgsProcessingOutputNumber(
                 self.OUTPUT_STATUS,
-                self.tr('Output status')
+                'Statut de sortie'
             )
         )
         self.addOutput(
             QgsProcessingOutputString(
-                self.OUTPUT_STRING, self.tr('Output message')
+                self.OUTPUT_STRING, 'Message de sortie'
             )
         )
 
@@ -134,13 +130,16 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
         # Check that the connection name has been configured
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
         if not connection_name:
-            return False, self.tr('You must use the "Configure Raepa plugin" alg to set the database connection name')
+            msg = 'Vous devez utiliser le l\'algorithme de configuration du plugin pour paramétrer le nom de connexion.'
+            return False, msg
 
         # Check that it corresponds to an existing connection
         dbpluginclass = createDbPlugin('postgis')
         connections = [c.connectionName() for c in dbpluginclass.connections()]
         if connection_name not in connections:
-            return False, self.tr('The configured connection name "{}" does not exists in QGIS : {}'.format(connection_name, ', '.join(connections)))
+            msg = 'La connexion "{}" n\'existe pas dans QGIS : {}'.format(
+                connection_name, ', '.join(connections))
+            return False, msg
 
         # Check database content
         ok, msg = self.checkSchema(parameters, context)
@@ -149,9 +148,9 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
 
         # Check inputs
         if len(parameters[self.CODE]) != 3:
-            return False, self.tr('Le nom abbrégé doit faire 3 exactement caractères.')
+            return False, 'Le nom abbrégé doit faire 3 exactement caractères.'
         if len(parameters[self.SIREN]) != 9:
-            return False, self.tr("Le SIREN doit faire exactement 9 caractères.")
+            return False, "Le SIREN doit faire exactement 9 caractères."
 
         return super(CreateDatabaseStructure, self).checkParameterValues(parameters, context)
 
@@ -169,12 +168,14 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
         if not ok:
             return ok, error_message
         override = parameters[self.OVERRIDE]
-        msg = self.tr('Schema raepa does not exists. Continue...')
+        msg = 'Le schéma raepa n\'existe pas. On continue...'
         for a in data:
             schema = a[0]
             if schema == 'raepa' and not override:
                 ok = False
-                msg = self.tr("Schema raepa already exists in database ! If you REALLY want to drop and recreate it (and loose all data), check the *Overwrite* checkbox")
+                msg = (
+                    'Le schéma raepa existe déjà dans la base de données ! Si vous souhaitez réelement supprimer '
+                    'et recréer (et perdre les données existantes), cochez la case "Écrasement".')
         return ok, msg
 
     def processAlgorithm(self, parameters, context, feedback):
@@ -186,7 +187,7 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
         # Drop schema if needed
         override = self.parameterAsBool(parameters, self.OVERRIDE, context)
         if override:
-            feedback.pushInfo(self.tr("Trying to drop schema raepa, audit, imports"))
+            feedback.pushInfo("Tentative de suppression du schéma raepa, audit, imports")
             sql = '''
                 DROP SCHEMA IF EXISTS raepa CASCADE;
                 DROP SCHEMA IF EXISTS audit CASCADE;
@@ -198,7 +199,7 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
                 sql
             )
             if ok:
-                feedback.pushInfo(self.tr("* Schema raepa has been droped."))
+                feedback.pushInfo("* Schéma raepa supprimé.")
             else:
                 feedback.pushInfo(error_message)
                 status = 0
@@ -286,5 +287,5 @@ class CreateDatabaseStructure(QgsProcessingAlgorithm):
 
         return {
             self.OUTPUT_STATUS: 1,
-            self.OUTPUT_STRING: self.tr('*** RAEPA STRUCTURE HAS BEEN SUCCESSFULLY CREATED ***')
+            self.OUTPUT_STRING: '*** STRUCTURE RAEPA CRÉÉE AVEC SUCCÈS ***'
         }

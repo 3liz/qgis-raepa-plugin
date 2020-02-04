@@ -20,9 +20,7 @@ __revision__ = '$Format:%H$'
 import os
 
 from db_manager.db_plugins import createDbPlugin
-from qgis.PyQt.QtCore import (
-    QCoreApplication
-)
+
 from qgis.core import (
     QgsProcessingAlgorithm,
     QgsProcessingParameterVectorLayer,
@@ -47,19 +45,16 @@ class ImportShapefile(QgsProcessingAlgorithm):
         return 'import_shapefile'
 
     def displayName(self):
-        return self.tr('01 Import SHP into temporary tables')
+        return '01 Import des SHP dans les tables temporaires'
 
     def shortHelpString(self) -> str:
         return 'Import des données vecteurs dans la base de données PostGIS.'
 
     def group(self):
-        return self.tr('Import')
+        return 'Import'
 
     def groupId(self):
         return 'raepa_import'
-
-    def tr(self, string):
-        return QCoreApplication.translate('Processing', string)
 
     def createInstance(self):
         return self.__class__()
@@ -72,19 +67,19 @@ class ImportShapefile(QgsProcessingAlgorithm):
         # INPUTS
         self.addParameter(
             QgsProcessingParameterVectorLayer(
-                self.APPAREILS, self.tr('Appareils'),
+                self.APPAREILS, 'Appareils',
                 optional=False
             )
         )
         self.addParameter(
             QgsProcessingParameterVectorLayer(
-                self.CANALISATIONS, self.tr('Canalisations'),
+                self.CANALISATIONS, 'Canalisations',
                 optional=False
             )
         )
         self.addParameter(
             QgsProcessingParameterVectorLayer(
-                self.OUVRAGES, self.tr('Ouvrages'),
+                self.OUVRAGES, 'Ouvrages',
                 optional=False
             )
         )
@@ -94,12 +89,12 @@ class ImportShapefile(QgsProcessingAlgorithm):
         self.addOutput(
             QgsProcessingOutputNumber(
                 self.OUTPUT_STATUS,
-                self.tr('Output status')
+                'Statut de sortie'
             )
         )
         self.addOutput(
             QgsProcessingOutputString(
-                self.OUTPUT_STRING, self.tr('Output message')
+                self.OUTPUT_STRING, 'Message de sortie'
             )
         )
 
@@ -108,13 +103,16 @@ class ImportShapefile(QgsProcessingAlgorithm):
         # Check that the connection name has been configured
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
         if not connection_name:
-            return False, self.tr('You must use the "Configure Raepa plugin" alg to set the database connection name')
+            msg = 'Vous devez utiliser le l\'algorithme de configuration du plugin pour paramétrer le nom de connexion.'
+            return False, msg
 
         # Check that it corresponds to an existing connection
         dbpluginclass = createDbPlugin('postgis')
         connections = [c.connectionName() for c in dbpluginclass.connections()]
         if connection_name not in connections:
-            return False, self.tr('The configured connection name "{}" does not exists in QGIS : {}'.format(connection_name, ', '.join(connections)))
+            msg = 'La connexion "{}" n\'existe pas dans QGIS : {}'.format(
+                connection_name, ', '.join(connections))
+            return False, msg
 
         return super(ImportShapefile, self).checkParameterValues(parameters, context)
 
@@ -184,5 +182,5 @@ class ImportShapefile(QgsProcessingAlgorithm):
 
         return {
             self.OUTPUT_STATUS: 1,
-            self.OUTPUT_STRING: self.tr('Import OK')
+            self.OUTPUT_STRING: 'Import OK'
         }

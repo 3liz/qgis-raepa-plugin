@@ -83,9 +83,6 @@ class InsertConvertedData(ExecuteSql):
             )
         )
 
-    def checkParameterValues(self, parameters, context):
-        return super(InsertConvertedData, self).checkParameterValues(parameters, context)
-
     def setSql(self, parameters, context, feedback):
         sql = '''SELECT raepa.import_tables_temporaires_dans_raepa(
             '%s', '%s', %s

@@ -63,9 +63,6 @@ class GetOrientationAppareil(ExecuteSql):
             )
         )
 
-    def checkParameterValues(self, parameters, context):
-        return super(GetOrientationAppareil, self).checkParameterValues(parameters, context)
-
     def setSql(self, parameters, context, feedback):
         # Get source layer uri and table name + id name
         leid = self.parameterAsString(parameters, self.SOURCE_ID, context)

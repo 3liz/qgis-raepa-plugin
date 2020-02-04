@@ -71,9 +71,6 @@ class CancelLastModification(ExecuteSql):
             )
         )
 
-    def checkParameterValues(self, parameters, context):
-        return super(CancelLastModification, self).checkParameterValues(parameters, context)
-
     def setSql(self, parameters, context, feedback):
         # Get source layer uri and table name + id name
         layer = self.parameterAsVectorLayer(parameters, self.SOURCE_LAYER, context)
