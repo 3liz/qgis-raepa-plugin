@@ -956,7 +956,7 @@ BEGIN
     END IF;
 
     -- Calcul de l'identifiant si besoin
-    IF NEW.idcana IS NULL OR trim(NEW.idcana) = '' THEN
+    IF NEW.idcana IS NULL OR trim(NEW.idcana) = '' OR trim(NEW.idcana) = 'INCONNU' THEN
         NEW.idcana := raepa.generate_oid(TG_TABLE_NAME::text)::character varying;
     END IF;
 
@@ -1008,7 +1008,7 @@ DECLARE
 BEGIN
 
     -- Calcul de l'identifiant si besoin
-    IF NEW.idappareil IS NULL OR trim(NEW.idappareil) = '' THEN
+    IF NEW.idappareil IS NULL OR trim(NEW.idappareil) = '' OR trim(NEW.idappareil) = 'INCONNU' THEN
         NEW.idappareil := raepa.generate_oid(TG_TABLE_NAME::text)::character varying;
     END IF;
 
@@ -1101,7 +1101,7 @@ DECLARE
 BEGIN
 
     -- Calcul de l'identifiant si besoin
-    IF NEW.idouvrage IS NULL OR trim(NEW.idouvrage) = '' THEN
+    IF NEW.idouvrage IS NULL OR trim(NEW.idouvrage) = '' OR trim(NEW.idouvrage) = 'INCONNU' THEN
         NEW.idouvrage := raepa.generate_oid(TG_TABLE_NAME::text)::character varying;
     END IF;
 
