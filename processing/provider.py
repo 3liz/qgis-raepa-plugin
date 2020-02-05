@@ -28,11 +28,10 @@ __copyright__ = '(C) 2019 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-from qgis.core import QgsProcessingProvider
 from qgis.PyQt.QtGui import QIcon
+from qgis.core import QgsProcessingProvider
 
-from ..qgis_plugin_tools.tools.resources import resources_path
-
+from .algorithms.add_styles import AddStyles
 from .algorithms.cancel_last_modification import CancelLastModification
 from .algorithms.configure_plugin import ConfigurePlugin
 from .algorithms.convert_imported_data import ConvertImportedData
@@ -41,14 +40,15 @@ from .algorithms.execute_sql import ExecuteSql
 from .algorithms.export_package import ExportPackage
 from .algorithms.get_data_as_layer import GetDataAsLayer
 from .algorithms.get_downstream_route import GetDownstreamRoute
+from .algorithms.get_network_to_vanne import GetNetworkToVanne
+from .algorithms.get_orientation_appareil import GetOrientationAppareil
 from .algorithms.get_upstream_route import GetUpstreamRoute
 from .algorithms.import_shapefile import ImportShapefile
 from .algorithms.insert_converted_data import InsertConvertedData
-from .algorithms.upgrade_database_structure import UpgradeDatabaseStructure
-from .algorithms.get_orientation_appareil import GetOrientationAppareil
-from .algorithms.get_network_to_vanne import GetNetworkToVanne
 from .algorithms.load_project import LoadProject
-from .algorithms.add_styles import AddStyles
+from .algorithms.tools.gabarits_aep import ExportGabarits
+from .algorithms.upgrade_database_structure import UpgradeDatabaseStructure
+from ..qgis_plugin_tools.tools.resources import resources_path
 
 
 class RaepaProvider(QgsProcessingProvider):
@@ -60,6 +60,7 @@ class RaepaProvider(QgsProcessingProvider):
         self.addAlgorithm(GetDataAsLayer())
         self.addAlgorithm(ConfigurePlugin())
         self.addAlgorithm(ExecuteSql())
+        self.addAlgorithm(ExportGabarits())
         self.addAlgorithm(CreateDatabaseStructure())
         self.addAlgorithm(UpgradeDatabaseStructure())
         self.addAlgorithm(ImportShapefile())
