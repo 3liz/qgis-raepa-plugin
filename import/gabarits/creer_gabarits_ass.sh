@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # appareils
 ogr2ogr -overwrite -f "ESRI Shapefile" gabarit_appareils.shp PG:"service=raepa" -sql "SELECT 'ABCDEF' AS idappareil, '' AS typreseau, '' AS fnappass, 0 AS diametre, 'ABCDEF' AS idouvrage, 0 AS z_appareil, ST_Setsrid(ST_MakePoint(0,0),2154) AS geom FROM raepa.raepa_apparass_p LIMIT 1"
 
