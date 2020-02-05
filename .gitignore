@@ -1,3 +1,9 @@
+# Gabarits AEP ASS
+import/gabarits/*.shp
+import/gabarits/*.shx
+import/gabarits/*.prj
+import/gabarits/*.dbf
+
 *.py[cod]
 __pycache__/*
 # C extensions
