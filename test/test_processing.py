@@ -1,19 +1,10 @@
 """Tests for Processing algorithms."""
 
-from qgis.PyQt.QtCore import QCoreApplication, QSettings
 from qgis.core import (
-    edit,
     QgsApplication,
-    QgsProject,
     QgsVectorLayer,
-    QgsFeature,
-    QgsExpression,
-    QgsExpressionContext,
-    QgsExpressionContextUtils,
-    QgsSingleSymbolRenderer, QgsRuleBasedRenderer)
-
-from qgis.testing import unittest, start_app
-from processing.core.Processing import Processing
+)
+from qgis.testing import unittest
 
 try:
     # QGIS >= 3.8
@@ -40,7 +31,7 @@ class TestProcessing(unittest.TestCase):
 
         lines_layer = QgsVectorLayer(plugin_test_data_path('lines.geojson'), 'lines', 'ogr')
         self.assertTrue(lines_layer.isValid())
-        self.assertIsInstance(lines_layer.renderer(), QgsSingleSymbolRenderer)
+        self.assertEqual(len(lines_layer.actions().actions()), 0)
         params = {
             'APPARAEP': '',
             'APPARASS': '',
@@ -48,7 +39,8 @@ class TestProcessing(unittest.TestCase):
             'OUVRASS': '',
             'CANALAEP': lines_layer,
             'CANALASS': '',
-            'STYLETYPE': [1, 2]}
+            'STYLETYPE': [1, 2]
+        }
 
         processing.run('raepa:add_styles', params)
-        self.assertIsInstance(lines_layer.renderer(), QgsRuleBasedRenderer, 'Le renderer n\'est pas correct.')
+        self.assertEqual(len(lines_layer.actions().actions()), 3)

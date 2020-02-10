@@ -19,8 +19,8 @@ from qgis.core import (
     QgsProcessingOutputString,
     QgsProcessingParameterVectorLayer,
     QgsProcessingParameterEnum,
-    QgsProcessing
-)
+    QgsProcessing,
+    QgsMapLayer)
 import os
 
 
@@ -39,8 +39,6 @@ class AddStyles(QgsProcessingAlgorithm):
         ('actions', 'Actions'),
         ('forms', 'Forms'),
     ]
-    OUTPUT_LAYERS = 'OUTPUT_LAYERS'
-    OUTPUT_STRING = 'OUTPUT_STRING'
 
     def name(self):
         return 'add_styles'
@@ -123,160 +121,62 @@ class AddStyles(QgsProcessingAlgorithm):
             )
         )
 
-
-        self.addOutput(
-            QgsProcessingOutputString(
-                self.OUTPUT_STRING,
-                'Message de sortie'
-            )
-        )
-
     def processAlgorithm(self, parameters, context, feedback):
-        msg = []
-        msgl = []
-        Sdir_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', 'qgis', 'qml')
+
+        qml_path = os.path.join(
+            os.path.dirname(os.path.realpath(__file__)), '..', '..', 'qgis', 'qml')
 
         styles = [
             self.STYLETYPELIST[i][0] for i in sorted(self.parameterAsEnums(parameters, self.STYLETYPE, context))]
 
         layer = self.parameterAsVectorLayer(parameters, self.APPARAEP, context)
-        if layer and layer.isValid():
-            fileNames = []
-            for s in styles:
-                fileName = 'appareils_AEP.qml'
-                if s == 'all':
-                    fileNames = [fileName]
-                    break
-                else:
-                    fileNames.append(s+'_'+fileName)
-            for fileName in fileNames:
-                layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
-                layer.triggerRepaint()
-                feed = ' QML file ' + fileName + ' has been loaded on ' + layer.name()
-                feedback.pushInfo(feed)
-                msg.append(feed)
-        else:
-            feed = "!! " + self.APPARAEP + " not valid, style not loads !!"
-            feedback.reportError(feed)
-            msgl.append(feed)
+        self.load_qml_file(feedback, 'appareils_AEP.qml', layer, qml_path, styles)
 
         feedback.setProgress(int(100 * 1/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.APPARASS, context)
-        if layer and layer.isValid():
-            fileNames = []
-            for s in styles:
-                fileName = 'appareils_ASS.qml'
-                if s == 'all':
-                    fileNames = [fileName]
-                    break
-                else:
-                    fileNames.append(s+'_'+fileName)
-            for fileName in fileNames:
-                layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
-                layer.triggerRepaint()
-                feed = ' QML file ' + fileName + ' has been loaded on ' + layer.name()
-                feedback.pushInfo(feed)
-                msg.append(feed)
-        else:
-            feed = "!! " + self.APPARASS + " not valid, style not loads !!"
-            feedback.reportError(feed)
-            msgl.append(feed)
+        self.load_qml_file(feedback, 'appareils_ASS.qml', layer, qml_path, styles)
 
         feedback.setProgress(int(100 * 2/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.OUVRAEP, context)
-        if layer and layer.isValid():
-            fileNames = []
-            for s in styles:
-                fileName = 'ouvrages_AEP.qml'
-                if s == 'all':
-                    fileNames = [fileName]
-                    break
-                else:
-                    fileNames.append(s+'_'+fileName)
-            for fileName in fileNames:
-                layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
-                layer.triggerRepaint()
-                feed = ' QML file ' + fileName + ' has been loaded on ' + layer.name()
-                feedback.pushInfo(feed)
-                msg.append(feed)
-        else:
-            feed = "!! " + self.OUVRAEP + " not valid, style not loads !!"
-            feedback.reportError(feed)
-            msgl.append(feed)
+        self.load_qml_file(feedback, 'ouvrages_AEP.qml', layer, qml_path, styles)
 
         feedback.setProgress(int(100 * 3/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.OUVRASS, context)
-        if layer and layer.isValid():
-            fileNames = []
-            for s in styles:
-                fileName = 'ouvrages_ASS.qml'
-                if s == 'all':
-                    fileNames = [fileName]
-                    break
-                else:
-                    fileNames.append(s+'_'+fileName)
-            for fileName in fileNames:
-                layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
-                layer.triggerRepaint()
-                feed = ' QML file ' + fileName + ' has been loaded on ' + layer.name()
-                feedback.pushInfo(feed)
-                msg.append(feed)
-        else:
-            feed = "!! " + self.OUVRASS + " not valid, style not loads !!"
-            feedback.reportError(feed)
-            msgl.append(feed)
+        self.load_qml_file(feedback, 'ouvrages_ASS.qml', layer, qml_path, styles)
 
         feedback.setProgress(int(100 * 4/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.CANALAEP, context)
-        if layer and layer.isValid():
-            fileNames = []
-            for s in styles:
-                fileName = 'canalisations_AEP.qml'
-                if s == 'all':
-                    fileNames = [fileName]
-                    break
-                else:
-                    fileNames.append(s+'_'+fileName)
-            for fileName in fileNames:
-                layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
-                layer.triggerRepaint()
-                feed = ' QML file ' + fileName + ' has been loaded on ' + layer.name()
-                feedback.pushInfo(feed)
-                msg.append(feed)
-        else:
-            feed = "!! " + self.CANALAEP + " not valid, style not loads !!"
-            feedback.reportError(feed)
-            msgl.append(feed)
+        self.load_qml_file(feedback, 'canalisations_AEP.qml', layer, qml_path, styles)
 
         feedback.setProgress(int(100 * 5/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.CANALASS, context)
-        if layer and layer.isValid():
-            fileNames = []
-            for s in styles:
-                fileName = 'canalisations_ASS.qml'
-                if s == 'all':
-                    fileNames = [fileName]
-                    break
-                else:
-                    fileNames.append(s+'_'+fileName)
-            for fileName in fileNames:
-                layer.loadNamedStyle(os.path.join(Sdir_path, fileName))
-                layer.triggerRepaint()
-                feed = ' QML file ' + fileName + ' has been loaded on ' + layer.name()
-                feedback.pushInfo(feed)
-                msg.append(feed)
-        else:
-            feed = "!! " + self.CANALASS + " not valid, style not loads !!"
-            feedback.reportError(feed)
-            msgl.append(feed)
+        self.load_qml_file(feedback, 'canalisations_ASS.qml', layer, qml_path, styles)
 
         feedback.setProgress(int(100 * 6/6))
 
-        return {
-            self.OUTPUT_STRING: '\n'.join(msg + msgl)
-        }
+        return {}
+
+    @staticmethod
+    def load_qml_file(feedback, file_name, layer, qml_path, styles):
+        if not layer or not layer.isValid():
+            return
+
+        for s in styles:
+            if s == 'all':
+                layer.loadNamedStyle(os.path.join(qml_path, file_name))
+                layer.triggerRepaint()
+                feedback.pushInfo('QML file {} has been loaded on {} for ALL'.format(file_name, layer.name()))
+                return
+            elif s == 'actions':
+                layer.loadNamedStyle(os.path.join(qml_path, file_name), categories=QgsMapLayer.Actions)
+                feedback.pushInfo('QML file {} has been loaded on {} for ACTIONS'.format(file_name, layer.name()))
+            elif s == 'forms':
+                layer.loadNamedStyle(os.path.join(qml_path, file_name), categories=QgsMapLayer.Forms)
+                feedback.pushInfo('QML file {} has been loaded on {} for FORMS'.format(file_name, layer.name()))
+
+            layer.triggerRepaint()
