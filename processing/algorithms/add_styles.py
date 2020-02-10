@@ -169,14 +169,18 @@ class AddStyles(QgsProcessingAlgorithm):
         for s in styles:
             if s == 'all':
                 layer.loadNamedStyle(os.path.join(qml_path, file_name))
+                feedback.pushInfo(os.path.join(qml_path, file_name))
                 layer.triggerRepaint()
-                feedback.pushInfo('QML file {} has been loaded on {} for ALL'.format(file_name, layer.name()))
+                feedback.pushInfo('Fichier QML {} sur la couche {} pour {}'.format(file_name, layer.name(), s))
                 return
-            elif s == 'actions':
-                layer.loadNamedStyle(os.path.join(qml_path, file_name), categories=QgsMapLayer.Actions)
-                feedback.pushInfo('QML file {} has been loaded on {} for ACTIONS'.format(file_name, layer.name()))
-            elif s == 'forms':
-                layer.loadNamedStyle(os.path.join(qml_path, file_name), categories=QgsMapLayer.Forms)
-                feedback.pushInfo('QML file {} has been loaded on {} for FORMS'.format(file_name, layer.name()))
+            else:
+                if s == 'actions':
+                    final_qml = os.path.join(qml_path, 'actions_{}'.format(file_name))
+                    category = QgsMapLayer.Actions
+                else:
+                    final_qml = os.path.join(qml_path, 'forms_{}'.format(file_name))
+                    category = QgsMapLayer.Forms
 
-            layer.triggerRepaint()
+                layer.loadNamedStyle(final_qml, categories=category)
+                feedback.pushInfo('Fichier QML {} sur la couche {} pour {}'.format(file_name, layer.name(), s))
+                layer.triggerRepaint()
