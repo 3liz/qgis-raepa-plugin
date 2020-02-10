@@ -120,7 +120,7 @@ def couper_la_canalisation_sous_cet_ouvrage(*args):
 def parcourir_reseau_jusquaux_appareils(*args):
     longitude = args[0]
     latitude = args[1]
-    pass
+    crs = iface.mapCanvas().mapSettings().destinationCrs()
 
 
 def parcourir_reseau_depuis_cet_objet(*args):
