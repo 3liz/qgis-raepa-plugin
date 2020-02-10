@@ -16,11 +16,11 @@ __revision__ = '$Format:%H$'
 
 from qgis.core import (
     QgsProcessingAlgorithm,
-    QgsProcessingOutputString,
     QgsProcessingParameterVectorLayer,
     QgsProcessingParameterEnum,
     QgsProcessing,
-    QgsMapLayer)
+    QgsMapLayer,
+)
 import os
 
 
