@@ -41,6 +41,7 @@ from .algorithms.export_package import ExportPackage
 from .algorithms.get_data_as_layer import GetDataAsLayer
 from .algorithms.get_downstream_route import GetDownstreamRoute
 from .algorithms.get_network_to_vanne import GetNetworkToVanne
+from .algorithms.get_network_to_vanne_from_point import GetNetworkToVanneFromPoint
 from .algorithms.get_orientation_appareil import GetOrientationAppareil
 from .algorithms.get_upstream_route import GetUpstreamRoute
 from .algorithms.import_shapefile import ImportShapefile
@@ -72,6 +73,7 @@ class RaepaProvider(QgsProcessingProvider):
         self.addAlgorithm(CancelLastModification())
         self.addAlgorithm(GetOrientationAppareil())
         self.addAlgorithm(GetNetworkToVanne())
+        self.addAlgorithm(GetNetworkToVanneFromPoint())
         self.addAlgorithm(LoadProject())
         self.addAlgorithm(AddStyles())
 

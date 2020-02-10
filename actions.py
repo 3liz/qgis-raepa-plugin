@@ -7,6 +7,8 @@ from qgis.core import (
     Qgis,
     QgsProcessingException,
     QgsMessageLog,
+    QgsReferencedPointXY,
+    QgsPointXY
 )
 from qgis.utils import iface
 
@@ -117,10 +119,39 @@ def couper_la_canalisation_sous_cet_ouvrage(*args):
             gl[0].triggerRepaint()
 
 
-def parcourir_reseau_jusquaux_appareils(*args):
-    longitude = args[0]
-    latitude = args[1]
+def parcourir_reseau_jusquaux_vannes(*args):
+    x = float(args[0])
+    y = float(args[1])
     crs = iface.mapCanvas().mapSettings().destinationCrs()
+
+    params = {
+        'OUTPUT_LAYER_NAME': '',
+        'POINT': QgsReferencedPointXY(QgsPointXY(x, y), crs)
+    }
+
+    network = {}
+    try:
+        network = processing.run('raepa:get_network_to_vanne_from_point', params)
+    except QgsProcessingException:
+        # If the object is at the end of the network, the SQL does not provide Geometry
+        # so the layer is invalid but we have to continue to test upstream
+        QgsMessageLog.logMessage('Error in the Processing/Postgis logs.', 'RAEPA', Qgis.Critical)
+        iface.messageBar().pushMessage(
+            'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
+        network['OUTPUT_STATUS'] = 0
+
+    if network['OUTPUT_STATUS'] == 1:
+        layer = network['OUTPUT_LAYER']
+        layer.setName(network['OUTPUT_LAYER_RESULT_NAME'])
+        symbol = QgsLineSymbol.createSimple(
+            {
+                'line_color': '255,50,50,255',
+                'line_style': 'solid',
+                'line_width': '1.8'
+            }
+        )
+        layer.renderer().setSymbol(symbol)
+        QgsProject.instance().addMapLayer(layer)
 
 
 def parcourir_reseau_depuis_cet_objet(*args):

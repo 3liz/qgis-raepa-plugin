@@ -38,7 +38,7 @@ from .actions import (
     couper_la_canalisation_sous_cet_ouvrage,
     annuler_la_derniere_modification,
     inverser_canalisation,
-    parcourir_reseau_jusquaux_appareils,
+    parcourir_reseau_jusquaux_vannes,
     calcul_orientation_appareil,
     network_to_vanne,
 )
@@ -93,8 +93,8 @@ class Raepa:
                 [2, couper_la_canalisation_sous_cet_ouvrage],
             'parcourir_reseau_depuis_cet_objet':
                 [2, parcourir_reseau_depuis_cet_objet, 0],
-            'parcourir_reseau_jusquaux_appareils':
-                [2, parcourir_reseau_jusquaux_appareils],
+            'parcourir_reseau_jusquaux_vannes':
+                [2, parcourir_reseau_jusquaux_vannes],
             'calcul_orientation_appareil':
                 [1, calcul_orientation_appareil],
             'network_to_vanne':

@@ -689,5 +689,101 @@ END;
 $$;
 
 
+CREATE OR REPLACE FUNCTION raepa.get_vanne_before_point(cana_id text, locate_point double precision)
+  RETURNS double precision
+    LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE
+    locate double precision = 1;
+BEGIN
+    WITH apploc as (
+        SELECT DISTINCT ON(c.idcana) c.idcana,  locate_point - ST_LineLocatePoint(c.geom, a.geom) As dist_to_point, ST_LineLocatePoint(c.geom, a.geom) as loc
+        FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
+        ON ST_DWithin(c.geom, a.geom, 0.05)
+        WHERE idcana = cana_id AND fnappaep = '03' and locate_point - ST_LineLocatePoint(c.geom, a.geom) >= 0
+        ORDER BY c.idcana, dist_to_point
+    )
+    SELECT loc into locate FROM apploc;
+
+    return locate;
+END;
+$BODY$;
+
+CREATE OR REPLACE FUNCTION raepa.get_vanne_after_point(cana_id text, locate_point double precision)
+  RETURNS double precision
+    LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE
+    locate double precision = 1;
+BEGIN
+    WITH apploc as (
+        SELECT DISTINCT ON(c.idcana) c.idcana,  ST_LineLocatePoint(c.geom, a.geom)- locate_point As dist_to_point, ST_LineLocatePoint(c.geom, a.geom) as loc
+        FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
+        ON ST_DWithin(c.geom, a.geom, 0.05)
+        WHERE idcana = cana_id AND fnappaep = '03' and ST_LineLocatePoint(c.geom, a.geom) - locate_point >= 0
+        ORDER BY c.idcana, dist_to_point
+    )
+    SELECT loc into locate FROM apploc;
+
+    return locate;
+END;
+$BODY$;
+
+CREATE OR REPLACE FUNCTION raepa.get_network_to_vanne_from_point(
+    cana_id text,
+    locate_point double precision)
+  RETURNS geometry
+    LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE
+    locate_before_point double precision = 0;
+    locate_after_point double precision = 1;
+    parcours public.geometry;
+BEGIN
+    SELECT raepa.get_vanne_before_point(cana_id, locate_point) into locate_before_point;
+    SELECT raepa.get_vanne_after_point(cana_id, locate_point) into locate_after_point;
+
+    IF locate_before_point IS NOT NULL AND locate_after_point IS NOT NULL THEN
+        SELECT ST_Line_Substring(c.geom, locate_before_point, locate_after_point) into parcours AS geom FROM raepa.raepa_canalaep_l AS c WHERE c.idcana = cana_id;
+        RETURN parcours;
+    END IF;
+
+    WITH RECURSIVE walk_network(idcana, all_parents, geom, stop) AS (
+    SELECT idcana::text,
+          array[idcana::text] as all_parents,
+          ST_Line_Substring(geom,
+        CASE WHEN raepa.get_vanne_before_point(cana_id, locate_point) IS NULL THEN 0 ELSE raepa.get_vanne_before_point(cana_id, locate_point) END,
+        CASE WHEN raepa.get_vanne_after_point(cana_id, locate_point) IS NULL THEN 1 ELSE raepa.get_vanne_after_point(cana_id, locate_point) END) as geom,
+          False as stop
+     FROM raepa.raepa_canalaep_l
+     WHERE idcana = cana_id
+      UNION ALL
+        SELECT n.idcana::text AS idcana,
+         w.all_parents || n.idcana::text AS all_parents,
+         CASE
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(w.geom), st_endpoint(n.geom), 0.05) THEN ST_Line_Substring( n.geom, raepa.get_vanne_before_point(n.idcana, 1), 1 )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05) THEN ST_Line_Substring( n.geom, 0, raepa.get_vanne_after_point(n.idcana, 0) )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(w.geom), st_startpoint(n.geom), 0.05) THEN ST_Line_Substring( n.geom, raepa.get_vanne_after_point(n.idcana, 1), 1 )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_endpoint(w.geom), st_endpoint(n.geom), 0.05) THEN ST_Line_Substring( n.geom, raepa.get_vanne_before_point(n.idcana, 1), 1 )::geometry(LineString,2154)
+        ELSE n.geom::geometry(LineString,2154) END AS geom,
+        a.idappareil IS NOT NULL as stop
+          FROM raepa.raepa_canalaep_l AS n
+          LEFT OUTER JOIN raepa.raepa_apparaep_p a ON ( fnappaep = '03' AND ST_Dwithin(n.geom, a.geom, 0.05) ),
+             walk_network AS w
+          WHERE TRUE
+            AND (ST_Dwithin(st_startpoint(w.geom), st_endpoint(n.geom), 0.05) OR
+               ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05) OR
+               ST_Dwithin(st_startpoint(n.geom), st_startpoint(w.geom), 0.05) OR
+               ST_Dwithin(st_endpoint(n.geom), st_endpoint(w.geom), 0.05))
+          AND n.idcana <> ALL (w.all_parents)
+          AND NOT w.stop
+    )
+    SELECT ST_Union(DISTINCT geom) into parcours AS geom FROM walk_network;
+    RETURN parcours;
+END;
+$BODY$;
+
+
+
 
 COMMIT;
