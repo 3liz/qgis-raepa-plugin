@@ -117,6 +117,12 @@ def couper_la_canalisation_sous_cet_ouvrage(*args):
             gl[0].triggerRepaint()
 
 
+def parcourir_reseau_jusquaux_appareils(*args):
+    longitude = args[0]
+    latitude = args[1]
+    pass
+
+
 def parcourir_reseau_depuis_cet_objet(*args):
     id_objet = args[0]
     method = args[1]
@@ -180,6 +186,7 @@ def parcourir_reseau_depuis_cet_objet(*args):
         layer.renderer().setSymbol(symbol)
         QgsProject.instance().addMapLayer(layer)
 
+
 def calcul_orientation_appareil(*args):
     id_appar = args[0]
     params = {
@@ -192,6 +199,7 @@ def calcul_orientation_appareil(*args):
         iface.messageBar().pushMessage(
             'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
         return
+
 
 def network_to_vanne(*args):
     id_objet = args[0]
