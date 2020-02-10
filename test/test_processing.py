@@ -43,4 +43,4 @@ class TestProcessing(unittest.TestCase):
         }
 
         processing.run('raepa:add_styles', params)
-        self.assertEqual(len(lines_layer.actions().actions()), 3)
+        self.assertEqual(len(lines_layer.actions().actions()), 4)
