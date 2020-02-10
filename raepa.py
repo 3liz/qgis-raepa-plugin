@@ -99,12 +99,12 @@ class Raepa:
         }
         if name not in actions:
             QMessageBox.critical(
-                None, 'Action Not Found', 'The action has not been found.')
+                None, 'Action non trouvée', 'L\'action n\'a pas été trouvée.')
             return
 
         if actions[name][0] != len(args):
             QMessageBox.critical(
-                None, 'Wrong Number of Arguments', 'Wrong number of argument for the action.')
+                None, 'Mauvais nombre d\'arguments', 'Mauvais nombre d\'arguments pour l\'action.')
             return
 
         params = list(args)
@@ -112,6 +112,6 @@ class Raepa:
             params += actions[name][2:]
 
         QgsMessageLog.logMessage(
-            'Calling action {} with arguments: {}'.format(name, ', '.join(['{}'.format(i) for i in params])),
+            'Appel de l\'action {} avec les arguments: {}'.format(name, ', '.join(['{}'.format(i) for i in params])),
             'RAEPA', Qgis.Info)
         actions[name][1](*params)
