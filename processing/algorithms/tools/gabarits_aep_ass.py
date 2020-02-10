@@ -28,6 +28,7 @@ class ExportGabarits(RaepaAlgorithm):
     def __init__(self):
         super().__init__()
         self.gabarit_type = ['ASS', 'AEP']
+        self.projection = ['EPSG:2154', 'EPSG:32620']
 
     def name(self):
         return 'gabarits'
@@ -57,9 +58,9 @@ class ExportGabarits(RaepaAlgorithm):
         )
 
         self.addParameter(
-            QgsProcessingParameterCrs(
+            QgsProcessingParameterEnum(
                 self.CRS, 'Projection',
-                defaultValue='EPSG:2154',
+                self.projection,
                 optional=False
             )
         )
@@ -75,7 +76,8 @@ class ExportGabarits(RaepaAlgorithm):
     def processAlgorithm(self, parameters, context, feedback):
         gabarit = self.parameterAsEnum(parameters, self.TYPE, context)
         gabarit = self.gabarit_type[gabarit - 1].lower()
-        crs = self.parameterAsCrs(parameters, self.CRS, context)
+        crs = self.parameterAsEnum(parameters, self.CRS, context)
+        crs = self.projection[crs - 1]
         zip_path = self.parameterAsFile(parameters, self.DESTINATION, context)
 
         if not zip_path.lower().endswith('.zip'):
@@ -85,10 +87,7 @@ class ExportGabarits(RaepaAlgorithm):
             feedback.pushDebugInfo('Le fichier zip existe. Suppression du zip existant.')
             os.remove(zip_path)
 
-        if crs.authid() not in ['EPSG:32620', 'EPSG:2154']:
-            raise QgsProcessingException('La projection doit être soit EPSG:2154 ou EPSG:32620')
-
-        crs = crs.authid().replace('EPSG:', '')
+        crs = crs.replace('EPSG:', '')
         source_zip = 'gabarits_{}_{}.zip'.format(gabarit, crs)
         source = os.path.join(plugin_path(), 'import', 'gabarits', source_zip)
         shutil.copyfile(source, zip_path)
