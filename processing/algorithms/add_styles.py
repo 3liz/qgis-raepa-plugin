@@ -65,6 +65,7 @@ class AddStyles(QgsProcessingAlgorithm):
             QgsProcessingParameterVectorLayer(
                 self.APPARAEP,
                 'Couche Appareil AEP',
+                optional=True,
                 types=[QgsProcessing.TypeVectorPoint]
             )
         )
@@ -73,6 +74,7 @@ class AddStyles(QgsProcessingAlgorithm):
             QgsProcessingParameterVectorLayer(
                 self.APPARASS,
                 'Couche Appareil ASS',
+                optional=True,
                 types=[QgsProcessing.TypeVectorPoint]
             )
         )
@@ -81,6 +83,7 @@ class AddStyles(QgsProcessingAlgorithm):
             QgsProcessingParameterVectorLayer(
                 self.OUVRAEP,
                 'Couche Ouvrage AEP',
+                optional=True,
                 types=[QgsProcessing.TypeVectorPoint]
             )
         )
@@ -89,6 +92,7 @@ class AddStyles(QgsProcessingAlgorithm):
             QgsProcessingParameterVectorLayer(
                 self.OUVRASS,
                 'Couche Ouvrage ASS',
+                optional=True,
                 types=[QgsProcessing.TypeVectorPoint]
             )
         )
@@ -97,6 +101,7 @@ class AddStyles(QgsProcessingAlgorithm):
             QgsProcessingParameterVectorLayer(
                 self.CANALAEP,
                 'Couche Canalisation AEP',
+                optional=True,
                 types=[QgsProcessing.TypeVectorLine]
             )
         )
@@ -105,6 +110,7 @@ class AddStyles(QgsProcessingAlgorithm):
             QgsProcessingParameterVectorLayer(
                 self.CANALASS,
                 'Couche Canalisation ASS',
+                optional=True,
                 types=[QgsProcessing.TypeVectorLine]
             )
         )
@@ -113,7 +119,7 @@ class AddStyles(QgsProcessingAlgorithm):
             QgsProcessingParameterEnum(
                 self.STYLETYPE, 'Importer uniquement les actions',
                 options=[s[1] for s in self.STYLETYPELIST], allowMultiple=True,
-                defaultValue=[1,2]
+                defaultValue=[1, 2]
             )
         )
 
@@ -130,11 +136,11 @@ class AddStyles(QgsProcessingAlgorithm):
         msgl = []
         Sdir_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', 'qgis', 'qml')
 
-        styles = [self.STYLETYPELIST[i][0] for i in
-                    sorted(self.parameterAsEnums(parameters, self.STYLETYPE, context))]
+        styles = [
+            self.STYLETYPELIST[i][0] for i in sorted(self.parameterAsEnums(parameters, self.STYLETYPE, context))]
 
         layer = self.parameterAsVectorLayer(parameters, self.APPARAEP, context)
-        if layer.isValid():
+        if layer and layer.isValid():
             fileNames = []
             for s in styles:
                 fileName = 'appareils_AEP.qml'
@@ -150,14 +156,14 @@ class AddStyles(QgsProcessingAlgorithm):
                 feedback.pushInfo(feed)
                 msg.append(feed)
         else:
-            feed = "!! "+layer.name()+" not valid, style not loads !!"
+            feed = "!! " + self.APPARAEP + " not valid, style not loads !!"
             feedback.reportError(feed)
             msgl.append(feed)
 
         feedback.setProgress(int(100 * 1/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.APPARASS, context)
-        if layer.isValid():
+        if layer and layer.isValid():
             fileNames = []
             for s in styles:
                 fileName = 'appareils_ASS.qml'
@@ -173,14 +179,14 @@ class AddStyles(QgsProcessingAlgorithm):
                 feedback.pushInfo(feed)
                 msg.append(feed)
         else:
-            feed = "!! "+layer.name()+" not valid, style not loads !!"
+            feed = "!! " + self.APPARASS + " not valid, style not loads !!"
             feedback.reportError(feed)
             msgl.append(feed)
 
         feedback.setProgress(int(100 * 2/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.OUVRAEP, context)
-        if layer.isValid():
+        if layer and layer.isValid():
             fileNames = []
             for s in styles:
                 fileName = 'ouvrages_AEP.qml'
@@ -196,14 +202,14 @@ class AddStyles(QgsProcessingAlgorithm):
                 feedback.pushInfo(feed)
                 msg.append(feed)
         else:
-            feed = "!! "+layer.name()+" not valid, style not loads !!"
+            feed = "!! " + self.OUVRAEP + " not valid, style not loads !!"
             feedback.reportError(feed)
             msgl.append(feed)
 
         feedback.setProgress(int(100 * 3/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.OUVRASS, context)
-        if layer.isValid():
+        if layer and layer.isValid():
             fileNames = []
             for s in styles:
                 fileName = 'ouvrages_ASS.qml'
@@ -219,14 +225,14 @@ class AddStyles(QgsProcessingAlgorithm):
                 feedback.pushInfo(feed)
                 msg.append(feed)
         else:
-            feed = "!! "+layer.name()+" not valid, style not loads !!"
+            feed = "!! " + self.OUVRASS + " not valid, style not loads !!"
             feedback.reportError(feed)
             msgl.append(feed)
 
         feedback.setProgress(int(100 * 4/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.CANALAEP, context)
-        if layer.isValid():
+        if layer and layer.isValid():
             fileNames = []
             for s in styles:
                 fileName = 'canalisations_AEP.qml'
@@ -242,14 +248,14 @@ class AddStyles(QgsProcessingAlgorithm):
                 feedback.pushInfo(feed)
                 msg.append(feed)
         else:
-            feed = "!! "+layer.name()+" not valid, style not loads !!"
+            feed = "!! " + self.CANALAEP + " not valid, style not loads !!"
             feedback.reportError(feed)
             msgl.append(feed)
 
         feedback.setProgress(int(100 * 5/6))
 
         layer = self.parameterAsVectorLayer(parameters, self.CANALASS, context)
-        if layer.isValid():
+        if layer and layer.isValid():
             fileNames = []
             for s in styles:
                 fileName = 'canalisations_ASS.qml'
@@ -265,7 +271,7 @@ class AddStyles(QgsProcessingAlgorithm):
                 feedback.pushInfo(feed)
                 msg.append(feed)
         else:
-            feed = "!! "+layer.name()+" not valid, style not loads !!"
+            feed = "!! " + self.CANALASS + " not valid, style not loads !!"
             feedback.reportError(feed)
             msgl.append(feed)
 
