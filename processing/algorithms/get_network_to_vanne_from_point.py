@@ -83,4 +83,4 @@ class GetNetworkToVanneFromPoint(GetDataAsLayer):
         self.SQL = sql.replace('\n', ' ').rstrip(';')
 
     def setLayerName(self, parameters, context, feedback):
-        self.LAYER_NAME = 'Réseau jusqu`aux vannes depuis {}'.format(self.parameterAsString(parameters, self.POINT, context))
+        self.LAYER_NAME = 'Réseau jusqu\'aux vannes depuis {}'.format(self.parameterAsString(parameters, self.POINT, context))
