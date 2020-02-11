@@ -31,7 +31,7 @@ from qgis.core import (
     QgsExpressionContextUtils
 )
 
-from .tools import *
+from .tools import fetchDataFromSqlQuery
 
 
 class CreateDatabaseStructure(QgsProcessingAlgorithm):

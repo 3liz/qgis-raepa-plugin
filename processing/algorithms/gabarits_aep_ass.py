@@ -4,14 +4,12 @@ import os
 import shutil
 
 from qgis.core import (
-    QgsProcessingException,
     QgsProcessingParameterFileDestination,
-    QgsProcessingParameterCrs,
     QgsProcessingParameterEnum,
 )
 
-from ...raepa_algorithm import RaepaAlgorithm
-from ....qgis_plugin_tools.tools.resources import plugin_path
+from ..raepa_algorithm import RaepaAlgorithm
+from ...qgis_plugin_tools.tools.resources import plugin_path
 
 __copyright__ = 'Copyright 2019, 3Liz'
 __license__ = 'GPL version 3'

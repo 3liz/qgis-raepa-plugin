@@ -30,7 +30,7 @@ from qgis.core import (
     QgsExpressionContextUtils
 )
 
-from .tools import *
+from .tools import fetchDataFromSqlQuery, getVersionInteger
 
 
 class UpgradeDatabaseStructure(QgsProcessingAlgorithm):

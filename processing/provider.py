@@ -47,7 +47,7 @@ from .algorithms.get_upstream_route import GetUpstreamRoute
 from .algorithms.import_shapefile import ImportShapefile
 from .algorithms.insert_converted_data import InsertConvertedData
 from .algorithms.load_project import LoadProject
-from .algorithms.tools.gabarits_aep_ass import ExportGabarits
+from .algorithms.gabarits_aep_ass import ExportGabarits
 from .algorithms.upgrade_database_structure import UpgradeDatabaseStructure
 from ..qgis_plugin_tools.tools.resources import resources_path
 
