@@ -19,15 +19,11 @@ __revision__ = '$Format:%H$'
 
 from .get_data_as_layer import GetDataAsLayer
 from qgis.core import (
-    QgsProcessingParameterString,
     QgsProcessingParameterPoint,
 )
 
 
 class GetNetworkToVanneFermeFromPoint(GetDataAsLayer):
-    """
-    Insert imported and converted data into the schema raepa
-    """
 
     GEOM_FIELD = 'geom'
     LAYER_NAME = ''
@@ -45,9 +41,6 @@ class GetNetworkToVanneFermeFromPoint(GetDataAsLayer):
     def groupId(self):
         return 'raepa_tools'
 
-    def createInstance(self):
-        return self.__class__()
-
     def initAlgorithm(self, config):
         """
         Here we define the inputs and output of the algorithm, along
@@ -63,9 +56,6 @@ class GetNetworkToVanneFermeFromPoint(GetDataAsLayer):
                 optional=False
             )
         )
-
-    def checkParameterValues(self, parameters, context):
-        return super(GetNetworkToVanneFermeFromPoint, self).checkParameterValues(parameters, context)
 
     def setSql(self, parameters, context, feedback):
         # Get source layer uri and table name + id name

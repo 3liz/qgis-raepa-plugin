@@ -44,9 +44,9 @@ def inverser_canalisation(*args):
     try:
         out = processing.run('native:reverselinedirection', params)
     except QgsProcessingException:
-        QgsMessageLog.logMessage('Error in the Processing/Postgis logs.', 'RAEPA', Qgis.Critical)
+        QgsMessageLog.logMessage('Erreur dans les logs de Processing/PostGIS.', 'RAEPA', Qgis.Critical)
         iface.messageBar().pushMessage(
-            'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
+            'Erreur dans les logs de Processing/PostGIS.', level=Qgis.Critical, duration=2)
         return
 
     vout = out['OUTPUT']
@@ -81,9 +81,9 @@ def annuler_la_derniere_modification(*args):
     try:
         processing.run('raepa:cancel_last_modification', params)
     except QgsProcessingException:
-        QgsMessageLog.logMessage('Error in the Processing/Postgis logs.', 'RAEPA', Qgis.Critical)
+        QgsMessageLog.logMessage('Erreur dans les logs de Processing/PostGIS.', 'RAEPA', Qgis.Critical)
         iface.messageBar().pushMessage(
-            'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
+            'Erreur dans les logs de Processing/PostGIS.', level=Qgis.Critical, duration=2)
         return
 
     # Refresh upstream and downstream
@@ -107,9 +107,9 @@ def couper_la_canalisation_sous_cet_ouvrage(*args):
     try:
         processing.run('raepa:execute_sql', params)
     except QgsProcessingException:
-        QgsMessageLog.logMessage('Error in the Processing/Postgis logs.', 'RAEPA', Qgis.Critical)
+        QgsMessageLog.logMessage('Erreur dans les logs de Processing/PostGIS.', 'RAEPA', Qgis.Critical)
         iface.messageBar().pushMessage(
-            'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
+            'Erreur dans les logs de Processing/PostGIS.', level=Qgis.Critical, duration=2)
         return
 
     # Refresh layers
@@ -135,9 +135,9 @@ def parcourir_reseau_jusquaux_vannes(*args):
     except QgsProcessingException:
         # If the object is at the end of the network, the SQL does not provide Geometry
         # so the layer is invalid but we have to continue to test upstream
-        QgsMessageLog.logMessage('Error in the Processing/Postgis logs.', 'RAEPA', Qgis.Critical)
+        QgsMessageLog.logMessage('Erreur dans les logs de Processing/PostGIS.', 'RAEPA', Qgis.Critical)
         iface.messageBar().pushMessage(
-            'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
+            'Erreur dans les logs de Processing/PostGIS.', level=Qgis.Critical, duration=2)
         network['OUTPUT_STATUS'] = 0
 
     if network['OUTPUT_STATUS'] == 1:
@@ -170,9 +170,9 @@ def parcourir_reseau_jusquaux_vannes_fermees(*args):
     except QgsProcessingException:
         # If the object is at the end of the network, the SQL does not provide Geometry
         # so the layer is invalid but we have to continue to test upstream
-        QgsMessageLog.logMessage('Error in the Processing/Postgis logs.', 'RAEPA', Qgis.Critical)
+        QgsMessageLog.logMessage('Erreur dans les logs de Processing/PostGIS.', 'RAEPA', Qgis.Critical)
         iface.messageBar().pushMessage(
-            'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
+            'Erreur dans les logs de Processing/PostGIS.', level=Qgis.Critical, duration=2)
         network['OUTPUT_STATUS'] = 0
 
     if network['OUTPUT_STATUS'] == 1:
@@ -204,9 +204,9 @@ def parcourir_reseau_depuis_cet_objet(*args):
     except QgsProcessingException:
         # If the object is at the end of the network, the SQL does not provide Geometry
         # so the layer is invalid but we have to continue to test upstream
-        QgsMessageLog.logMessage('Error in the Processing/Postgis logs.', 'RAEPA', Qgis.Critical)
+        QgsMessageLog.logMessage('Erreur dans les logs de Processing/PostGIS.', 'RAEPA', Qgis.Critical)
         iface.messageBar().pushMessage(
-            'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
+            'Erreur dans les logs de Processing/PostGIS.', level=Qgis.Critical, duration=2)
         down['OUTPUT_STATUS'] = 0
 
     if down['OUTPUT_STATUS'] == 1:
@@ -233,9 +233,9 @@ def parcourir_reseau_depuis_cet_objet(*args):
     except QgsProcessingException:
         # If the objetc is at the end of the network, the SQL does not provide Geometry
         # so the layer is invalid but we have to continue to provide downstream
-        QgsMessageLog.logMessage('Error in the Processing/Postgis logs.', 'RAEPA', Qgis.Critical)
+        QgsMessageLog.logMessage('Erreur dans les logs de Processing/PostGIS.', 'RAEPA', Qgis.Critical)
         iface.messageBar().pushMessage(
-            'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
+            'Erreur dans les logs de Processing/PostGIS.', level=Qgis.Critical, duration=2)
         up['OUTPUT_STATUS'] = 0
 
     if up['OUTPUT_STATUS'] == 1:
@@ -260,9 +260,9 @@ def calcul_orientation_appareil(*args):
     try:
         processing.run('raepa:get_orientation_appareil', params)
     except QgsProcessingException:
-        QgsMessageLog.logMessage('Error in the Processing/Postgis logs.', 'RAEPA', Qgis.Critical)
+        QgsMessageLog.logMessage('Erreur dans les logs de Processing/PostGIS.', 'RAEPA', Qgis.Critical)
         iface.messageBar().pushMessage(
-            'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
+            'Erreur dans les logs de Processing/PostGIS.', level=Qgis.Critical, duration=2)
         return
 
 
@@ -280,9 +280,9 @@ def network_to_vanne(*args):
     except QgsProcessingException:
         # If the object is at the end of the network, the SQL does not provide Geometry
         # so the layer is invalid but we have to continue to test upstream
-        QgsMessageLog.logMessage('Error in the Processing/Postgis logs.', 'RAEPA', Qgis.Critical)
+        QgsMessageLog.logMessage('Erreur dans les logs de Processing/PostGIS.', 'RAEPA', Qgis.Critical)
         iface.messageBar().pushMessage(
-            'Error in Processing/Postgis logs.', level=Qgis.Critical, duration=2)
+            'Erreur dans les logs de Processing/PostGIS.', level=Qgis.Critical, duration=2)
         down['OUTPUT_STATUS'] = 0
 
     if down['OUTPUT_STATUS'] == 1:
