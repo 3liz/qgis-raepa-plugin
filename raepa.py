@@ -39,6 +39,7 @@ from .actions import (
     annuler_la_derniere_modification,
     inverser_canalisation,
     parcourir_reseau_jusquaux_vannes,
+    parcourir_reseau_jusquaux_vannes_fermees,
     calcul_orientation_appareil,
     network_to_vanne,
 )
@@ -95,6 +96,8 @@ class Raepa:
                 [2, parcourir_reseau_depuis_cet_objet, 0],
             'parcourir_reseau_jusquaux_vannes':
                 [2, parcourir_reseau_jusquaux_vannes],
+            'parcourir_reseau_jusquaux_vannes_fermees':
+                [2, parcourir_reseau_jusquaux_vannes_fermees],
             'calcul_orientation_appareil':
                 [1, calcul_orientation_appareil],
             'network_to_vanne':

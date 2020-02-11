@@ -1,7 +1,9 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
 <qgis version="3.4.13-Madeira" styleCategories="Actions">
   <attributeactions>
-    <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+    <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'parcourir_reseau_jusquaux_vannes_fermees',&#xa;    '[% @click_x %]',&#xa;    '[% @click_y %]'&#xa;)" capture="0" isEnabledOnlyWhenEditable="0" type="1" id="{b661253b-1f14-4077-a7e2-8375868562db}" name="Parcours jusqu'aux vannes fermées" shortTitle="Parcours réseaux jusqu'aux vannes fermées depuis un point" icon="" notificationMessage="">
+      <actionScope id="Canvas"/>
+    </actionsetting>
     <actionsetting action="from qgis.utils import plugins&#xa;plugins['raepa'].run_action(&#xa;    'parcourir_reseau_jusquaux_vannes',&#xa;    '[% @click_x %]',&#xa;    '[% @click_y %]'&#xa;)" capture="0" isEnabledOnlyWhenEditable="0" type="1" id="{b661253b-1f14-4077-a7e2-8375868562db}" name="Parcours jusqu'aux vannes" shortTitle="Parcours réseaux jusqu'aux vannes depuis un point" icon="" notificationMessage="">
       <actionScope id="Canvas"/>
     </actionsetting>
