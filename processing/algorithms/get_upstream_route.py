@@ -17,16 +17,15 @@ __copyright__ = '(C) 2019 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-from .get_data_as_layer import *
 from qgis.core import (
+    QgsProcessingParameterString,
     QgsProcessingParameterEnum
 )
 
+from .get_data_as_layer import GetDataAsLayer
+
 
 class GetUpstreamRoute(GetDataAsLayer):
-    """
-
-    """
 
     GEOM_FIELD = 'geom'
     LAYER_NAME = ''
@@ -47,8 +46,6 @@ class GetUpstreamRoute(GetDataAsLayer):
         return 'Obtenir le réseau en amont d\'un ouvrage'
 
     def initAlgorithm(self, config):
-        """
-        """
         # use parent class to get other parameters
         super(self.__class__, self).initAlgorithm(config)
 

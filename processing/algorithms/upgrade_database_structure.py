@@ -22,7 +22,6 @@ import os
 
 from db_manager.db_plugins import createDbPlugin
 from qgis.core import (
-    QgsProcessingAlgorithm,
     QgsProcessingParameterBoolean,
     QgsProcessingParameterCrs,
     QgsProcessingOutputNumber,
@@ -30,10 +29,11 @@ from qgis.core import (
     QgsExpressionContextUtils
 )
 
+from ..raepa_algorithm import RaepaAlgorithm
 from .tools import fetchDataFromSqlQuery, getVersionInteger
 
 
-class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
+class UpgradeDatabaseStructure(RaepaAlgorithm):
 
     RUNIT = 'RUNIT'
     SRID = 'SRID'
@@ -56,9 +56,6 @@ class UpgradeDatabaseStructure(QgsProcessingAlgorithm):
 
     def groupId(self):
         return 'raepa_structure'
-
-    def createInstance(self):
-        return self.__class__()
 
     def initAlgorithm(self, config):
 

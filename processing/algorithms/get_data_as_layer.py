@@ -21,7 +21,6 @@ from db_manager.db_plugins import createDbPlugin
 from processing.tools import postgis
 from qgis.core import (
     QgsVectorLayer,
-    QgsProcessingAlgorithm,
     QgsProcessingContext,
     QgsProcessingException,
     QgsProcessingParameterString,
@@ -31,17 +30,10 @@ from qgis.core import (
     QgsExpressionContextUtils
 )
 
-from .tools import *
+from ..raepa_algorithm import RaepaAlgorithm
 
 
-class GetDataAsLayer(QgsProcessingAlgorithm):
-    """
-
-    """
-
-    # Constants used to refer to parameters and outputs. They will be
-    # used when calling the algorithm from another algorithm, or when
-    # calling from the QGIS console.
+class GetDataAsLayer(RaepaAlgorithm):
 
     OUTPUT_STATUS = 'OUTPUT_STATUS'
     OUTPUT_STRING = 'OUTPUT_STRING'
@@ -67,9 +59,6 @@ class GetDataAsLayer(QgsProcessingAlgorithm):
 
     def shortHelpString(self) -> str:
         return 'Charger une couche vecteur'
-
-    def createInstance(self):
-        return self.__class__()
 
     def initAlgorithm(self, config):
         """

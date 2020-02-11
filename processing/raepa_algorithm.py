@@ -15,3 +15,6 @@ class RaepaAlgorithm(QgsProcessingAlgorithm):
 
     def createInstance(self):
         return type(self)()
+
+    def flags(self):
+        return super().flags() | QgsProcessingAlgorithm.FlagHideFromModeler

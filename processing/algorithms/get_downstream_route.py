@@ -17,16 +17,14 @@ __copyright__ = '(C) 2019 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-from .get_data_as_layer import *
+from .get_data_as_layer import GetDataAsLayer
 from qgis.core import (
+    QgsProcessingParameterString,
     QgsProcessingParameterEnum
 )
 
 
 class GetDownstreamRoute(GetDataAsLayer):
-    """
-
-    """
 
     GEOM_FIELD = 'geom'
     LAYER_NAME = ''
@@ -47,9 +45,6 @@ class GetDownstreamRoute(GetDataAsLayer):
         return 'Obtenir le réseau en aval d\'un ouvrage'
 
     def initAlgorithm(self, config):
-        """
-        """
-        # use parent class to get other parameters
         super(self.__class__, self).initAlgorithm(config)
 
         self.addParameter(

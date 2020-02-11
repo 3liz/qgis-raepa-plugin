@@ -18,7 +18,6 @@ __copyright__ = '(C) 2019 by 3liz'
 __revision__ = '$Format:%H$'
 
 from qgis.core import (
-    QgsProcessingAlgorithm,
     QgsProcessingParameterString,
     QgsProcessingOutputString,
     QgsExpressionContextUtils,
@@ -27,18 +26,13 @@ from qgis.core import (
     QgsProcessingContext,
     QgsProcessingParameterDefinition,
 )
-from .tools import *
+
 from processing.tools.postgis import uri_from_name, GeoDB
 
+from ..raepa_algorithm import RaepaAlgorithm
 
-class LoadProject(QgsProcessingAlgorithm):
-    """
 
-    """
-
-    # Constants used to refer to parameters and outputs. They will be
-    # used when calling the algorithm from another algorithm, or when
-    # calling from the QGIS console.
+class LoadProject(RaepaAlgorithm):
 
     RIEN = 'RIEN'
 
@@ -59,9 +53,6 @@ class LoadProject(QgsProcessingAlgorithm):
 
     def shortHelpString(self) -> str:
         return 'Charger les couches de la base de données.'
-
-    def createInstance(self):
-        return self.__class__()
 
     def initAlgorithm(self, config):
         """
@@ -96,7 +87,8 @@ class LoadProject(QgsProcessingAlgorithm):
         context.temporaryLayerStore().addMapLayer(layer)
         context.addLayerToLoadOnCompletion(
             layer.id(),
-            QgsProcessingContext.LayerDetails(table,
+            QgsProcessingContext.LayerDetails(
+                table,
                 context.project(),
                 self.OUTPUT_LAYERS
             )

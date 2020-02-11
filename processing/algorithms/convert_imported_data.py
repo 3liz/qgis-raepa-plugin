@@ -17,7 +17,11 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-from .execute_sql import *
+from qgis.core import (
+    QgsProcessingParameterString,
+)
+
+from .execute_sql import ExecuteSql
 
 
 class ConvertImportedData(ExecuteSql):
@@ -47,9 +51,6 @@ class ConvertImportedData(ExecuteSql):
     def shortHelpString(self) -> str:
         # TODO
         return None
-
-    def createInstance(self):
-        return self.__class__()
 
     def initAlgorithm(self, config):
         """

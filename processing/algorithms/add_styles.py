@@ -14,17 +14,19 @@ __license__ = 'GPL version 3'
 __email__ = 'info@3liz.org'
 __revision__ = '$Format:%H$'
 
+import os
+
 from qgis.core import (
-    QgsProcessingAlgorithm,
     QgsProcessingParameterVectorLayer,
     QgsProcessingParameterEnum,
     QgsProcessing,
     QgsMapLayer,
 )
-import os
+
+from ..raepa_algorithm import RaepaAlgorithm
 
 
-class AddStyles(QgsProcessingAlgorithm):
+class AddStyles(RaepaAlgorithm):
     """Add styles algorithm."""
 
     APPARAEP = 'APPARAEP'
@@ -54,9 +56,6 @@ class AddStyles(QgsProcessingAlgorithm):
 
     def shortHelpString(self) -> str:
         return 'Ajoute les styles et/ou les actions par défaut pour chacune des couches.'
-
-    def createInstance(self):
-        return self.__class__()
 
     def initAlgorithm(self, config):
         self.addParameter(

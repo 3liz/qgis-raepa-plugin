@@ -17,9 +17,11 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-from .get_data_as_layer import *
+from qgis.core import (
+    QgsProcessingParameterString,
+)
 
-from .execute_sql import *
+from .get_data_as_layer import GetDataAsLayer
 
 
 class GetNetworkToVanne(GetDataAsLayer):
@@ -43,9 +45,6 @@ class GetNetworkToVanne(GetDataAsLayer):
     def groupId(self):
         return 'raepa_tools'
 
-    def createInstance(self):
-        return self.__class__()
-
     def initAlgorithm(self, config):
         """
         Here we define the inputs and output of the algorithm, along
@@ -62,9 +61,6 @@ class GetNetworkToVanne(GetDataAsLayer):
                 optional=False
             )
         )
-
-    def checkParameterValues(self, parameters, context):
-        return super(GetNetworkToVanne, self).checkParameterValues(parameters, context)
 
     def setSql(self, parameters, context, feedback):
         # Get source layer uri and table name + id name

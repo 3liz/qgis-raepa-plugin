@@ -22,15 +22,16 @@ import os
 from db_manager.db_plugins import createDbPlugin
 
 from qgis.core import (
-    QgsProcessingAlgorithm,
     QgsProcessingParameterVectorLayer,
     QgsProcessingOutputString,
     QgsProcessingOutputNumber,
     QgsExpressionContextUtils
 )
 
+from ..raepa_algorithm import RaepaAlgorithm
 
-class ImportShapefile(QgsProcessingAlgorithm):
+
+class ImportShapefile(RaepaAlgorithm):
     """
     Import Shapefile into imports schema
     """
@@ -55,9 +56,6 @@ class ImportShapefile(QgsProcessingAlgorithm):
 
     def groupId(self):
         return 'raepa_import'
-
-    def createInstance(self):
-        return self.__class__()
 
     def initAlgorithm(self, config):
         """

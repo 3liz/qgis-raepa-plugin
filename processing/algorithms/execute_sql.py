@@ -19,24 +19,17 @@ __revision__ = '$Format:%H$'
 
 from db_manager.db_plugins import createDbPlugin
 from qgis.core import (
-    QgsProcessingAlgorithm,
     QgsProcessingParameterString,
     QgsProcessingOutputString,
     QgsProcessingOutputNumber,
     QgsExpressionContextUtils
 )
 
+from ..raepa_algorithm import RaepaAlgorithm
 from .tools import fetchDataFromSqlQuery
 
 
-class ExecuteSql(QgsProcessingAlgorithm):
-    """
-
-    """
-
-    # Constants used to refer to parameters and outputs. They will be
-    # used when calling the algorithm from another algorithm, or when
-    # calling from the QGIS console.
+class ExecuteSql(RaepaAlgorithm):
 
     INPUT_SQL = 'INPUT_SQL'
     OUTPUT_STATUS = 'OUTPUT_STATUS'
@@ -58,9 +51,6 @@ class ExecuteSql(QgsProcessingAlgorithm):
 
     def shortHelpString(self) -> str:
         return 'Exécuter du SQL dans la base de données.'
-
-    def createInstance(self):
-        return self.__class__()
 
     def initAlgorithm(self, config):
         """

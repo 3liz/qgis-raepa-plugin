@@ -17,8 +17,11 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
+from qgis.core import (
+    QgsProcessingParameterString,
+)
 
-from .execute_sql import *
+from .execute_sql import ExecuteSql
 
 
 class GetOrientationAppareil(ExecuteSql):
@@ -42,9 +45,6 @@ class GetOrientationAppareil(ExecuteSql):
 
     def groupId(self):
         return 'raepa_tools'
-
-    def createInstance(self):
-        return self.__class__()
 
     def initAlgorithm(self, config):
         """

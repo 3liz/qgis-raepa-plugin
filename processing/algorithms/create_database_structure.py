@@ -22,7 +22,6 @@ import os
 
 from db_manager.db_plugins import createDbPlugin
 from qgis.core import (
-    QgsProcessingAlgorithm,
     QgsProcessingParameterString,
     QgsProcessingParameterCrs,
     QgsProcessingParameterBoolean,
@@ -31,10 +30,11 @@ from qgis.core import (
     QgsExpressionContextUtils
 )
 
+from ..raepa_algorithm import RaepaAlgorithm
 from .tools import fetchDataFromSqlQuery
 
 
-class CreateDatabaseStructure(QgsProcessingAlgorithm):
+class CreateDatabaseStructure(RaepaAlgorithm):
     """
     Create Raepa structure in Database
     """

@@ -18,24 +18,16 @@ __copyright__ = '(C) 2019 by 3liz'
 __revision__ = '$Format:%H$'
 
 from qgis.core import (
-    QgsProcessingAlgorithm,
     QgsProcessingParameterString,
     QgsProcessingOutputString,
     QgsProcessingOutputNumber,
     QgsExpressionContextUtils
 )
 
-from .tools import *
+from ..raepa_algorithm import RaepaAlgorithm
 
 
-class ConfigurePlugin(QgsProcessingAlgorithm):
-    """
-
-    """
-
-    # Constants used to refer to parameters and outputs. They will be
-    # used when calling the algorithm from another algorithm, or when
-    # calling from the QGIS console.
+class ConfigurePlugin(RaepaAlgorithm):
 
     CONNECTION_NAME = 'CONNECTION_NAME'
 
@@ -56,9 +48,6 @@ class ConfigurePlugin(QgsProcessingAlgorithm):
 
     def shortHelpString(self) -> str:
         return 'Ajoute la variable "raepa_connection_name" à QGIS.'
-
-    def createInstance(self):
-        return self.__class__()
 
     def initAlgorithm(self, config):
         """

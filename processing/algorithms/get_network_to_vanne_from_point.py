@@ -45,9 +45,6 @@ class GetNetworkToVanneFromPoint(GetDataAsLayer):
     def groupId(self):
         return 'raepa_tools'
 
-    def createInstance(self):
-        return self.__class__()
-
     def initAlgorithm(self, config):
         """
         Here we define the inputs and output of the algorithm, along
@@ -63,9 +60,6 @@ class GetNetworkToVanneFromPoint(GetDataAsLayer):
                 optional=False
             )
         )
-
-    def checkParameterValues(self, parameters, context):
-        return super(GetNetworkToVanneFromPoint, self).checkParameterValues(parameters, context)
 
     def setSql(self, parameters, context, feedback):
         # Get source layer uri and table name + id name

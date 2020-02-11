@@ -45,9 +45,6 @@ class CancelLastModification(ExecuteSql):
     def shortHelpString(self) -> str:
         return 'Annule la dernière modification sur la base de données.'
 
-    def createInstance(self):
-        return self.__class__()
-
     def initAlgorithm(self, config):
         """
         Here we define the inputs and output of the algorithm, along

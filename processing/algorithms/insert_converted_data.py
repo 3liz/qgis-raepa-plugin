@@ -18,10 +18,11 @@ __copyright__ = '(C) 2018 by 3liz'
 __revision__ = '$Format:%H$'
 
 from qgis.core import (
+    QgsProcessingParameterString,
     QgsProcessingParameterBoolean
 )
 
-from .execute_sql import *
+from .execute_sql import ExecuteSql
 
 
 class InsertConvertedData(ExecuteSql):
@@ -49,15 +50,7 @@ class InsertConvertedData(ExecuteSql):
     def groupId(self):
         return 'raepa_import'
 
-    def createInstance(self):
-        return self.__class__()
-
     def initAlgorithm(self, config):
-        """
-        Here we define the inputs and output of the algorithm, along
-        with some other properties.
-        """
-        # use parent class to get other parameters
         super(self.__class__, self).initAlgorithm(config)
 
         # INPUTS
