@@ -50,7 +50,7 @@ LANGUAGE PLPGSQL;
 -- DROP FUNCTION raepa.network_to_end(text);
 
 CREATE OR REPLACE FUNCTION raepa.network_to_vanne(
-	cana text)
+    cana text)
     RETURNS geometry
     LANGUAGE 'plpgsql'
 
@@ -72,9 +72,9 @@ WITH RECURSIVE walk_network(idcana, all_parents, geom) AS (
          n.idcana::text AS idcana,
     w.all_parents || n.idcana::text AS all_parents,
     CASE
-      WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(w.geom), st_endpoint(n.geom), 0.05) THEN ST_Line_Substring( n.geom, raepa.get_vanne_cana(n.idcana, false), 1 )::geometry(LineString,32620)
-      WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05) THEN ST_Line_Substring( n.geom, 0, raepa.get_vanne_cana(n.idcana, true) )::geometry(LineString,32620)
-      ELSE n.geom::geometry(LineString,32620) END AS geom
+      WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(w.geom), st_endpoint(n.geom), 0.05) THEN ST_Line_Substring( n.geom, raepa.get_vanne_cana(n.idcana, false), 1 )::geometry(LineString,2154)
+      WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05) THEN ST_Line_Substring( n.geom, 0, raepa.get_vanne_cana(n.idcana, true) )::geometry(LineString,2154)
+      ELSE n.geom::geometry(LineString,2154) END AS geom
       FROM raepa.raepa_canalaep_l AS n
         LEFT OUTER JOIN raepa.raepa_apparaep_p a ON ( fnappaep = '03' AND ST_Dwithin(n.geom, a.geom, 0.05) ),
         walk_network AS w
@@ -94,43 +94,43 @@ COMMENT ON FUNCTION raepa.network_to_vanne (text) IS 'Parcours du réseau de can
 -- DROP FUNCTION raepa.get_vanne_cana(text, boolean);
 
 CREATE OR REPLACE FUNCTION raepa.get_vanne_cana(
-	myid text,
-	starter boolean)
+    myid text,
+    starter boolean)
     RETURNS double precision
     LANGUAGE 'plpgsql'
 
     COST 100
     VOLATILE
 AS $BODY$DECLARE
-	locate double precision = 0;
+    locate double precision = 0;
 BEGIN
-	IF starter THEN
-		WITH apploc as (
-			SELECT DISTINCT ON(c.idcana) c.idcana, ST_LineLocatePoint(c.geom, a.geom) As dist_to_start, ST_LineLocatePoint(c.geom, a.geom) as loc
-			FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
-			ON ST_DWithin(c.geom, a.geom, 0.05)
-			WHERE idcana = myid AND fnappaep = '03'
-			ORDER BY c.idcana, dist_to_start
-		)
-		SELECT loc into locate FROM apploc;
+    IF starter THEN
+        WITH apploc as (
+            SELECT DISTINCT ON(c.idcana) c.idcana, ST_LineLocatePoint(c.geom, a.geom) As dist_to_start, ST_LineLocatePoint(c.geom, a.geom) as loc
+            FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
+            ON ST_DWithin(c.geom, a.geom, 0.05)
+            WHERE idcana = myid AND fnappaep = '03'
+            ORDER BY c.idcana, dist_to_start
+        )
+        SELECT loc into locate FROM apploc;
 
-	ELSE
-		WITH apploc as (
-			SELECT DISTINCT ON(c.idcana) c.idcana, 1 - ST_LineLocatePoint(c.geom, a.geom) As dist_to_start, ST_LineLocatePoint(c.geom, a.geom) as loc
-			FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
-			ON ST_DWithin(c.geom, a.geom, 0.05)
-			WHERE idcana = myid AND fnappaep = '03'
-			ORDER BY c.idcana, dist_to_start
-		)
-		SELECT loc into locate FROM apploc;
-	END IF;
-	IF locate = 0 THEN
-		locate = 0.05;
-	ELSIF locate = 1 THEN
-		locate = 0.95;
-	END IF;
+    ELSE
+        WITH apploc as (
+            SELECT DISTINCT ON(c.idcana) c.idcana, 1 - ST_LineLocatePoint(c.geom, a.geom) As dist_to_start, ST_LineLocatePoint(c.geom, a.geom) as loc
+            FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
+            ON ST_DWithin(c.geom, a.geom, 0.05)
+            WHERE idcana = myid AND fnappaep = '03'
+            ORDER BY c.idcana, dist_to_start
+        )
+        SELECT loc into locate FROM apploc;
+    END IF;
+    IF locate = 0 THEN
+        locate = 0.05;
+    ELSIF locate = 1 THEN
+        locate = 0.95;
+    END IF;
 
-	return locate;
+    return locate;
 END;$BODY$;
 
 COMMENT ON FUNCTION raepa.get_vanne_cana (text, boolean) IS 'Calcul de la position de la vanne la plus proche sur une canalisation selon un point de départ (fin ou debut de canalisation)';

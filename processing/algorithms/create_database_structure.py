@@ -214,11 +214,12 @@ class CreateDatabaseStructure(RaepaAlgorithm):
             '00_initialize_database.sql',
             'audit/audit.sql',
             'raepa/10_FUNCTION.sql',
-            'raepa/20_TABLE_COMMENT_SEQUENCE_DEFAULT.sql',
+            'raepa/20_TABLE_SEQUENCE_DEFAULT.sql',
             'raepa/30_VIEW.sql',
             'raepa/40_INDEX.sql',
             'raepa/50_TRIGGER.sql',
             'raepa/60_CONSTRAINT.sql',
+            'raepa/70_COMMENT.sql',
             'raepa/90_GLOSSARY.sql',
             '99_finalize_database.sql',
         ]

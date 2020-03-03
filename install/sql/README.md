@@ -9,34 +9,28 @@ The files inside the `audit` folder are taken from https://github.com/Oslandia/a
 Generation of the `raepa` schema SQL files is made via
 
 ```bash
-
+# Go to SQL folder
 cd install/sql
-./export_database_structure_to_SQL.sh raepa
+
+# Run the export tool for service raepa and schema raepa
+./export_database_structure_to_SQL.sh raepa raepa
+
+# Optionnal - Replace SRID 32620 by 2154
+find raepa/ -type f -name "*.sql" | xargs sed -i "s/32620/2154/g"
 ```
 
-This script will remove and regenerate the SQL files based on the `pg_dump` tool, by connecting to the database referenced by the PostgreSQL service `raepa`. You need to pass the parameter `raepa`, which is the name of the schema, and the name of the target folder (relative to `install/sql`)
+This script will remove and regenerate the SQL files based on the `pg_dump` tool, by connecting to the database referenced by the PostgreSQL service `raepa`. You need to pass 1st parameters `raepa` which is the name of the PostgreSQL service pointing to your database, and the 2nd parameter `raepa`, which is the name of the schema which will be used as the name of the target folder (relative to `install/sql`)
 
 It splits the content of the SQL dump into one file per database object type:
 
 * functions
-* tables (and comments, sequences, default values)
+* tables (and sequences, default values)
 * views
 * indexes
 * triggers
 * constraints (pk, unique, fk, etc.)
+* comments
 
-TODO 
-NB: if you have a SRID different from 2154, use this kind of sed command to replace your SRID by 2154
-
-```bash
-sed -i "s/32620/2154/g" raepa/10_FUNCTION.sql 
-sed -i "s/32620/2154/g" raepa/20_TABLE_COMMENT_SEQUENCE_DEFAULT.sql 
-sed -i "s/32620/2154/g" raepa/30_VIEW.sql 
-sed -i "s/32620/2154/g" raepa/40_INDEX.sql 
-sed -i "s/32620/2154/g" raepa/50_TRIGGER.sql 
-sed -i "s/32620/2154/g" raepa/60_CONSTRAINT.sql 
-sed -i "s/32620/2154/g" raepa/90_GLOSSARY.sql 
-```
 
 ### Schema imports
 

@@ -7,7 +7,7 @@
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
+
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -634,35 +634,35 @@ $$;
 CREATE FUNCTION raepa.get_vanne_cana(myid text, starter boolean) RETURNS double precision
     LANGUAGE plpgsql
     AS $$DECLARE
-	locate double precision = 0;
+    locate double precision = 0;
 BEGIN
-	IF starter THEN
-		WITH apploc as (
-			SELECT DISTINCT ON(c.idcana) c.idcana, ST_LineLocatePoint(c.geom, a.geom) As dist_to_start, ST_LineLocatePoint(c.geom, a.geom) as loc
-			FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
-			ON ST_DWithin(c.geom, a.geom, 0.05)
-			WHERE idcana = myid AND fnappaep = '03'
-			ORDER BY c.idcana, dist_to_start
-		)
-		SELECT loc into locate FROM apploc;
+    IF starter THEN
+        WITH apploc as (
+            SELECT DISTINCT ON(c.idcana) c.idcana, ST_LineLocatePoint(c.geom, a.geom) As dist_to_start, ST_LineLocatePoint(c.geom, a.geom) as loc
+            FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
+            ON ST_DWithin(c.geom, a.geom, 0.05)
+            WHERE idcana = myid AND fnappaep = '03'
+            ORDER BY c.idcana, dist_to_start
+        )
+        SELECT loc into locate FROM apploc;
 
-	ELSE
-		WITH apploc as (
-			SELECT DISTINCT ON(c.idcana) c.idcana, 1 - ST_LineLocatePoint(c.geom, a.geom) As dist_to_start, ST_LineLocatePoint(c.geom, a.geom) as loc
-			FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
-			ON ST_DWithin(c.geom, a.geom, 0.05)
-			WHERE idcana = myid AND fnappaep = '03'
-			ORDER BY c.idcana, dist_to_start
-		)
-		SELECT loc into locate FROM apploc;
-	END IF;
-	IF locate = 0 THEN
-		locate = 0.05;
-	ELSIF locate = 1 THEN
-		locate = 0.95;
-	END IF;
+    ELSE
+        WITH apploc as (
+            SELECT DISTINCT ON(c.idcana) c.idcana, 1 - ST_LineLocatePoint(c.geom, a.geom) As dist_to_start, ST_LineLocatePoint(c.geom, a.geom) as loc
+            FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
+            ON ST_DWithin(c.geom, a.geom, 0.05)
+            WHERE idcana = myid AND fnappaep = '03'
+            ORDER BY c.idcana, dist_to_start
+        )
+        SELECT loc into locate FROM apploc;
+    END IF;
+    IF locate = 0 THEN
+        locate = 0.05;
+    ELSIF locate = 1 THEN
+        locate = 0.95;
+    END IF;
 
-	return locate;
+    return locate;
 END;$$;
 
 
