@@ -44,6 +44,7 @@ class CreateDatabaseStructure(RaepaAlgorithm):
     # calling from the QGIS console.
 
     OVERRIDE = 'OVERRIDE'
+    ADD_AUDIT = 'ADD_AUDIT'
     SRID = 'SRID'
     NOM = 'NOM'
     SIREN = 'SIREN'
@@ -79,6 +80,13 @@ class CreateDatabaseStructure(RaepaAlgorithm):
             QgsProcessingParameterBoolean(
                 self.OVERRIDE, 'Écraser le schéma raepa et toutes les données ? ** ATTENTION **',
                 defaultValue=False,
+                optional=False
+            )
+        )
+        self.addParameter(
+            QgsProcessingParameterBoolean(
+                self.ADD_AUDIT, 'Ajouter un audit de suivi des modifications sur les tables ?',
+                defaultValue=True,
                 optional=False
             )
         )
@@ -221,7 +229,7 @@ class CreateDatabaseStructure(RaepaAlgorithm):
             'raepa/60_CONSTRAINT.sql',
             'raepa/70_COMMENT.sql',
             'raepa/90_GLOSSARY.sql',
-            '99_finalize_database.sql',
+            '99_finalize_database.sql'
         ]
         msg = ''
         alg_dir = os.path.dirname(__file__)
@@ -232,10 +240,18 @@ class CreateDatabaseStructure(RaepaAlgorithm):
         srid = crs.authid().replace('EPSG:', '')
         feedback.pushInfo('SRID = %s' % srid)
 
+        # Audit all tables id asked
+        add_audit = self.parameterAsBool(parameters, self.ADD_AUDIT, context)
+        if add_audit:
+            sql_files.append('add_audit.sql')
+
         # Loop sql files and run SQL code
         for sf in sql_files:
             feedback.pushInfo(sf)
             sql_file = os.path.join(plugin_dir, 'install/sql/%s' % sf)
+            if not os.path.isfile(sql_file):
+                feedback.pushInfo('  Fichier non trouvé')
+                continue
             with open(sql_file, 'r') as f:
                 sql = f.read()
                 if len(sql.strip()) == 0:
