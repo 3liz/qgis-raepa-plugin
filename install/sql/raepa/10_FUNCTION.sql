@@ -16,11 +16,10 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
--- calcul_orientation(text, double)
-CREATE OR REPLACE FUNCTION raepa.calcul_orientation (cana text, pos double precision)
-RETURNS double precision
-    LANGUAGE 'plpgsql'
-AS $BODY$
+-- calcul_orientation(text, double precision)
+CREATE FUNCTION raepa.calcul_orientation(cana text, pos double precision) RETURNS double precision
+    LANGUAGE plpgsql
+    AS $$
 DECLARE
     cgeom geometry;
     res double precision;
@@ -42,29 +41,29 @@ BEGIN
     JOIN raepa.raepa_canalaep_l c ON ST_DWithin(c.geom, p.geom, 0.05);
 
     return res;
-END; $BODY$;
+END; $$;
+
 
 -- calculate_apparaep_orientation(text)
-CREATE OR REPLACE FUNCTION raepa.calculate_apparaep_orientation(idappaep text)
-  RETURNS double precision
-    LANGUAGE 'plpgsql'
-AS $BODY$
+CREATE FUNCTION raepa.calculate_apparaep_orientation(idappaep text) RETURNS double precision
+    LANGUAGE plpgsql
+    AS $$
 DECLARE
   res double precision;
 BEGIN
 
     SELECT r.res into res FROM (
-        SELECT raepa.calcul_orientation(c.idcana, ST_LineLocatePoint(c.geom, p.geom)) as res, ST_LineLocatePoint(c.geom, p.geom) as pos
+        SELECT raepa.calcul_orientation(c.idcana, ST_LineLocatePoint(c.geom, p.geom)) as res, ST_Distance(c.geom, p.geom) as dist, ST_LineLocatePoint(c.geom, p.geom) as pos
         FROM raepa.raepa_apparaep_p p
             JOIN raepa.raepa_canalaep_l c ON ST_DWithin(c.geom, p.geom, 0.05)
         WHERE p.idappareil = idappaep
-        ORDER BY pos
+        ORDER BY dist, pos
         LIMIT 1) r;
 
     UPDATE raepa.raepa_apparaep_p ap SET _orientation = res WHERE ap.idappareil = idappaep;
 
     RETURN res;
-END; $BODY$;
+END; $$;
 
 
 -- decoupage_canalisation_par_ouvrage(text)
@@ -236,8 +235,7 @@ BEGIN
     WITH RECURSIVE walk_network(idcana, idnini, idnterm, all_parents) AS (
       SELECT c.idcana::text,
       c.idnini, c.idnterm,
-      array[c.idcana::text] as all_parents,
-      c.geom
+      array[c.idcana::text] as all_parents
       FROM %s AS c
       JOIN raepa.get_canalisation_ids_by_object_id(''%s'', ''down'') AS s
           ON c.idcana = s.idcana
@@ -394,13 +392,11 @@ BEGIN
 END;
 $$;
 
+
 -- get_canalisation_ids_by_object_id(text, text)
-CREATE OR REPLACE FUNCTION raepa.get_canalisation_ids_by_object_id(
-    IN p_id_object text,
-    IN p_direction text)
-  RETURNS TABLE(idcana text, tablecana text)
-    LANGUAGE 'plpgsql'
-AS $BODY$
+CREATE FUNCTION raepa.get_canalisation_ids_by_object_id(p_id_object text, p_direction text) RETURNS TABLE(idcana text, tablecana text)
+    LANGUAGE plpgsql
+    AS $$
 DECLARE
   p_cana_id text;
   p_cana_table regclass;
@@ -475,7 +471,203 @@ BEGIN
     RETURN QUERY EXECUTE format('SELECT ''%s''AS idcana, ''%s'' AS tablecana', p_cana_id, p_cana_table);
   END IF;
 
-END; $BODY$;
+END; $$;
+
+
+-- get_network_to_vanne_ferme_from_point(text, double precision)
+CREATE FUNCTION raepa.get_network_to_vanne_ferme_from_point(cana_id text, locate_point double precision) RETURNS public.geometry
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    locate_before_point double precision = 0;
+    locate_after_point double precision = 1;
+    parcours public.geometry;
+BEGIN
+    SELECT raepa.get_vanne_before_point(cana_id, locate_point, false) into locate_before_point;
+    SELECT raepa.get_vanne_after_point(cana_id, locate_point, false) into locate_after_point;
+
+    IF locate_before_point IS NOT NULL AND locate_after_point IS NOT NULL THEN
+        SELECT ST_LineSubstring(c.geom, locate_before_point, locate_after_point) into parcours AS geom FROM raepa.raepa_canalaep_l AS c WHERE c.idcana = cana_id;
+        RETURN parcours;
+    END IF;
+
+    WITH RECURSIVE walk_network(idcana, all_parents, geom, stop, step) AS (
+    SELECT idcana::text,
+          array[idcana::text] as all_parents,
+          ST_LineSubstring(geom,
+        CASE WHEN raepa.get_vanne_before_point(cana_id, locate_point, false) IS NULL THEN 0 ELSE raepa.get_vanne_before_point(cana_id, locate_point, false) END,
+        CASE WHEN raepa.get_vanne_after_point(cana_id, locate_point, false) IS NULL THEN 1 ELSE raepa.get_vanne_after_point(cana_id, locate_point, false) END) as geom,
+          False as stop,
+          0 as step
+     FROM raepa.raepa_canalaep_l
+     WHERE idcana = cana_id
+      UNION ALL
+        SELECT n.idcana::text AS idcana,
+         w.all_parents || n.idcana::text AS all_parents,
+         CASE
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, 0, raepa.get_vanne_after_point(n.idcana, 0, false) )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(n.geom), st_startpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, 0, raepa.get_vanne_after_point(n.idcana, 0, false) )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_endpoint(n.geom), st_startpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, raepa.get_vanne_before_point(n.idcana, 1, false), 1 )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_endpoint(n.geom), st_endpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, raepa.get_vanne_before_point(n.idcana, 1, false), 1 )::geometry(LineString,2154)
+        ELSE n.geom::geometry(LineString,2154) END AS geom,
+        a.idappareil IS NOT NULL OR o.idouvrage IS NOT NULL as stop,
+        w.step + 1 as step
+          FROM raepa.raepa_canalaep_l AS n
+          LEFT OUTER JOIN raepa.raepa_apparaep_p a ON ( fnappaep = '03' AND _ferme AND ST_Dwithin(n.geom, a.geom, 0.05) )
+          LEFT OUTER JOIN raepa.raepa_ouvraep_p o ON (
+                (fnouvaep = '03' OR fnouvaep = '05' OR fnouvaep = '01')
+                AND
+                ST_Dwithin(n.geom, o.geom, 0.05)
+            ),
+             walk_network AS w
+          WHERE TRUE AND (
+               ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05) OR
+               ST_Dwithin(st_startpoint(n.geom), st_startpoint(w.geom), 0.05) OR
+               ST_Dwithin(st_endpoint(n.geom), st_startpoint(w.geom), 0.05) OR
+               ST_Dwithin(st_endpoint(n.geom), st_endpoint(w.geom), 0.05))
+          AND w.idcana <> n.idcana AND n.idcana <> ALL (w.all_parents)
+          AND NOT w.stop
+          AND w.step < 15
+    )
+    SELECT ST_Union(DISTINCT geom) into parcours AS geom FROM walk_network;
+    RETURN parcours;
+END;
+$$;
+
+
+-- get_network_to_vanne_from_point(text, double precision)
+CREATE FUNCTION raepa.get_network_to_vanne_from_point(cana_id text, locate_point double precision) RETURNS public.geometry
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    locate_before_point double precision = 0;
+    locate_after_point double precision = 1;
+    parcours public.geometry;
+BEGIN
+    SELECT raepa.get_vanne_before_point(cana_id, locate_point, true) into locate_before_point;
+    SELECT raepa.get_vanne_after_point(cana_id, locate_point, true) into locate_after_point;
+
+    IF locate_before_point IS NOT NULL AND locate_after_point IS NOT NULL THEN
+        SELECT ST_LineSubstring(c.geom, locate_before_point, locate_after_point) into parcours AS geom FROM raepa.raepa_canalaep_l AS c WHERE c.idcana = cana_id;
+        RETURN parcours;
+    END IF;
+
+    WITH RECURSIVE walk_network(idcana, all_parents, geom, stop) AS (
+    SELECT idcana::text,
+          array[idcana::text] as all_parents,
+          ST_LineSubstring(geom,
+        CASE WHEN raepa.get_vanne_before_point(cana_id, locate_point, true) IS NULL THEN 0 ELSE raepa.get_vanne_before_point(cana_id, locate_point, true) END,
+        CASE WHEN raepa.get_vanne_after_point(cana_id, locate_point, true) IS NULL THEN 1 ELSE raepa.get_vanne_after_point(cana_id, locate_point, true) END) as geom,
+          False as stop
+     FROM raepa.raepa_canalaep_l
+     WHERE idcana = cana_id
+      UNION ALL
+        SELECT n.idcana::text AS idcana,
+         w.all_parents || n.idcana::text AS all_parents,
+         CASE
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, 0, raepa.get_vanne_after_point(n.idcana, 0, true) )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(n.geom), st_startpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, 0, raepa.get_vanne_after_point(n.idcana, 0, true) )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_endpoint(n.geom), st_startpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, raepa.get_vanne_before_point(n.idcana, 1, true), 1 )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_endpoint(n.geom), st_endpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, raepa.get_vanne_before_point(n.idcana, 1, true), 1 )::geometry(LineString,2154)
+        ELSE n.geom::geometry(LineString,2154) END AS geom,
+        a.idappareil IS NOT NULL as stop
+          FROM raepa.raepa_canalaep_l AS n
+          LEFT OUTER JOIN raepa.raepa_apparaep_p a ON ( fnappaep = '03' AND ST_Dwithin(n.geom, a.geom, 0.05) ),
+             walk_network AS w
+          WHERE TRUE AND (
+               ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05) OR
+               ST_Dwithin(st_startpoint(n.geom), st_startpoint(w.geom), 0.05) OR
+               ST_Dwithin(st_endpoint(n.geom), st_startpoint(w.geom), 0.05) OR
+               ST_Dwithin(st_endpoint(n.geom), st_endpoint(w.geom), 0.05))
+          AND w.idcana <> n.idcana AND n.idcana <> ALL (w.all_parents)
+          AND NOT w.stop
+    )
+    SELECT ST_Union(DISTINCT geom) into parcours AS geom FROM walk_network;
+    RETURN parcours;
+END;
+$$;
+
+
+-- get_vanne_after_point(text, double precision, boolean)
+CREATE FUNCTION raepa.get_vanne_after_point(cana_id text, locate_point double precision, all_v boolean) RETURNS double precision
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    locate double precision = 1;
+BEGIN
+    WITH apploc as (
+        SELECT DISTINCT ON(c.idcana) c.idcana,  ST_LineLocatePoint(c.geom, a.geom)- locate_point As dist_to_point, ST_LineLocatePoint(c.geom, a.geom) as loc
+        FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
+        ON ST_DWithin(c.geom, a.geom, 0.05)
+        WHERE idcana = cana_id AND fnappaep = '03' AND (all_v or _ferme) AND ST_LineLocatePoint(c.geom, a.geom) - locate_point >= 0
+        ORDER BY c.idcana, dist_to_point
+    )
+    SELECT loc into locate FROM apploc;
+
+    return locate;
+END;
+$$;
+
+
+-- get_vanne_before_point(text, double precision, boolean)
+CREATE FUNCTION raepa.get_vanne_before_point(cana_id text, locate_point double precision, all_v boolean) RETURNS double precision
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    locate double precision = 1;
+BEGIN
+    WITH apploc as (
+        SELECT DISTINCT ON(c.idcana) c.idcana,  locate_point - ST_LineLocatePoint(c.geom, a.geom) As dist_to_point, ST_LineLocatePoint(c.geom, a.geom) as loc
+        FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
+        ON ST_DWithin(c.geom, a.geom, 0.05)
+        WHERE idcana = cana_id AND fnappaep = '03' AND (all_v or _ferme) AND locate_point - ST_LineLocatePoint(c.geom, a.geom) >= 0
+        ORDER BY c.idcana, dist_to_point
+    )
+    SELECT loc into locate FROM apploc;
+
+    return locate;
+END;
+$$;
+
+
+-- get_vanne_cana(text, boolean)
+CREATE FUNCTION raepa.get_vanne_cana(myid text, starter boolean) RETURNS double precision
+    LANGUAGE plpgsql
+    AS $$DECLARE
+	locate double precision = 0;
+BEGIN
+	IF starter THEN
+		WITH apploc as (
+			SELECT DISTINCT ON(c.idcana) c.idcana, ST_LineLocatePoint(c.geom, a.geom) As dist_to_start, ST_LineLocatePoint(c.geom, a.geom) as loc
+			FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
+			ON ST_DWithin(c.geom, a.geom, 0.05)
+			WHERE idcana = myid AND fnappaep = '03'
+			ORDER BY c.idcana, dist_to_start
+		)
+		SELECT loc into locate FROM apploc;
+
+	ELSE
+		WITH apploc as (
+			SELECT DISTINCT ON(c.idcana) c.idcana, 1 - ST_LineLocatePoint(c.geom, a.geom) As dist_to_start, ST_LineLocatePoint(c.geom, a.geom) as loc
+			FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
+			ON ST_DWithin(c.geom, a.geom, 0.05)
+			WHERE idcana = myid AND fnappaep = '03'
+			ORDER BY c.idcana, dist_to_start
+		)
+		SELECT loc into locate FROM apploc;
+	END IF;
+	IF locate = 0 THEN
+		locate = 0.05;
+	ELSIF locate = 1 THEN
+		locate = 0.95;
+	END IF;
+
+	return locate;
+END;$$;
+
+
+-- FUNCTION get_vanne_cana(myid text, starter boolean)
+COMMENT ON FUNCTION raepa.get_vanne_cana(myid text, starter boolean) IS 'Calcul de la position de la vanne la plus proche sur une canalisation selon un point de départ (fin ou debut de canalisation)';
 
 
 -- import_gabarit_dans_tables_temporaires(text, text, text, text, text, text)
@@ -749,6 +941,46 @@ BEGIN
     RETURN TRUE;
 END;
 $$;
+
+
+-- network_to_vanne(text)
+CREATE FUNCTION raepa.network_to_vanne(cana text) RETURNS public.geometry
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  parcours public.geometry;
+BEGIN
+
+WITH RECURSIVE walk_network(idcana, all_parents, geom) AS (
+      SELECT idcana::text,
+      array[idcana::text] as all_parents,
+      geom
+      FROM raepa.raepa_canalaep_l
+      WHERE idcana = cana --sans vanne
+    UNION ALL
+      SELECT
+         n.idcana::text AS idcana,
+    w.all_parents || n.idcana::text AS all_parents,
+    CASE
+      WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(w.geom), st_endpoint(n.geom), 0.05) THEN ST_Line_Substring( n.geom, raepa.get_vanne_cana(n.idcana, false), 1 )::geometry(LineString,2154)
+      WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05) THEN ST_Line_Substring( n.geom, 0, raepa.get_vanne_cana(n.idcana, true) )::geometry(LineString,2154)
+      ELSE n.geom::geometry(LineString,2154) END AS geom
+      FROM raepa.raepa_canalaep_l AS n
+        LEFT OUTER JOIN raepa.raepa_apparaep_p a ON ( fnappaep = '03' AND ST_Dwithin(n.geom, a.geom, 0.05) ),
+        walk_network AS w
+      WHERE TRUE
+      AND (ST_Dwithin(st_startpoint(w.geom), st_endpoint(n.geom), 0.05) OR ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05))
+      AND n.idcana <> ALL (w.all_parents)
+)
+SELECT ST_Union(DISTINCT geom)  INTO parcours AS geom FROM walk_network;
+
+  RETURN parcours;
+END;
+$$;
+
+
+-- FUNCTION network_to_vanne(cana text)
+COMMENT ON FUNCTION raepa.network_to_vanne(cana text) IS 'Parcours du réseau de canalisation d''eau potable à partir d''une canalisation jusqu''aux vannes les plus proches';
 
 
 -- trg_apres_modification_ouvrage()
@@ -1268,8 +1500,7 @@ BEGIN
     WITH RECURSIVE walk_network(idcana, idnini, idnterm, all_parents) AS (
       SELECT c.idcana::text,
       c.idnini, c.idnterm,
-      array[c.idcana::text] as all_parents,
-      c.geom
+      array[c.idcana::text] as all_parents
       FROM %s AS c
       JOIN raepa.get_canalisation_ids_by_object_id(''%s'', ''up'') AS s
           ON c.idcana = s.idcana

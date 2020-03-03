@@ -16,6 +16,14 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+-- FUNCTION get_vanne_cana(myid text, starter boolean)
+COMMENT ON FUNCTION raepa.get_vanne_cana(myid text, starter boolean) IS 'Calcul de la position de la vanne la plus proche sur une canalisation selon un point de départ (fin ou debut de canalisation)';
+
+
+-- FUNCTION network_to_vanne(cana text)
+COMMENT ON FUNCTION raepa.network_to_vanne(cana text) IS 'Parcours du réseau de canalisation d''eau potable à partir d''une canalisation jusqu''aux vannes les plus proches';
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -259,7 +267,7 @@ CREATE TABLE raepa.raepa_apparaep_p (
     andebpose character varying(4),
     qualglocxy character varying(2) NOT NULL,
     qualglocz character varying(2) NOT NULL,
-    datemaj date DEFAULT '2019-08-15'::date NOT NULL,
+    datemaj date DEFAULT now() NOT NULL,
     sourmaj character varying(100) NOT NULL,
     qualannee character varying(2),
     dategeoloc date,
@@ -427,7 +435,7 @@ CREATE TABLE raepa.raepa_apparass_p (
     z numeric(6,3),
     qualglocxy character varying(2) NOT NULL,
     qualglocz character varying(2) NOT NULL,
-    datemaj date DEFAULT '2019-08-15'::date NOT NULL,
+    datemaj date DEFAULT now() NOT NULL,
     sourmaj character varying(100) NOT NULL,
     qualannee character varying(2),
     dategeoloc date,
@@ -615,7 +623,7 @@ CREATE TABLE raepa.raepa_canalaep_l (
     nbranche integer,
     qualglocxy character varying(2) NOT NULL,
     qualglocz character varying(2) NOT NULL,
-    datemaj date DEFAULT '2019-08-15'::date NOT NULL,
+    datemaj date DEFAULT now() NOT NULL,
     sourmaj character varying(100) NOT NULL,
     qualannee character varying(2),
     dategeoloc date,
@@ -814,7 +822,7 @@ CREATE TABLE raepa.raepa_canalass_l (
     nbranche integer,
     qualglocxy character varying(2) NOT NULL,
     qualglocz character varying(2) NOT NULL,
-    datemaj date DEFAULT '2019-08-15'::date NOT NULL,
+    datemaj date DEFAULT now() NOT NULL,
     sourmaj character varying(100) NOT NULL,
     qualannee character varying(2),
     dategeoloc date,
@@ -1053,7 +1061,7 @@ CREATE TABLE raepa.raepa_ouvraep_p (
     andebpose character varying(4),
     qualglocxy character varying(2) NOT NULL,
     qualglocz character varying(2) NOT NULL,
-    datemaj date DEFAULT '2019-08-15'::date NOT NULL,
+    datemaj date DEFAULT now() NOT NULL,
     sourmaj character varying(100) NOT NULL,
     qualannee character varying(2),
     dategeoloc date,
@@ -1203,7 +1211,7 @@ CREATE TABLE raepa.raepa_ouvrass_p (
     andebpose character varying(4),
     qualglocxy character varying(2) NOT NULL,
     qualglocz character varying(2) NOT NULL,
-    datemaj date DEFAULT '2019-08-15'::date NOT NULL,
+    datemaj date DEFAULT now() NOT NULL,
     sourmaj character varying(100) NOT NULL,
     qualannee character varying(2),
     dategeoloc date,
