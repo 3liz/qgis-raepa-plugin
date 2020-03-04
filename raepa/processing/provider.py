@@ -38,17 +38,18 @@ from .algorithms.convert_imported_data import ConvertImportedData
 from .algorithms.create_database_structure import CreateDatabaseStructure
 from .algorithms.execute_sql import ExecuteSql
 from .algorithms.export_package import ExportPackage
+from .algorithms.gabarits_aep_ass import ExportGabarits
 from .algorithms.get_data_as_layer import GetDataAsLayer
 from .algorithms.get_downstream_route import GetDownstreamRoute
 from .algorithms.get_network_to_vanne import GetNetworkToVanne
-from .algorithms.get_network_to_vanne_from_point import GetNetworkToVanneFromPoint
 from .algorithms.get_network_to_vanne_ferme_from_point import GetNetworkToVanneFermeFromPoint
+from .algorithms.get_network_to_vanne_from_point import GetNetworkToVanneFromPoint
 from .algorithms.get_orientation_appareil import GetOrientationAppareil
 from .algorithms.get_upstream_route import GetUpstreamRoute
 from .algorithms.import_shapefile import ImportShapefile
 from .algorithms.insert_converted_data import InsertConvertedData
 from .algorithms.load_project import LoadProject
-from .algorithms.gabarits_aep_ass import ExportGabarits
+from .algorithms.sql_layers import AddSqlLayers
 from .algorithms.upgrade_database_structure import UpgradeDatabaseStructure
 from ..qgis_plugin_tools.tools.resources import resources_path
 
@@ -59,25 +60,26 @@ class RaepaProvider(QgsProcessingProvider):
         return QIcon(resources_path('icons/icon.png'))
 
     def loadAlgorithms(self):
-        self.addAlgorithm(GetDataAsLayer())
+        self.addAlgorithm(AddSqlLayers())
+        self.addAlgorithm(AddStyles())
+        self.addAlgorithm(CancelLastModification())
         self.addAlgorithm(ConfigurePlugin())
+        self.addAlgorithm(ConvertImportedData())
+        self.addAlgorithm(CreateDatabaseStructure())
         self.addAlgorithm(ExecuteSql())
         self.addAlgorithm(ExportGabarits())
-        self.addAlgorithm(CreateDatabaseStructure())
-        self.addAlgorithm(UpgradeDatabaseStructure())
-        self.addAlgorithm(ImportShapefile())
-        self.addAlgorithm(ConvertImportedData())
-        self.addAlgorithm(InsertConvertedData())
         self.addAlgorithm(ExportPackage())
-        self.addAlgorithm(GetUpstreamRoute())
+        self.addAlgorithm(GetDataAsLayer())
         self.addAlgorithm(GetDownstreamRoute())
-        self.addAlgorithm(CancelLastModification())
-        self.addAlgorithm(GetOrientationAppareil())
         self.addAlgorithm(GetNetworkToVanne())
-        self.addAlgorithm(GetNetworkToVanneFromPoint())
         self.addAlgorithm(GetNetworkToVanneFermeFromPoint())
+        self.addAlgorithm(GetNetworkToVanneFromPoint())
+        self.addAlgorithm(GetOrientationAppareil())
+        self.addAlgorithm(GetUpstreamRoute())
+        self.addAlgorithm(ImportShapefile())
+        self.addAlgorithm(InsertConvertedData())
         self.addAlgorithm(LoadProject())
-        self.addAlgorithm(AddStyles())
+        self.addAlgorithm(UpgradeDatabaseStructure())
 
     def id(self):
         return 'raepa'
