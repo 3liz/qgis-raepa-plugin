@@ -1,28 +1,50 @@
+dist: bionic
+
+language: python
+
+python: 3.7
+
 services:
   - docker
 
-sudo: false
+jobs:
+  include:
+    - stage: Run tests
+      name: Docker-compose with PostGIS database
+      install:
+        - cd ${TRAVIS_BUILD_DIR}/docker
+        - docker-compose up -d --force-recreate
+        - sleep 10
+        - docker exec -it qgis sh -c "qgis_setup.sh raepa"
+        - docker cp postgis_connections.ini qgis:/tmp
+        - docker exec qgis bash -c "cat /tmp/postgis_connections.ini >> /root/.local/share/QGIS/QGIS3/profiles/default/QGIS/QGIS3.ini"
+      script:
+        - docker exec -it qgis sh -c "cd /tests_directory/raepa && qgis_testrunner.sh qgis_plugin_tools.infrastructure.test_runner.test_package"
 
-env:
-  global:
-    - IMAGE=qgis/qgis
+    - stage: Deploy
+      if: tag IS present
+      name: Create release
 
-  matrix:
-    - QGIS_VERSION_TAG=release-3_4
-    # - QGIS_VERSION_TAG=release-3_10
-    # - QGIS_VERSION_TAG=latest
+      install:
+        - pip3 install qgis-plugin-ci
 
-branches:
-  only:
-    - master
+      before_deploy:
+        - export RELEASE_TITLE="Release of $TRAVIS_TAG"
 
-before_install:
-  - docker pull ${IMAGE}:${QGIS_VERSION_TAG}
+      script:
+        - qgis-plugin-ci -v
 
-install:
-  - docker run -d --name qgis-testing-environment -v ${TRAVIS_BUILD_DIR}/raepa:/raepa -e DISPLAY=:99 ${IMAGE}:${QGIS_VERSION_TAG}
-  - sleep 10
-  - docker exec -it qgis-testing-environment sh -c "qgis_setup.sh raepa"
+      deploy:
 
-script:
-  - docker exec -it qgis-testing-environment sh -c "qgis_testrunner.sh raepa.qgis_plugin_tools.infrastructure.test_runner.test_package"
+        - provider: releases
+          edge: true
+          file: .
+          name: ${RELEASE_TITLE}
+          api_key: ${GH_TOKEN}
+          on:
+            tags: true
+
+        - provider: script
+          script: qgis-plugin-ci release ${TRAVIS_TAG} --github-token ${GH_TOKEN} --create-plugin-repo
+          on:
+            tags: true
