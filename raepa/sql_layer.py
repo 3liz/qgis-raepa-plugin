@@ -32,8 +32,10 @@ class SqlLayer:
         self.sql_path = sql_path
         self.connection = connection_name
 
-        if not os.path.exists(self.sql_path):
-            raise Exception('Path does not exist "{}"'.format(self.sql_path))
+        qml_path = '{}.qml'.format(os.path.splitext(self.sql_path)[0])
+        self.qml = None
+        if os.path.exists(qml_path):
+            self.qml = qml_path
 
         self.name = None
         self.description = None
@@ -80,4 +82,6 @@ class SqlLayer:
         uri.setDataSource('', self.sql, self.geom, '')
         uri.setKeyColumn(self.pk)
         layer = QgsVectorLayer(uri.uri(), self.name, 'postgres')
+        if self.description:
+            layer.setAbstract(self.description)
         return layer

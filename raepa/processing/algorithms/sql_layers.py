@@ -9,10 +9,29 @@ from qgis.core import (
     QgsProcessingContext,
     QgsProcessingOutputMultipleLayers,
     QgsProcessingParameterEnum,
+    QgsProcessingLayerPostProcessorInterface,
+    QgsVectorLayer,
 )
 
 from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
 from ...sql_layer import SqlLayer
+
+
+class StylesPostProcessor(QgsProcessingLayerPostProcessorInterface):
+
+    instance = None
+    qml_path = None
+
+    def postProcessLayer(self, layer: QgsVectorLayer, context, feedback):
+        layer.loadNamedStyle(self.qml_path)
+        layer.triggerRepaint()
+
+    # Hack to work around sip bug!
+    @staticmethod
+    def create(qml_path) -> 'StylesPostProcessor':
+        StylesPostProcessor.instance = StylesPostProcessor()
+        StylesPostProcessor.qml_path = qml_path
+        return StylesPostProcessor.instance
 
 
 class AddSqlLayers(BaseProcessingAlgorithm):
@@ -81,6 +100,12 @@ class AddSqlLayers(BaseProcessingAlgorithm):
                     self.OUTPUT,
                 )
             )
+
+            if sql_layer.qml:
+                context.layerToLoadOnCompletionDetails(
+                    layer.id()
+                ).setPostProcessor(StylesPostProcessor.create(sql_layer.qml))
+
             result[self.OUTPUT].append(layer.id())
             feedback.setProgress(int(current / total * 100))
 
