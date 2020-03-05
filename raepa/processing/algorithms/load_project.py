@@ -29,10 +29,10 @@ from qgis.core import (
 
 from processing.tools.postgis import uri_from_name, GeoDB
 
-from ..raepa_algorithm import RaepaAlgorithm
+from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
 
 
-class LoadProject(RaepaAlgorithm):
+class LoadProject(BaseProcessingAlgorithm):
 
     RIEN = 'RIEN'
 

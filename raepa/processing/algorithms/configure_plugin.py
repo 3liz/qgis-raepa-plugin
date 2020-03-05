@@ -24,10 +24,10 @@ from qgis.core import (
     QgsExpressionContextUtils
 )
 
-from ..raepa_algorithm import RaepaAlgorithm
+from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
 
 
-class ConfigurePlugin(RaepaAlgorithm):
+class ConfigurePlugin(BaseProcessingAlgorithm):
 
     CONNECTION_NAME = 'CONNECTION_NAME'
 

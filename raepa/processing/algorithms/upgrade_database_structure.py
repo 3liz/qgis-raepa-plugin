@@ -29,11 +29,11 @@ from qgis.core import (
     QgsExpressionContextUtils
 )
 
-from ..raepa_algorithm import RaepaAlgorithm
+from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
 from .tools import fetchDataFromSqlQuery, getVersionInteger
 
 
-class UpgradeDatabaseStructure(RaepaAlgorithm):
+class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
 
     RUNIT = 'RUNIT'
     SRID = 'SRID'

@@ -29,10 +29,10 @@ from qgis.core import (
 )
 from processing.algs.gdal.GdalUtils import GdalUtils
 
-from ..raepa_algorithm import RaepaAlgorithm
+from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
 
 
-class ExportPackage(RaepaAlgorithm):
+class ExportPackage(BaseProcessingAlgorithm):
     """
     Import Shapefile into imports schema
     """

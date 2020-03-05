@@ -8,7 +8,7 @@ from qgis.core import (
     QgsProcessingParameterEnum,
 )
 
-from ..raepa_algorithm import RaepaAlgorithm
+from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
 from ...qgis_plugin_tools.tools.resources import plugin_path
 
 __copyright__ = 'Copyright 2019, 3Liz'
@@ -17,7 +17,7 @@ __email__ = 'info@3liz.org'
 __revision__ = '$Format:%H$'
 
 
-class ExportGabarits(RaepaAlgorithm):
+class ExportGabarits(BaseProcessingAlgorithm):
 
     TYPE = 'TYPE'
     DESTINATION = 'DESTINATION'

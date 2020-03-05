@@ -30,10 +30,10 @@ from qgis.core import (
     QgsExpressionContextUtils
 )
 
-from ..raepa_algorithm import RaepaAlgorithm
+from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
 
 
-class GetDataAsLayer(RaepaAlgorithm):
+class GetDataAsLayer(BaseProcessingAlgorithm):
 
     OUTPUT_STATUS = 'OUTPUT_STATUS'
     OUTPUT_STRING = 'OUTPUT_STRING'

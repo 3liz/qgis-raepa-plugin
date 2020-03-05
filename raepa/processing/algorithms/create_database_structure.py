@@ -30,11 +30,11 @@ from qgis.core import (
     QgsExpressionContextUtils
 )
 
-from ..raepa_algorithm import RaepaAlgorithm
+from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
 from .tools import fetchDataFromSqlQuery
 
 
-class CreateDatabaseStructure(RaepaAlgorithm):
+class CreateDatabaseStructure(BaseProcessingAlgorithm):
     """
     Create Raepa structure in Database
     """

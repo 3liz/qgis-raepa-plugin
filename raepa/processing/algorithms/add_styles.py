@@ -23,10 +23,10 @@ from qgis.core import (
     QgsMapLayer,
 )
 
-from ..raepa_algorithm import RaepaAlgorithm
+from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
 
 
-class AddStyles(RaepaAlgorithm):
+class AddStyles(BaseProcessingAlgorithm):
     """Add styles algorithm."""
 
     APPARAEP = 'APPARAEP'
