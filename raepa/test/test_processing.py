@@ -24,11 +24,25 @@ __revision__ = '$Format:%H$'
 
 class TestProcessing(unittest.TestCase):
 
+    def setUp(self) -> None:
+        self.provider = RaepaProvider()
+        registry = QgsApplication.processingRegistry()
+        if not registry.providerById(self.provider.id()):
+            registry.addProvider(self.provider)
+
+    def tearDown(self) -> None:
+        QgsApplication.processingRegistry().removeProvider(self.provider)
+
+    @unittest.skip
+    def test_sql_layers(self):
+        """Test for SQL layers."""
+        params = {
+            'FILES': '',
+        }
+        processing.run('raepa:add_sql_layers', params)
+
     def test_add_styles(self):
         """Test we can add styles and actions from Processing algorithm."""
-        provider = RaepaProvider()
-        QgsApplication.processingRegistry().addProvider(provider)
-
         lines_layer = QgsVectorLayer(plugin_test_data_path('lines.geojson'), 'lines', 'ogr')
         self.assertTrue(lines_layer.isValid())
         self.assertEqual(len(lines_layer.actions().actions()), 0)

@@ -24,7 +24,7 @@ class TestSqlLayer(unittest.TestCase):
             os.path.join(self.directory, 'layer_1.sql'),
             os.path.join(self.directory, 'layer_2.sql'),
         ]
-        self.assertListEqual(
+        self.assertCountEqual(
             expected,
             SqlLayer.scan_folder(self.directory))
 
