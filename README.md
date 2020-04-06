@@ -1,8 +1,20 @@
 # RAEPA
 
+[![Build Status](https://travis-ci.org/3liz/qgis-raepa-plugin.svg?branch=master)](https://travis-ci.org/3liz/qgis-raepa-plugin)
+
 ## Présentation
 
+Lizmap Web Client:
+
+![demo LWC](media/lizmap_raepa_visualisation_grande_echelle.png "3Liz")
+
+QGIS Plugin:
+
+![demo qgis](media/qgis_raepa_calcul_parcours_reseau.png "3Liz")
+
 ## Documentation
+
+Database documentation : https://3liz.github.io/qgis-raepa-plugin/
 
 ## Scripts
 
@@ -27,5 +39,3 @@ Michaël Douchin (3liz)  @mdouchin
 ## Licence
 
 GPL V2
-
-
