@@ -1,0 +1,5502 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>raepa Database</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+  <!-- Bootstrap 3.3.5 -->
+  <link rel="stylesheet" href="bower/admin-lte/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="bower/ionicons/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+  <!-- Code Mirror -->
+  <link rel="stylesheet" href="bower/codemirror/codemirror.css">
+  <!-- Fonts -->
+  <link href='fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+  <link href='fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="bower/admin-lte/dist/css/AdminLTE.min.css">
+  <!-- Salvattore -->
+  <link rel="stylesheet" href="bower/salvattore/salvattore.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="bower/admin-lte/dist/css/skins/_all-skins.min.css">
+  <!-- SchemaSpy -->
+  <link rel="stylesheet" href="schemaSpy.css">
+  
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="bower/html5shiv/html5shiv.min.js"></script>
+  <script src="bower/respond/respond.min.js"></script>
+  <![endif]-->
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+  <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand"><b>raepa</b> Database</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Tables <span class="sr-only">(current)</span></a></li>
+			<li><a href="columns.html" title="All of the columns in the schema">Columns</a></li>
+			<li><a href="constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+			<li><a href="relationships.html" title="Diagram of table relationships">Relationships</a></li>
+			<li><a href="orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>				
+			<li><a href="anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+			<li><a href="routines.html" title="Procedures and functions">Routines</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+  <!-- Main content -->
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>Columns</h1>
+      </section>
+      <!-- Main content -->
+      <section class="content">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+			  <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+              <h3 class="box-title">Columns</h3>
+            </div>	
+            <div class="box-body">
+				<div class="row">
+					<div id="button_group_one" class="col-md-3 col-sm-6"></div>
+					<div id="button_group_two" class="col-md-2 col-sm-4 pull-right text-right"></div>
+				</div>
+				<table id="column_table" class="table table-bordered table-striped dataTable" role="grid">
+				<thead align='left'>
+					<tr>
+					  <th>Table</th>
+					  <th>Type</th>
+					  <th>Column</th>
+					  <th>Type</th>
+					  <th>Size</th>
+					  <th title='Are nulls allowed?'>Nulls</th>
+					  <th title='Is column automatically updated?'>Auto</th>
+					  <th title='Default value'>Default</th>
+					  <th title='Comments' class="toggle"><span>Comments</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>andebpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Année marquant le début de la période de pose de la canalisation</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_cat_canal_ae</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>supprepare</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Type du support de la réparation Codes de la table VAL_RAEPA_SUPPORT_REPARATION</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_typ_reseau_ass</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>zaval</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Altitude à l'extrémité aval (en mètres, Référentiel NGF-IGN69)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>longcana</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>andebpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Année marquant le début de la période de mise en service de l'appareillage</p></td>
+					</tr>
+					<tr>
+					 <td>sys_organisme_gestionnaire</td>
+					 <td>Table</td>
+					 <td>code</td>
+					 <td>varchar</td>
+					 <td>3</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Nom abbrégé en 3 caractères. Exemple : CAS pour la Communauté d’agglomération du Soissonnais</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>nbranche</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_canal_ass</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_mode_circulation</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>anfinpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>_etat</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>sourgeoloc</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Auteur de la géolocalisation</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>longcana</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Longueur mesurée de canalisation (en mètres)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>_longcana_cm</td>
+					 <td>numeric</td>
+					 <td>7</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>dategeoloc</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>zamont</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Altitude à l'extrémité amont (en mètres, Référentiel NGF- IGN69)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparaep_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>defreparee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Type de la défaillance réparée Codes de la table VAL_RAEPA_TYPE_DEFAILLANCE</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>zamont</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>geom</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>zamont</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_support_reparation</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>qualannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>nbranche</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_cat_canal_ae</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idnterm</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant du nœud de fin de la canalisation (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparaep_p</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>serial</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;raepa.raepa_reparaep_p_id_seq&#39;::regclass)</td>
+					 <td><p>Identifiant numérique auto (clé primaire)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idcanppale</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de la canalisation principale (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>fonccanass</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_ouv_ass</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>idnterm</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>sourmaj</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_cat_canal_ass</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>_longcana_reelle</td>
+					 <td>numeric</td>
+					 <td>7</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>_forme</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Forme de la canalisation (cylindrique, ovoïde, etc)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>_forme</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>_longcana_reelle</td>
+					 <td>numeric</td>
+					 <td>7</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>serial</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;raepa.raepa_apparaep_p_id_seq&#39;::regclass)</td>
+					 <td><p>Identifiant numérique auto (clé primaire)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>_observation</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Observations diverses sur l'objet. Texte libre.</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>mouvrage</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>_etat</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>sourgeoloc</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Auteur de la géolocalisation</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>qualglocz</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_cat_canal_ae</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>mouvrage</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>gexploit</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>sourmaj</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>idnterm</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>modecirc</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Mode de circulation de l'eau à l'intérieur de la canalisation Codes de la table VAL_RAEPA_MODE_CIRCULATION</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_canal_ass</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualglocz</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Qualité de la géolocalisation altimétrique (Z) Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>sourattrib</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>_longcana_reelle</td>
+					 <td>numeric</td>
+					 <td>7</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>serial</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;raepa.raepa_reparass_p_id_seq&#39;::regclass)</td>
+					 <td><p>Identifiant numérique auto (clé primaire)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparaep_p</td>
+					 <td>Table</td>
+					 <td>x</td>
+					 <td>numeric</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Coordonnée X Lambert 93 (en mètres)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de pose Codes de la table VAL_RAEPA_QUALITE_ANPOSE</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>_code_chantier</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code du chantier, qui doit être explicite et unique entre les chantiers. Par ex : SOISSONS-PL REPUBLIQUE-2018</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>_observation</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Observations diverses sur l'objet. Texte libre.</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>sensecoul</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>sys_structure_metadonnee</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>serial</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;raepa.sys_structure_metadonnee_id_seq&#39;::regclass)</td>
+					 <td><p>Identifiant</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>idnini</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant du nœud de début de la canalisation (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>nbranche</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>typreseau</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Type du réseau d'assainissement collectif Codes de la table VAL_RAEPA_TYP_RESEAU_ASS</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idouvrage</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de l'ouvrage</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>_pente</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>diametre</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>_longcana_reelle</td>
+					 <td>numeric</td>
+					 <td>7</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Longueur calculée de canalisation réelle, en prenant en compte la pente (précision cm)</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_qualite_anpose</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>anfinpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Année marquant la fin de la période de mise en service de l'appareillage</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idcanaval</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiants des canalisations d'aval de l'ouvrage (clés étrangères)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>andebpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>sourattrib</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>_temp_data</td>
+					 <td>hstore</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Champ pour ajouter des données temporaires pendant l'import</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>sourgeoloc</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Auteur de la géolocalisation</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>_source_historique</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualglocxy</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Qualité de la géolocalisation planimétrique (XY) Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+					</tr>
+					<tr>
+					 <td>affleurant_pcrs</td>
+					 <td>Table</td>
+					 <td>largeur</td>
+					 <td>float8</td>
+					 <td>17</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Utilisé uniquement pour la mise à l’échelle Y du symbole d’affleurant</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>_orientation</td>
+					 <td>float8</td>
+					 <td>17</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Orientation de l'appareil en degrés.</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>qualannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_precision_annee</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idcanamont</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de la canalisation d'amont de l'appareillage (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>serial</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;raepa.raepa_canalaep_l_id_seq&#39;::regclass)</td>
+					 <td><p>Identifiant numérique auto (clé primaire)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>_longcana_cm</td>
+					 <td>numeric</td>
+					 <td>7</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Longueur calculée de canalisation projetée (en mètres avec une précision centimétrique)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>id</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>_source_historique</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>gexploit</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Gestionnaire exploitant du réseau</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_app_ae</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>_date_import</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Date de l'import</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>typreseau</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idrepar</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>raepa.generate_oid(&#39;raepa_reparass_p&#39;::text)</td>
+					 <td><p>Identifiant de la réparation effectuée</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>zaval</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>sys_organisme_gestionnaire</td>
+					 <td>Table</td>
+					 <td>nom</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Nom de l’organisme gestionnaire</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>defreparee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Type de la défaillance réparée Codes de la table VAL_RAEPA_TYPE_DEFAILLANCE</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>diametre</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>qualglocz</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td>mouvrage</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Maître d'ouvrage du réseau</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>serial</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;raepa.raepa_canalass_l_id_seq&#39;::regclass)</td>
+					 <td><p>Identifiant numérique auto (clé primaire)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>_dimensionhorizontale</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>_forme</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>qualglocxy</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>contcanass</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>_etat</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Etat de la canalisation</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>_ferme</td>
+					 <td>bool</td>
+					 <td>1</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>false</td>
+					 <td><p>Décrit si l'appareil est fermé ou non. True si l'appareil est fermé.</p></td>
+					</tr>
+					<tr>
+					 <td>affleurant_pcrs</td>
+					 <td>Table</td>
+					 <td>geom</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Géométrie</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>_etat</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td>x</td>
+					 <td>numeric</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Coordonnée X Lambert 93 (en mètres)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>_observation</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Observations diverses sur l'objet. Texte libre.</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>datemaj</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_cat_canal_ass</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idcanppale</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de la canalisation principale (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>profgen</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Profondeur moyenne de la génératrice supérieure de la canalisation</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_ouv_ae</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td>z</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Altitude (en mètres, référentiel NGF-IGN69)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>x</td>
+					 <td>numeric</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Coordonnée X Lambert 93 (en mètres)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>serial</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;raepa.raepa_ouvraep_p_id_seq&#39;::regclass)</td>
+					 <td><p>Identifiant numérique auto (clé primaire)</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_cat_canal_ass</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>andebpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Année marquant le début de la période de mise en service de l'appareillage</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>sourgeoloc</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>sensecoul</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>anfinpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>mouvrage</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Maître d'ouvrage de la réparation</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>enservice</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Canalisation en service / Canalisation abandonnée O / N</p></td>
+					</tr>
+					<tr>
+					 <td>sys_liste_table</td>
+					 <td>Table</td>
+					 <td>typereseau</td>
+					 <td>varchar</td>
+					 <td>3</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Type de réseau : AEP ou ASS</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>branchemnt</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_materiau</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>_longcana_cm</td>
+					 <td>numeric</td>
+					 <td>7</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de mise en service Codes de la table VAL_RAEPA_QUALITE_ANPOSE</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>dategeoloc</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>materiau</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Matériau de la canalisation d'adduction d'eau potable Codes de la table VAL_RAEPA_MATERIAU</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_app_ae</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>longcana</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>_precisionannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>serial</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;raepa.raepa_ouvrass_p_id_seq&#39;::regclass)</td>
+					 <td><p>Identifiant numérique auto (clé primaire)</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_ouv_ass</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>dategeoloc</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>modecirc</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>dategeoloc</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Date de la géolocalisation</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>datemaj</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>sys_organisme_gestionnaire</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>serial</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;raepa.sys_organisme_gestionnaire_id_seq&#39;::regclass)</td>
+					 <td><p>Identifiant</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_type_defaillance</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>geom</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Géométrie</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>_precisionannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>_code_chantier</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_materiau</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>fnappass</td>
+					 <td>varchar</td>
+					 <td>22</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Fonction de l'appareillage d'assainissement collectif Codes de la table VAL_RAEPA_FONC_APP_ASS</p></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_forme_canal_ass</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>_ztampon</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Altitude du tampon (en mètres, référentiel NGF-IGN69)</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_materiau</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparaep_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>geom</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Géométrie</p></td>
+					</tr>
+					<tr>
+					 <td>commune</td>
+					 <td>Table</td>
+					 <td>geom</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Géométrie</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>branchemnt</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_ouv_ae</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>affleurant_pcrs</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualglocz</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Qualité de la géolocalisation altimétrique (Z) Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de mise en service Codes de la table VAL_RAEPA_QUALITE_ANPOSE</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idcanaval</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de la canalisation d'aval de l'appareillage (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>idcanppale</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>fonccanass</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>andebpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Année marquant le début de la période de mise en service de l'ouvrage</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>contcanaep</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Catégorie de la canalisation d'adduction d'eau potable Codes de la table VAL_RAEPA_CAT_CANAL_AE</p></td>
+					</tr>
+					<tr>
+					 <td>commune</td>
+					 <td>Table</td>
+					 <td>anneecog</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Année de publication par l'INSEE du COG</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_ouv_ae</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td>_idinterventionparent</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de l’intervention parente, par exemple si le parent est un curage préventif qui entraîne une réparation</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>_temp_data</td>
+					 <td>hstore</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Champ pour ajouter des données temporaires pendant l'import</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>sourmaj</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td>dategeoloc</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Date de la géolocalisation</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>contcanass</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Catégorie de la canalisation d'assainissement collectif Codes de la table VAL_RAEPA_CAT_CANAL_ASS</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>_angletampon</td>
+					 <td>float4</td>
+					 <td>8</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Angle du tampon</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>_code_chantier</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code du chantier, qui doit être explicite et unique entre les chantiers. Par ex : SOISSONS-PL REPUBLIQUE-2018</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>qualannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualglocxy</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Qualité de la géolocalisation planimétrique (XY) Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_cat_canal_ass</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>_longcana_cm</td>
+					 <td>numeric</td>
+					 <td>7</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_cat_canal_ae</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>_pente</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>modecirc</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>mouvrage</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Maître d'ouvrage du réseau</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>typreseau</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>_source_historique</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>_code_chantier</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td>anfinpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Année marquant la fin de la période de mise en service de l'ouvrage</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_ouv_ass</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>sourattrib</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_qualite_geoloc</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>enservice</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>idnterm</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>datemaj</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>&#39;2019-08-15&#39;::date</td>
+					 <td><p>Date de la dernière mise à jour des informations</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de mise en service Codes de la table VAL_RAEPA_QUALITE_ANPOSE</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>diametre</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Diamètre nominal de la canalisation (en millimètres)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>_longcana_cm</td>
+					 <td>numeric</td>
+					 <td>7</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>gexploit</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Gestionnaire exploitant du réseau</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_canal_ae</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>sourattrib</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Auteur de la saisie des données attributaires (lorsque différent de l'auteur de la géolocalisation)</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_mode_circulation</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>sourgeoloc</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualglocxy</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Qualité de la géolocalisation planimétrique (XY) Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+					</tr>
+					<tr>
+					 <td>sys_organisme_gestionnaire</td>
+					 <td>Table</td>
+					 <td>siren</td>
+					 <td>varchar</td>
+					 <td>9</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>SIREN. Code SIREN, ex 240200477 pour la CAS</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>fonccanass</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Fonction de la canalisation d'assainissement collectif Codes de la table VAL_RAEPA_FONC_CANAL_ASS</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>sourmaj</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Source de la mise à jour</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>nbranche</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Nombre de branchements individuels sur la canalisation d'adduction d'eau potable</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>_forme</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>sys_structure_metadonnee</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualglocxy</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Qualité de la géolocalisation planimétrique (XY) Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>anfinpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Année marquant la fin de la période de pose de la canalisation</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idcanamont</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiants des canalisations d'amont de l'ouvrage (clés étrangères)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idcanppale</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de la canalisation principale (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>_source_historique</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Source de la donnée ( si2g ou geomap)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>sensecoul</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Sens de l'écoulement dans la canalisation d'assainissement collectif 0 (nœud terminal → nœud initial) • 1 (nœud initial → nœud terminal)</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_support_reparation</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>zaval</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_canal_ass</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>_dimensionhorizontale</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Dimension horizontale (complète le diamètre nominal qui est la dimension verticale)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>_date_import</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>_precisionannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_canal_ass</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>gexploit</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>qualglocxy</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td>y</td>
+					 <td>numeric</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Coordonnée X Lambert 93 (en mètres)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idcanaval</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de la canalisation d'aval de l'appareillage (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>typreseau</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Type du réseau d'assainissement collectif Codes de la table VAL_RAEPA_TYP_RESEAU_ASS</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>typreseau</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>sys_structure_metadonnee</td>
+					 <td>Table</td>
+					 <td>date_ajout</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>&#39;2019-08-15&#39;::date</td>
+					 <td><p>Date d’ajout</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparaep_p</td>
+					 <td>Table</td>
+					 <td>daterepar</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Date de l'intervention en réparation</p></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_precision_annee</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>fonccanass</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>modecirc</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Mode de circulation de l'eau à l'intérieur de la canalisation Codes de la table VAL_RAEPA_MODE_CIRCULATION</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>diametre</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Diamètre nominal de l'appareillage (en millimètres)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>geom</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Géométrie</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>dategeoloc</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Date de la géolocalisation</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_qualite_anpose</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>mouvrage</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Maître d'ouvrage du réseau</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>idcanppale</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de la canalisation principale (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idappareil</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de l'appareillage</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>_pente</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>_etatcanalisation</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Etat de la canalisation à la date d’intervention</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>_longcana_reelle</td>
+					 <td>numeric</td>
+					 <td>7</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Longueur calculée de canalisation réelle, en prenant en compte la pente (précision cm)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de mise en service Codes de la table VAL_RAEPA_QUALITE_ANPOSE</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>sourmaj</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Source de la mise à jour</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>geom</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>materiau</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_type_defaillance</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_app_ass</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>_code_chantier</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code du chantier, qui doit être explicite et unique entre les chantiers. Par ex : SOISSONS-PL REPUBLIQUE-2018</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>sourattrib</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Auteur de la saisie des données attributaires (lorsque différent de l'auteur de la géolocalisation)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>zaval</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>mouvrage</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Maître d'ouvrage du réseau</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>sensecoul</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>fonccanass</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_app_ass</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>sourgeoloc</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>sys_liste_table</td>
+					 <td>Table</td>
+					 <td>commentaire</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Commentaire sur la table</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_app_ae</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_ouv_ae</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td>x</td>
+					 <td>numeric</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Coordonnée X Lambert 93 (en mètres)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>branchemnt</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Canalisation de branchement individuel : O Canalisation de transport ou de distribution : N</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idcana</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de la canalisation</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>diametre</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>_dimensionhorizontale</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_type_defaillance</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>branchemnt</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>affleurant_pcrs</td>
+					 <td>Table</td>
+					 <td>longueur</td>
+					 <td>float8</td>
+					 <td>17</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Utilisé uniquement pour la mise à l’échelle X du symbole d’affleurant</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>_date_import</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_type_intervention_ass</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>_temp_data</td>
+					 <td>hstore</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>mouvrage</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Maître d'ouvrage du réseau</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de pose Codes de la table VAL_RAEPA_QUALITE_ANPOSE</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>idcanppale</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>sys_structure_metadonnee</td>
+					 <td>Table</td>
+					 <td>version</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Version de la structure du schéma RAEPA</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_ouv_ass</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualglocz</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Qualité de la géolocalisation altimétrique (Z) Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idsuprepar</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant du support de la réparation (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>gexploit</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Gestionnaire exploitant du réseau</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>datemaj</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>&#39;2019-08-15&#39;::date</td>
+					 <td><p>Date de la dernière mise à jour des informations</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>modecirc</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>sys_liste_table</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>serial</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;raepa.sys_liste_table_id_seq&#39;::regclass)</td>
+					 <td><p>Identifiant</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>longcana</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>geom</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_forme_canal_ass</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>_observation</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Observations diverses sur l'objet. Texte libre.</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>_temp_data</td>
+					 <td>hstore</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Champ pour ajouter des données temporaires pendant l'import</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>enservice</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Canalisation en service / Canalisation abandonnée O / N</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>anfinpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>typreseau</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Type du réseau d'assainissement collectif Codes de la table VAL_RAEPA_TYP_RESEAU_ASS</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>anfinpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Année marquant la fin de la période de mise en service de l'appareillage</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>_precisionannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>idnterm</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td>andebpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Année marquant le début de la période de mise en service de l'ouvrage</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>materiau</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>affleurant_pcrs</td>
+					 <td>Table</td>
+					 <td>codecouleur</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code couleur du symbole</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>_forme</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>diametre</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Diamètre nominal de la canalisation (en millimètres)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>dategeoloc</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Date de la géolocalisation</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>_code_chantier</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>y</td>
+					 <td>numeric</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Coordonnée X Lambert 93 (en mètres)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>idcanppale</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idcanamont</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de la canalisation d'amont de l'appareillage (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>modecirc</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_qualite_anpose</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>geom</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Géométrie</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>zamont</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>commune</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>codeinsee</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code officiel géographique (COG) de la commune</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>sourmaj</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Source de la mise à jour</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>z</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Altitude (en mètres, référentiel NGF-IGN69)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>mouvrage</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Maître d'ouvrage du réseau</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>gexploit</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparaep_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idrepar</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>raepa.generate_oid(&#39;raepa_reparaep_p&#39;::text)</td>
+					 <td><p>Identifiant de la réparation effectuée</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_type_defaillance</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>idnini</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>_date_import</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Date de l'import</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>_observation</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Observations diverses sur l'objet. Texte libre.</p></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_forme_canal_ass</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>id</td>
+					 <td>serial</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title='Automatically updated by the database'>√</td>
+					 <td>nextval(&#39;raepa.raepa_apparass_p_id_seq&#39;::regclass)</td>
+					 <td><p>Identifiant numérique auto (clé primaire)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td>_frequencecuragepreventif</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Fréquence du curage préventif en mois</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_canal_ae</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>sys_liste_table</td>
+					 <td>Table</td>
+					 <td>cleprimaire</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Clé primaire</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>nbranche</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>materiau</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>_typeintervention</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Type d’intervention : réparation, curage, inspection</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualglocz</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Qualité de la géolocalisation altimétrique (Z) Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>idnini</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_app_ass</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualglocxy</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Qualité de la géolocalisation planimétrique (XY) Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+					</tr>
+					<tr>
+					 <td>sys_organisme_gestionnaire</td>
+					 <td>Table</td>
+					 <td>actif</td>
+					 <td>bool</td>
+					 <td>1</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>true</td>
+					 <td><p>Si il est actif (le dernier l’emporte dans les calculs d’identifiants)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>dategeoloc</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Date de la géolocalisation</p></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_type_intervention_ass</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>_temp_data</td>
+					 <td>hstore</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>_longcana_reelle</td>
+					 <td>numeric</td>
+					 <td>7</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>dategeoloc</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Date de la géolocalisation</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>_etat</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idouvrage</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de l'ouvrage</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td>y</td>
+					 <td>numeric</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Coordonnée X Lambert 93 (en mètres)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>qualglocxy</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>materiau</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>branchemnt</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_etat_canal_ass</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>_temp_data</td>
+					 <td>hstore</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>qualglocz</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>id</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>commune</td>
+					 <td>Table</td>
+					 <td>nom</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Nom de la commune</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>_longcana_cm</td>
+					 <td>numeric</td>
+					 <td>7</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Longueur calculée de canalisation projetée (en mètres avec une précision centimétrique)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>andebpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Année marquant le début de la période de pose de la canalisation</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td>datemaj</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>&#39;2019-08-15&#39;::date</td>
+					 <td><p>Date de la dernière mise à jour des informations</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>sourattrib</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Auteur de la saisie des données attributaires (lorsque différent de l'auteur de la géolocalisation)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>sensecoul</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparaep_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>supprepare</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Type du support de la réparation Codes de la table VAL_RAEPA_SUPPORT_REPARATION</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>branchemnt</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Canalisation de branchement individuel : O Canalisation de transport ou collecte : N</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>_source_historique</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Source de la donnée ( si2g ou geomap)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>idcanppale</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de la canalisation principale (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>sourattrib</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_qualite_geoloc</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>gexploit</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>geom</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Géométrie</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>zamont</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>datemaj</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>_dimensionhorizontale</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>andebpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualglocz</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Qualité de la géolocalisation altimétrique (Z) Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>qualannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>longcana</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Longueur mesurée de canalisation (en mètres)</p></td>
+					</tr>
+					<tr>
+					 <td>affleurant_pcrs</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualglocxy</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Qualité de la géolocalisation planimétrique (XY) Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>dategeoloc</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_precision_annee</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>sys_liste_table</td>
+					 <td>Table</td>
+					 <td>nom</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Nom de la table dans la base de données</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>datemaj</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>&#39;2019-08-15&#39;::date</td>
+					 <td><p>Date de la dernière mise à jour des informations</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>anfinpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Année marquant la fin de la période de mise en service de l'ouvrage</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>fonccanaep</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Fonction de la canalisation d'adduction d'eau potable Codes de la table VAL_RAEPA_FONC_CANAL_AE</p></td>
+					</tr>
+					<tr>
+					 <td>affleurant_pcrs</td>
+					 <td>Table</td>
+					 <td>anglerotaion</td>
+					 <td>float8</td>
+					 <td>17</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Utilisé uniquement pour l’orientation du symbole d’affleurant</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td>_dateprevue</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Date d’intervention prévue</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>_dimensionhorizontale</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>_pente</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Pente de la canalisation (en %)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>datemaj</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>geom</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>_source_historique</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparaep_p</td>
+					 <td>Table</td>
+					 <td>y</td>
+					 <td>numeric</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Coordonnée X Lambert 93 (en mètres)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>longcana</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_mode_circulation</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>andebpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualglocxy</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Qualité de la géolocalisation planimétrique (XY) Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_typ_reseau_ass</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>contcanass</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>fnouvaep</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Fonction de l'ouvrage d'adduction d'eau potable Codes de la table VAL_RAEPA_FONC_OUV_AE</p></td>
+					</tr>
+					<tr>
+					 <td>sys_liste_table</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé (utilisable dans QGIS par exemple)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>qualglocxy</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>idnterm</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant du nœud de fin de la canalisation (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_forme_canal_ass</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>geom</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Géométrie</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_materiau</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>contcanass</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_etat_canal_ass</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_app_ae</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>_date_import</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparaep_p</td>
+					 <td>Table</td>
+					 <td>mouvrage</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Maître d'ouvrage de la réparation</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>sourgeoloc</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Auteur de la géolocalisation</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>diametre</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Diamètre nominal de l'appareillage (en millimètres)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualglocz</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Qualité de la géolocalisation altimétrique (Z) Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>x</td>
+					 <td>numeric</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Coordonnée X Lambert 93 (en mètres)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>fnouvass</td>
+					 <td>varchar</td>
+					 <td>30</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Fonction de l'ouvrage d'assainissement collectif Codes de la table VAL_RAEPA_FONC_OUV_ASS</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>idnini</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>typreseau</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>id</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>sourmaj</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Source de la mise à jour</p></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_type_intervention_ass</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_app_ass</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>z</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Altitude (en mètres, référentiel NGF-IGN69) du radier</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>sourattrib</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Auteur de la saisie des données attributaires (lorsque différent de l'auteur de la géolocalisation)</p></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_precision_annee</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>_source_historique</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Source de la donnée ( si2g ou geomap)</p></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_etat_canal_ass</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td>sourgeoloc</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Auteur de la géolocalisation</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>datemaj</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>&#39;2019-08-15&#39;::date</td>
+					 <td><p>Date de la dernière mise à jour des informations</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>_precisionannee</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Précision des années de fin et début de pose</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>enservice</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_qualite_geoloc</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparaep_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idsuprepar</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant du support de la réparation (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idappareil</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de l'appareillage</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>sourmaj</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>idcana</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>_code_chantier</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td>_observation</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Observations diverses sur l'objet. Texte libre.</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idcana</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de la canalisation (code textuel)</p></td>
+					</tr>
+					<tr>
+					 <td>affleurant_pcrs</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>idaffleurant</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de l’affleurant PCRS</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>qualglocz</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>y</td>
+					 <td>numeric</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Coordonnée X Lambert 93 (en mètres)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>idcana</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>andebpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>affleurant_pcrs</td>
+					 <td>Table</td>
+					 <td>reference</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Désignation du symbole à utiliser pour la représentation de l’affleurant</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_typ_reseau_ass</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>sourattrib</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Auteur de la saisie des données attributaires (lorsque différent de l'auteur de la géolocalisation)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>idcana</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>mouvrage</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>sys_liste_table</td>
+					 <td>Table</td>
+					 <td>code</td>
+					 <td>varchar</td>
+					 <td>3</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code en 3 caractères, par exemple can pour les canalisations</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td>sourattrib</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Auteur de la saisie des données attributaires (lorsque différent de l'auteur de la géolocalisation)</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_qualite_anpose</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_mode_circulation</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>sourgeoloc</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Auteur de la géolocalisation</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>idouvrage</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de l'ouvrage d'accueil (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idcanppale</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de la canalisation principale (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>idnini</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idcanaval</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiants des canalisations d'aval de l'ouvrage (clés étrangères)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>zaval</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td>daterepar</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Date de l'intervention en réparation</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_canal_ae</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>affleurant_pcrs</td>
+					 <td>Table</td>
+					 <td>gexploit</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Gestionnaire exploitant du réseau</p></td>
+					</tr>
+					<tr>
+					 <td>affleurant_pcrs</td>
+					 <td>Table</td>
+					 <td>z</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Altitude (en mètres, référentiel NGF-IGN69)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>sourgeoloc</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>_temp_data</td>
+					 <td>hstore</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_support_reparation</td>
+					 <td>Table</td>
+					 <td>description</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Description</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idcanamont</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiants des canalisations d'amont de l'ouvrage (clés étrangères)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>_date_import</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_typ_reseau_ass</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>diametre</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td>sourmaj</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Source de la mise à jour</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>fnappaep</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Fonction de l'appareillage d'adduction d'eau potable Codes de la table VAL_RAEPA_FONC_APP_AE</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>_date_import</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Date de l'import</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>x</td>
+					 <td>numeric</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Coordonnée X Lambert 93 (en mètres)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>qualglocz</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Qualité de la géolocalisation altimétrique (Z) Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td>y</td>
+					 <td>numeric</td>
+					 <td>10</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Coordonnée X Lambert 93 (en mètres)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>anfinpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_etat_canal_ass</td>
+					 <td>Table</td>
+					 <td>libelle</td>
+					 <td>text</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Libellé</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvraep_p</td>
+					 <td>Table</td>
+					 <td>gexploit</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Gestionnaire exploitant du réseau</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_z_manquant</td>
+					 <td>View</td>
+					 <td>id</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idnini</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant du nœud de début de la canalisation (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>_geom_emprise</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Emprise de l’ouvrage (polygone). Optionnel</p></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_support_reparation</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>enservice</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_fonc_canal_ae</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>nbranche</td>
+					 <td>int4</td>
+					 <td>10</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Nombre de branchements individuels sur la canalisation d'assainissement collectif</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_reparass_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>geom</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Géométrie</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>geom</td>
+					 <td>geometry</td>
+					 <td>2147483647</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Géométrie</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>materiau</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Matériau de la canalisation d'assainissement collectif Codes de la table VAL_RAEPA_MATERIAU</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>gexploit</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Gestionnaire exploitant du réseau</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>_pente</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>val_raepa_qualite_geoloc</td>
+					 <td>Table</td>
+					 <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i>code</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Code</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>enservice</td>
+					 <td>varchar</td>
+					 <td>1</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>sourmaj</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Source de la mise à jour</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparass_p</td>
+					 <td>Table</td>
+					 <td>gexploit</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Gestionnaire exploitant du réseau</p></td>
+					</tr>
+					<tr>
+					 <td>_val_raepa_type_intervention_ass</td>
+					 <td>Table</td>
+					 <td>ordre</td>
+					 <td>int2</td>
+					 <td>5</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Ordre</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalass_l</td>
+					 <td>Table</td>
+					 <td>anfinpose</td>
+					 <td>varchar</td>
+					 <td>4</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Année marquant la fin de la période de pose de la canalisation</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>mouvrage</td>
+					 <td>varchar</td>
+					 <td>100</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_ouvrass_p</td>
+					 <td>Table</td>
+					 <td>z</td>
+					 <td>numeric</td>
+					 <td>6</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Altitude (en mètres, référentiel NGF-IGN69)</p></td>
+					</tr>
+					<tr>
+					 <td>raepa_apparaep_p</td>
+					 <td>Table</td>
+					 <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i>idouvrage</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td><p>Identifiant de l'ouvrage d'accueil (clé étrangère)</p></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_sans_ouvrage</td>
+					 <td>View</td>
+					 <td>idcana</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_branchement</td>
+					 <td>View</td>
+					 <td>contcanass</td>
+					 <td>varchar</td>
+					 <td>2</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>v_canalisation_avec_zaval_manquant</td>
+					 <td>View</td>
+					 <td>idcanppale</td>
+					 <td>varchar</td>
+					 <td>254</td>
+					 <td title='nullable'>√</td>
+					 <td title=''></td>
+					 <td>null</td>
+					 <td></td>
+					</tr>
+					<tr>
+					 <td>raepa_canalaep_l</td>
+					 <td>Table</td>
+					 <td>datemaj</td>
+					 <td>date</td>
+					 <td>13</td>
+					 <td title=''></td>
+					 <td title=''></td>
+					 <td>&#39;2019-08-15&#39;::date</td>
+					 <td><p>Date de la dernière mise à jour des informations</p></td>
+					</tr>
+								</tbody>
+				</table>				
+			</div>
+		</div>	
+      </section>
+	  <script>
+          var config = {
+	          pagination: true
+          }
+	  </script>    
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div>
+      <div class="pull-right hidden-xs">
+        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+      </div>
+      <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.0.0</a></strong>
+    </div>
+    <!-- /.container -->
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 2.2.3 -->
+<script src="bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="bower/datatables.net/jquery.dataTables.min.js"></script>
+<script src="bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+<script src="bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="bower/datatables.net-buttons/buttons.html5.min.js"></script>
+<script src="bower/datatables.net-buttons/buttons.print.min.js"></script>
+<script src="bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+<!-- SheetJS -->
+<script src="bower/js-xlsx/xlsx.full.min.js"></script>
+<!-- pdfmake -->
+<script src="bower/pdfmake/pdfmake.min.js"></script>
+<script src="bower/pdfmake/vfs_fonts.js"></script>
+<!-- SlimScroll -->
+<script src="bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+<!-- Salvattore -->
+<script src="bower/salvattore/salvattore.min.js"></script>
+<!-- AnchorJS -->
+<script src="bower/anchor-js/anchor.min.js"></script>
+<!-- CodeMirror -->
+<script src="bower/codemirror/codemirror.js"></script>
+<script src="bower/codemirror/sql.js"></script>
+<!-- AdminLTE App -->
+<script src="bower/admin-lte/dist/js/app.min.js"></script>
+<script src="column.js"></script>
+<script src="schemaSpy.js"></script>
+</body>
+</html>
