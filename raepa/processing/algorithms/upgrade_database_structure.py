@@ -194,7 +194,6 @@ class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
                     'nécessaire.')
             }
 
-
         # Get input srid
         crs = parameters[self.SRID]
         srid = crs.authid().replace('EPSG:', '')
@@ -202,7 +201,6 @@ class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
 
         # Get all the upgrade SQL files between db versions and plugin version
         upgrade_dir = os.path.join(plugin_dir, 'install/sql/upgrade/')
-        ff = {}
         get_files = [
             f for f in os.listdir(upgrade_dir)
             if os.path.isfile(os.path.join(upgrade_dir, f))

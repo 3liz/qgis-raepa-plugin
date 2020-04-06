@@ -231,7 +231,6 @@ class CreateDatabaseStructure(BaseProcessingAlgorithm):
             'raepa/90_GLOSSARY.sql',
             '99_finalize_database.sql'
         ]
-        msg = ''
         alg_dir = os.path.dirname(__file__)
         plugin_dir = os.path.join(alg_dir, '../../')
 

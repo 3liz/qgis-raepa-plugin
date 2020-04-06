@@ -35,7 +35,7 @@ def fetchDataFromSqlQuery(connection_name, sql):
         # DlgDbError.showError(e, self.dialog)
         ok = False
         error_message = e.msg
-    except:
+    except Exception:
         ok = False
         error_message = 'Connexion à la base de données impossible'
 
@@ -52,7 +52,7 @@ def fetchDataFromSqlQuery(connection_name, sql):
     uri = db.uri()
     try:
         connector = PostGisDBConnector(uri)
-    except:
+    except Exception:
         error_message = 'Impossible de se connecer à la base de données'
         ok = False
         return [header, data, rowCount, ok, error_message]
@@ -64,7 +64,7 @@ def fetchDataFromSqlQuery(connection_name, sql):
         c = connector._execute(None, str(sql))
         data = []
         header = connector._get_cursor_columns(c)
-        if header == None:
+        if header is None:
             header = []
         if len(header) > 0:
             data = connector._fetchall(c)

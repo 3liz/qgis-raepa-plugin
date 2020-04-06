@@ -131,32 +131,32 @@ class AddStyles(BaseProcessingAlgorithm):
         layer = self.parameterAsVectorLayer(parameters, self.APPARAEP, context)
         self.load_qml_file(feedback, 'appareils_AEP.qml', layer, qml_path, styles)
 
-        feedback.setProgress(int(100 * 1/6))
+        feedback.setProgress(int(100 * 1 / 6))
 
         layer = self.parameterAsVectorLayer(parameters, self.APPARASS, context)
         self.load_qml_file(feedback, 'appareils_ASS.qml', layer, qml_path, styles)
 
-        feedback.setProgress(int(100 * 2/6))
+        feedback.setProgress(int(100 * 2 / 6))
 
         layer = self.parameterAsVectorLayer(parameters, self.OUVRAEP, context)
         self.load_qml_file(feedback, 'ouvrages_AEP.qml', layer, qml_path, styles)
 
-        feedback.setProgress(int(100 * 3/6))
+        feedback.setProgress(int(100 * 3 / 6))
 
         layer = self.parameterAsVectorLayer(parameters, self.OUVRASS, context)
         self.load_qml_file(feedback, 'ouvrages_ASS.qml', layer, qml_path, styles)
 
-        feedback.setProgress(int(100 * 4/6))
+        feedback.setProgress(int(100 * 4 / 6))
 
         layer = self.parameterAsVectorLayer(parameters, self.CANALAEP, context)
         self.load_qml_file(feedback, 'canalisations_AEP.qml', layer, qml_path, styles)
 
-        feedback.setProgress(int(100 * 5/6))
+        feedback.setProgress(int(100 * 5 / 6))
 
         layer = self.parameterAsVectorLayer(parameters, self.CANALASS, context)
         self.load_qml_file(feedback, 'canalisations_ASS.qml', layer, qml_path, styles)
 
-        feedback.setProgress(int(100 * 6/6))
+        feedback.setProgress(int(100 * 6 / 6))
 
         return {}
 

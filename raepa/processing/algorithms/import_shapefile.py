@@ -17,16 +17,20 @@ __copyright__ = '(C) 2018 by 3liz'
 
 __revision__ = '$Format:%H$'
 
-import os
 
 from db_manager.db_plugins import createDbPlugin
 
 from qgis.core import (
+    Qgis,
     QgsProcessingParameterVectorLayer,
     QgsProcessingOutputString,
     QgsProcessingOutputNumber,
     QgsExpressionContextUtils
 )
+if Qgis.QGIS_VERSION_INT >= 30800:
+    from qgis import processing
+else:
+    import processing
 
 from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
 
@@ -118,15 +122,12 @@ class ImportShapefile(BaseProcessingAlgorithm):
         """
         Here is where the processing itself takes place.
         """
-        import processing
-        plugin_dir = os.path.dirname(os.path.abspath(__file__))
-
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
         feedback.pushInfo('Connection name = %s' % connection_name)
 
         # Ouvrages
         feedback.pushInfo('Import ouvrages')
-        ouvrages_conversion = processing.run("qgis:importintopostgis", {
+        processing.run("qgis:importintopostgis", {
             'INPUT': parameters[self.OUVRAGES],
             'DATABASE': connection_name,
             'SCHEMA': 'imports',
@@ -144,7 +145,7 @@ class ImportShapefile(BaseProcessingAlgorithm):
 
         # Appareils
         feedback.pushInfo('Import appareils')
-        appareil_conversion = processing.run("qgis:importintopostgis", {
+        processing.run("qgis:importintopostgis", {
             'INPUT': parameters[self.APPAREILS],
             'DATABASE': connection_name,
             'SCHEMA': 'imports',
@@ -162,7 +163,7 @@ class ImportShapefile(BaseProcessingAlgorithm):
 
         # Canalisations
         feedback.pushInfo('Import canalisations')
-        canalisation_conversion = processing.run("qgis:importintopostgis", {
+        processing.run("qgis:importintopostgis", {
             'INPUT': parameters[self.CANALISATIONS],
             'DATABASE': connection_name,
             'SCHEMA': 'imports',

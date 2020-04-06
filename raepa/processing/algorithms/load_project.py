@@ -27,7 +27,7 @@ from qgis.core import (
     QgsProcessingParameterDefinition,
 )
 
-from processing.tools.postgis import uri_from_name, GeoDB
+from processing.tools.postgis import uri_from_name
 
 from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
 
@@ -61,7 +61,7 @@ class LoadProject(BaseProcessingAlgorithm):
         """
 
         parameter = QgsProcessingParameterString(
-            self.RIEN, 'Champ qui ne sert à rien !', optional=True)
+            self.RIEN, 'Champ qui ne sert à rien', optional=True)
         parameter.setFlags(parameter.flags() | QgsProcessingParameterDefinition.FlagHidden)
         self.addParameter(parameter)
 
@@ -101,44 +101,43 @@ class LoadProject(BaseProcessingAlgorithm):
         """
         uri = uri_from_name(QgsExpressionContextUtils.globalScope().variable('raepa_connection_name'))
 
-
         layers_name = {
             "sys_structure_metadonnee": {'geomfield': None, 'pk': 'id'},
             "sys_liste_table": {'geomfield': None, 'pk': 'id'},
             "sys_organisme_gestionnaire": {'geomfield': None, 'pk': 'id'},
             "val_raepa_cat_canal_ae": {'geomfield': None, 'pk': 'id'},
             "val_raepa_cat_canal_ass": {'geomfield': None, 'pk': 'id'},
-            "val_raepa_fonc_app_ae":{'geomfield': None, 'pk': 'id'},
-            "val_raepa_fonc_app_ass":{'geomfield': None, 'pk': 'id'},
-            "val_raepa_fonc_canal_ae":{'geomfield': None, 'pk': 'id'},
-            "val_raepa_fonc_canal_ass":{'geomfield': None, 'pk': 'id'},
-            "val_raepa_fonc_ouv_ae":{'geomfield': None, 'pk': 'id'},
+            "val_raepa_fonc_app_ae": {'geomfield': None, 'pk': 'id'},
+            "val_raepa_fonc_app_ass": {'geomfield': None, 'pk': 'id'},
+            "val_raepa_fonc_canal_ae": {'geomfield': None, 'pk': 'id'},
+            "val_raepa_fonc_canal_ass": {'geomfield': None, 'pk': 'id'},
+            "val_raepa_fonc_ouv_ae": {'geomfield': None, 'pk': 'id'},
             "commune": {'geomfield': "geom", 'pk': 'id'},
-            "_val_raepa_precision_annee":{'geomfield': None, 'pk': 'id'},
-            "_val_raepa_type_intervention_ass":{'geomfield': None, 'pk': 'id'},
+            "_val_raepa_precision_annee": {'geomfield': None, 'pk': 'id'},
+            "_val_raepa_type_intervention_ass": {'geomfield': None, 'pk': 'id'},
             "raepa_apparaep_p": {'geomfield': "geom", 'pk': 'id'},
             "raepa_apparass_p": {'geomfield': "geom", 'pk': 'id'},
             "affleurant_pcrs": {'geomfield': "geom", 'pk': 'id'},
-            "_val_raepa_etat_canal_ass":{'geomfield': None, 'pk': 'id'},
-            "_val_raepa_forme_canal_ass":{'geomfield': None, 'pk': 'id'},
+            "_val_raepa_etat_canal_ass": {'geomfield': None, 'pk': 'id'},
+            "_val_raepa_forme_canal_ass": {'geomfield': None, 'pk': 'id'},
             "raepa_canalaep_l": {'geomfield': "geom", 'pk': 'id'},
             "raepa_reparaep_p": {'geomfield': "geom", 'pk': 'id'},
             "raepa_reparass_p": {'geomfield': "geom", 'pk': 'id'},
             "raepa_ouvraep_p": {'geomfield': "geom", 'pk': 'id'},
             "raepa_ouvrass_p": {'geomfield': "geom", 'pk': 'id'},
             "raepa_canalass_l": {'geomfield': "geom", 'pk': 'id'},
-            "v_canalisation_avec_z_manquant":{'geomfield': "geom", 'pk': 'id'},
-            "v_canalisation_avec_zaval_manquant":{'geomfield': "geom", 'pk': 'id'},
-            "v_canalisation_branchement":{'geomfield': "geom", 'pk': 'id'},
-            "v_canalisation_sans_ouvrage":{'geomfield': "geom", 'pk': 'id'},
-            "val_raepa_qualite_geoloc":{'geomfield': None, 'pk': 'id'},
-            "val_raepa_qualite_anpose":{'geomfield': None, 'pk': 'id'},
-            "val_raepa_typ_reseau_ass":{'geomfield': None, 'pk': 'id'},
-            "val_raepa_materiau":{'geomfield': None, 'pk': 'id'},
-            "val_raepa_mode_circulation":{'geomfield': None, 'pk': 'id'},
-            "val_raepa_fonc_ouv_ass":{'geomfield': None, 'pk': 'id'},
-            "val_raepa_type_defaillance":{'geomfield': None, 'pk': 'id'},
-            "val_raepa_support_reparation":{'geomfield': None, 'pk': 'id'}
+            "v_canalisation_avec_z_manquant": {'geomfield': "geom", 'pk': 'id'},
+            "v_canalisation_avec_zaval_manquant": {'geomfield': "geom", 'pk': 'id'},
+            "v_canalisation_branchement": {'geomfield': "geom", 'pk': 'id'},
+            "v_canalisation_sans_ouvrage": {'geomfield': "geom", 'pk': 'id'},
+            "val_raepa_qualite_geoloc": {'geomfield': None, 'pk': 'id'},
+            "val_raepa_qualite_anpose": {'geomfield': None, 'pk': 'id'},
+            "val_raepa_typ_reseau_ass": {'geomfield': None, 'pk': 'id'},
+            "val_raepa_materiau": {'geomfield': None, 'pk': 'id'},
+            "val_raepa_mode_circulation": {'geomfield': None, 'pk': 'id'},
+            "val_raepa_fonc_ouv_ass": {'geomfield': None, 'pk': 'id'},
+            "val_raepa_type_defaillance": {'geomfield': None, 'pk': 'id'},
+            "val_raepa_support_reparation": {'geomfield': None, 'pk': 'id'}
         }
         output_layers = []
         msg = ''
@@ -147,11 +146,10 @@ class LoadProject(BaseProcessingAlgorithm):
             layer = self.initLayer(context, uri, e, layers_name[e]['geomfield'], "", layers_name[e]['pk'])
             if layer.isValid():
                 output_layers.append(layer)
-                msgl += " ## "+layer.name()+" loaded ##"
+                msgl += " ## " + layer.name() + " loaded ##"
 
             else:
-                msgl += " !! "+layer.name()+" did not load !!"
-
+                msgl += " !! " + layer.name() + " did not load !!"
 
         if len(output_layers) > 0:
             msg = 'Import de couche ok ! '

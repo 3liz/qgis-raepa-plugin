@@ -19,10 +19,11 @@ __revision__ = '$Format:%H$'
 
 from db_manager.db_plugins import createDbPlugin
 from qgis.core import (
+    QgsProcessingException,
     QgsProcessingParameterString,
     QgsProcessingOutputString,
     QgsProcessingOutputNumber,
-    QgsExpressionContextUtils
+    QgsExpressionContextUtils,
 )
 
 from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
@@ -115,9 +116,6 @@ class ExecuteSql(BaseProcessingAlgorithm):
         # Database connection parameters
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
 
-        msg = ''
-        status = 1
-
         # Set SQL
         self.setSql(parameters, context, feedback)
         feedback.pushInfo(self.SQL)
@@ -130,11 +128,9 @@ class ExecuteSql(BaseProcessingAlgorithm):
         if ok:
             msg = 'SQL exécuté avec succès'
             feedback.pushInfo(msg)
-            status = 1
         else:
             feedback.pushInfo('* ' + error_message)
-            status = 0
-            raise Exception(error_message)
+            raise QgsProcessingException(error_message)
 
         return {
             self.OUTPUT_STATUS: 0,

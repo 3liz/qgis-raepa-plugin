@@ -19,7 +19,6 @@ __revision__ = '$Format:%H$'
 
 from .get_data_as_layer import GetDataAsLayer
 from qgis.core import (
-    QgsProcessingParameterString,
     QgsProcessingParameterPoint,
 )
 

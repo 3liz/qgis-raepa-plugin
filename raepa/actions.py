@@ -12,11 +12,9 @@ from qgis.core import (
 )
 from qgis.utils import iface
 
-try:
-    # QGIS >= 3.8
+if Qgis.QGIS_VERSION_INT >= 30800:
     from qgis import processing
-except ImportError:
-    # QGIS < 3.8
+else:
     import processing
 
 __copyright__ = 'Copyright 2019, 3Liz'
@@ -187,6 +185,7 @@ def parcourir_reseau_jusquaux_vannes_fermees(*args):
         )
         layer.renderer().setSymbol(symbol)
         QgsProject.instance().addMapLayer(layer)
+
 
 def parcourir_reseau_depuis_cet_objet(*args):
     id_objet = args[0]
