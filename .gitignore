@@ -12,7 +12,7 @@ __pycache__/*
 # Packages
 *.egg
 *.egg-info
-dist
+# dist Do not exlcude dist, as it's used for GitHub pages, schemaspy
 build
 eggs
 parts
