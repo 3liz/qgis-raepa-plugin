@@ -1,8 +1,8 @@
 # Gabarits AEP ASS
-import/gabarits/*.shp
-import/gabarits/*.shx
-import/gabarits/*.prj
-import/gabarits/*.dbf
+raepa/import/gabarits/*.shp
+raepa/import/gabarits/*.shx
+raepa/import/gabarits/*.prj
+raepa/import/gabarits/*.dbf
 
 *.py[cod]
 __pycache__/*
