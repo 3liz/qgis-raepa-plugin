@@ -16,7 +16,7 @@ branches:
 jobs:
   include:
     - stage: Run tests
-      name: QGIS Desktop
+      name: Docker-compose with PostGIS database
       install:
         - cd .docker
         - ./start.sh
