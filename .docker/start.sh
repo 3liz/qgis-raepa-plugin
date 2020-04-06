@@ -6,6 +6,6 @@ sleep 10
 echo 'Installation of the plugin'
 docker exec -it qgis sh -c "qgis_setup.sh raepa"
 echo 'Setup the database link from QGIS'
-docker cp postgis_connexions.ini qgis:/tmp
-docker exec qgis bash -c "cat /tmp/postgis_connexions.ini >> /root/.local/share/QGIS/QGIS3/profiles/default/QGIS/QGIS3.ini"
+docker cp postgis_connections.ini qgis:/tmp
+docker exec qgis bash -c "cat /tmp/postgis_connections.ini >> /root/.local/share/QGIS/QGIS3/profiles/default/QGIS/QGIS3.ini"
 echo 'Containers are running'
