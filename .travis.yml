@@ -7,21 +7,30 @@ python: 3.7
 services:
   - docker
 
-
 branches:
   only:
     - master
-    - /^v.*$/
+    # tags with 1.1.1
+    - /^\d+\.\d+\.\d+$/
 
 jobs:
   include:
+
     - stage: Run tests
-      name: Docker-compose with PostGIS database
+      name: QGIS and PostGIS
       install:
         - cd .docker
-        - ./start.sh
+        - ./start.sh with-qgis
       script:
         - ./exec.sh
+
+#    - stage: Run tests
+#      name: Database installation versus running migrations
+#      install:
+#        - cd .docker
+#        - ./start.sh
+#      script:
+#        - ./install_migrate_generate.sh
 
     - stage: Deploy
       if: tag IS present
@@ -29,7 +38,9 @@ jobs:
       install:
         - pip3 install git+https://github.com/Gustry/qgis-plugin-ci.git
       before_deploy:
-        - export RELEASE_TITLE=${TRAVIS_TAG:1}
+        - export RELEASE_TITLE="$TRAVIS_TAG"
+        - qgis-plugin-ci changelog $TRAVIS_TAG > ../release.md
+        - cat ../release.md
       script:
         - qgis-plugin-ci -v
       deploy:
@@ -37,11 +48,18 @@ jobs:
           edge: true
           file: .
           name: ${RELEASE_TITLE}
+          release_notes_file: ../release.md
           api_key: ${GH_TOKEN}
           on:
             tags: true
 
         - provider: script
           script: qgis-plugin-ci release ${TRAVIS_TAG} --github-token ${GH_TOKEN} --create-plugin-repo
+          on:
+            tags: true
+
+        - provider: script
+          skip_cleanup: true
+          script: .github/push_to_github.sh
           on:
             tags: true
