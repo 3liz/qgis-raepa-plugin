@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.6 (Debian 10.6-1.pgdg90+1)
--- Dumped by pg_dump version 10.6 (Debian 10.6-1.pgdg90+1)
+-- Dumped from database version 9.6.15
+-- Dumped by pg_dump version 9.6.15
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -12,6 +12,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -95,6 +96,13 @@ INSERT INTO raepa.sys_liste_table (id, nom, code, typereseau, cleprimaire, libel
 INSERT INTO raepa.sys_liste_table (id, nom, code, typereseau, cleprimaire, libelle, commentaire) VALUES (30, 'sys_structure_metadonnee', 'str', 'all', 'id', 'Métadonnées sur la structure de la bdd', 'Métadonnées sur la structure de la bdd : numéro de version, date, etc.');
 INSERT INTO raepa.sys_liste_table (id, nom, code, typereseau, cleprimaire, libelle, commentaire) VALUES (31, 'sys_liste_table', 'tab', 'all', 'id', 'Liste des tables du schéma RAEPA', 'Liste les tables du schéma RAEPA');
 INSERT INTO raepa.sys_liste_table (id, nom, code, typereseau, cleprimaire, libelle, commentaire) VALUES (32, 'sys_organisme_gestionnaire', 'ges', 'all', 'id', 'Informations sur l’organisme gestionnaire', 'Informations sur l’organisme gestionnaire ');
+
+
+--
+-- Name: sys_liste_table_id_seq; Type: SEQUENCE SET; Schema: raepa; Owner: -
+--
+
+SELECT pg_catalog.setval('raepa.sys_liste_table_id_seq', 32, true);
 
 
 --
@@ -300,13 +308,6 @@ INSERT INTO raepa.val_raepa_type_defaillance (code, libelle, description, ordre)
 INSERT INTO raepa.val_raepa_type_defaillance (code, libelle, description, ordre) VALUES ('05', 'Joint', 'Joint défectueux', NULL);
 INSERT INTO raepa.val_raepa_type_defaillance (code, libelle, description, ordre) VALUES ('06', 'Percement', 'Canalisation percée', NULL);
 INSERT INTO raepa.val_raepa_type_defaillance (code, libelle, description, ordre) VALUES ('99', 'Autre', 'Défaillance dont le type ne figure pas dans la liste ci-dessus', NULL);
-
-
---
--- Name: sys_liste_table_id_seq; Type: SEQUENCE SET; Schema: raepa; Owner: -
---
-
-SELECT pg_catalog.setval('raepa.sys_liste_table_id_seq', 32, true);
 
 
 --
