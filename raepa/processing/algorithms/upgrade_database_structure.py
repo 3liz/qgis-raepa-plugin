@@ -12,12 +12,8 @@
 __author__ = '3liz'
 __date__ = '2019-02-15'
 __copyright__ = '(C) 2019 by 3liz'
-
-# This will get replaced with a git SHA1 when you do a git archive
-
 __revision__ = '$Format:%H$'
 
-import configparser
 import os
 
 from db_manager.db_plugins import createDbPlugin
@@ -26,16 +22,23 @@ from qgis.core import (
     QgsProcessingParameterCrs,
     QgsProcessingOutputNumber,
     QgsProcessingOutputString,
-    QgsExpressionContextUtils
+    QgsExpressionContextUtils, QgsProcessingException
 )
 
+from ...qgis_plugin_tools.tools.database import (
+    available_migrations,
+    fetch_data_from_sql_query,
+)
 from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
-from .tools import fetchDataFromSqlQuery, getVersionInteger
+from ...qgis_plugin_tools.tools.resources import plugin_path
+from ...qgis_plugin_tools.tools.version import format_version_integer, version
+
+SCHEMA = "raepa"
 
 
 class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
 
-    RUNIT = 'RUNIT'
+    RUN_MIGRATIONS = 'RUN_MIGRATIONS'
     SRID = 'SRID'
     OUTPUT_STATUS = 'OUTPUT_STATUS'
     OUTPUT_STRING = 'OUTPUT_STRING'
@@ -61,7 +64,7 @@ class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
 
         self.addParameter(
             QgsProcessingParameterBoolean(
-                self.RUNIT,
+                self.RUN_MIGRATIONS,
                 'Cocher cette case pour faire la mise à jour. Autrement, aucune action ne se passera.',
                 defaultValue=False,
             )
@@ -88,8 +91,8 @@ class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
 
     def checkParameterValues(self, parameters, context):
         # Check if runit is checked
-        runit = self.parameterAsBool(parameters, self.RUNIT, context)
-        if not runit:
+        run_migration = self.parameterAsBool(parameters, self.RUN_MIGRATIONS, context)
+        if not run_migration:
             msg = 'Vous devez cocher cette case à cocher pour faire la mise à jour !'
             ok = False
             return ok, msg
@@ -125,7 +128,7 @@ class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
             WHERE schema_name = 'raepa';
         '''
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
-        [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
+        [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
             connection_name,
             sql
         )
@@ -144,15 +147,10 @@ class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
 
         # Drop schema if needed
-        runit = self.parameterAsBool(parameters, self.RUNIT, context)
+        runit = self.parameterAsBool(parameters, self.RUN_MIGRATIONS, context)
         if not runit:
-            status = 0
             msg = 'Vous devez cocher cette case à cocher pour faire la mise à jour !'
-            # raise Exception(msg)
-            return {
-                self.OUTPUT_STATUS: status,
-                self.OUTPUT_STRING: msg
-            }
+            raise QgsProcessingException(msg)
 
         # get database version
         sql = '''
@@ -161,71 +159,58 @@ class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
             ORDER BY date_ajout DESC
             LIMIT 1;
         '''
-        [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
+        [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
             connection_name,
             sql
         )
         if not ok:
-            feedback.pushInfo(error_message)
-            status = 0
-            raise Exception(error_message)
+            raise QgsProcessingException(error_message)
+
         db_version = None
         for a in data:
             db_version = a[0]
         if not db_version:
             error_message = 'Pas de version installée dans la base de données !'
-            raise Exception(error_message)
+            raise QgsProcessingException(error_message)
         feedback.pushInfo('Version de la structure de la base de données : {}'.format(db_version))
 
-        # get plugin version
-        alg_dir = os.path.dirname(__file__)
-        plugin_dir = os.path.join(alg_dir, '../../')
-        config = configparser.ConfigParser()
-        config.read(os.path.join(plugin_dir, 'metadata.txt'))
-        plugin_version = config['general']['version']
-        feedback.pushInfo('Version du plugin : {}'.format(plugin_version))
+        # Get plugin version
+        plugin_version = version()
+        if plugin_version in ["master", "dev"]:
+            migrations = available_migrations(000000)
+            last_migration = migrations[-1]
+            plugin_version = (
+                last_migration.replace("upgrade_to_", "").replace(".sql", "").strip()
+            )
+            feedback.reportError(
+                "Be careful, running the migrations on a development branch!"
+            )
+            feedback.reportError(
+                "Latest available migration is {}".format(plugin_version)
+            )
+        else:
+            feedback.pushInfo("Version du plugin" + " = {}".format(plugin_version))
 
         # Return if nothing to do
         if db_version == plugin_version:
             return {
                 self.OUTPUT_STATUS: 1,
                 self.OUTPUT_STRING: (
-                    'La version de la base de données correspond déjà à la version du plugin. Pas de mise à jour '
-                    'nécessaire.')
+                    "La version de la base de données et du plugin sont les mêmes. Aucune mise-à-jour "
+                    "n'est nécessaire")
             }
+
+        db_version_integer = format_version_integer(db_version)
+        sql_files = available_migrations(db_version_integer)
 
         # Get input srid
         crs = parameters[self.SRID]
         srid = crs.authid().replace('EPSG:', '')
         feedback.pushInfo('SRID = {}'.format(srid))
 
-        # Get all the upgrade SQL files between db versions and plugin version
-        upgrade_dir = os.path.join(plugin_dir, 'install/sql/upgrade/')
-        get_files = [
-            f for f in os.listdir(upgrade_dir)
-            if os.path.isfile(os.path.join(upgrade_dir, f))
-        ]
-        files = []
-        db_version_integer = getVersionInteger(db_version)
-        for f in get_files:
-            k = getVersionInteger(
-                f.replace('upgrade_to_', '').replace('.sql', '').strip()
-            )
-            if k > db_version_integer:
-                files.append(
-                    [k, f]
-                )
-
-        def getKey(item):
-            return item[0]
-
-        sfiles = sorted(files, key=getKey)
-        sql_files = [s[1] for s in sfiles]
-
-        msg = ''
         # Loop sql files and run SQL code
         for sf in sql_files:
-            sql_file = os.path.join(plugin_dir, 'install/sql/upgrade/%s' % sf)
+            sql_file = os.path.join(plugin_path(), 'install/sql/upgrade/%s' % sf)
             with open(sql_file, 'r') as f:
                 sql = f.read()
                 if len(sql.strip()) == 0:
@@ -237,29 +222,34 @@ class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
 
                 # Add SQL database version in raepa.metadata
                 new_db_version = sf.replace('upgrade_to_', '').replace('.sql', '').strip()
-                feedback.pushInfo('* NEW DB VERSION' + new_db_version)
+                feedback.pushInfo('* NEW DB VERSION ' + new_db_version)
                 sql += '''
                     UPDATE raepa.sys_structure_metadonnee
                     SET (version, date_ajout)
                     = ( '%s', now()::timestamp(0) );
                 ''' % new_db_version
 
-                [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
+                [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
                     connection_name,
                     sql
                 )
                 if ok:
                     feedback.pushInfo('* ' + sf + ' -- SUCCESS !')
                 else:
-                    feedback.pushInfo(error_message)
-                    status = 0
-                    raise Exception(error_message)
-                    # return {
-                    # self.OUTPUT_STATUS: status,
-                    # self.OUTPUT_STRING: error_message
-                    # }
+                    raise QgsProcessingException(error_message)
+
+        # Everything is fine, we now update to the plugin version
+        sql += '''
+            UPDATE {}.sys_structure_metadonnee
+            SET (version, date_ajout)
+            = ( '{}', now()::timestamp(0) );
+        '''.format(SCHEMA, plugin_version)
+
+        _, _, _, ok, error_message = fetch_data_from_sql_query(connection_name, sql)
+        if not ok:
+            raise QgsProcessingException(error_message)
 
         return {
             self.OUTPUT_STATUS: 1,
-            self.OUTPUT_STRING: '*** STRUCTURE RAEPA MISE À JOUR AVEC SUCCÈS ***'
+            self.OUTPUT_STRING: "*** LA STRUCTURE A BIEN ÉTÉ MISE À JOUR SUR LA BASE DE DONNÉES ***"
         }

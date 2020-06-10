@@ -101,13 +101,3 @@ def validateTimestamp(timestamp_text):
         valid = False
         msg = str(e)
     return valid, msg
-
-
-def getVersionInteger(f):
-    """
-    Transform "0.1.2" into "000102"
-    Transform "10.9.12" into "100912"
-    to allow comparing versions
-    and sorting the upgrade files
-    """
-    return ''.join([a.zfill(2) for a in f.strip().split('.')])
