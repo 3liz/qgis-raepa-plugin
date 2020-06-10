@@ -12,16 +12,13 @@
 __author__ = '3liz'
 __date__ = '2018-12-19'
 __copyright__ = '(C) 2018 by 3liz'
-
-# This will get replaced with a git SHA1 when you do a git archive
-
 __revision__ = '$Format:%H$'
 
-import configparser
 import os
 
 from db_manager.db_plugins import createDbPlugin
 from qgis.core import (
+    QgsProcessingException,
     QgsProcessingParameterString,
     QgsProcessingParameterCrs,
     QgsProcessingParameterBoolean,
@@ -31,17 +28,20 @@ from qgis.core import (
 )
 
 from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
-from .tools import fetchDataFromSqlQuery
+from ...qgis_plugin_tools.tools.database import (
+    available_migrations,
+    fetch_data_from_sql_query,
+)
+from ...qgis_plugin_tools.tools.resources import plugin_test_data_path, plugin_path
+from ...qgis_plugin_tools.tools.version import version
+
+SCHEMA = "raepa"
 
 
 class CreateDatabaseStructure(BaseProcessingAlgorithm):
     """
     Create Raepa structure in Database
     """
-
-    # Constants used to refer to parameters and outputs. They will be
-    # used when calling the algorithm from another algorithm, or when
-    # calling from the QGIS console.
 
     OVERRIDE = 'OVERRIDE'
     ADD_AUDIT = 'ADD_AUDIT'
@@ -67,18 +67,10 @@ class CreateDatabaseStructure(BaseProcessingAlgorithm):
     def shortHelpString(self) -> str:
         return 'Crée la base de données avec les schémas et les tables.'
 
-    def createInstance(self):
-        return self.__class__()
-
     def initAlgorithm(self, config):
-        """
-        Here we define the inputs and output of the algorithm, along
-        with some other properties.
-        """
-        # INPUTS
         self.addParameter(
             QgsProcessingParameterBoolean(
-                self.OVERRIDE, 'Écraser le schéma raepa et toutes les données ? ** ATTENTION **',
+                self.OVERRIDE, 'Écraser les schémas raepa,audit et import et toutes les données ? ** ATTENTION **',
                 defaultValue=False,
                 optional=False
             )
@@ -169,7 +161,7 @@ class CreateDatabaseStructure(BaseProcessingAlgorithm):
             WHERE schema_name = 'raepa';
         '''
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
-        [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
+        [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
             connection_name,
             sql
         )
@@ -187,9 +179,6 @@ class CreateDatabaseStructure(BaseProcessingAlgorithm):
         return ok, msg
 
     def processAlgorithm(self, parameters, context, feedback):
-        """
-        Here is where the processing itself takes place.
-        """
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
 
         # Drop schema if needed
@@ -202,37 +191,51 @@ class CreateDatabaseStructure(BaseProcessingAlgorithm):
                 DROP SCHEMA IF EXISTS imports CASCADE;
             '''
 
-            [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
+            [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
                 connection_name,
                 sql
             )
             if ok:
-                feedback.pushInfo("* Schéma raepa supprimé.")
+                feedback.pushInfo("* Schéma raepa, audit et imports supprimés.")
             else:
-                feedback.pushInfo(error_message)
-                status = 0
-                # raise Exception(msg)
-                return {
-                    self.OUTPUT_STATUS: status,
-                    self.OUTPUT_STRING: error_message
-                }
+                raise QgsProcessingException(error_message)
+
+        plugin_dir = plugin_path()
+        plugin_version = version()
+        dev_version = False
+        run_migration = os.environ.get(
+            "TEST_DATABASE_INSTALL_{}".format(SCHEMA.upper())
+        )
+        if plugin_version in ["master", "dev"] and not run_migration:
+            feedback.reportError(
+                "Be careful, running the install on a development branch!"
+            )
+            dev_version = True
 
         # Create full structure
         sql_files = [
-            '00_initialize_database.sql',
-            'audit/audit.sql',
-            'raepa/10_FUNCTION.sql',
-            'raepa/20_TABLE_SEQUENCE_DEFAULT.sql',
-            'raepa/30_VIEW.sql',
-            'raepa/40_INDEX.sql',
-            'raepa/50_TRIGGER.sql',
-            'raepa/60_CONSTRAINT.sql',
-            'raepa/70_COMMENT.sql',
-            'raepa/90_GLOSSARY.sql',
-            '99_finalize_database.sql'
+            "00_initialize_database.sql",
+            "audit/audit.sql",
+            "{}/10_FUNCTION.sql".format(SCHEMA),
         ]
-        alg_dir = os.path.dirname(__file__)
-        plugin_dir = os.path.join(alg_dir, '../../')
+        if run_migration:
+            sql_files.append(
+                "{}/20_TABLE_COMMENT_SEQUENCE_DEFAULT.sql".format(SCHEMA)
+            )
+        else:
+            sql_files.append(
+                "{}/20_TABLE_SEQUENCE_DEFAULT.sql".format(SCHEMA)
+            )
+
+        sql_files += [
+            "{}/30_VIEW.sql".format(SCHEMA),
+            "{}/40_INDEX.sql".format(SCHEMA),
+            "{}/50_TRIGGER.sql".format(SCHEMA),
+            "{}/60_CONSTRAINT.sql".format(SCHEMA),
+            "{}/70_COMMENT.sql".format(SCHEMA),
+            "{}/90_GLOSSARY.sql".format(SCHEMA),
+            "99_finalize_database.sql",
+        ]
 
         # Get input srid
         crs = parameters[self.SRID]
@@ -243,6 +246,14 @@ class CreateDatabaseStructure(BaseProcessingAlgorithm):
         add_audit = self.parameterAsBool(parameters, self.ADD_AUDIT, context)
         if add_audit:
             sql_files.append('add_audit.sql')
+
+        if run_migration:
+            plugin_dir = plugin_test_data_path()
+            feedback.reportError(
+                "Be careful, running migrations on an empty database using {} "
+                "instead of {}".format(run_migration, plugin_version)
+            )
+            plugin_version = run_migration
 
         # Loop sql files and run SQL code
         for sf in sql_files:
@@ -258,36 +269,38 @@ class CreateDatabaseStructure(BaseProcessingAlgorithm):
                     continue
                 sql = sql.replace('2154', srid)
 
-                [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
+                [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
                     connection_name,
                     sql
                 )
                 if ok:
                     feedback.pushInfo('  Success !')
                 else:
-                    feedback.pushInfo('* ' + error_message)
-                    status = 0
-                    raise Exception(error_message)
-                    # return {
-                    # self.OUTPUT_STATUS: status,
-                    # self.OUTPUT_STRING: error_message
-                    # }
+                    raise QgsProcessingException(error_message)
 
         # Add version
-        config = configparser.ConfigParser()
-        config.read(str(os.path.join(plugin_dir, 'metadata.txt')))
-        version = config['general']['version']
+        if run_migration or not dev_version:
+            metadata_version = plugin_version
+        else:
+            migrations = available_migrations(000000)
+            last_migration = migrations[-1]
+            metadata_version = (
+                last_migration.replace("upgrade_to_", "").replace(".sql", "").strip()
+            )
+            feedback.reportError("Latest migration is {}".format(metadata_version))
         sql = '''
-            INSERT INTO raepa.sys_structure_metadonnee
+            INSERT INTO {}.sys_structure_metadonnee
             (version, date_ajout)
             VALUES (
-                '%s', now()::timestamp(0)
+                '{}', now()::timestamp(0)
             )
-        ''' % version
-        [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
+        '''.format(SCHEMA, metadata_version)
+        [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
             connection_name,
             sql
         )
+        if not ok:
+            raise QgsProcessingException(error_message)
 
         # Add metadata info
         sql = 'INSERT INTO raepa.sys_organisme_gestionnaire (nom, siren, code, actif)'
@@ -296,12 +309,18 @@ class CreateDatabaseStructure(BaseProcessingAlgorithm):
             parameters[self.SIREN],
             parameters[self.CODE]
         )
-        [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
+        [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
             connection_name,
             sql
         )
+        if not ok:
+            raise QgsProcessingException(error_message)
 
         return {
             self.OUTPUT_STATUS: 1,
-            self.OUTPUT_STRING: '*** STRUCTURE RAEPA CRÉÉE AVEC SUCCÈS ***'
+            self.OUTPUT_STRING: (
+                "*** LA STRUCTURE {} A BIEN ÉTÉ CRÉÉE '{}'***".format(
+                    SCHEMA, metadata_version
+                )
+            ),
         }
