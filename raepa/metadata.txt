@@ -3,29 +3,16 @@ name=Raepa
 qgisMinimumVersion=3.0
 description=France only - Plugin dedicated to import and manage water network data by using Raepa standard
 version=master
-author=3liz
+changelog=changelog
+author=3Liz
 email=info@3liz.com
-
 about=This plugin is useful for France only. It helps to import and manage water network data, and is based on the french Raepa standard data model
-
 tracker=https://github.com/3liz/qgis-raepa-plugin
 repository=https://github.com/3liz/qgis-raepa-plugin
-# End of mandatory metadata
-
-# Recommended items:
-
-# Uncomment the following line and add your changelog:
-# changelog=
-
-# Tags are comma separated with spaces allowed
 tags=water network, france, eau potable, assainissement, reseau, réseau, adduction
-
 homepage=https://github.com/3liz/qgis-raepa-plugin
 category=Analysis
 icon=resources/icons/icon.png
-# experimental flag
 experimental=True
-
-# deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
 hasProcessingProvider=yes
