@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>raepa_canalass_l - gis Database</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="../bower/admin-lte/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="../bower/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="../bower/ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="../bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="../bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+        <!-- Code Mirror -->
+        <link rel="stylesheet" href="../bower/codemirror/codemirror.css">
+        <!-- Fonts -->
+        <link href='../fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+        <link href='../fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="../bower/admin-lte/dist/css/AdminLTE.min.css">
+        <!-- Salvattore -->
+        <link rel="stylesheet" href="../bower/salvattore/salvattore.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="../bower/admin-lte/dist/css/skins/_all-skins.min.css">
+        <!-- SchemaSpy -->
+        <link rel="stylesheet" href="../schemaSpy.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="../bower/html5shiv/html5shiv.min.js"></script>
+        <script src="../bower/respond/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="../index.html" class="navbar-brand"><b>gis</b> Database</a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="../index.html">Tables <span class="sr-only">(current)</span></a></li>
+                                <li><a href="../columns.html" title="All of the columns in the schema">Columns</a></li>
+                                <li><a href="../constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+                                <li><a href="../relationships.html" title="Diagram of table relationships">Relationships</a></li>
+                                <li><a href="../orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>
+                                <li><a href="../anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+                                <li><a href="../routines.html" title="Procedures and functions">Routines</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+            <!-- Main content -->
+            <!-- Full Width Column -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>raepa_canalass_l</h1><p><span id="recordNumber">0</span> rows</p><br />
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-file-text-o"></i>
+                            <h3 id="Description" class="box-title">Description</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div><!-- /.box-header -->
+                        <div class="box-body clearfix">
+                            <p>Table des éléments linéaires du réseau d&rsquo;assainissement collectif</p>
+                        </div><!-- /.box-body -->
+                    </div>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                            <h3 id="Columns" class="box-title">Columns</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table id="standard_table" class="table table-bordered table-striped dataTable" role="grid">
+                                <thead align='left'>
+                                <tr>
+                                    <th>Column</th>
+                                    <th>Type</th>
+                                    <th>Size</th>
+                                    <th title='Are nulls allowed?'>Nulls</th>
+                                    <th title='Is column automatically updated?'>Auto</th>
+                                    <th title='Default value'>Default</th>
+                                    <th title='Columns in tables that reference this column'>Children</th>
+                                    <th title='Columns in tables that are referenced by this column'>Parents</th>
+                                    <th title='Comments' class="toggle"><span>Comments</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="id">id</span></td>
+                                    <td>serial</td>
+                                    <td>10</td>
+                                    <td title=''></td>
+                                    <td title='Automatically updated by the database'>√</td>
+                                    <td>nextval(&#39;raepa.raepa_canalass_l_id_seq&#39;::regclass)</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Identifiant numérique auto (clé primaire)</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="idcana">idcana</span></td>
+                                    <td>varchar</td>
+                                    <td>254</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="raepa_apparass_p.idcanppale references raepa_canalass_l.idcana via raepa_apparass_p_idcanppale_fkey"><a href='raepa_apparass_p.html'>raepa_apparass_p</a><span class='relatedKey'>.idcanppale</span></td>
+                                                <td class="constraint detail">raepa_apparass_p_idcanppale_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="raepa_ouvrass_p.idcanppale references raepa_canalass_l.idcana via raepa_ouvrass_p_idcanppale_fkey"><a href='raepa_ouvrass_p.html'>raepa_ouvrass_p</a><span class='relatedKey'>.idcanppale</span></td>
+                                                <td class="constraint detail">raepa_ouvrass_p_idcanppale_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Identifiant de la canalisation</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="mouvrage">mouvrage</span></td>
+                                    <td>varchar</td>
+                                    <td>100</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Maître d&rsquo;ouvrage du réseau</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="gexploit">gexploit</span></td>
+                                    <td>varchar</td>
+                                    <td>100</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Gestionnaire exploitant du réseau</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="enservice">enservice</span></td>
+                                    <td>varchar</td>
+                                    <td>1</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Canalisation en service / Canalisation abandonnée<br />
+O / N</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="branchemnt">branchemnt</span></td>
+                                    <td>varchar</td>
+                                    <td>1</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Canalisation de branchement individuel : O<br />
+Canalisation de transport ou collecte : N</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="typreseau">typreseau</span></td>
+                                    <td>varchar</td>
+                                    <td>2</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="raepa_canalass_l.typreseau references val_raepa_typ_reseau_ass.code via raepa_canalass_l_typreseau_fkey"><a href='val_raepa_typ_reseau_ass.html'>val_raepa_typ_reseau_ass</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">raepa_canalass_l_typreseau_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Type du réseau d&rsquo;assainissement collectif<br />
+Codes de la table VAL_RAEPA_TYP_RESEAU_ASS</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="materiau">materiau</span></td>
+                                    <td>varchar</td>
+                                    <td>2</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="raepa_canalass_l.materiau references val_raepa_materiau.code via raepa_canalass_l_materiau_fkey"><a href='val_raepa_materiau.html'>val_raepa_materiau</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">raepa_canalass_l_materiau_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Matériau de la canalisation d&rsquo;assainissement collectif<br />
+Codes de la table VAL_RAEPA_MATERIAU</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="diametre">diametre</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Diamètre nominal de la canalisation (en millimètres)</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="_dimensionhorizontale">_dimensionhorizontale</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Dimension horizontale (complète le diamètre nominal qui est la dimension verticale)</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="_forme">_forme</span></td>
+                                    <td>varchar</td>
+                                    <td>2</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="raepa_canalass_l._forme references _val_raepa_forme_canal_ass.code via raepa_canalass_l__forme_fkey"><a href='_val_raepa_forme_canal_ass.html'>_val_raepa_forme_canal_ass</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">raepa_canalass_l__forme_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Forme de la canalisation (cylindrique, ovoïde, etc)</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="_etat">_etat</span></td>
+                                    <td>varchar</td>
+                                    <td>2</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="raepa_canalass_l._etat references _val_raepa_etat_canal_ass.code via raepa_canalass_l__etat_fkey"><a href='_val_raepa_etat_canal_ass.html'>_val_raepa_etat_canal_ass</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">raepa_canalass_l__etat_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Etat de la canalisation</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="anfinpose">anfinpose</span></td>
+                                    <td>varchar</td>
+                                    <td>4</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Année marquant la fin de la période de pose de la canalisation</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="modecirc">modecirc</span></td>
+                                    <td>varchar</td>
+                                    <td>2</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="raepa_canalass_l.modecirc references val_raepa_mode_circulation.code via raepa_canalass_l_modecirc_fkey"><a href='val_raepa_mode_circulation.html'>val_raepa_mode_circulation</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">raepa_canalass_l_modecirc_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Mode de circulation de l&rsquo;eau à l&rsquo;intérieur de la canalisation<br />
+Codes de la table VAL_RAEPA_MODE_CIRCULATION</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="contcanass">contcanass</span></td>
+                                    <td>varchar</td>
+                                    <td>2</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="raepa_canalass_l.contcanass references val_raepa_cat_canal_ass.code via raepa_canalass_l_contcanass_fkey"><a href='val_raepa_cat_canal_ass.html'>val_raepa_cat_canal_ass</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">raepa_canalass_l_contcanass_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Catégorie de la canalisation d&rsquo;assainissement collectif<br />
+Codes de la table VAL_RAEPA_CAT_CANAL_ASS</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="fonccanass">fonccanass</span></td>
+                                    <td>varchar</td>
+                                    <td>2</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="raepa_canalass_l.fonccanass references val_raepa_fonc_canal_ass.code via raepa_canalass_l_fonccanass_fkey"><a href='val_raepa_fonc_canal_ass.html'>val_raepa_fonc_canal_ass</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">raepa_canalass_l_fonccanass_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Fonction de la canalisation d&rsquo;assainissement collectif<br />
+Codes de la table VAL_RAEPA_FONC_CANAL_ASS</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="idnini">idnini</span></td>
+                                    <td>varchar</td>
+                                    <td>254</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="raepa_canalass_l.idnini references raepa_ouvrass_p.idouvrage via raepa_canalass_l_idnini_fkey"><a href='raepa_ouvrass_p.html'>raepa_ouvrass_p</a><span class='relatedKey'>.idouvrage</span></td>
+                                                <td class="constraint detail">raepa_canalass_l_idnini_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Identifiant du nœud de début de la canalisation (clé étrangère)</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="idnterm">idnterm</span></td>
+                                    <td>varchar</td>
+                                    <td>254</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="raepa_canalass_l.idnterm references raepa_ouvrass_p.idouvrage via raepa_canalass_l_idnterm_fkey"><a href='raepa_ouvrass_p.html'>raepa_ouvrass_p</a><span class='relatedKey'>.idouvrage</span></td>
+                                                <td class="constraint detail">raepa_canalass_l_idnterm_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Identifiant du nœud de fin de la canalisation (clé étrangère)</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="idcanppale">idcanppale</span></td>
+                                    <td>varchar</td>
+                                    <td>254</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Identifiant de la canalisation principale (clé étrangère)</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="zamont">zamont</span></td>
+                                    <td>numeric</td>
+                                    <td>6,3</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Altitude à l&rsquo;extrémité amont (en mètres, Référentiel NGF-<br />
+IGN69)</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="zaval">zaval</span></td>
+                                    <td>numeric</td>
+                                    <td>6,3</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Altitude à l&rsquo;extrémité aval (en mètres, Référentiel NGF-IGN69)</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="sensecoul">sensecoul</span></td>
+                                    <td>varchar</td>
+                                    <td>1</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Sens de l&rsquo;écoulement dans la canalisation d&rsquo;assainissement<br />
+collectif<br />
+0 (nœud terminal → nœud initial) • 1 (nœud initial → nœud<br />
+terminal)</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="andebpose">andebpose</span></td>
+                                    <td>varchar</td>
+                                    <td>4</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Année marquant le début de la période de pose de la<br />
+canalisation</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="_precisionannee">_precisionannee</span></td>
+                                    <td>varchar</td>
+                                    <td>2</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="raepa_canalass_l._precisionannee references _val_raepa_precision_annee.code via raepa_canalass_l__precisionannee_fkey"><a href='_val_raepa_precision_annee.html'>_val_raepa_precision_annee</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">raepa_canalass_l__precisionannee_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Précision des années de fin et début de pose</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="longcana">longcana</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Longueur mesurée de canalisation (en mètres)</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="_longcana_cm">_longcana_cm</span></td>
+                                    <td>numeric</td>
+                                    <td>7,2</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Longueur calculée de canalisation projetée (en mètres avec une précision centimétrique)</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="_longcana_reelle">_longcana_reelle</span></td>
+                                    <td>numeric</td>
+                                    <td>7,2</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Longueur calculée de canalisation réelle, en prenant en compte la pente (précision cm)</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="_pente">_pente</span></td>
+                                    <td>numeric</td>
+                                    <td>6,2</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Pente de la canalisation (en %)</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="nbranche">nbranche</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Nombre de branchements individuels sur la canalisation<br />
+d&rsquo;assainissement collectif</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="qualglocxy">qualglocxy</span></td>
+                                    <td>varchar</td>
+                                    <td>2</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="raepa_canalass_l.qualglocxy references val_raepa_qualite_geoloc.code via raepa_canalass_l_qualglocxy_fkey"><a href='val_raepa_qualite_geoloc.html'>val_raepa_qualite_geoloc</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">raepa_canalass_l_qualglocxy_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Qualité de la géolocalisation planimétrique (XY)<br />
+Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="qualglocz">qualglocz</span></td>
+                                    <td>varchar</td>
+                                    <td>2</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="raepa_canalass_l.qualglocz references val_raepa_qualite_geoloc.code via raepa_canalass_l_qualglocz_fkey"><a href='val_raepa_qualite_geoloc.html'>val_raepa_qualite_geoloc</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">raepa_canalass_l_qualglocz_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Qualité de la géolocalisation altimétrique (Z)<br />
+Codes de la table VAL_RAEPA_QUALITE_GEOLOC</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="datemaj">datemaj</span></td>
+                                    <td>date</td>
+                                    <td>13</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>now()</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Date de la dernière mise à jour des informations</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="sourmaj">sourmaj</span></td>
+                                    <td>varchar</td>
+                                    <td>100</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Source de la mise à jour</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="qualannee">qualannee</span></td>
+                                    <td>varchar</td>
+                                    <td>2</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="raepa_canalass_l.qualannee references val_raepa_qualite_anpose.code via raepa_canalass_l_qualannee_fkey"><a href='val_raepa_qualite_anpose.html'>val_raepa_qualite_anpose</a><span class='relatedKey'>.code</span></td>
+                                                <td class="constraint detail">raepa_canalass_l_qualannee_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td><p>Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l&rsquo;année de<br />
+pose<br />
+Codes de la table VAL_RAEPA_QUALITE_ANPOSE</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="dategeoloc">dategeoloc</span></td>
+                                    <td>date</td>
+                                    <td>13</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Date de la géolocalisation</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="sourgeoloc">sourgeoloc</span></td>
+                                    <td>varchar</td>
+                                    <td>100</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Auteur de la géolocalisation</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="sourattrib">sourattrib</span></td>
+                                    <td>varchar</td>
+                                    <td>100</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Auteur de la saisie des données attributaires (lorsque différent<br />
+de l&rsquo;auteur de la géolocalisation)</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="_source_historique">_source_historique</span></td>
+                                    <td>text</td>
+                                    <td>2147483647</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Source de la donnée ( si2g ou geomap)</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="_code_chantier">_code_chantier</span></td>
+                                    <td>text</td>
+                                    <td>2147483647</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Code du chantier, qui doit être explicite et unique entre les chantiers. Par ex : SOISSONS-PL REPUBLIQUE-2018</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="_date_import">_date_import</span></td>
+                                    <td>text</td>
+                                    <td>2147483647</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Date de l&rsquo;import</p></td>
+                                </tr>
+                                <tr>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="geom">geom</span></td>
+                                    <td>geometry</td>
+                                    <td>2147483647</td>
+                                    <td title=''></td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Géométrie</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="_temp_data">_temp_data</span></td>
+                                    <td>hstore</td>
+                                    <td>2147483647</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Champ pour ajouter des données temporaires pendant l&rsquo;import</p></td>
+                                </tr>
+                                <tr>
+                                    <td><span id="_observation">_observation</span></td>
+                                    <td>text</td>
+                                    <td>2147483647</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td><p>Observations diverses sur l&rsquo;objet. Texte libre.</p></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-sitemap"></i>
+                            <h3 id="Indexes" class="box-title">Indexes</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table id="indexes_table" class="table table-bordered table-striped dataTable" role="grid">
+                                <thead>
+                                <tr>
+                                    <th>Constraint Name</th>
+                                    <th>Type</th>
+                                    <th>Sort</th>
+                                    <th>Column(s)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> raepa_canalass_l_pkey</td>
+                                    <td>Primary key</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>id</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>raepa_canalass_l_endpoint_geom_idx</td>
+                                    <td>Performance</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>raepa_canalass_l_geom_idx</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>geom</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>raepa_canalass_l_geom_idx1</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>geom</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>raepa_canalass_l_idcana_idx</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>idcana</td>
+                                </tr>
+                                <tr>
+                                    <td class='uniqueKey' title='Unique Key'><i class='icon ion-key iconkey'></i> raepa_canalass_l_idcana_key</td>
+                                    <td>Must be unique</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>idcana</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>raepa_canalass_l_idcanppale_idx</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>idcanppale</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>raepa_canalass_l_idnini_idx</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>idnini</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>raepa_canalass_l_idnterm_idx</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>idnterm</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>raepa_canalass_l_startpoint_geom_idx</td>
+                                    <td>Performance</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- /.box-body -->
+                    </div>
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-code-fork"></i>
+                            <h3 id="Relationships" class="box-title">Relationships</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="nav-tabs-custom"><!-- Tabs within a box -->
+                                <h5>Close relationships within degrees of separation</h5>
+                                <ul class="nav nav-tabs pull-left ui-sortable-handle">
+                                    <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>
+                                    <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>
+                                </ul>
+                                <div class="tab-content no-padding">
+                                    <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
+<area shape="rect" id="node1" href="raepa_apparass_p.html" target="_top" title="raepa_apparass_p" alt="" coords="1125,1281,1345,1721">
+<area shape="rect" id="node2" href="raepa_canalass_l.html" target="_top" title="raepa_canalass_l" alt="" coords="671,176,1081,1507">
+<area shape="rect" id="node3" href="raepa_ouvrass_p.html" target="_top" title="raepa_ouvrass_p" alt="" coords="373,889,583,1300">
+<area shape="rect" id="node4" href="val_raepa_qualite_anpose.html" target="_top" title="val_raepa_qualite_anpose" alt="" coords="5,1547,285,1664">
+<area shape="rect" id="node5" href="val_raepa_qualite_geoloc.html" target="_top" title="val_raepa_qualite_geoloc" alt="" coords="8,1412,283,1529">
+<area shape="rect" id="node6" href="val_raepa_typ_reseau_ass.html" target="_top" title="val_raepa_typ_reseau_ass" alt="" coords="7,5,284,123">
+<area shape="rect" id="node7" href="_val_raepa_etat_canal_ass.html" target="_top" title="_val_raepa_etat_canal_ass" alt="" coords="339,351,617,468">
+<area shape="rect" id="node8" href="_val_raepa_forme_canal_ass.html" target="_top" title="_val_raepa_forme_canal_ass" alt="" coords="331,216,625,333">
+<area shape="rect" id="node9" href="_val_raepa_precision_annee.html" target="_top" title="_val_raepa_precision_annee" alt="" coords="331,1317,625,1435">
+<area shape="rect" id="node10" href="val_raepa_cat_canal_ass.html" target="_top" title="val_raepa_cat_canal_ass" alt="" coords="345,620,611,737">
+<area shape="rect" id="node11" href="val_raepa_fonc_canal_ass.html" target="_top" title="val_raepa_fonc_canal_ass" alt="" coords="341,755,615,872">
+<area shape="rect" id="node12" href="val_raepa_materiau.html" target="_top" title="val_raepa_materiau" alt="" coords="360,81,596,199">
+<area shape="rect" id="node13" href="val_raepa_mode_circulation.html" target="_top" title="val_raepa_mode_circulation" alt="" coords="329,485,627,603">
+</map>
+                                        <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/raepa_canalass_l.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
+<area shape="rect" id="node1" href="affleurant_pcrs.html" target="_top" title="affleurant_pcrs" alt="" coords="393,1603,595,1691">
+<area shape="rect" id="node2" href="val_raepa_qualite_geoloc.html" target="_top" title="val_raepa_qualite_geoloc" alt="" coords="17,1564,291,1681">
+<area shape="rect" id="node3" href="raepa_apparaep_p.html" target="_top" title="raepa_apparaep_p" alt="" coords="381,1744,607,1832">
+<area shape="rect" id="node4" href="val_raepa_qualite_anpose.html" target="_top" title="val_raepa_qualite_anpose" alt="" coords="14,1793,294,1911">
+<area shape="rect" id="node5" href="raepa_apparass_p.html" target="_top" title="raepa_apparass_p" alt="" coords="1140,1285,1360,1725">
+<area shape="rect" id="node6" href="val_raepa_fonc_app_ass.html" target="_top" title="val_raepa_fonc_app_ass" alt="" coords="759,77,1022,165">
+<area shape="rect" id="node7" href="raepa_canalass_l.html" target="_top" title="raepa_canalass_l" alt="" coords="685,183,1096,1513">
+<area shape="rect" id="node8" href="raepa_ouvrass_p.html" target="_top" title="raepa_ouvrass_p" alt="" coords="389,797,599,1208">
+<area shape="rect" id="node9" href="val_raepa_typ_reseau_ass.html" target="_top" title="val_raepa_typ_reseau_ass" alt="" coords="15,140,293,257">
+<area shape="rect" id="node11" href="val_raepa_materiau.html" target="_top" title="val_raepa_materiau" alt="" coords="36,347,272,464">
+<area shape="rect" id="node12" href="val_raepa_mode_circulation.html" target="_top" title="val_raepa_mode_circulation" alt="" coords="5,519,303,636">
+<area shape="rect" id="node13" href="_val_raepa_etat_canal_ass.html" target="_top" title="_val_raepa_etat_canal_ass" alt="" coords="355,1396,633,1513">
+<area shape="rect" id="node14" href="_val_raepa_forme_canal_ass.html" target="_top" title="_val_raepa_forme_canal_ass" alt="" coords="347,252,641,369">
+<area shape="rect" id="node15" href="_val_raepa_precision_annee.html" target="_top" title="_val_raepa_precision_annee" alt="" coords="347,1225,641,1343">
+<area shape="rect" id="node16" href="val_raepa_cat_canal_ass.html" target="_top" title="val_raepa_cat_canal_ass" alt="" coords="361,423,627,540">
+<area shape="rect" id="node17" href="val_raepa_fonc_canal_ass.html" target="_top" title="val_raepa_fonc_canal_ass" alt="" coords="357,663,631,780">
+<area shape="rect" id="node19" href="val_raepa_fonc_ouv_ass.html" target="_top" title="val_raepa_fonc_ouv_ass" alt="" coords="23,888,285,976">
+<area shape="rect" id="node10" href="raepa_canalaep_l.html" target="_top" title="raepa_canalaep_l" alt="" coords="386,557,602,645">
+<area shape="rect" id="node18" href="raepa_ouvraep_p.html" target="_top" title="raepa_ouvraep_p" alt="" coords="387,1849,601,1937">
+<area shape="rect" id="node20" href="raepa_reparass_p.html" target="_top" title="raepa_reparass_p" alt="" coords="782,1567,999,1655">
+</map>
+                                        <a name='diagram'><img id="twodegreesDegreeImg" src="../diagrams/tables/raepa_canalass_l.2degrees.png" usemap="#twoDegreesRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                    </div>
+                </section>
+                <script>
+                    var config = {
+                        pagination: true
+                    }
+                </script>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div>
+                    <div class="pull-right hidden-xs">
+                        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+                        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+                    </div>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.1.0</a></strong>
+                </div>
+                <!-- /.container -->
+            </footer>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="../bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="../bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="../bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="../bower/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="../bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="../bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+        <script src="../bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="../bower/datatables.net-buttons/buttons.html5.min.js"></script>
+        <script src="../bower/datatables.net-buttons/buttons.print.min.js"></script>
+        <script src="../bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+        <!-- SheetJS -->
+        <script src="../bower/js-xlsx/xlsx.full.min.js"></script>
+        <!-- pdfmake -->
+        <script src="../bower/pdfmake/pdfmake.min.js"></script>
+        <script src="../bower/pdfmake/vfs_fonts.js"></script>
+        <!-- SlimScroll -->
+        <script src="../bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="../bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+        <!-- Salvattore -->
+        <script src="../bower/salvattore/salvattore.min.js"></script>
+        <!-- AnchorJS -->
+        <script src="../bower/anchor-js/anchor.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="../bower/codemirror/codemirror.js"></script>
+        <script src="../bower/codemirror/sql.js"></script>
+        <!-- AdminLTE App -->
+        <script src="../bower/admin-lte/dist/js/app.min.js"></script>
+        <script src="table.js"></script>
+        <script src="../schemaSpy.js"></script>
+    </body>
+</html>

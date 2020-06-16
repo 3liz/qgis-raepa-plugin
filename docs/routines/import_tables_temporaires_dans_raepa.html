@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>gis Database</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="../bower/admin-lte/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="../bower/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="../bower/ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="../bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="../bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+        <!-- Code Mirror -->
+        <link rel="stylesheet" href="../bower/codemirror/codemirror.css">
+        <!-- Fonts -->
+        <link href='../fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+        <link href='../fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="../bower/admin-lte/dist/css/AdminLTE.min.css">
+        <!-- Salvattore -->
+        <link rel="stylesheet" href="../bower/salvattore/salvattore.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="../bower/admin-lte/dist/css/skins/_all-skins.min.css">
+        <!-- SchemaSpy -->
+        <link rel="stylesheet" href="../schemaSpy.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="../bower/html5shiv/html5shiv.min.js"></script>
+        <script src="../bower/respond/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="../index.html" class="navbar-brand"><b>gis</b> Database</a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="../index.html">Tables <span class="sr-only">(current)</span></a></li>
+                                <li><a href="../columns.html" title="All of the columns in the schema">Columns</a></li>
+                                <li><a href="../constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+                                <li><a href="../relationships.html" title="Diagram of table relationships">Relationships</a></li>
+                                <li><a href="../orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>
+                                <li><a href="../anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+                                <li><a href="../routines.html" title="Procedures and functions">Routines</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+            <!-- Main content -->
+            <!-- Full Width Column -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>import_tables_temporaires_dans_raepa</h1><br />
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                            <h3 id="Columns" class="box-title">Parameters</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table id="standard_table" class="table table-bordered table-striped dataTable" role="grid">
+                                <thead align='left'>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Mode</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>in_source_historique</td>
+                                    <td>text</td>
+                                    <td>IN</td>
+                                </tr>
+                                <tr>
+                                    <td>in_code_chantier</td>
+                                    <td>text</td>
+                                    <td>IN</td>
+                                </tr>
+                                <tr>
+                                    <td>nettoyer_chantier</td>
+                                    <td>boolean</td>
+                                    <td>IN</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-file-code-o"></i>
+                            <h3 id="RoutineDefinition" class="box-title">Definition</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <textarea id="sql-script-codemirror" name="sql-script-codemirror" rows="" style="display: none;">&#10;DECLARE&#10;  sql_template text;&#10;BEGIN&#10;&#10;    -- Suppression des données précédemment importées&#10;    IF nettoyer_chantier IS TRUE THEN&#10;        DELETE FROM raepa.raepa_apparass_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;&#10;        DELETE FROM raepa.raepa_canalass_l WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;&#10;        DELETE FROM raepa.raepa_ouvrass_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;&#10;    END IF;&#10;&#10;    -- Mise à jour des champs dans les tables d&#39;import&#10;    UPDATE imports.ouvrages&#10;    SET &quot;_temp_data&quot; = hstore(array[&#39;code_ouvrage&#39;, idouvrage])&#10;    ;&#10;    UPDATE imports.appareils&#10;    SET &quot;_temp_data&quot; = hstore(ARRAY[&#39;code_appareil&#39;, idappareil, &#39;code_ouvrage&#39;, idouvrage])&#10;    ;&#10;    UPDATE imports.canalisations&#10;    SET &quot;_temp_data&quot; = hstore(array[&#39;ouvrage_amont&#39;, idnini, &#39;ouvrage_aval&#39;, idnterm] );&#10;&#10;    -- Insertion des données dans raepa&#10;    -- ouvrages&#10;    INSERT INTO raepa.raepa_ouvrass_p (&#10;        typreseau, fnouvass,&#10;        z, _ztampon, _angletampon,&#10;        qualglocxy, qualglocz, anfinpose,&#10;        _source_historique, _code_chantier, _date_import,&#10;        _temp_data,&#10;        geom&#10;    )&#10;    SELECT DISTINCT&#10;        o.typreseau, o.fnouvass,&#10;        o.z, o._ztampon, o._angletampon,&#10;        -- degrees(o.ang_ouv) * -1 AS _angletampon,&#10;        qualglocxy, qualglocz, anfinpose,&#10;        _source_historique, _code_chantier, _date_import,&#10;        _temp_data,&#10;        o.geom&#10;    FROM imports.ouvrages o&#10;    ;&#10;&#10;    -- appareils&#10;    INSERT INTO raepa.raepa_apparass_p (&#10;        typreseau, fnappass,&#10;        diametre, z,&#10;        idouvrage,&#10;        qualglocxy, qualglocz, anfinpose,&#10;        _source_historique, _code_chantier, _date_import,&#10;        _temp_data,&#10;        geom&#10;    )&#10;    SELECT DISTINCT&#10;        a.typreseau, a.fnappass,&#10;        a.diametre, a.z,&#10;        (SELECT o.idouvrage FROM raepa.raepa_ouvrass_p o WHERE o.&quot;_temp_data&quot;-&gt;&#39;code_ouvrage&#39; = a.&quot;_temp_data&quot;-&gt;&#39;code_ouvrage&#39; LIMIT 1) AS idouvrage,&#10;        qualglocxy, qualglocz, anfinpose,&#10;        _source_historique, _code_chantier, _date_import,&#10;        _temp_data,&#10;        a.geom&#10;    FROM imports.appareils a&#10;    ;&#10;&#10;    -- canalisations&#10;    INSERT INTO raepa.raepa_canalass_l(&#10;        branchemnt, typreseau, contcanass, fonccanass, materiau,&#10;        _forme, diametre, _dimensionhorizontale,&#10;        modecirc, nbranche,&#10;        qualglocxy, qualglocz, anfinpose, _etat,&#10;        _source_historique, _code_chantier, _date_import,&#10;        _precisionannee,&#10;        zamont, zaval,&#10;        idnini, idnterm,&#10;        _temp_data,&#10;        geom&#10;    )&#10;    SELECT DISTINCT&#10;        c.branchemnt, c.typreseau, c.typreseau AS contcanass, &#39;02&#39;, c.materiau,&#10;        c._forme, c.diametre, c._dimensionhorizontale,&#10;        c.modecirc, c.nbranche,&#10;        c.qualglocxy, c.qualglocz, c.anfinpose, c._etat,&#10;        c._source_historique, c._code_chantier, c._date_import,&#10;        c._precisionannee,&#10;        c.zamont, c.zaval,&#10;        o1.idouvrage AS idnini,&#10;        o2.idouvrage AS idterm,&#10;        c._temp_data,&#10;&#10;        -- On retourne les canalisations dans le mauvais sens&#10;        CASE&#10;            WHEN&#10;                ST_Dwithin(ST_EndPoint(c.geom), o1.geom, 0.05)&#10;                OR ST_Dwithin(ST_StartPoint(c.geom), o2.geom, 0.05)&#10;            THEN ST_Reverse(c.geom)&#10;            ELSE c.geom&#10;        END AS geom&#10;    FROM imports.canalisations AS c&#10;    LEFT JOIN raepa.raepa_ouvrass_p o1&#10;        ON TRUE&#10;            AND o1._source_historique = in_source_historique&#10;            AND o1._code_chantier = in_code_chantier&#10;            AND o1.&quot;_temp_data&quot;-&gt;&#39;code_ouvrage&#39; = c.&quot;_temp_data&quot;-&gt;&#39;ouvrage_amont&#39;&#10;    LEFT JOIN raepa.raepa_ouvrass_p o2&#10;        ON TRUE&#10;            AND o2._source_historique = in_source_historique&#10;            AND o2._code_chantier = in_code_chantier&#10;            AND o2.&quot;_temp_data&quot;-&gt;&#39;code_ouvrage&#39; = c.&quot;_temp_data&quot;-&gt;&#39;ouvrage_aval&#39;&#10;    WHERE TRUE&#10;    ;&#10;&#10;&#10;    -- Modification des ouvrages pour modifier les cana amont et aval&#10;    WITH a AS (&#10;        SELECT&#10;            oo.idouvrage,&#10;            COALESCE(string_agg(c.idcana, &#39;,&#39; ORDER BY idcana), &#39;INCONNU&#39;) AS idcanamont&#10;        FROM raepa.raepa_ouvrass_p AS oo&#10;        LEFT JOIN raepa.raepa_canalass_l AS c&#10;        ON ST_DWithin(ST_EndPoint(c.geom), oo.geom, 0.05)&#10;        WHERE TRUE&#10;        AND idcanamont = &#39;INCONNU&#39;&#10;        AND oo._source_historique = in_source_historique AND oo._code_chantier = in_code_chantier&#10;        GROUP BY idouvrage&#10;    )&#10;    UPDATE raepa.raepa_ouvrass_p AS o&#10;    SET idcanamont = a.idcanamont&#10;    FROM a&#10;    WHERE TRUE&#10;    AND a.idouvrage = o.idouvrage&#10;    AND o.idcanamont = &#39;INCONNU&#39;&#10;    ;&#10;&#10;    WITH a AS (&#10;        SELECT&#10;            oo.idouvrage,&#10;            COALESCE(string_agg(c.idcana, &#39;,&#39; ORDER BY idcana), &#39;INCONNU&#39;) AS idcanaval&#10;        FROM raepa.raepa_ouvrass_p AS oo&#10;        LEFT JOIN raepa.raepa_canalass_l AS c&#10;        ON ST_DWithin(ST_StartPoint(c.geom), oo.geom, 0.05)&#10;        WHERE TRUE&#10;        AND idcanaval = &#39;INCONNU&#39;&#10;        AND oo._source_historique = in_source_historique AND oo._code_chantier = in_code_chantier&#10;        GROUP BY idouvrage&#10;    )&#10;    UPDATE raepa.raepa_ouvrass_p AS o&#10;    SET idcanaval = a.idcanaval&#10;    FROM a&#10;    WHERE TRUE&#10;    AND a.idouvrage = o.idouvrage&#10;    AND o.idcanaval = &#39;INCONNU&#39;&#10;    ;&#10;&#10;    RETURN TRUE;&#10;END;&#10;</textarea>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div>
+                    <div class="pull-right hidden-xs">
+                        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+                        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+                    </div>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.1.0</a></strong>
+                </div>
+                <!-- /.container -->
+            </footer>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="../bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="../bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="../bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="../bower/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="../bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="../bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+        <script src="../bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="../bower/datatables.net-buttons/buttons.html5.min.js"></script>
+        <script src="../bower/datatables.net-buttons/buttons.print.min.js"></script>
+        <script src="../bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+        <!-- SheetJS -->
+        <script src="../bower/js-xlsx/xlsx.full.min.js"></script>
+        <!-- pdfmake -->
+        <script src="../bower/pdfmake/pdfmake.min.js"></script>
+        <script src="../bower/pdfmake/vfs_fonts.js"></script>
+        <!-- SlimScroll -->
+        <script src="../bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="../bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+        <!-- Salvattore -->
+        <script src="../bower/salvattore/salvattore.min.js"></script>
+        <!-- AnchorJS -->
+        <script src="../bower/anchor-js/anchor.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="../bower/codemirror/codemirror.js"></script>
+        <script src="../bower/codemirror/sql.js"></script>
+        <!-- AdminLTE App -->
+        <script src="../bower/admin-lte/dist/js/app.min.js"></script>
+        <script src="routine.js"></script>
+        <script src="../schemaSpy.js"></script>
+    </body>
+</html>

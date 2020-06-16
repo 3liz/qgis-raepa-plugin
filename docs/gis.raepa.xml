@@ -1,0 +1,2502 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="gis" schema="raepa" type="PostgreSQL - 10.6 (Debian 10.6-1.pgdg90+1)">
+   <sequences>
+      <sequence increment="1" name="affleurant_pcrs_id_seq" startValue="1"/>
+      <sequence increment="1" name="raepa_apparaep_p_id_seq" startValue="1"/>
+      <sequence increment="1" name="raepa_apparass_p_id_seq" startValue="1"/>
+      <sequence increment="1" name="raepa_canalaep_l_id_seq" startValue="1"/>
+      <sequence increment="1" name="raepa_canalass_l_id_seq" startValue="1"/>
+      <sequence increment="1" name="raepa_ouvraep_p_id_seq" startValue="1"/>
+      <sequence increment="1" name="raepa_ouvrass_p_id_seq" startValue="1"/>
+      <sequence increment="1" name="raepa_reparaep_p_id_seq" startValue="1"/>
+      <sequence increment="1" name="raepa_reparass_p_id_seq" startValue="1"/>
+      <sequence increment="1" name="sys_liste_table_id_seq" startValue="1"/>
+      <sequence increment="1" name="sys_organisme_gestionnaire_id_seq" startValue="1"/>
+      <sequence increment="1" name="sys_structure_metadonnee_id_seq" startValue="1"/>
+   </sequences>
+   <tables>
+      <table name="_val_raepa_etat_canal_ass" numRows="5" remarks="Nomenclature pour l’état de la canalisation" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="_etat" foreignKey="raepa_canalass_l__etat_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+            <child column="_etatcanalisation" foreignKey="raepa_reparass_p__etatcanalisation_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_reparass_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="_val_raepa_etat_canal_ass_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="_val_raepa_forme_canal_ass" numRows="6" remarks="Nomenclature pour la forme de la canalisation (ovoide, cylindrique, etc.)" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="_forme" foreignKey="raepa_canalass_l__forme_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="_val_raepa_forme_canal_ass_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="_val_raepa_precision_annee" numRows="4" remarks="Nomenclature pour la précision des années de fin et début de pose" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="_precisionannee" foreignKey="raepa_canalass_l__precisionannee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="_val_raepa_precision_annee_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="_val_raepa_type_intervention_ass" numRows="5" remarks="Nomenclature pour le type d’intervention (curage préventif, inspection, etc.)" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="_typeintervention" foreignKey="raepa_reparass_p__typeintervention_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_reparass_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="_val_raepa_type_intervention_ass_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="affleurant_pcrs" numRows="0" remarks="Classe spécialisée permettant de décrire une partie d’un réseau existant visible depuis la surface" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="idaffleurant" nullable="false" remarks="Identifiant de l’affleurant PCRS" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="gexploit" nullable="false" remarks="Gestionnaire exploitant du réseau" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="reference" nullable="false" remarks="Désignation du symbole à utiliser pour la représentation de l’affleurant" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="17" id="3" name="anglerotaion" nullable="false" remarks="Utilisé uniquement pour l’orientation du symbole d’affleurant" size="17" type="float8" typeCode="8"/>
+         <column autoUpdated="false" defaultValue="null" digits="17" id="4" name="longueur" nullable="false" remarks="Utilisé uniquement pour la mise à l’échelle X du symbole d’affleurant" size="17" type="float8" typeCode="8"/>
+         <column autoUpdated="false" defaultValue="null" digits="17" id="5" name="largeur" nullable="false" remarks="Utilisé uniquement pour la mise à l’échelle Y du symbole d’affleurant" size="17" type="float8" typeCode="8"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="codecouleur" nullable="true" remarks="Code couleur du symbole" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="7" name="z" nullable="true" remarks="Altitude (en mètres, référentiel NGF-IGN69)" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="qualglocxy" nullable="false" remarks="Qualité de la géolocalisation planimétrique (XY)&#10;Codes de la table VAL_RAEPA_QUALITE_GEOLOC" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="affleurant_pcrs_qualglocxy_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_geoloc"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="qualglocz" nullable="false" remarks="Qualité de la géolocalisation altimétrique (Z)&#10;Codes de la table VAL_RAEPA_QUALITE_GEOLOC" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="affleurant_pcrs_qualglocz_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_geoloc"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry" typeCode="1111"/>
+         <primaryKey column="idaffleurant" sequenceNumberInPK="1"/>
+         <index name="affleurant_pcrs_pkey" unique="true">
+            <column ascending="true" name="idaffleurant"/>
+         </index>
+      </table>
+      <table name="commune" numRows="0" remarks="Territoire où s’exerce la compétence d’un conseil municipal" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="codeinsee" nullable="false" remarks="Code officiel géographique (COG) de la commune" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="anneecog" nullable="false" remarks="Année de publication par l'INSEE du COG" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="nom" nullable="false" remarks="Nom de la commune" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry" typeCode="1111"/>
+         <primaryKey column="codeinsee" sequenceNumberInPK="1"/>
+         <index name="commune_pkey" unique="true">
+            <column ascending="true" name="codeinsee"/>
+         </index>
+      </table>
+      <table name="raepa_apparaep_p" numRows="0" remarks="Table des appareillages du réseau d'AEP" schema="raepa" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('raepa.raepa_apparaep_p_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idappareil" nullable="false" remarks="Identifiant de l'appareillage" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="2" name="x" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="3" name="y" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="mouvrage" nullable="false" remarks="Maître d'ouvrage du réseau" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="gexploit" nullable="false" remarks="Gestionnaire exploitant du réseau" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="fnappaep" nullable="false" remarks="Fonction de l'appareillage d'adduction d'eau potable&#10;Codes de la table VAL_RAEPA_FONC_APP_AE" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_apparaep_p_fnappaep_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_fonc_app_ae"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="anfinpose" nullable="false" remarks="Année marquant la fin de la période de mise en service de&#10;l'appareillage" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="diametre" nullable="false" remarks="Diamètre nominal de l'appareillage (en millimètres)" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="idcanamont" nullable="false" remarks="Identifiant de la canalisation d'amont de l'appareillage (clé&#10;étrangère)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="idcanaval" nullable="false" remarks="Identifiant de la canalisation d'aval de l'appareillage (clé&#10;étrangère)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="idcanppale" nullable="true" remarks="Identifiant de la canalisation principale (clé étrangère)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="idouvrage" nullable="true" remarks="Identifiant de l'ouvrage d'accueil (clé étrangère)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="13" name="z" nullable="true" remarks="Altitude (en mètres, référentiel NGF-IGN69) du radier" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="andebpose" nullable="true" remarks="Année marquant le début de la période de mise en service de&#10;l'appareillage" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="qualglocxy" nullable="false" remarks="Qualité de la géolocalisation planimétrique (XY)&#10;Codes de la table VAL_RAEPA_QUALITE_GEOLOC" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_apparaep_p_qualglocxy_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_geoloc"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="qualglocz" nullable="false" remarks="Qualité de la géolocalisation altimétrique (Z)&#10;Codes de la table VAL_RAEPA_QUALITE_GEOLOC" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_apparaep_p_qualglocz_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_geoloc"/>
+         </column>
+         <column autoUpdated="false" defaultValue="now()" digits="0" id="17" name="datemaj" nullable="false" remarks="Date de la dernière mise à jour des informations" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="sourmaj" nullable="false" remarks="Source de la mise à jour" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="qualannee" nullable="true" remarks="Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de&#10;mise en service&#10;Codes de la table VAL_RAEPA_QUALITE_ANPOSE" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_apparaep_p_qualannee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_anpose"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="dategeoloc" nullable="true" remarks="Date de la géolocalisation" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="sourgeoloc" nullable="true" remarks="Auteur de la géolocalisation" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="sourattrib" nullable="true" remarks="Auteur de la saisie des données attributaires (lorsque différent&#10;de l'auteur de la géolocalisation)" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="24" name="_ferme" nullable="false" remarks="Décrit si l'appareil est fermé ou non. True si l'appareil est fermé." size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="17" id="25" name="_orientation" nullable="true" remarks="Orientation de l'appareil en degrés." size="17" type="float8" typeCode="8"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="26" name="_observation" nullable="true" remarks="Observations diverses sur l'objet. Texte libre." size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="raepa_apparaep_p_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="raepa_apparaep_p_geom_idx" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_apparaep_p_idappareil_idx" unique="false">
+            <column ascending="true" name="idappareil"/>
+         </index>
+         <index name="raepa_apparaep_p_idappareil_key" unique="true">
+            <column ascending="true" name="idappareil"/>
+         </index>
+         <index name="raepa_apparaep_p_idcanamont_idx" unique="false">
+            <column ascending="true" name="idcanamont"/>
+         </index>
+         <index name="raepa_apparaep_p_idcanaval_idx" unique="false">
+            <column ascending="true" name="idcanaval"/>
+         </index>
+         <index name="raepa_apparaep_p_idcanppale_idx" unique="false">
+            <column ascending="true" name="idcanppale"/>
+         </index>
+         <index name="raepa_apparaep_p_idouvrage_idx" unique="false">
+            <column ascending="true" name="idouvrage"/>
+         </index>
+      </table>
+      <table name="raepa_apparass_p" numRows="0" remarks="Table des appareillages du réseau d'assainissement collectif" schema="raepa" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('raepa.raepa_apparass_p_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idappareil" nullable="false" remarks="Identifiant de l'appareillage" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="2" name="x" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="3" name="y" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="mouvrage" nullable="false" remarks="Maître d'ouvrage du réseau" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="gexploit" nullable="false" remarks="Gestionnaire exploitant du réseau" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="typreseau" nullable="false" remarks="Type du réseau d'assainissement collectif&#10;Codes de la table VAL_RAEPA_TYP_RESEAU_ASS" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_apparass_p_typreseau_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_typ_reseau_ass"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="fnappass" nullable="false" remarks="Fonction de l'appareillage d'assainissement collectif&#10;Codes de la table VAL_RAEPA_FONC_APP_ASS" size="22" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_apparass_p_fnappass_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_fonc_app_ass"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="andebpose" nullable="true" remarks="Année marquant le début de la période de mise en service de&#10;l'appareillage" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="anfinpose" nullable="false" remarks="Année marquant la fin de la période de mise en service de&#10;l'appareillage" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="diametre" nullable="false" remarks="Diamètre nominal de l'appareillage (en millimètres)" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="idcanamont" nullable="false" remarks="Identifiant de la canalisation d'amont de l'appareillage (clé&#10;étrangère)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="idcanaval" nullable="false" remarks="Identifiant de la canalisation d'aval de l'appareillage (clé&#10;étrangère)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="idcanppale" nullable="true" remarks="Identifiant de la canalisation principale (clé étrangère)" size="254" type="varchar" typeCode="12">
+            <parent column="idcana" foreignKey="raepa_apparass_p_idcanppale_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="idouvrage" nullable="true" remarks="Identifiant de l'ouvrage d'accueil (clé étrangère)" size="254" type="varchar" typeCode="12">
+            <parent column="idouvrage" foreignKey="raepa_apparass_p_idouvrage_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_ouvrass_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="15" name="z" nullable="true" remarks="Altitude (en mètres, référentiel NGF-IGN69)" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="qualglocxy" nullable="false" remarks="Qualité de la géolocalisation planimétrique (XY)&#10;Codes de la table VAL_RAEPA_QUALITE_GEOLOC" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_apparass_p_qualglocxy_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_geoloc"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="qualglocz" nullable="false" remarks="Qualité de la géolocalisation altimétrique (Z)&#10;Codes de la table VAL_RAEPA_QUALITE_GEOLOC" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_apparass_p_qualglocz_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_geoloc"/>
+         </column>
+         <column autoUpdated="false" defaultValue="now()" digits="0" id="18" name="datemaj" nullable="false" remarks="Date de la dernière mise à jour des informations" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="sourmaj" nullable="false" remarks="Source de la mise à jour" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="qualannee" nullable="true" remarks="Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de&#10;mise en service&#10;Codes de la table VAL_RAEPA_QUALITE_ANPOSE" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_apparass_p_qualannee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_anpose"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="dategeoloc" nullable="true" remarks="Date de la géolocalisation" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="sourgeoloc" nullable="true" remarks="Auteur de la géolocalisation" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="sourattrib" nullable="true" remarks="Auteur de la saisie des données attributaires (lorsque différent&#10;de l'auteur de la géolocalisation)" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="_source_historique" nullable="true" remarks="Source de la donnée ( si2g ou geomap)" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="25" name="_code_chantier" nullable="true" remarks="Code du chantier, qui doit être explicite et unique entre les chantiers. Par ex : SOISSONS-PL REPUBLIQUE-2018" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="26" name="_date_import" nullable="true" remarks="Date de l'import" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="27" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="_temp_data" nullable="true" remarks="Champ pour ajouter des données temporaires pendant l'import" size="2147483647" type="hstore" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="29" name="_observation" nullable="true" remarks="Observations diverses sur l'objet. Texte libre." size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="raepa_apparass_p_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="raepa_apparass_p_geom_idx" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_apparass_p_geom_idx1" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_apparass_p_idappareil_idx" unique="false">
+            <column ascending="true" name="idappareil"/>
+         </index>
+         <index name="raepa_apparass_p_idappareil_key" unique="true">
+            <column ascending="true" name="idappareil"/>
+         </index>
+         <index name="raepa_apparass_p_idcanamont_idx" unique="false">
+            <column ascending="true" name="idcanamont"/>
+         </index>
+         <index name="raepa_apparass_p_idcanaval_idx" unique="false">
+            <column ascending="true" name="idcanaval"/>
+         </index>
+         <index name="raepa_apparass_p_idcanppale_idx" unique="false">
+            <column ascending="true" name="idcanppale"/>
+         </index>
+         <index name="raepa_apparass_p_idouvrage_idx" unique="false">
+            <column ascending="true" name="idouvrage"/>
+         </index>
+      </table>
+      <table name="raepa_canalaep_l" numRows="0" remarks="Table des éléments linéaires du réseau d'AEP" schema="raepa" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('raepa.raepa_canalaep_l_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idcana" nullable="false" remarks="Identifiant de la canalisation (code textuel)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="mouvrage" nullable="false" remarks="Maître d'ouvrage du réseau" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="gexploit" nullable="false" remarks="Gestionnaire exploitant du réseau" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="enservice" nullable="false" remarks="Canalisation en service / Canalisation abandonnée&#10;O / N" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="branchemnt" nullable="false" remarks="Canalisation de branchement individuel : O&#10;Canalisation de transport ou de distribution : N" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="materiau" nullable="false" remarks="Matériau de la canalisation d'adduction d'eau potable&#10;Codes de la table VAL_RAEPA_MATERIAU" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalaep_l_materiau_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_materiau"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="diametre" nullable="false" remarks="Diamètre nominal de la canalisation (en millimètres)" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="anfinpose" nullable="false" remarks="Année marquant la fin de la période de pose de la canalisation" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="modecirc" nullable="false" remarks="Mode de circulation de l'eau à l'intérieur de la canalisation&#10;Codes de la table VAL_RAEPA_MODE_CIRCULATION" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalaep_l_modecirc_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_mode_circulation"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="contcanaep" nullable="false" remarks="Catégorie de la canalisation d'adduction d'eau potable&#10;Codes de la table VAL_RAEPA_CAT_CANAL_AE" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalaep_l_contcanaep_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_cat_canal_ae"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="fonccanaep" nullable="false" remarks="Fonction de la canalisation d'adduction d'eau potable&#10;Codes de la table VAL_RAEPA_FONC_CANAL_AE" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalaep_l_fonccanaep_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_fonc_canal_ae"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="idnini" nullable="false" remarks="Identifiant du nœud de début de la canalisation (clé étrangère)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="idnterm" nullable="false" remarks="Identifiant du nœud de fin de la canalisation (clé étrangère)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="idcanppale" nullable="true" remarks="Identifiant de la canalisation principale (clé étrangère)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="15" name="profgen" nullable="true" remarks="Profondeur moyenne de la génératrice supérieure de la&#10;canalisation" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="andebpose" nullable="true" remarks="Année marquant le début de la période de pose de la&#10;canalisation" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="longcana" nullable="true" remarks="Longueur mesurée de canalisation (en mètres)" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="18" name="_longcana_cm" nullable="true" remarks="Longueur calculée de canalisation projetée (en mètres avec une précision centimétrique)" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="19" name="_longcana_reelle" nullable="true" remarks="Longueur calculée de canalisation réelle, en prenant en compte la pente (précision cm)" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="nbranche" nullable="true" remarks="Nombre de branchements individuels sur la canalisation&#10;d'adduction d'eau potable" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="qualglocxy" nullable="false" remarks="Qualité de la géolocalisation planimétrique (XY)&#10;Codes de la table VAL_RAEPA_QUALITE_GEOLOC" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalaep_l_qualglocxy_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_geoloc"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="qualglocz" nullable="false" remarks="Qualité de la géolocalisation altimétrique (Z)&#10;Codes de la table VAL_RAEPA_QUALITE_GEOLOC" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalaep_l_qualglocz_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_geoloc"/>
+         </column>
+         <column autoUpdated="false" defaultValue="now()" digits="0" id="23" name="datemaj" nullable="false" remarks="Date de la dernière mise à jour des informations" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="sourmaj" nullable="false" remarks="Source de la mise à jour" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="25" name="qualannee" nullable="true" remarks="Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de&#10;pose&#10;Codes de la table VAL_RAEPA_QUALITE_ANPOSE" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalaep_l_qualannee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_anpose"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="26" name="dategeoloc" nullable="true" remarks="Date de la géolocalisation" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="27" name="sourgeoloc" nullable="true" remarks="Auteur de la géolocalisation" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="sourattrib" nullable="true" remarks="Auteur de la saisie des données attributaires (lorsque différent&#10;de l'auteur de la géolocalisation)" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="29" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="30" name="_observation" nullable="true" remarks="Observations diverses sur l'objet. Texte libre." size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="raepa_canalaep_l_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="raepa_canalaep_l_geom_idx" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_canalaep_l_geom_idx1" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_canalaep_l_idcana_idx" unique="false">
+            <column ascending="true" name="idcana"/>
+         </index>
+         <index name="raepa_canalaep_l_idcana_key" unique="true">
+            <column ascending="true" name="idcana"/>
+         </index>
+         <index name="raepa_canalaep_l_idcanppale_idx" unique="false">
+            <column ascending="true" name="idcanppale"/>
+         </index>
+         <index name="raepa_canalaep_l_idnini_idx" unique="false">
+            <column ascending="true" name="idnini"/>
+         </index>
+         <index name="raepa_canalaep_l_idnterm_idx" unique="false">
+            <column ascending="true" name="idnterm"/>
+         </index>
+         <index name="raepa_canalaep_l_st_endpoint_idx" unique="false"/>
+         <index name="raepa_canalaep_l_st_endpoint_idx1" unique="false"/>
+         <index name="raepa_canalaep_l_st_startpoint_idx" unique="false"/>
+         <index name="raepa_canalaep_l_st_startpoint_idx1" unique="false"/>
+      </table>
+      <table name="raepa_canalass_l" numRows="0" remarks="Table des éléments linéaires du réseau d'assainissement collectif" schema="raepa" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('raepa.raepa_canalass_l_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idcana" nullable="false" remarks="Identifiant de la canalisation" size="254" type="varchar" typeCode="12">
+            <child column="idcanppale" foreignKey="raepa_apparass_p_idcanppale_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_apparass_p"/>
+            <child column="idcanppale" foreignKey="raepa_ouvrass_p_idcanppale_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_ouvrass_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="mouvrage" nullable="false" remarks="Maître d'ouvrage du réseau" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="gexploit" nullable="false" remarks="Gestionnaire exploitant du réseau" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="enservice" nullable="false" remarks="Canalisation en service / Canalisation abandonnée&#10;O / N" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="branchemnt" nullable="false" remarks="Canalisation de branchement individuel : O&#10;Canalisation de transport ou collecte : N" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="typreseau" nullable="false" remarks="Type du réseau d'assainissement collectif&#10;Codes de la table VAL_RAEPA_TYP_RESEAU_ASS" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalass_l_typreseau_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_typ_reseau_ass"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="materiau" nullable="false" remarks="Matériau de la canalisation d'assainissement collectif&#10;Codes de la table VAL_RAEPA_MATERIAU" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalass_l_materiau_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_materiau"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="diametre" nullable="false" remarks="Diamètre nominal de la canalisation (en millimètres)" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="_dimensionhorizontale" nullable="true" remarks="Dimension horizontale (complète le diamètre nominal qui est la dimension verticale)" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="_forme" nullable="true" remarks="Forme de la canalisation (cylindrique, ovoïde, etc)" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalass_l__forme_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="_val_raepa_forme_canal_ass"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="_etat" nullable="true" remarks="Etat de la canalisation" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalass_l__etat_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="_val_raepa_etat_canal_ass"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="anfinpose" nullable="false" remarks="Année marquant la fin de la période de pose de la canalisation" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="modecirc" nullable="false" remarks="Mode de circulation de l'eau à l'intérieur de la canalisation&#10;Codes de la table VAL_RAEPA_MODE_CIRCULATION" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalass_l_modecirc_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_mode_circulation"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="contcanass" nullable="false" remarks="Catégorie de la canalisation d'assainissement collectif&#10;Codes de la table VAL_RAEPA_CAT_CANAL_ASS" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalass_l_contcanass_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_cat_canal_ass"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="fonccanass" nullable="false" remarks="Fonction de la canalisation d'assainissement collectif&#10;Codes de la table VAL_RAEPA_FONC_CANAL_ASS" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalass_l_fonccanass_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_fonc_canal_ass"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="idnini" nullable="false" remarks="Identifiant du nœud de début de la canalisation (clé étrangère)" size="254" type="varchar" typeCode="12">
+            <parent column="idouvrage" foreignKey="raepa_canalass_l_idnini_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_ouvrass_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="idnterm" nullable="false" remarks="Identifiant du nœud de fin de la canalisation (clé étrangère)" size="254" type="varchar" typeCode="12">
+            <parent column="idouvrage" foreignKey="raepa_canalass_l_idnterm_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_ouvrass_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="idcanppale" nullable="true" remarks="Identifiant de la canalisation principale (clé étrangère)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="19" name="zamont" nullable="true" remarks="Altitude à l'extrémité amont (en mètres, Référentiel NGF-&#10;IGN69)" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="20" name="zaval" nullable="true" remarks="Altitude à l'extrémité aval (en mètres, Référentiel NGF-IGN69)" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="sensecoul" nullable="true" remarks="Sens de l'écoulement dans la canalisation d'assainissement&#10;collectif&#10;0 (nœud terminal → nœud initial) • 1 (nœud initial → nœud&#10;terminal)" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="andebpose" nullable="true" remarks="Année marquant le début de la période de pose de la&#10;canalisation" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="_precisionannee" nullable="true" remarks="Précision des années de fin et début de pose" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalass_l__precisionannee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="_val_raepa_precision_annee"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="longcana" nullable="true" remarks="Longueur mesurée de canalisation (en mètres)" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="25" name="_longcana_cm" nullable="true" remarks="Longueur calculée de canalisation projetée (en mètres avec une précision centimétrique)" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="26" name="_longcana_reelle" nullable="true" remarks="Longueur calculée de canalisation réelle, en prenant en compte la pente (précision cm)" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="27" name="_pente" nullable="true" remarks="Pente de la canalisation (en %)" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="nbranche" nullable="true" remarks="Nombre de branchements individuels sur la canalisation&#10;d'assainissement collectif" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="29" name="qualglocxy" nullable="false" remarks="Qualité de la géolocalisation planimétrique (XY)&#10;Codes de la table VAL_RAEPA_QUALITE_GEOLOC" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalass_l_qualglocxy_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_geoloc"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="30" name="qualglocz" nullable="false" remarks="Qualité de la géolocalisation altimétrique (Z)&#10;Codes de la table VAL_RAEPA_QUALITE_GEOLOC" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalass_l_qualglocz_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_geoloc"/>
+         </column>
+         <column autoUpdated="false" defaultValue="now()" digits="0" id="31" name="datemaj" nullable="false" remarks="Date de la dernière mise à jour des informations" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="32" name="sourmaj" nullable="false" remarks="Source de la mise à jour" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="33" name="qualannee" nullable="true" remarks="Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de&#10;pose&#10;Codes de la table VAL_RAEPA_QUALITE_ANPOSE" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_canalass_l_qualannee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_anpose"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="34" name="dategeoloc" nullable="true" remarks="Date de la géolocalisation" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="35" name="sourgeoloc" nullable="true" remarks="Auteur de la géolocalisation" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="36" name="sourattrib" nullable="true" remarks="Auteur de la saisie des données attributaires (lorsque différent&#10;de l'auteur de la géolocalisation)" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="37" name="_source_historique" nullable="true" remarks="Source de la donnée ( si2g ou geomap)" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="38" name="_code_chantier" nullable="true" remarks="Code du chantier, qui doit être explicite et unique entre les chantiers. Par ex : SOISSONS-PL REPUBLIQUE-2018" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="39" name="_date_import" nullable="true" remarks="Date de l'import" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="40" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="41" name="_temp_data" nullable="true" remarks="Champ pour ajouter des données temporaires pendant l'import" size="2147483647" type="hstore" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="42" name="_observation" nullable="true" remarks="Observations diverses sur l'objet. Texte libre." size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="raepa_canalass_l_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="raepa_canalass_l_endpoint_geom_idx" unique="false"/>
+         <index name="raepa_canalass_l_geom_idx" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_canalass_l_geom_idx1" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_canalass_l_idcana_idx" unique="false">
+            <column ascending="true" name="idcana"/>
+         </index>
+         <index name="raepa_canalass_l_idcana_key" unique="true">
+            <column ascending="true" name="idcana"/>
+         </index>
+         <index name="raepa_canalass_l_idcanppale_idx" unique="false">
+            <column ascending="true" name="idcanppale"/>
+         </index>
+         <index name="raepa_canalass_l_idnini_idx" unique="false">
+            <column ascending="true" name="idnini"/>
+         </index>
+         <index name="raepa_canalass_l_idnterm_idx" unique="false">
+            <column ascending="true" name="idnterm"/>
+         </index>
+         <index name="raepa_canalass_l_startpoint_geom_idx" unique="false"/>
+      </table>
+      <table name="raepa_ouvraep_p" numRows="0" remarks="Table des ouvrages du réseau d'AEP" schema="raepa" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('raepa.raepa_ouvraep_p_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idouvrage" nullable="false" remarks="Identifiant de l'ouvrage" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="2" name="x" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="3" name="y" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="mouvrage" nullable="false" remarks="Maître d'ouvrage du réseau" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="gexploit" nullable="false" remarks="Gestionnaire exploitant du réseau" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="fnouvaep" nullable="false" remarks="Fonction de l'ouvrage d'adduction d'eau potable&#10;Codes de la table VAL_RAEPA_FONC_OUV_AE" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_ouvraep_p_fnouvaep_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_fonc_ouv_ae"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="anfinpose" nullable="false" remarks="Année marquant la fin de la période de mise en service de&#10;l'ouvrage" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="idcanamont" nullable="false" remarks="Identifiants des canalisations d'amont de l'ouvrage (clés&#10;étrangères)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="idcanaval" nullable="false" remarks="Identifiants des canalisations d'aval de l'ouvrage (clés&#10;étrangères)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="idcanppale" nullable="true" remarks="Identifiant de la canalisation principale (clé étrangère)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="11" name="z" nullable="true" remarks="Altitude (en mètres, référentiel NGF-IGN69)" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="andebpose" nullable="true" remarks="Année marquant le début de la période de mise en service de&#10;l'ouvrage" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="qualglocxy" nullable="false" remarks="Qualité de la géolocalisation planimétrique (XY)&#10;Codes de la table VAL_RAEPA_QUALITE_GEOLOC" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_ouvraep_p_qualglocxy_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_geoloc"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="qualglocz" nullable="false" remarks="Qualité de la géolocalisation altimétrique (Z)&#10;Codes de la table VAL_RAEPA_QUALITE_GEOLOC" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_ouvraep_p_qualglocz_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_geoloc"/>
+         </column>
+         <column autoUpdated="false" defaultValue="now()" digits="0" id="15" name="datemaj" nullable="false" remarks="Date de la dernière mise à jour des informations" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="sourmaj" nullable="false" remarks="Source de la mise à jour" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="qualannee" nullable="true" remarks="Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de&#10;mise en service&#10;Codes de la table VAL_RAEPA_QUALITE_ANPOSE" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_ouvraep_p_qualannee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_anpose"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="dategeoloc" nullable="true" remarks="Date de la géolocalisation" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="sourgeoloc" nullable="true" remarks="Auteur de la géolocalisation" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="sourattrib" nullable="true" remarks="Auteur de la saisie des données attributaires (lorsque différent&#10;de l'auteur de la géolocalisation)" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="_observation" nullable="true" remarks="Observations diverses sur l'objet. Texte libre." size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="raepa_ouvraep_p_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="raepa_ouvraep_p_geom_idx" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_ouvraep_p_geom_idx1" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_ouvraep_p_idcanamont_idx" unique="false">
+            <column ascending="true" name="idcanamont"/>
+         </index>
+         <index name="raepa_ouvraep_p_idcanaval_idx" unique="false">
+            <column ascending="true" name="idcanaval"/>
+         </index>
+         <index name="raepa_ouvraep_p_idcanppale_idx" unique="false">
+            <column ascending="true" name="idcanppale"/>
+         </index>
+         <index name="raepa_ouvraep_p_idouvrage_idx" unique="false">
+            <column ascending="true" name="idouvrage"/>
+         </index>
+         <index name="raepa_ouvraep_p_idouvrage_key" unique="true">
+            <column ascending="true" name="idouvrage"/>
+         </index>
+      </table>
+      <table name="raepa_ouvrass_p" numRows="0" remarks="Table des ouvrages du réseau d'assainissement collectif" schema="raepa" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('raepa.raepa_ouvrass_p_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idouvrage" nullable="false" remarks="Identifiant de l'ouvrage" size="254" type="varchar" typeCode="12">
+            <child column="idouvrage" foreignKey="raepa_apparass_p_idouvrage_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_apparass_p"/>
+            <child column="idnini" foreignKey="raepa_canalass_l_idnini_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+            <child column="idnterm" foreignKey="raepa_canalass_l_idnterm_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="2" name="x" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="3" name="y" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="mouvrage" nullable="false" remarks="Maître d'ouvrage du réseau" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="gexploit" nullable="false" remarks="Gestionnaire exploitant du réseau" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="typreseau" nullable="false" remarks="Type du réseau d'assainissement collectif&#10;Codes de la table VAL_RAEPA_TYP_RESEAU_ASS" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_ouvrass_p_typreseau_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_typ_reseau_ass"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="fnouvass" nullable="false" remarks="Fonction de l'ouvrage d'assainissement collectif&#10;Codes de la table VAL_RAEPA_FONC_OUV_ASS" size="30" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_ouvrass_p_fnouvass_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_fonc_ouv_ass"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="anfinpose" nullable="false" remarks="Année marquant la fin de la période de mise en service de&#10;l'ouvrage" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="idcanamont" nullable="false" remarks="Identifiants des canalisations d'amont de l'ouvrage (clés&#10;étrangères)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="idcanaval" nullable="false" remarks="Identifiants des canalisations d'aval de l'ouvrage (clés&#10;étrangères)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="idcanppale" nullable="true" remarks="Identifiant de la canalisation principale (clé étrangère)" size="254" type="varchar" typeCode="12">
+            <parent column="idcana" foreignKey="raepa_ouvrass_p_idcanppale_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="12" name="z" nullable="true" remarks="Altitude (en mètres, référentiel NGF-IGN69)" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="13" name="_ztampon" nullable="true" remarks="Altitude du tampon (en mètres, référentiel NGF-IGN69)" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="8" id="14" name="_angletampon" nullable="true" remarks="Angle du tampon" size="8" type="float4" typeCode="7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="andebpose" nullable="true" remarks="Année marquant le début de la période de mise en service de&#10;l'ouvrage" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="qualglocxy" nullable="false" remarks="Qualité de la géolocalisation planimétrique (XY)&#10;Codes de la table VAL_RAEPA_QUALITE_GEOLOC" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_ouvrass_p_qualglocxy_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_geoloc"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="qualglocz" nullable="false" remarks="Qualité de la géolocalisation altimétrique (Z)&#10;Codes de la table VAL_RAEPA_QUALITE_GEOLOC" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_ouvrass_p_qualglocz_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_geoloc"/>
+         </column>
+         <column autoUpdated="false" defaultValue="now()" digits="0" id="18" name="datemaj" nullable="false" remarks="Date de la dernière mise à jour des informations" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="sourmaj" nullable="false" remarks="Source de la mise à jour" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="qualannee" nullable="true" remarks="Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de&#10;mise en service&#10;Codes de la table VAL_RAEPA_QUALITE_ANPOSE" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_ouvrass_p_qualannee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_qualite_anpose"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="dategeoloc" nullable="true" remarks="Date de la géolocalisation" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="sourgeoloc" nullable="true" remarks="Auteur de la géolocalisation" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="sourattrib" nullable="true" remarks="Auteur de la saisie des données attributaires (lorsque différent&#10;de l'auteur de la géolocalisation)" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="_source_historique" nullable="true" remarks="Source de la donnée ( si2g ou geomap)" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="25" name="_code_chantier" nullable="true" remarks="Code du chantier, qui doit être explicite et unique entre les chantiers. Par ex : SOISSONS-PL REPUBLIQUE-2018" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="26" name="_date_import" nullable="true" remarks="Date de l'import" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="27" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="_geom_emprise" nullable="true" remarks="Emprise de l’ouvrage (polygone). Optionnel" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="29" name="_temp_data" nullable="true" remarks="Champ pour ajouter des données temporaires pendant l'import" size="2147483647" type="hstore" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="30" name="_observation" nullable="true" remarks="Observations diverses sur l'objet. Texte libre." size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="raepa_ouvrass_p_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="raepa_ouvrass_p_geom_idx" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_ouvrass_p_geom_idx1" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_ouvrass_p_idcanamont_idx" unique="false">
+            <column ascending="true" name="idcanamont"/>
+         </index>
+         <index name="raepa_ouvrass_p_idcanaval_idx" unique="false">
+            <column ascending="true" name="idcanaval"/>
+         </index>
+         <index name="raepa_ouvrass_p_idcanppale_idx" unique="false">
+            <column ascending="true" name="idcanppale"/>
+         </index>
+         <index name="raepa_ouvrass_p_idouvrage_idx" unique="false">
+            <column ascending="true" name="idouvrage"/>
+         </index>
+         <index name="raepa_ouvrass_p_idouvrage_key" unique="true">
+            <column ascending="true" name="idouvrage"/>
+         </index>
+      </table>
+      <table name="raepa_reparaep_p" numRows="0" remarks="Table des interventions en réparation sur les éléments du réseau d'AEP" schema="raepa" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('raepa.raepa_reparaep_p_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="raepa.generate_oid('raepa_reparaep_p'::text)" digits="0" id="1" name="idrepar" nullable="false" remarks="Identifiant de la réparation effectuée" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="2" name="x" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="3" name="y" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="supprepare" nullable="false" remarks="Type du support de la réparation&#10;Codes de la table VAL_RAEPA_SUPPORT_REPARATION" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_reparaep_p_supprepare_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_support_reparation"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="defreparee" nullable="false" remarks="Type de la défaillance réparée&#10;Codes de la table VAL_RAEPA_TYPE_DEFAILLANCE" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_reparaep_p_defreparee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_type_defaillance"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="idsuprepar" nullable="false" remarks="Identifiant du support de la réparation (clé étrangère)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="daterepar" nullable="true" remarks="Date de l'intervention en réparation" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="mouvrage" nullable="true" remarks="Maître d'ouvrage de la réparation" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry" typeCode="1111"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="raepa_reparaep_p_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="raepa_reparaep_p_geom_idx" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_reparaep_p_geom_idx1" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_reparaep_p_idrepar_idx" unique="false">
+            <column ascending="true" name="idrepar"/>
+         </index>
+         <index name="raepa_reparaep_p_idrepar_key" unique="true">
+            <column ascending="true" name="idrepar"/>
+         </index>
+         <index name="raepa_reparaep_p_idsuprepar_idx" unique="false">
+            <column ascending="true" name="idsuprepar"/>
+         </index>
+      </table>
+      <table name="raepa_reparass_p" numRows="0" remarks="Table des interventions en réparation sur les éléments du réseau d'assainissement collectif" schema="raepa" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('raepa.raepa_reparass_p_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant numérique auto (clé primaire)" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="raepa.generate_oid('raepa_reparass_p'::text)" digits="0" id="1" name="idrepar" nullable="false" remarks="Identifiant de la réparation effectuée" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="2" name="x" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="3" name="y" nullable="false" remarks="Coordonnée X Lambert 93 (en mètres)" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="supprepare" nullable="false" remarks="Type du support de la réparation&#10;Codes de la table VAL_RAEPA_SUPPORT_REPARATION" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_reparass_p_supprepare_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_support_reparation"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="defreparee" nullable="false" remarks="Type de la défaillance réparée&#10;Codes de la table VAL_RAEPA_TYPE_DEFAILLANCE" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_reparass_p_defreparee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="val_raepa_type_defaillance"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="idsuprepar" nullable="false" remarks="Identifiant du support de la réparation (clé étrangère)" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="daterepar" nullable="true" remarks="Date de l'intervention en réparation" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="mouvrage" nullable="true" remarks="Maître d'ouvrage de la réparation" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="_typeintervention" nullable="false" remarks="Type d’intervention : réparation, curage, inspection" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_reparass_p__typeintervention_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="_val_raepa_type_intervention_ass"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="_dateprevue" nullable="true" remarks="Date d’intervention prévue" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="_etatcanalisation" nullable="true" remarks="Etat de la canalisation à la date d’intervention" size="2" type="varchar" typeCode="12">
+            <parent column="code" foreignKey="raepa_reparass_p__etatcanalisation_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="_val_raepa_etat_canal_ass"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="_frequencecuragepreventif" nullable="true" remarks="Fréquence du curage préventif en mois" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="_idinterventionparent" nullable="true" remarks="Identifiant de l’intervention parente, par exemple si le parent est un curage préventif qui entraîne une réparation" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="geom" nullable="false" remarks="Géométrie" size="2147483647" type="geometry" typeCode="1111"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="raepa_reparass_p_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="raepa_reparass_p_geom_idx" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_reparass_p_geom_idx1" unique="false">
+            <column ascending="true" name="geom"/>
+         </index>
+         <index name="raepa_reparass_p_idrepar_idx" unique="false">
+            <column ascending="true" name="idrepar"/>
+         </index>
+         <index name="raepa_reparass_p_idrepar_key" unique="true">
+            <column ascending="true" name="idrepar"/>
+         </index>
+         <index name="raepa_reparass_p_idsuprepar_idx" unique="false">
+            <column ascending="true" name="idsuprepar"/>
+         </index>
+         <index name="raepa_reparass_p_mouvrage_idx" unique="false">
+            <column ascending="true" name="mouvrage"/>
+         </index>
+      </table>
+      <table name="sys_liste_table" numRows="32" remarks="Liste les tables du schéma RAEPA" schema="raepa" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('raepa.sys_liste_table_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nom" nullable="false" remarks="Nom de la table dans la base de données" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="code" nullable="false" remarks="Code en 3 caractères, par exemple can pour les canalisations" size="3" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="typereseau" nullable="false" remarks="Type de réseau : AEP ou ASS" size="3" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="cleprimaire" nullable="false" remarks="Clé primaire" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="libelle" nullable="false" remarks="Libellé (utilisable dans QGIS par exemple)" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="commentaire" nullable="true" remarks="Commentaire sur la table" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="sys_liste_table_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="sys_organisme_gestionnaire" numRows="0" remarks="Informations sur l’organisme gestionnaire" schema="raepa" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('raepa.sys_organisme_gestionnaire_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="nom" nullable="false" remarks="Nom de l’organisme gestionnaire" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="siren" nullable="false" remarks="SIREN. Code SIREN, ex 240200477 pour la CAS" size="9" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="code" nullable="false" remarks="Nom abbrégé en 3 caractères. Exemple : CAS pour la Communauté d’agglomération du Soissonnais" size="3" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="true" digits="0" id="4" name="actif" nullable="false" remarks="Si il est actif (le dernier l’emporte dans les calculs d’identifiants)" size="1" type="bool" typeCode="-7"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="sys_organisme_gestionnaire_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="sys_structure_metadonnee" numRows="0" remarks="Métadonnées sur la structure de la bdd : numéro de version, date, etc." schema="raepa" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('raepa.sys_structure_metadonnee_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="Identifiant" size="10" type="serial" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="'2019-08-15'::date" digits="0" id="1" name="date_ajout" nullable="false" remarks="Date d’ajout" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="version" nullable="false" remarks="Version de la structure du schéma RAEPA" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="sys_structure_metadonnee_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="v_canalisation_avec_z_manquant" numRows="0" remarks="" schema="raepa" type="VIEW" viewSql=" SELECT raepa_canalass_l.id,&#10;    raepa_canalass_l.idcana,&#10;    raepa_canalass_l.mouvrage,&#10;    raepa_canalass_l.gexploit,&#10;    raepa_canalass_l.enservice,&#10;    raepa_canalass_l.branchemnt,&#10;    raepa_canalass_l.typreseau,&#10;    raepa_canalass_l.materiau,&#10;    raepa_canalass_l.diametre,&#10;    raepa_canalass_l._dimensionhorizontale,&#10;    raepa_canalass_l._forme,&#10;    raepa_canalass_l._etat,&#10;    raepa_canalass_l.anfinpose,&#10;    raepa_canalass_l.modecirc,&#10;    raepa_canalass_l.contcanass,&#10;    raepa_canalass_l.fonccanass,&#10;    raepa_canalass_l.idnini,&#10;    raepa_canalass_l.idnterm,&#10;    raepa_canalass_l.idcanppale,&#10;    raepa_canalass_l.zamont,&#10;    raepa_canalass_l.zaval,&#10;    raepa_canalass_l.sensecoul,&#10;    raepa_canalass_l.andebpose,&#10;    raepa_canalass_l._precisionannee,&#10;    raepa_canalass_l.longcana,&#10;    raepa_canalass_l._longcana_cm,&#10;    raepa_canalass_l._longcana_reelle,&#10;    raepa_canalass_l._pente,&#10;    raepa_canalass_l.nbranche,&#10;    raepa_canalass_l.qualglocxy,&#10;    raepa_canalass_l.qualglocz,&#10;    raepa_canalass_l.datemaj,&#10;    raepa_canalass_l.sourmaj,&#10;    raepa_canalass_l.qualannee,&#10;    raepa_canalass_l.dategeoloc,&#10;    raepa_canalass_l.sourgeoloc,&#10;    raepa_canalass_l.sourattrib,&#10;    raepa_canalass_l._source_historique,&#10;    raepa_canalass_l._code_chantier,&#10;    raepa_canalass_l._date_import,&#10;    raepa_canalass_l.geom,&#10;    raepa_canalass_l._temp_data&#10;   FROM raepa.raepa_canalass_l&#10;  WHERE (COALESCE(raepa_canalass_l.zamont, (0)::numeric) = (0)::numeric);">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idcana" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="mouvrage" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="gexploit" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="enservice" nullable="true" remarks="" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="branchemnt" nullable="true" remarks="" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="typreseau" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="materiau" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="diametre" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="_dimensionhorizontale" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="_forme" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="_etat" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="anfinpose" nullable="true" remarks="" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="modecirc" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="contcanass" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="fonccanass" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="idnini" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="idnterm" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="idcanppale" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="19" name="zamont" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="20" name="zaval" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="sensecoul" nullable="true" remarks="" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="andebpose" nullable="true" remarks="" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="_precisionannee" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="longcana" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="25" name="_longcana_cm" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="26" name="_longcana_reelle" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="27" name="_pente" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="nbranche" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="29" name="qualglocxy" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="30" name="qualglocz" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="31" name="datemaj" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="32" name="sourmaj" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="33" name="qualannee" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="34" name="dategeoloc" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="35" name="sourgeoloc" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="36" name="sourattrib" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="37" name="_source_historique" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="38" name="_code_chantier" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="39" name="_date_import" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="40" name="geom" nullable="true" remarks="" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="41" name="_temp_data" nullable="true" remarks="" size="2147483647" type="hstore" typeCode="1111"/>
+      </table>
+      <table name="v_canalisation_avec_zaval_manquant" numRows="0" remarks="" schema="raepa" type="VIEW" viewSql=" SELECT raepa_canalass_l.id,&#10;    raepa_canalass_l.idcana,&#10;    raepa_canalass_l.mouvrage,&#10;    raepa_canalass_l.gexploit,&#10;    raepa_canalass_l.enservice,&#10;    raepa_canalass_l.branchemnt,&#10;    raepa_canalass_l.typreseau,&#10;    raepa_canalass_l.materiau,&#10;    raepa_canalass_l.diametre,&#10;    raepa_canalass_l._dimensionhorizontale,&#10;    raepa_canalass_l._forme,&#10;    raepa_canalass_l._etat,&#10;    raepa_canalass_l.anfinpose,&#10;    raepa_canalass_l.modecirc,&#10;    raepa_canalass_l.contcanass,&#10;    raepa_canalass_l.fonccanass,&#10;    raepa_canalass_l.idnini,&#10;    raepa_canalass_l.idnterm,&#10;    raepa_canalass_l.idcanppale,&#10;    raepa_canalass_l.zamont,&#10;    raepa_canalass_l.zaval,&#10;    raepa_canalass_l.sensecoul,&#10;    raepa_canalass_l.andebpose,&#10;    raepa_canalass_l._precisionannee,&#10;    raepa_canalass_l.longcana,&#10;    raepa_canalass_l._longcana_cm,&#10;    raepa_canalass_l._longcana_reelle,&#10;    raepa_canalass_l._pente,&#10;    raepa_canalass_l.nbranche,&#10;    raepa_canalass_l.qualglocxy,&#10;    raepa_canalass_l.qualglocz,&#10;    raepa_canalass_l.datemaj,&#10;    raepa_canalass_l.sourmaj,&#10;    raepa_canalass_l.qualannee,&#10;    raepa_canalass_l.dategeoloc,&#10;    raepa_canalass_l.sourgeoloc,&#10;    raepa_canalass_l.sourattrib,&#10;    raepa_canalass_l._source_historique,&#10;    raepa_canalass_l._code_chantier,&#10;    raepa_canalass_l._date_import,&#10;    raepa_canalass_l.geom,&#10;    raepa_canalass_l._temp_data&#10;   FROM raepa.raepa_canalass_l&#10;  WHERE (COALESCE(raepa_canalass_l.zaval, (0)::numeric) = (0)::numeric);">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idcana" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="mouvrage" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="gexploit" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="enservice" nullable="true" remarks="" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="branchemnt" nullable="true" remarks="" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="typreseau" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="materiau" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="diametre" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="_dimensionhorizontale" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="_forme" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="_etat" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="anfinpose" nullable="true" remarks="" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="modecirc" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="contcanass" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="fonccanass" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="idnini" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="idnterm" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="idcanppale" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="19" name="zamont" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="20" name="zaval" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="sensecoul" nullable="true" remarks="" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="andebpose" nullable="true" remarks="" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="_precisionannee" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="longcana" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="25" name="_longcana_cm" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="26" name="_longcana_reelle" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="27" name="_pente" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="nbranche" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="29" name="qualglocxy" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="30" name="qualglocz" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="31" name="datemaj" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="32" name="sourmaj" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="33" name="qualannee" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="34" name="dategeoloc" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="35" name="sourgeoloc" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="36" name="sourattrib" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="37" name="_source_historique" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="38" name="_code_chantier" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="39" name="_date_import" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="40" name="geom" nullable="true" remarks="" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="41" name="_temp_data" nullable="true" remarks="" size="2147483647" type="hstore" typeCode="1111"/>
+      </table>
+      <table name="v_canalisation_branchement" numRows="0" remarks="" schema="raepa" type="VIEW" viewSql=" SELECT r.id,&#10;    r.idcana,&#10;    r.mouvrage,&#10;    r.gexploit,&#10;    r.enservice,&#10;    r.branchemnt,&#10;    r.typreseau,&#10;    r.materiau,&#10;    r.diametre,&#10;    r._dimensionhorizontale,&#10;    r._forme,&#10;    r._etat,&#10;    r.anfinpose,&#10;    r.modecirc,&#10;    r.contcanass,&#10;    r.fonccanass,&#10;    r.idnini,&#10;    r.idnterm,&#10;    r.idcanppale,&#10;    r.zamont,&#10;    r.zaval,&#10;    r.sensecoul,&#10;    r.andebpose,&#10;    r._precisionannee,&#10;    r.longcana,&#10;    r._longcana_cm,&#10;    r._longcana_reelle,&#10;    r._pente,&#10;    r.nbranche,&#10;    r.qualglocxy,&#10;    r.qualglocz,&#10;    r.datemaj,&#10;    r.sourmaj,&#10;    r.qualannee,&#10;    r.dategeoloc,&#10;    r.sourgeoloc,&#10;    r.sourattrib,&#10;    r._source_historique,&#10;    r._code_chantier,&#10;    r._date_import,&#10;    r.geom,&#10;    r._temp_data&#10;   FROM (raepa.raepa_canalass_l r&#10;     JOIN raepa.raepa_ouvrass_p o ON ((((o.fnouvass)::text = '_2'::text) AND ((r.idnini)::text = (o.idouvrage)::text))));">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idcana" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="mouvrage" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="gexploit" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="enservice" nullable="true" remarks="" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="branchemnt" nullable="true" remarks="" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="typreseau" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="materiau" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="diametre" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="_dimensionhorizontale" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="_forme" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="_etat" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="anfinpose" nullable="true" remarks="" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="modecirc" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="contcanass" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="fonccanass" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="idnini" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="idnterm" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="idcanppale" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="19" name="zamont" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="20" name="zaval" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="sensecoul" nullable="true" remarks="" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="andebpose" nullable="true" remarks="" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="_precisionannee" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="longcana" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="25" name="_longcana_cm" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="26" name="_longcana_reelle" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="27" name="_pente" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="nbranche" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="29" name="qualglocxy" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="30" name="qualglocz" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="31" name="datemaj" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="32" name="sourmaj" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="33" name="qualannee" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="34" name="dategeoloc" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="35" name="sourgeoloc" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="36" name="sourattrib" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="37" name="_source_historique" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="38" name="_code_chantier" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="39" name="_date_import" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="40" name="geom" nullable="true" remarks="" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="41" name="_temp_data" nullable="true" remarks="" size="2147483647" type="hstore" typeCode="1111"/>
+      </table>
+      <table name="v_canalisation_sans_ouvrage" numRows="0" remarks="" schema="raepa" type="VIEW" viewSql=" SELECT r.id,&#10;    r.idcana,&#10;    r.mouvrage,&#10;    r.gexploit,&#10;    r.enservice,&#10;    r.branchemnt,&#10;    r.typreseau,&#10;    r.materiau,&#10;    r.diametre,&#10;    r._dimensionhorizontale,&#10;    r._forme,&#10;    r._etat,&#10;    r.anfinpose,&#10;    r.modecirc,&#10;    r.contcanass,&#10;    r.fonccanass,&#10;    r.idnini,&#10;    r.idnterm,&#10;    r.idcanppale,&#10;    r.zamont,&#10;    r.zaval,&#10;    r.sensecoul,&#10;    r.andebpose,&#10;    r._precisionannee,&#10;    r.longcana,&#10;    r._longcana_cm,&#10;    r._longcana_reelle,&#10;    r._pente,&#10;    r.nbranche,&#10;    r.qualglocxy,&#10;    r.qualglocz,&#10;    r.datemaj,&#10;    r.sourmaj,&#10;    r.qualannee,&#10;    r.dategeoloc,&#10;    r.sourgeoloc,&#10;    r.sourattrib,&#10;    r._source_historique,&#10;    r._code_chantier,&#10;    r._date_import,&#10;    r.geom,&#10;    r._temp_data&#10;   FROM raepa.raepa_canalass_l r&#10;  WHERE ((r.idnini IS NULL) OR (r.idnterm IS NULL));">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="idcana" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="mouvrage" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="gexploit" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="enservice" nullable="true" remarks="" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="branchemnt" nullable="true" remarks="" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="typreseau" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="materiau" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="diametre" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="_dimensionhorizontale" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="_forme" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="_etat" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="anfinpose" nullable="true" remarks="" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="modecirc" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="contcanass" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="fonccanass" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="idnini" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="idnterm" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="idcanppale" nullable="true" remarks="" size="254" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="19" name="zamont" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="3" id="20" name="zaval" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="sensecoul" nullable="true" remarks="" size="1" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="andebpose" nullable="true" remarks="" size="4" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="_precisionannee" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="longcana" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="25" name="_longcana_cm" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="26" name="_longcana_reelle" nullable="true" remarks="" size="7" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="27" name="_pente" nullable="true" remarks="" size="6" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="nbranche" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="29" name="qualglocxy" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="30" name="qualglocz" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="31" name="datemaj" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="32" name="sourmaj" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="33" name="qualannee" nullable="true" remarks="" size="2" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="34" name="dategeoloc" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="35" name="sourgeoloc" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="36" name="sourattrib" nullable="true" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="37" name="_source_historique" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="38" name="_code_chantier" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="39" name="_date_import" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="40" name="geom" nullable="true" remarks="" size="2147483647" type="geometry" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="41" name="_temp_data" nullable="true" remarks="" size="2147483647" type="hstore" typeCode="1111"/>
+      </table>
+      <table name="val_raepa_cat_canal_ae" numRows="4" remarks="Nomenclature pour la catégorie de canalisation AEP" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="contcanaep" foreignKey="raepa_canalaep_l_contcanaep_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalaep_l"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_cat_canal_ae_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="val_raepa_cat_canal_ass" numRows="5" remarks="Nomenclature pour la catégorie de canalisation ASS" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="contcanass" foreignKey="raepa_canalass_l_contcanass_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_cat_canal_ass_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="val_raepa_fonc_app_ae" numRows="10" remarks="Nomenclature pour la fonction des appareils AEP" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="fnappaep" foreignKey="raepa_apparaep_p_fnappaep_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_apparaep_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_fonc_app_ae_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="val_raepa_fonc_app_ass" numRows="6" remarks="Nomenclature pour la fonction des appareils ASS" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="fnappass" foreignKey="raepa_apparass_p_fnappass_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_apparass_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_fonc_app_ass_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="val_raepa_fonc_canal_ae" numRows="4" remarks="Nomenclature pour la fonction de la canalisation AEP" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="fonccanaep" foreignKey="raepa_canalaep_l_fonccanaep_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalaep_l"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_fonc_canal_ae_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="val_raepa_fonc_canal_ass" numRows="4" remarks="Nomenclature pour la fonction de la canalisation ASS" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="fonccanass" foreignKey="raepa_canalass_l_fonccanass_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_fonc_canal_ass_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="val_raepa_fonc_ouv_ae" numRows="7" remarks="Nomenclature pour la fonction des ouvrages AEP" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="fnouvaep" foreignKey="raepa_ouvraep_p_fnouvaep_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_ouvraep_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_fonc_ouv_ae_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="val_raepa_fonc_ouv_ass" numRows="16" remarks="Nomenclature pour la fonction des ouvrages ASS" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="fnouvass" foreignKey="raepa_ouvrass_p_fnouvass_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_ouvrass_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_fonc_ouv_ass_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="val_raepa_materiau" numRows="30" remarks="Nomenclature pour les matériau" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="materiau" foreignKey="raepa_canalaep_l_materiau_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalaep_l"/>
+            <child column="materiau" foreignKey="raepa_canalass_l_materiau_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_materiau_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="val_raepa_mode_circulation" numRows="5" remarks="Nomenclature pour le mode de circulation" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="modecirc" foreignKey="raepa_canalaep_l_modecirc_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalaep_l"/>
+            <child column="modecirc" foreignKey="raepa_canalass_l_modecirc_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_mode_circulation_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="val_raepa_qualite_anpose" numRows="6" remarks="Nomenclature pour la qualité de l’année de pose" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="qualannee" foreignKey="raepa_apparaep_p_qualannee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_apparaep_p"/>
+            <child column="qualannee" foreignKey="raepa_apparass_p_qualannee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_apparass_p"/>
+            <child column="qualannee" foreignKey="raepa_canalaep_l_qualannee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalaep_l"/>
+            <child column="qualannee" foreignKey="raepa_canalass_l_qualannee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+            <child column="qualannee" foreignKey="raepa_ouvraep_p_qualannee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_ouvraep_p"/>
+            <child column="qualannee" foreignKey="raepa_ouvrass_p_qualannee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_ouvrass_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_qualite_anpose_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="val_raepa_qualite_geoloc" numRows="3" remarks="Nomenclature pour la qualité de la géolocalisation" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="qualglocxy" foreignKey="affleurant_pcrs_qualglocxy_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="affleurant_pcrs"/>
+            <child column="qualglocz" foreignKey="affleurant_pcrs_qualglocz_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="affleurant_pcrs"/>
+            <child column="qualglocxy" foreignKey="raepa_apparaep_p_qualglocxy_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_apparaep_p"/>
+            <child column="qualglocz" foreignKey="raepa_apparaep_p_qualglocz_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_apparaep_p"/>
+            <child column="qualglocxy" foreignKey="raepa_apparass_p_qualglocxy_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_apparass_p"/>
+            <child column="qualglocz" foreignKey="raepa_apparass_p_qualglocz_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_apparass_p"/>
+            <child column="qualglocxy" foreignKey="raepa_canalaep_l_qualglocxy_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalaep_l"/>
+            <child column="qualglocz" foreignKey="raepa_canalaep_l_qualglocz_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalaep_l"/>
+            <child column="qualglocxy" foreignKey="raepa_canalass_l_qualglocxy_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+            <child column="qualglocz" foreignKey="raepa_canalass_l_qualglocz_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+            <child column="qualglocxy" foreignKey="raepa_ouvraep_p_qualglocxy_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_ouvraep_p"/>
+            <child column="qualglocz" foreignKey="raepa_ouvraep_p_qualglocz_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_ouvraep_p"/>
+            <child column="qualglocxy" foreignKey="raepa_ouvrass_p_qualglocxy_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_ouvrass_p"/>
+            <child column="qualglocz" foreignKey="raepa_ouvrass_p_qualglocz_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_ouvrass_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_qualite_geoloc_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="val_raepa_support_reparation" numRows="3" remarks="Nomenclature pour le support des incidents" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="supprepare" foreignKey="raepa_reparaep_p_supprepare_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_reparaep_p"/>
+            <child column="supprepare" foreignKey="raepa_reparass_p_supprepare_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_reparass_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_support_reparation_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="val_raepa_typ_reseau_ass" numRows="4" remarks="Nomenclature pour le type de réseau ASS" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="typreseau" foreignKey="raepa_apparass_p_typreseau_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_apparass_p"/>
+            <child column="typreseau" foreignKey="raepa_canalass_l_typreseau_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_canalass_l"/>
+            <child column="typreseau" foreignKey="raepa_ouvrass_p_typreseau_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_ouvrass_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_typ_reseau_ass_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+      <table name="val_raepa_type_defaillance" numRows="8" remarks="Nomenclature pour le type de défaillance" schema="raepa" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="code" nullable="false" remarks="Code" size="2" type="varchar" typeCode="12">
+            <child column="defreparee" foreignKey="raepa_reparaep_p_defreparee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_reparaep_p"/>
+            <child column="defreparee" foreignKey="raepa_reparass_p_defreparee_fkey" implied="false" onDeleteCascade="false" schema="raepa" table="raepa_reparass_p"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="libelle" nullable="false" remarks="Libellé" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="true" remarks="Description" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ordre" nullable="true" remarks="Ordre" size="5" type="int2" typeCode="5"/>
+         <primaryKey column="code" sequenceNumberInPK="1"/>
+         <index name="val_raepa_type_defaillance_pkey" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+      </table>
+   </tables>
+   <routines>
+      <routine dataAccess="MODIFIES" deterministic="false" name="calcul_orientation" returnType="double precision" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+    cgeom geometry;
+    res double precision;
+BEGIN
+    SELECT geom into cgeom from raepa.raepa_canalaep_l where idcana = cana;
+    SELECT
+    CASE
+        WHEN pos > 0.1 AND pos < 0.9
+            THEN round(CAST(degrees(ST_Azimuth(ST_StartPoint(ST_LineSubstring(cgeom, pos - 0.1, pos + 0.1)),
+        ST_EndPoint(ST_LineSubstring(cgeom, pos - 0.1, pos + 0.1)))) as numeric),1)
+        WHEN pos <= 0.1
+            THEN round(CAST(degrees(ST_Azimuth(ST_StartPoint(ST_LineSubstring(cgeom, pos, pos + 0.1)),
+        ST_EndPoint(ST_LineSubstring(cgeom, pos, pos + 0.1)))) as numeric), 2)
+        WHEN pos >= 0.9
+            THEN round(CAST(degrees(ST_Azimuth(ST_StartPoint(ST_LineSubstring(cgeom, pos, pos)),
+        ST_EndPoint(ST_LineSubstring(cgeom, pos, pos)))) as numeric), 2)
+    END into res
+    FROM raepa.raepa_apparaep_p p
+    JOIN raepa.raepa_canalaep_l c ON ST_DWithin(c.geom, p.geom, 0.05);
+
+    return res;
+END; ]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="calculate_apparaep_orientation" returnType="double precision" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+  res double precision;
+BEGIN
+
+    SELECT r.res into res FROM (
+        SELECT raepa.calcul_orientation(c.idcana, ST_LineLocatePoint(c.geom, p.geom)) as res, ST_Distance(c.geom, p.geom) as dist, ST_LineLocatePoint(c.geom, p.geom) as pos
+        FROM raepa.raepa_apparaep_p p
+            JOIN raepa.raepa_canalaep_l c ON ST_DWithin(c.geom, p.geom, 0.05)
+        WHERE p.idappareil = idappaep
+        ORDER BY dist, pos
+        LIMIT 1) r;
+
+    UPDATE raepa.raepa_apparaep_p ap SET _orientation = res WHERE ap.idappareil = idappaep;
+
+    RETURN res;
+END; ]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="decoupage_canalisation_par_ouvrage" returnType="boolean" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+    can record;
+    ouv record;
+    geom_init geometry;
+    geom_term geometry;
+    new_idcana text;
+BEGIN
+
+    -- Récupération de l'ouvrage
+    SELECT INTO ouv
+    o.*
+    FROM raepa.raepa_ouvrass_p o
+    WHERE idouvrage = ouvrage_id
+    LIMIT 1
+    ;
+    IF ouv.idouvrage IS NULL THEN
+        RETURN 0;
+    END IF;
+
+    -- Vérifier si une canalisation est proche de l'ouvrage
+    SELECT INTO can
+    c.*
+    FROM raepa.raepa_canalass_l c
+    WHERE TRUE
+    AND ST_DWithin(c.geom, ouv.geom, 0.05)
+    -- seulement si l'ouvrage est à plus d'un mètre
+    AND NOT ST_DWithin(ST_StartPoint(c.geom), ouv.geom, 1)
+    AND NOT ST_DWithin(ST_EndPoint(c.geom), ouv.geom, 1)
+    LIMIT 1
+    ;
+    IF can.idcana IS NULL THEN
+        RETURN 0;
+    END IF;
+
+    geom_init := ST_LineSubstring(can.geom, 0, ST_LineLocatePoint(can.geom, ouv.geom));
+    geom_term := ST_LineSubstring(can.geom, ST_LineLocatePoint(can.geom, ouv.geom), 1);
+
+    -- Modification de la canalisation :
+    -- OA----------(O)----------OB devient  OA----------(O)
+    UPDATE raepa.raepa_canalass_l c
+    SET
+        geom = ST_Snap(geom_init, ouv.geom, 0.05),
+        zaval = NULL,
+        idnterm = ouv.idouvrage
+    WHERE idcana = can.idcana;
+    -- Le reste est fait par les triggers lancés après modification de la cana
+
+    -- Création d'une nouvelle canalisation pour la partie temrinale :
+    -- (O)----------OB
+    -- On récupère les valeurs issus de la cana d'origine
+    INSERT INTO raepa.raepa_canalass_l
+    (
+        typreseau, materiau, diametre, _dimensionhorizontale, _forme, _etat, anfinpose, modecirc, contcanass, fonccanass,
+        idnini,
+        zamont, zaval,
+        sensecoul, andebpose, _precisionannee, qualglocxy, qualglocz, qualannee, dategeoloc, sourgeoloc, sourattrib,
+        geom
+    )
+    VALUES(
+        can.typreseau, can.materiau, can.diametre, can._dimensionhorizontale, can._forme, can._etat, can.anfinpose, can.modecirc, can.contcanass, can.fonccanass,
+        ouv.idouvrage,
+        NULL, can.zaval,
+        can.sensecoul, can.andebpose, can._precisionannee, can.qualglocxy, can.qualglocz, can.qualannee, can.dategeoloc, can.sourgeoloc, can.sourattrib,
+        ST_Snap(geom_term, ouv.geom, 0.05)
+    )
+    RETURNING idcana
+    INTO new_idcana;
+
+    -- Modification des valeurs idcanaval et idcanamont de l'ouvrage
+    UPDATE raepa.raepa_ouvrass_p o
+    SET
+    idcanamont = can.idcana,
+    idcanaval = new_idcana
+    WHERE idouvrage = ouv.idouvrage
+    ;
+
+    -- Return 1
+    RETURN 1;
+
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="downstream_by_geom" returnType="geometry" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+  p_cana_table regclass;
+  get_cana text[];
+  p_cana_id text;
+  sql_text text;
+  parcours public.geometry;
+BEGIN
+
+  -- Get canalisation id
+  SELECT raepa.get_canalisation_id_by_object_id(p_id_object, 'down')
+  INTO get_cana;
+  p_cana_id = get_cana[1];
+  p_cana_table = get_cana[2];
+  IF p_cana_id = '' THEN
+    RETURN NULL;
+  END IF;
+  -- RAISE NOTICE 'Canalisation d''origine = %s', p_cana_id;
+
+  EXECUTE format('
+    WITH RECURSIVE walk_network(idcana, idnini, idnterm, all_parents, geom) AS (
+      SELECT c.idcana::text,
+      c.idnini, c.idnterm,
+      array[c.idcana::text] as all_parents,
+      c.geom
+      FROM %s AS c
+      JOIN raepa.get_canalisation_ids_by_object_id(''%s'', ''down'') AS s
+          ON c.idcana = s.idcana
+    UNION ALL
+      SELECT n.idcana::text,
+      n.idnini, n.idnterm,
+      w.all_parents || n.idcana::text,
+      n.geom
+      FROM %s AS n, walk_network AS w
+      WHERE TRUE
+      AND ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05)
+      AND n.idcana <> ALL (w.all_parents)
+    )
+    SELECT ST_Union(DISTINCT r.geom) AS geom
+    FROM walk_network wn
+    INNER JOIN %s AS r
+    ON wn.idcana = r.idcana
+    ',
+    p_cana_table, p_id_object,
+    p_cana_table,
+    p_cana_table
+  ) INTO parcours;
+
+  RETURN parcours;
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="downstream_by_idn" returnType="geometry" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+  p_cana_table regclass;
+  get_cana text[];
+  p_cana_id text;
+  sql_text text;
+  parcours public.geometry;
+BEGIN
+
+  -- Get canalisation id
+  SELECT raepa.get_canalisation_id_by_object_id(p_id_object, 'down')
+  INTO get_cana;
+  p_cana_id = get_cana[1];
+  p_cana_table = get_cana[2];
+  IF p_cana_id = '' THEN
+    RETURN NULL;
+  END IF;
+  -- RAISE NOTICE 'Canalisation d''origine = %s', p_cana_id;
+
+  EXECUTE format('
+    WITH RECURSIVE walk_network(idcana, idnini, idnterm, all_parents) AS (
+      SELECT c.idcana::text,
+      c.idnini, c.idnterm,
+      array[c.idcana::text] as all_parents
+      FROM %s AS c
+      JOIN raepa.get_canalisation_ids_by_object_id(''%s'', ''down'') AS s
+          ON c.idcana = s.idcana
+    UNION
+      SELECT n.idcana::text,
+      n.idnini, n.idnterm,
+      w.all_parents || n.idcana::text
+      FROM %s AS n, walk_network AS w
+      WHERE TRUE
+      AND n.idnini = w.idnterm AND n.idnini != ''INCONNU''
+      AND n.idcana <> ALL (w.all_parents)
+    )
+    SELECT ST_Union(DISTINCT r.geom) AS geom
+    FROM walk_network wn
+    INNER JOIN %s AS r
+    ON wn.idcana = r.idcana
+    ',
+    p_cana_table, p_id_object,
+    p_cana_table,
+    p_cana_table
+  ) INTO parcours;
+
+  RETURN parcours;
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="generate_oid" returnType="text" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+  myrec_prefix record;
+  myrec_shortcut record;
+  myrec_seq record;
+BEGIN
+
+  -- first we have to get the OID prefix
+  BEGIN
+    SELECT concat(code, siren) AS prefix INTO myrec_prefix FROM raepa.sys_organisme_gestionnaire WHERE actif = TRUE;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+           RAISE EXCEPTION 'no active record found in table raepa.sys_organisme_gestionnaire';
+        WHEN TOO_MANY_ROWS THEN
+       RAISE EXCEPTION 'more than one active records found in table raepa.sys_organisme_gestionnaire';
+  END;
+  -- test if prefix is of correct length
+  IF char_length(myrec_prefix.prefix) != 12 THEN
+    RAISE EXCEPTION 'character length of prefix must be 12';
+  END IF;
+
+  --get table 6 char shortcut
+  BEGIN
+    SELECT concat(code, typereseau) AS shortcut INTO STRICT myrec_shortcut FROM raepa.sys_liste_table WHERE nom = table_name;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE EXCEPTION 'dictionary entry for table % not found', table_name;
+        WHEN TOO_MANY_ROWS THEN
+            RAISE EXCEPTION 'dictonary entry for table % not unique', table_name;
+  END;
+
+  --get sequence for table
+  SELECT lastval() AS seqval INTO myrec_seq;
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'sequence for table % not found', table_name;
+  END IF;
+
+  -- return concatenated value
+  RETURN myrec_prefix.prefix || myrec_shortcut.shortcut || to_char(myrec_seq.seqval,'FM000000');
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="get_canalisation_id_by_object_id" returnType="ARRAY" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+  p_cana_id text;
+  p_cana_table regclass;
+  p_object_table regclass;
+  p_object_id_column text;
+  p_node_col text;
+  p_function text;
+  sql_text text;
+  parcours public.geometry;
+BEGIN
+
+  -- Get target canalisation table
+  IF p_id_object similar to '%(ouvass|appass|canass)%' THEN
+    p_cana_table:= 'raepa.raepa_canalass_l';
+  ELSE
+    p_cana_table:= 'raepa.raepa_canalaep_l';
+  END IF;
+
+  -- Get first canalisation depending on object id given
+  -- ouvrage
+  p_cana_id = '';
+
+  -- ouvrage / appareil
+  IF p_id_object similar to '%(ouvass|ouvaep|appass|appaep)%' THEN
+
+    -- Get source object table
+    IF     p_id_object LIKE '%ouvass%' THEN
+      p_object_table:= 'raepa.raepa_ouvrass_p';
+      p_object_id_column:= 'idouvrage';
+    ELSEIF p_id_object LIKE '%ouvaep%' THEN
+      p_object_table:= 'raepa.raepa_ouvraep_p';
+      p_object_id_column:= 'idouvrage';
+    ELSEIF p_id_object LIKE '%appass%' THEN
+      p_object_table:= 'raepa.raepa_apparass_p';
+      p_object_id_column:= 'idappareil';
+    ELSEIF p_id_object LIKE '%appaep%' THEN
+      p_object_table:= 'raepa.raepa_apparaep_p';
+      p_object_id_column:= 'idappareil';
+    END IF;
+
+    -- Some parameters depend on given direction
+    IF p_direction = 'up' THEN
+      p_node_col = 'idnterm';
+      p_function = 'st_endpoint';
+    ELSE
+      p_node_col = 'idnini';
+      p_function = 'st_startpoint';
+    END IF;
+
+
+    -- Get canalisation id
+    EXECUTE format('
+      SELECT idcana::text
+      FROM %s AS c
+      WHERE %s = ''%s''
+      OR ST_Dwithin(
+        %s(c.geom),
+        (SELECT geom FROM %s WHERE "%s" = ''%s''),
+        0.05
+      )
+    ',
+      p_cana_table,
+      p_node_col, p_id_object,
+      p_function,
+      p_object_table, p_object_id_column, p_id_object
+    )
+    INTO p_cana_id;
+  END IF;
+
+  -- canalisation
+  IF p_id_object similar to '%(canass|canaep)%' THEN
+    p_cana_id:= p_id_object;
+  END IF;
+
+  RETURN ARRAY[p_cana_id, p_cana_table]::text[];
+
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="get_canalisation_ids_by_object_id" returnType="SETOF record" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+  p_cana_id text;
+  p_cana_table regclass;
+  p_object_table regclass;
+  p_object_id_column text;
+  p_node_col text;
+  p_function text;
+  sql_text text;
+  parcours public.geometry;
+BEGIN
+
+  -- Get target canalisation table
+  IF p_id_object similar to '%(ouvass|appass|canass)%' THEN
+    p_cana_table:= 'raepa.raepa_canalass_l';
+  ELSE
+    p_cana_table:= 'raepa.raepa_canalaep_l';
+  END IF;
+
+  -- Get first canalisation depending on object id given
+  -- ouvrage
+  p_cana_id = '';
+
+  -- ouvrage / appareil
+  IF p_id_object similar to '%(ouvass|ouvaep|appass|appaep)%' THEN
+
+    -- Get source object table
+    IF     p_id_object LIKE '%ouvass%' THEN
+      p_object_table:= 'raepa.raepa_ouvrass_p';
+      p_object_id_column:= 'idouvrage';
+    ELSEIF p_id_object LIKE '%ouvaep%' THEN
+      p_object_table:= 'raepa.raepa_ouvraep_p';
+      p_object_id_column:= 'idouvrage';
+    ELSEIF p_id_object LIKE '%appass%' THEN
+      p_object_table:= 'raepa.raepa_apparass_p';
+      p_object_id_column:= 'idappareil';
+    ELSEIF p_id_object LIKE '%appaep%' THEN
+      p_object_table:= 'raepa.raepa_apparaep_p';
+      p_object_id_column:= 'idappareil';
+    END IF;
+
+    -- Some parameters depend on given direction
+    IF p_direction = 'up' THEN
+      p_node_col = 'idnterm';
+      p_function = 'st_endpoint';
+    ELSE
+      p_node_col = 'idnini';
+      p_function = 'st_startpoint';
+    END IF;
+
+
+    -- Get canalisation id
+    RETURN QUERY EXECUTE format('
+      SELECT idcana::text, ''%s'' AS tablecana
+      FROM %s AS c
+      WHERE %s = ''%s''
+      OR ST_Dwithin(
+        %s(c.geom),
+        (SELECT geom FROM %s WHERE "%s" = ''%s''),
+        0.05
+      )
+    ',
+      p_cana_table, p_cana_table,
+      p_node_col, p_id_object,
+      p_function,
+      p_object_table, p_object_id_column, p_id_object
+    );
+  END IF;
+
+  -- canalisation
+  IF p_id_object similar to '%(canass|canaep)%' THEN
+    p_cana_id:= p_id_object;
+    RETURN QUERY EXECUTE format('SELECT ''%s''AS idcana, ''%s'' AS tablecana', p_cana_id, p_cana_table);
+  END IF;
+
+END; ]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="get_network_to_vanne_ferme_from_point" returnType="geometry" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+    locate_before_point double precision = 0;
+    locate_after_point double precision = 1;
+    parcours public.geometry;
+BEGIN
+    SELECT raepa.get_vanne_before_point(cana_id, locate_point, false) into locate_before_point;
+    SELECT raepa.get_vanne_after_point(cana_id, locate_point, false) into locate_after_point;
+
+    IF locate_before_point IS NOT NULL AND locate_after_point IS NOT NULL THEN
+        SELECT ST_LineSubstring(c.geom, locate_before_point, locate_after_point) into parcours AS geom FROM raepa.raepa_canalaep_l AS c WHERE c.idcana = cana_id;
+        RETURN parcours;
+    END IF;
+
+    WITH RECURSIVE walk_network(idcana, all_parents, geom, stop, step) AS (
+    SELECT idcana::text,
+          array[idcana::text] as all_parents,
+          ST_LineSubstring(geom,
+        CASE WHEN raepa.get_vanne_before_point(cana_id, locate_point, false) IS NULL THEN 0 ELSE raepa.get_vanne_before_point(cana_id, locate_point, false) END,
+        CASE WHEN raepa.get_vanne_after_point(cana_id, locate_point, false) IS NULL THEN 1 ELSE raepa.get_vanne_after_point(cana_id, locate_point, false) END) as geom,
+          False as stop,
+          0 as step
+     FROM raepa.raepa_canalaep_l
+     WHERE idcana = cana_id
+      UNION ALL
+        SELECT n.idcana::text AS idcana,
+         w.all_parents || n.idcana::text AS all_parents,
+         CASE
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, 0, raepa.get_vanne_after_point(n.idcana, 0, false) )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(n.geom), st_startpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, 0, raepa.get_vanne_after_point(n.idcana, 0, false) )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_endpoint(n.geom), st_startpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, raepa.get_vanne_before_point(n.idcana, 1, false), 1 )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_endpoint(n.geom), st_endpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, raepa.get_vanne_before_point(n.idcana, 1, false), 1 )::geometry(LineString,2154)
+        ELSE n.geom::geometry(LineString,2154) END AS geom,
+        a.idappareil IS NOT NULL OR o.idouvrage IS NOT NULL as stop,
+        w.step + 1 as step
+          FROM raepa.raepa_canalaep_l AS n
+          LEFT OUTER JOIN raepa.raepa_apparaep_p a ON ( fnappaep = '03' AND _ferme AND ST_Dwithin(n.geom, a.geom, 0.05) )
+          LEFT OUTER JOIN raepa.raepa_ouvraep_p o ON (
+                (fnouvaep = '03' OR fnouvaep = '05' OR fnouvaep = '01')
+                AND
+                ST_Dwithin(n.geom, o.geom, 0.05)
+            ),
+             walk_network AS w
+          WHERE TRUE AND (
+               ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05) OR
+               ST_Dwithin(st_startpoint(n.geom), st_startpoint(w.geom), 0.05) OR
+               ST_Dwithin(st_endpoint(n.geom), st_startpoint(w.geom), 0.05) OR
+               ST_Dwithin(st_endpoint(n.geom), st_endpoint(w.geom), 0.05))
+          AND w.idcana <> n.idcana AND n.idcana <> ALL (w.all_parents)
+          AND NOT w.stop
+          AND w.step < 15
+    )
+    SELECT ST_Union(DISTINCT geom) into parcours AS geom FROM walk_network;
+    RETURN parcours;
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="get_network_to_vanne_from_point" returnType="geometry" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+    locate_before_point double precision = 0;
+    locate_after_point double precision = 1;
+    parcours public.geometry;
+BEGIN
+    SELECT raepa.get_vanne_before_point(cana_id, locate_point, true) into locate_before_point;
+    SELECT raepa.get_vanne_after_point(cana_id, locate_point, true) into locate_after_point;
+
+    IF locate_before_point IS NOT NULL AND locate_after_point IS NOT NULL THEN
+        SELECT ST_LineSubstring(c.geom, locate_before_point, locate_after_point) into parcours AS geom FROM raepa.raepa_canalaep_l AS c WHERE c.idcana = cana_id;
+        RETURN parcours;
+    END IF;
+
+    WITH RECURSIVE walk_network(idcana, all_parents, geom, stop) AS (
+    SELECT idcana::text,
+          array[idcana::text] as all_parents,
+          ST_LineSubstring(geom,
+        CASE WHEN raepa.get_vanne_before_point(cana_id, locate_point, true) IS NULL THEN 0 ELSE raepa.get_vanne_before_point(cana_id, locate_point, true) END,
+        CASE WHEN raepa.get_vanne_after_point(cana_id, locate_point, true) IS NULL THEN 1 ELSE raepa.get_vanne_after_point(cana_id, locate_point, true) END) as geom,
+          False as stop
+     FROM raepa.raepa_canalaep_l
+     WHERE idcana = cana_id
+      UNION ALL
+        SELECT n.idcana::text AS idcana,
+         w.all_parents || n.idcana::text AS all_parents,
+         CASE
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, 0, raepa.get_vanne_after_point(n.idcana, 0, true) )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(n.geom), st_startpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, 0, raepa.get_vanne_after_point(n.idcana, 0, true) )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_endpoint(n.geom), st_startpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, raepa.get_vanne_before_point(n.idcana, 1, true), 1 )::geometry(LineString,2154)
+        WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_endpoint(n.geom), st_endpoint(w.geom), 0.05) THEN ST_LineSubstring( n.geom, raepa.get_vanne_before_point(n.idcana, 1, true), 1 )::geometry(LineString,2154)
+        ELSE n.geom::geometry(LineString,2154) END AS geom,
+        a.idappareil IS NOT NULL as stop
+          FROM raepa.raepa_canalaep_l AS n
+          LEFT OUTER JOIN raepa.raepa_apparaep_p a ON ( fnappaep = '03' AND ST_Dwithin(n.geom, a.geom, 0.05) ),
+             walk_network AS w
+          WHERE TRUE AND (
+               ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05) OR
+               ST_Dwithin(st_startpoint(n.geom), st_startpoint(w.geom), 0.05) OR
+               ST_Dwithin(st_endpoint(n.geom), st_startpoint(w.geom), 0.05) OR
+               ST_Dwithin(st_endpoint(n.geom), st_endpoint(w.geom), 0.05))
+          AND w.idcana <> n.idcana AND n.idcana <> ALL (w.all_parents)
+          AND NOT w.stop
+    )
+    SELECT ST_Union(DISTINCT geom) into parcours AS geom FROM walk_network;
+    RETURN parcours;
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="get_vanne_after_point" returnType="double precision" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+    locate double precision = 1;
+BEGIN
+    WITH apploc as (
+        SELECT DISTINCT ON(c.idcana) c.idcana,  ST_LineLocatePoint(c.geom, a.geom)- locate_point As dist_to_point, ST_LineLocatePoint(c.geom, a.geom) as loc
+        FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
+        ON ST_DWithin(c.geom, a.geom, 0.05)
+        WHERE idcana = cana_id AND fnappaep = '03' AND (all_v or _ferme) AND ST_LineLocatePoint(c.geom, a.geom) - locate_point >= 0
+        ORDER BY c.idcana, dist_to_point
+    )
+    SELECT loc into locate FROM apploc;
+
+    return locate;
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="get_vanne_before_point" returnType="double precision" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+    locate double precision = 1;
+BEGIN
+    WITH apploc as (
+        SELECT DISTINCT ON(c.idcana) c.idcana,  locate_point - ST_LineLocatePoint(c.geom, a.geom) As dist_to_point, ST_LineLocatePoint(c.geom, a.geom) as loc
+        FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
+        ON ST_DWithin(c.geom, a.geom, 0.05)
+        WHERE idcana = cana_id AND fnappaep = '03' AND (all_v or _ferme) AND locate_point - ST_LineLocatePoint(c.geom, a.geom) >= 0
+        ORDER BY c.idcana, dist_to_point
+    )
+    SELECT loc into locate FROM apploc;
+
+    return locate;
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="get_vanne_cana" returnType="double precision" securityType="INVOKER" type="FUNCTION">
+         <comment><![CDATA[Calcul de la position de la vanne la plus proche sur une canalisation selon un point de départ (fin ou debut de canalisation)]]></comment>
+         <definition language="PLPGSQL"><![CDATA[DECLARE
+    locate double precision = 0;
+BEGIN
+    IF starter THEN
+        WITH apploc as (
+            SELECT DISTINCT ON(c.idcana) c.idcana, ST_LineLocatePoint(c.geom, a.geom) As dist_to_start, ST_LineLocatePoint(c.geom, a.geom) as loc
+            FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
+            ON ST_DWithin(c.geom, a.geom, 0.05)
+            WHERE idcana = myid AND fnappaep = '03'
+            ORDER BY c.idcana, dist_to_start
+        )
+        SELECT loc into locate FROM apploc;
+
+    ELSE
+        WITH apploc as (
+            SELECT DISTINCT ON(c.idcana) c.idcana, 1 - ST_LineLocatePoint(c.geom, a.geom) As dist_to_start, ST_LineLocatePoint(c.geom, a.geom) as loc
+            FROM raepa.raepa_apparaep_p a INNER JOIN raepa.raepa_canalaep_l c
+            ON ST_DWithin(c.geom, a.geom, 0.05)
+            WHERE idcana = myid AND fnappaep = '03'
+            ORDER BY c.idcana, dist_to_start
+        )
+        SELECT loc into locate FROM apploc;
+    END IF;
+    IF locate = 0 THEN
+        locate = 0.05;
+    ELSIF locate = 1 THEN
+        locate = 0.95;
+    END IF;
+
+    return locate;
+END;]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="import_gabarit_dans_tables_temporaires" returnType="boolean" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+  sql_template text;
+BEGIN
+
+    -- Tests des variables d'entrée
+    IF NOT in_anfinpose ~ '^\d{4}$' THEN
+        RAISE EXCEPTION '[raepa] L''année de fin de pose n''est pas correcte';
+        RETURN 0;
+    END IF;
+    IF in_qualglocxy NOT IN ('A', 'B', 'C') OR in_qualglocz NOT IN ('A', 'B', 'C') THEN
+        RAISE EXCEPTION '[raepa] Les qualités de géolocalisation ne sont pas correctes: % et %', in_qualglocxy, in_qualglocz;
+        RETURN 0;
+    END IF;
+    IF in_etat NOT IN ('00', '01', '02', '03', '04') THEN
+        RAISE EXCEPTION '[raepa] Le paramètre état n''est pas correct';
+        RETURN 0;
+    END IF;
+
+    -- Transformation des variables
+    in_qualglocxy := CASE
+        WHEN in_qualglocxy = 'A' THEN '01'
+        WHEN in_qualglocxy = 'B' THEN '02'
+        ELSE '03'
+    END;
+    in_qualglocz := CASE
+        WHEN in_qualglocz = 'A' THEN '01'
+        WHEN in_qualglocz = 'B' THEN '02'
+        ELSE '03'
+    END;
+
+    -- Création du schéma d'import et des tables si nécessaire
+    DROP TABLE IF EXISTS imports.appareils;
+    CREATE TABLE imports.appareils AS SELECT * FROM raepa.raepa_apparass_p LIMIT 0;
+    DROP TABLE IF EXISTS imports.ouvrages;
+    CREATE TABLE imports.ouvrages AS SELECT * FROM raepa.raepa_ouvrass_p LIMIT 0;
+    DROP TABLE IF EXISTS imports.canalisations;
+    CREATE TABLE imports.canalisations AS SELECT * FROM raepa.raepa_canalass_l LIMIT 0;
+
+    -- ouvrages
+    INSERT INTO imports.ouvrages (
+        idouvrage,
+        typreseau, fnouvass,
+        z, _ztampon, _angletampon,
+        qualglocxy, qualglocz, anfinpose,
+        _source_historique, _code_chantier, _date_import,
+        geom
+    )
+    SELECT
+        o.idouvrage,
+        o.typreseau, o.fnouvass,
+        o.z_radier, o.z_tampon, o.angle_tamp,
+        -- degrees(o.ang_ouv) * -1 AS _angletampon,
+        in_qualglocxy, in_qualglocz, in_anfinpose,
+        in_source_historique, in_code_chantier, now()::date,
+        ST_Transform(o.geom, 2154)
+    FROM imports.gabarit_ouvrages o
+    ;
+
+    -- appareils
+    INSERT INTO imports.appareils (
+        idappareil,
+        typreseau, fnappass,
+        diametre, z,
+        idouvrage,
+        qualglocxy, qualglocz, anfinpose,
+        _source_historique, _code_chantier, _date_import,
+        geom
+    )
+    SELECT
+        a.idappareil,
+        a.typreseau, a.fnappass,
+        a.diametre, a.z_appareil,
+        a.idouvrage,
+        in_qualglocxy, in_qualglocz, in_anfinpose,
+        in_source_historique, in_code_chantier, now()::date,
+        ST_Transform(a.geom, 2154)
+    FROM imports.gabarit_appareils a
+    ;
+
+    -- canalisations
+    INSERT INTO imports.canalisations(
+        branchemnt, typreseau, materiau,
+        _forme, diametre, _dimensionhorizontale,
+        modecirc, nbranche,
+        qualglocxy, qualglocz, anfinpose, _etat,
+        _source_historique, _code_chantier, _date_import,
+        _precisionannee,
+        zamont, zaval, idnini, idnterm,
+        geom
+    )
+    SELECT
+        c.branchemnt, c.typreseau, c.materiau,
+        c.forme, c.dim_v, c.dim_h,
+        c.mode_circ, c.nbranche,
+        in_qualglocxy, in_qualglocz, in_anfinpose, in_etat,
+        in_source_historique, in_code_chantier, now()::date,
+        '00' AS _precisionannee,
+        c.fe_amont, c.fe_aval, c.id_nd_amon, c.id_nd_aval,
+        ST_Transform((st_dump(c.geom)).geom, 2154)
+    FROM imports.gabarit_canalisations AS c
+    ;
+
+    RETURN TRUE;
+
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="import_tables_temporaires_dans_raepa" returnType="boolean" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+  sql_template text;
+BEGIN
+
+    -- Suppression des données précédemment importées
+    IF nettoyer_chantier IS TRUE THEN
+        DELETE FROM raepa.raepa_apparass_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
+        DELETE FROM raepa.raepa_canalass_l WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
+        DELETE FROM raepa.raepa_ouvrass_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
+    END IF;
+
+    -- Mise à jour des champs dans les tables d'import
+    UPDATE imports.ouvrages
+    SET "_temp_data" = hstore(array['code_ouvrage', idouvrage])
+    ;
+    UPDATE imports.appareils
+    SET "_temp_data" = hstore(ARRAY['code_appareil', idappareil, 'code_ouvrage', idouvrage])
+    ;
+    UPDATE imports.canalisations
+    SET "_temp_data" = hstore(array['ouvrage_amont', idnini, 'ouvrage_aval', idnterm] );
+
+    -- Insertion des données dans raepa
+    -- ouvrages
+    INSERT INTO raepa.raepa_ouvrass_p (
+        typreseau, fnouvass,
+        z, _ztampon, _angletampon,
+        qualglocxy, qualglocz, anfinpose,
+        _source_historique, _code_chantier, _date_import,
+        _temp_data,
+        geom
+    )
+    SELECT DISTINCT
+        o.typreseau, o.fnouvass,
+        o.z, o._ztampon, o._angletampon,
+        -- degrees(o.ang_ouv) * -1 AS _angletampon,
+        qualglocxy, qualglocz, anfinpose,
+        _source_historique, _code_chantier, _date_import,
+        _temp_data,
+        o.geom
+    FROM imports.ouvrages o
+    ;
+
+    -- appareils
+    INSERT INTO raepa.raepa_apparass_p (
+        typreseau, fnappass,
+        diametre, z,
+        idouvrage,
+        qualglocxy, qualglocz, anfinpose,
+        _source_historique, _code_chantier, _date_import,
+        _temp_data,
+        geom
+    )
+    SELECT DISTINCT
+        a.typreseau, a.fnappass,
+        a.diametre, a.z,
+        (SELECT o.idouvrage FROM raepa.raepa_ouvrass_p o WHERE o."_temp_data"->'code_ouvrage' = a."_temp_data"->'code_ouvrage' LIMIT 1) AS idouvrage,
+        qualglocxy, qualglocz, anfinpose,
+        _source_historique, _code_chantier, _date_import,
+        _temp_data,
+        a.geom
+    FROM imports.appareils a
+    ;
+
+    -- canalisations
+    INSERT INTO raepa.raepa_canalass_l(
+        branchemnt, typreseau, contcanass, fonccanass, materiau,
+        _forme, diametre, _dimensionhorizontale,
+        modecirc, nbranche,
+        qualglocxy, qualglocz, anfinpose, _etat,
+        _source_historique, _code_chantier, _date_import,
+        _precisionannee,
+        zamont, zaval,
+        idnini, idnterm,
+        _temp_data,
+        geom
+    )
+    SELECT DISTINCT
+        c.branchemnt, c.typreseau, c.typreseau AS contcanass, '02', c.materiau,
+        c._forme, c.diametre, c._dimensionhorizontale,
+        c.modecirc, c.nbranche,
+        c.qualglocxy, c.qualglocz, c.anfinpose, c._etat,
+        c._source_historique, c._code_chantier, c._date_import,
+        c._precisionannee,
+        c.zamont, c.zaval,
+        o1.idouvrage AS idnini,
+        o2.idouvrage AS idterm,
+        c._temp_data,
+
+        -- On retourne les canalisations dans le mauvais sens
+        CASE
+            WHEN
+                ST_Dwithin(ST_EndPoint(c.geom), o1.geom, 0.05)
+                OR ST_Dwithin(ST_StartPoint(c.geom), o2.geom, 0.05)
+            THEN ST_Reverse(c.geom)
+            ELSE c.geom
+        END AS geom
+    FROM imports.canalisations AS c
+    LEFT JOIN raepa.raepa_ouvrass_p o1
+        ON TRUE
+            AND o1._source_historique = in_source_historique
+            AND o1._code_chantier = in_code_chantier
+            AND o1."_temp_data"->'code_ouvrage' = c."_temp_data"->'ouvrage_amont'
+    LEFT JOIN raepa.raepa_ouvrass_p o2
+        ON TRUE
+            AND o2._source_historique = in_source_historique
+            AND o2._code_chantier = in_code_chantier
+            AND o2."_temp_data"->'code_ouvrage' = c."_temp_data"->'ouvrage_aval'
+    WHERE TRUE
+    ;
+
+
+    -- Modification des ouvrages pour modifier les cana amont et aval
+    WITH a AS (
+        SELECT
+            oo.idouvrage,
+            COALESCE(string_agg(c.idcana, ',' ORDER BY idcana), 'INCONNU') AS idcanamont
+        FROM raepa.raepa_ouvrass_p AS oo
+        LEFT JOIN raepa.raepa_canalass_l AS c
+        ON ST_DWithin(ST_EndPoint(c.geom), oo.geom, 0.05)
+        WHERE TRUE
+        AND idcanamont = 'INCONNU'
+        AND oo._source_historique = in_source_historique AND oo._code_chantier = in_code_chantier
+        GROUP BY idouvrage
+    )
+    UPDATE raepa.raepa_ouvrass_p AS o
+    SET idcanamont = a.idcanamont
+    FROM a
+    WHERE TRUE
+    AND a.idouvrage = o.idouvrage
+    AND o.idcanamont = 'INCONNU'
+    ;
+
+    WITH a AS (
+        SELECT
+            oo.idouvrage,
+            COALESCE(string_agg(c.idcana, ',' ORDER BY idcana), 'INCONNU') AS idcanaval
+        FROM raepa.raepa_ouvrass_p AS oo
+        LEFT JOIN raepa.raepa_canalass_l AS c
+        ON ST_DWithin(ST_StartPoint(c.geom), oo.geom, 0.05)
+        WHERE TRUE
+        AND idcanaval = 'INCONNU'
+        AND oo._source_historique = in_source_historique AND oo._code_chantier = in_code_chantier
+        GROUP BY idouvrage
+    )
+    UPDATE raepa.raepa_ouvrass_p AS o
+    SET idcanaval = a.idcanaval
+    FROM a
+    WHERE TRUE
+    AND a.idouvrage = o.idouvrage
+    AND o.idcanaval = 'INCONNU'
+    ;
+
+    RETURN TRUE;
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="network_to_vanne" returnType="geometry" securityType="INVOKER" type="FUNCTION">
+         <comment><![CDATA[Parcours du réseau de canalisation d'eau potable à partir d'une canalisation jusqu'aux vannes les plus proches]]></comment>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+  parcours public.geometry;
+BEGIN
+
+WITH RECURSIVE walk_network(idcana, all_parents, geom) AS (
+      SELECT idcana::text,
+      array[idcana::text] as all_parents,
+      geom
+      FROM raepa.raepa_canalaep_l
+      WHERE idcana = cana --sans vanne
+    UNION ALL
+      SELECT
+         n.idcana::text AS idcana,
+    w.all_parents || n.idcana::text AS all_parents,
+    CASE
+      WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(w.geom), st_endpoint(n.geom), 0.05) THEN ST_Line_Substring( n.geom, raepa.get_vanne_cana(n.idcana, false), 1 )::geometry(LineString,2154)
+      WHEN  a.idappareil IS NOT NULL AND ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05) THEN ST_Line_Substring( n.geom, 0, raepa.get_vanne_cana(n.idcana, true) )::geometry(LineString,2154)
+      ELSE n.geom::geometry(LineString,2154) END AS geom
+      FROM raepa.raepa_canalaep_l AS n
+        LEFT OUTER JOIN raepa.raepa_apparaep_p a ON ( fnappaep = '03' AND ST_Dwithin(n.geom, a.geom, 0.05) ),
+        walk_network AS w
+      WHERE TRUE
+      AND (ST_Dwithin(st_startpoint(w.geom), st_endpoint(n.geom), 0.05) OR ST_Dwithin(st_startpoint(n.geom), st_endpoint(w.geom), 0.05))
+      AND n.idcana <> ALL (w.all_parents)
+)
+SELECT ST_Union(DISTINCT geom)  INTO parcours AS geom FROM walk_network;
+
+  RETURN parcours;
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="trg_apres_modification_ouvrage" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+    table_canalisation text;
+BEGIN
+
+    IF ( TG_OP = 'UPDATE' AND NOT ST_Equals(NEW.geom, OLD.geom) ) OR TG_OP = 'INSERT' THEN
+
+        -- Modification des idnini et idnterm des canalisations qui touchent aux extrémités
+        table_canalisation = 'raepa.raepa_canalass_l';
+        IF TG_TABLE_NAME = 'raepa_ouvraep_p' THEN
+            table_canalisation = 'raepa.raepa_canalaep_l';
+        END IF;
+
+        -- idnini
+        EXECUTE format('
+        UPDATE %s AS ca
+        SET idnini = ''%s''
+        WHERE idnini != ''%s''
+        AND ST_DWithin(ST_StartPoint(ca.geom), ''%s''::geometry, 0.05)
+        ', table_canalisation,
+        NEW.idouvrage, NEW.idouvrage,
+        NEW.geom
+        )
+        ;
+        -- idnterm
+        EXECUTE format('
+        UPDATE %s ca
+        SET idnterm = ''%s''
+        WHERE idnterm != ''%s''
+        AND ST_DWithin(ST_EndPoint(ca.geom), ''%s''::geometry, 0.05)
+        ', table_canalisation,
+        NEW.idouvrage, NEW.idouvrage,
+        NEW.geom
+        )
+        ;
+
+        -- Modification des géométries des canalisations amont et aval liées par idnini et idnterm
+        -- Cela permet de faire toucher les canalisations à l'ouvrage
+        -- Canalisation dont l'ouvrage est à l'aval
+        EXECUTE format('
+        WITH
+        aval AS (
+            SELECT
+            c.idcana,
+            z.path[1] AS node_id, z.geom AS node_geom
+            FROM %s AS c, ST_DumpPoints(geom) AS z
+            WHERE c.idnterm = ''%s''
+        )
+        UPDATE %s c
+        SET
+            geom = foo.geom
+        FROM (
+            SELECT aval.idcana AS cid,
+            ST_MakeLine(
+                (array_agg(node_geom ORDER BY node_id))[1:count(node_id)-1] || ARRAY[''%s''::geometry]
+            ) AS geom
+            FROM aval
+            GROUP BY aval.idcana
+        ) AS foo
+        WHERE c.idcana = foo.cid AND c.idnterm = ''%s'' AND NOT ST_Intersects(ST_EndPoint(c.geom), ''%s''::geometry)
+        ',
+        table_canalisation, NEW.idouvrage,
+        table_canalisation, NEW.geom,
+        NEW.idouvrage, NEW.geom
+        );
+
+        -- Canalisation dont l'ouvrage est à l'amont
+        EXECUTE format('
+        WITH
+        amont AS (
+            SELECT
+            c.idcana,
+            z.path[1] AS node_id, z.geom AS node_geom
+            FROM %s AS c, ST_DumpPoints(geom) AS z
+            WHERE c.idnini = ''%s''
+        )
+        UPDATE %s c
+        SET geom = foo.geom
+        FROM (
+            SELECT amont.idcana AS cid,
+            ST_MakeLine(
+                ARRAY[''%s''::geometry] || (array_agg(node_geom ORDER BY node_id))[2:count(node_id)]
+            ) AS geom
+            FROM amont
+            GROUP BY amont.idcana
+        ) AS foo
+        WHERE c.idcana = foo.cid AND c.idnini = ''%s'' AND NOT ST_Intersects(ST_StartPoint(c.geom), ''%s''::geometry)
+        ',
+        table_canalisation, NEW.idouvrage,
+        table_canalisation, NEW.geom,
+        NEW.idouvrage, NEW.geom
+        );
+
+    END IF;
+
+    RETURN NEW;
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="trg_avant_ajout_ou_modification_canalisation" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+    new_init geometry(POINT,2154);
+    new_term geometry(POINT,2154);
+    ouvrage_initial text;
+    ouvrage_terminal text;
+    cid integer;
+    organisme text;
+    table_ouvrage text;
+BEGIN
+
+    IF TG_OP = 'UPDATE' OR TG_OP = 'INSERT' THEN
+        -- Récupération du noeud initial et terminal de la canalisation
+        new_init := ST_StartPoint(NEW.geom);
+        new_term := ST_EndPoint(NEW.geom);
+
+        table_ouvrage = 'raepa.raepa_ouvrass_p';
+        IF TG_TABLE_NAME = 'raepa_canalaep_l' THEN
+            table_ouvrage = 'raepa.raepa_ouvraep_p';
+        END IF;
+
+        -- Ouvrage initial
+        EXECUTE format('
+        SELECT o.idouvrage
+        FROM %s AS o
+        WHERE o.idouvrage != Coalesce(''%s'', ''%s'' )
+        AND ST_DWithin(''%s''::geometry, o.geom, 0.05)
+        LIMIT 1
+        ',
+        table_ouvrage, NEW.idnini,
+        '', new_init
+        )
+        INTO ouvrage_initial;
+
+        IF (ouvrage_initial IS NOT NULL ) THEN
+            -- on déclare le noeud initial
+            RAISE NOTICE 'canalisation % - ouvrage initial changé : %' , NEW.idcana, ouvrage_initial;
+            NEW.idnini := ouvrage_initial;
+        END IF;
+
+        IF NEW.idnini IS NULL OR NEW.idnini = '' THEN
+            NEW.idnini := 'INCONNU';
+        END IF;
+
+        -- Ouvrage aval
+        EXECUTE format('
+        SELECT o.idouvrage
+        FROM %s AS o
+        WHERE Coalesce(''%s'', ''%s'') != o.idouvrage
+        AND ST_DWithin(''%s''::geometry, o.geom, 0.05)
+        LIMIT 1
+        ',
+        table_ouvrage,
+        NEW.idnterm, '',
+        new_term
+        )
+        INTO ouvrage_terminal;
+
+        IF ouvrage_terminal IS NOT NULL THEN
+            -- on déclare le noeud final
+            RAISE NOTICE 'canalisation % - ouvrage terminal changé : %' , NEW.idcana, ouvrage_terminal;
+            NEW.idnterm := ouvrage_terminal;
+        END IF;
+        IF NEW.idnterm IS NULL OR NEW.idnterm = '' THEN
+            NEW.idnterm := 'INCONNU';
+        END IF;
+
+    END IF;
+
+    -- Longueur projetée (entier et numérique)
+    IF ( TG_OP = 'UPDATE' AND NOT ST_Equals(NEW.geom, OLD.geom) ) OR TG_OP = 'INSERT' THEN
+        -- Calculs fonctions de la géométrie
+        NEW.longcana := ST_Length(NEW.geom)::integer;
+        NEW._longcana_cm := ST_Length(NEW.geom)::numeric(7,2);
+    END IF;
+
+    -- Longueur réelle et Pente
+    -- Seulement pour ASS car sinon par de zamont ou zaval
+    IF  TG_TABLE_NAME = 'raepa_canalass_l' THEN
+        IF (TG_OP = 'UPDATE' AND ( NOT ST_Equals(NEW.geom, OLD.geom) OR OLD.zamont != NEW.zamont OR OLD.zaval != NEW.zaval ) )
+            OR TG_OP = 'INSERT' THEN
+        NEW._longcana_reelle :=
+            CASE
+                WHEN NEW.zamont > 0 AND NEW.zaval > 0
+                    THEN sqrt( power(ST_Length(NEW.geom), 2) + power(NEW.zamont-NEW.zaval, 2) )::numeric(7,2)
+                ELSE ST_Length(NEW.geom)::numeric(7,2)
+            END
+            ;
+        NEW._pente :=
+            CASE
+                WHEN NEW.zamont > 0 AND NEW.zaval > 0
+                    THEN 100 * (NEW.zamont - NEW.zaval) / ST_Length(NEW.geom)
+                ELSE 0
+            END
+            ;
+        END IF;
+    END IF;
+
+    -- Calcul de l'identifiant si besoin
+    IF NEW.idcana IS NULL OR trim(NEW.idcana) = '' OR trim(NEW.idcana) = 'INCONNU' THEN
+        NEW.idcana := raepa.generate_oid(TG_TABLE_NAME::text)::character varying;
+    END IF;
+
+    -- Champs requis
+    IF NEW.enservice IS NULL OR NEW.enservice NOT IN ('O', 'N') THEN
+        NEW.enservice := 'O';
+    END IF;
+    IF NEW.branchemnt IS NULL OR NEW.branchemnt NOT IN ('O', 'N') THEN
+        NEW.branchemnt := 'N';
+    END IF;
+
+    -- Récupération du gestionnaire
+    IF (NEW.mouvrage IS NULL) OR (NEW.gexploit IS NULL) OR (NEW.sourmaj IS NULL) THEN
+        -- Récupération du gestionnaire
+        SELECT INTO organisme
+        s.nom
+        FROM raepa.sys_organisme_gestionnaire s
+        WHERE actif IS TRUE
+        ORDER BY id DESC
+        LIMIT 1;
+    END IF;
+
+    -- Métadonnées
+    IF NEW.mouvrage IS NULL THEN
+        NEW.mouvrage := organisme;
+    END IF;
+    IF NEW.gexploit IS NULL THEN
+        NEW.gexploit := organisme;
+    END IF;
+
+    NEW.datemaj := now();
+    IF NEW.sourmaj IS NULL THEN
+        NEW.sourmaj := organisme;
+    END IF;
+
+    -- Return updated feature
+    RETURN NEW;
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="trg_avant_modification_appareil" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+    organisme text;
+    table_canalisation text;
+BEGIN
+
+    -- Calcul de l'identifiant si besoin
+    IF NEW.idappareil IS NULL OR trim(NEW.idappareil) = '' OR trim(NEW.idappareil) = 'INCONNU' THEN
+        NEW.idappareil := raepa.generate_oid(TG_TABLE_NAME::text)::character varying;
+    END IF;
+
+    -- Calcul de la géométrie à partir de X et Y
+    IF ( TG_OP = 'UPDATE' AND NEW.x IS NOT NULL AND NEW.y IS NOT NULL AND ( NEW.x != OLD.x OR NEW.y != OLD.y ) )
+    OR ( TG_OP = 'INSERT' AND NEW.x IS NOT NULL AND NEW.y IS NOT NULL ) THEN
+        NEW.geom := ST_SetSRID(ST_Makepoint(NEW.x, NEW.y), 2154);
+        RAISE NOTICE 'appareil % - X ou Y changé -> changement geom vers POINT(% %)', NEW.idappareil, NEW.x, NEW.y;
+    END IF;
+
+    IF ( TG_OP = 'UPDATE' AND NOT ST_Equals(NEW.geom, OLD.geom) ) OR TG_OP = 'INSERT' THEN
+
+        -- Calcul des X et Y si besoin
+        NEW.x := ST_X(NEW.geom)::numeric(10,3);
+        NEW.y := ST_Y(NEW.geom)::numeric(10,3);
+
+
+        -- Calcul des canalisation amont et aval
+        table_canalisation = 'raepa.raepa_canalass_l';
+        IF TG_TABLE_NAME = 'raepa_apparaep_p' THEN
+            table_canalisation = 'raepa.raepa_canalaep_l';
+        END IF;
+
+        -- idcanamont
+        EXECUTE format(
+            '
+            SELECT COALESCE(string_agg(c.idcana, '','' ORDER BY idcana), ''INCONNU'')
+            FROM %s AS c
+            WHERE ST_DWithin(ST_EndPoint(c.geom), ''%s''::geometry, 0.05)
+            ',
+            table_canalisation,
+            NEW.geom
+        )
+        INTO NEW.idcanamont;
+
+        -- idcanaval
+        EXECUTE format(
+            '
+            SELECT COALESCE(string_agg(c.idcana, '','' ORDER BY idcana), ''INCONNU'')
+            FROM %s AS c
+            WHERE ST_DWithin(ST_StartPoint(c.geom), ''%s''::geometry, 0.05)
+            ',
+            table_canalisation,
+            NEW.geom
+        )
+        INTO NEW.idcanaval;
+        RAISE NOTICE 'appareil % - idcanamont changé à %', NEW.idappareil, NEW.idcanamont;
+        RAISE NOTICE 'appareil % - idcanaval changé à %', NEW.idappareil, NEW.idcanaval;
+
+
+    END IF;
+
+
+    -- Métadonnées
+    IF (NEW.mouvrage IS NULL) OR (NEW.gexploit IS NULL) OR (NEW.sourmaj IS NULL) THEN
+        -- Récupération du gestionnaire
+        SELECT INTO organisme
+        s.nom
+        FROM raepa.sys_organisme_gestionnaire s
+        WHERE actif IS TRUE
+        ORDER BY id DESC
+        LIMIT 1;
+    END IF;
+
+    IF NEW.mouvrage IS NULL THEN
+        NEW.mouvrage := organisme;
+    END IF;
+    IF NEW.gexploit IS NULL THEN
+        NEW.gexploit := organisme;
+    END IF;
+
+    NEW.datemaj := now();
+    IF NEW.sourmaj IS NULL THEN
+        NEW.sourmaj := organisme;
+    END IF;
+
+    RETURN NEW;
+
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="trg_avant_modification_ouvrage" returnType="trigger" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+    organisme text;
+    table_canalisation text;
+BEGIN
+
+    -- Calcul de l'identifiant si besoin
+    IF NEW.idouvrage IS NULL OR trim(NEW.idouvrage) = '' OR trim(NEW.idouvrage) = 'INCONNU' THEN
+        NEW.idouvrage := raepa.generate_oid(TG_TABLE_NAME::text)::character varying;
+    END IF;
+
+    -- Calcul de la géométrie à partir de X et Y
+    IF ( TG_OP = 'UPDATE' AND NEW.x IS NOT NULL AND NEW.y IS NOT NULL AND ( NEW.x != OLD.x OR NEW.y != OLD.y ) )
+    OR ( TG_OP = 'INSERT' AND NEW.x IS NOT NULL AND NEW.y IS NOT NULL ) THEN
+        NEW.geom := ST_SetSRID(ST_Makepoint(NEW.x, NEW.y), 2154);
+        RAISE NOTICE 'ouvrage % - X ou Y changé -> changement geom vers POINT(% %)', NEW.idouvrage, NEW.x, NEW.y;
+    END IF;
+
+    IF ( TG_OP = 'UPDATE' AND NOT ST_Equals(NEW.geom, OLD.geom) ) OR TG_OP = 'INSERT' THEN
+
+        -- Calcul des X et Y si besoin
+        NEW.x := ST_X(NEW.geom)::numeric(10,3);
+        NEW.y := ST_Y(NEW.geom)::numeric(10,3);
+
+        -- Calcul des canalisation amont et aval
+        table_canalisation = 'raepa.raepa_canalass_l';
+        IF TG_TABLE_NAME = 'raepa_ouvraep_p' THEN
+            table_canalisation = 'raepa.raepa_canalaep_l';
+        END IF;
+
+        -- idcanamont
+        EXECUTE format(
+            '
+            SELECT COALESCE(string_agg(c.idcana, '','' ORDER BY idcana), ''INCONNU'')
+            FROM %s AS c
+            WHERE ST_DWithin(ST_EndPoint(c.geom), ''%s''::geometry, 0.05)
+            ',
+            table_canalisation,
+            NEW.geom
+        )
+        INTO NEW.idcanamont;
+
+        -- idcanaval
+        EXECUTE format(
+            '
+            SELECT COALESCE(string_agg(c.idcana, '','' ORDER BY idcana), ''INCONNU'')
+            FROM %s AS c
+            WHERE ST_DWithin(ST_StartPoint(c.geom), ''%s''::geometry, 0.05)
+
+            ',
+            table_canalisation,
+            NEW.geom
+        )
+        INTO NEW.idcanaval;
+        RAISE NOTICE 'ouvrage % - idcanamont changé à %', NEW.idouvrage, NEW.idcanamont;
+        RAISE NOTICE 'ouvrage % - idcanaval changé à %', NEW.idouvrage, NEW.idcanaval;
+
+    END IF;
+
+
+    -- Métadonnées
+    IF (NEW.mouvrage IS NULL) OR (NEW.gexploit IS NULL) OR (NEW.sourmaj IS NULL) THEN
+        -- Récupération du gestionnaire
+        SELECT INTO organisme
+        s.nom
+        FROM raepa.sys_organisme_gestionnaire s
+        WHERE actif IS TRUE
+        ORDER BY id DESC
+        LIMIT 1;
+    END IF;
+
+    IF NEW.mouvrage IS NULL THEN
+        NEW.mouvrage := organisme;
+    END IF;
+    IF NEW.gexploit IS NULL THEN
+        NEW.gexploit := organisme;
+    END IF;
+
+    NEW.datemaj := now();
+    IF NEW.sourmaj IS NULL THEN
+        NEW.sourmaj := organisme;
+    END IF;
+
+    RETURN NEW;
+
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="upstream_by_geom" returnType="geometry" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+DECLARE
+  p_cana_table regclass;
+  get_cana text[];
+  p_cana_id text;
+  sql_text text;
+  parcours public.geometry;
+BEGIN
+
+  -- Get canalisation id
+  SELECT raepa.get_canalisation_id_by_object_id(p_id_object, 'up')
+  INTO get_cana;
+  p_cana_id = get_cana[1];
+  p_cana_table = get_cana[2];
+  IF p_cana_id = '' THEN
+    RETURN NULL;
+  END IF;
+  -- RAISE NOTICE 'Canalisation d''origine = %s', p_cana_id;
+
+  -- Build geometry
+  EXECUTE format('
+    WITH RECURSIVE walk_network(idcana, idnini, idnterm, all_parents, geom) AS (
+      SELECT c.idcana::text,
+      c.idnini, c.idnterm,
+      array[c.idcana::text] as all_parents,
+      c.geom
+      FROM %s AS c
+      JOIN raepa.get_canalisation_ids_by_object_id(''%s'', ''up'') AS s
+          ON c.idcana = s.idcana
+    UNION ALL
+      SELECT n.idcana::text,
+      n.idnini, n.idnterm,
+      w.all_parents || n.idcana::text,
+      n.geom
+      FROM %s AS n, walk_network AS w
+      WHERE TRUE
+      AND ST_Dwithin(st_startpoint(w.geom), st_endpoint(n.geom), 0.05)
+      AND n.idcana <> ALL (w.all_parents)
+    )
+    SELECT ST_Union(DISTINCT r.geom) AS geom
+    FROM walk_network wn
+    INNER JOIN %s r
+    ON wn.idcana = r.idcana
+    ',
+    p_cana_table, p_id_object,
+    p_cana_table,
+    p_cana_table
+  ) INTO parcours;
+
+  RETURN parcours;
+END;
+]]></definition>
+      </routine>
+      <routine dataAccess="MODIFIES" deterministic="false" name="upstream_by_idn" returnType="geometry" securityType="INVOKER" type="FUNCTION">
+         <comment/>
+         <definition language="PLPGSQL"><![CDATA[
+
+DECLARE
+  p_cana_table regclass;
+  get_cana text[];
+  p_cana_id text;
+  sql_text text;
+  parcours public.geometry;
+BEGIN
+
+  -- Get canalisation id
+  SELECT raepa.get_canalisation_id_by_object_id(p_id_object, 'up')
+  INTO get_cana;
+  p_cana_id = get_cana[1];
+  p_cana_table = get_cana[2];
+  IF p_cana_id = '' THEN
+    RETURN NULL;
+  END IF;
+  -- RAISE NOTICE 'Canalisation d''origine = %s', p_cana_id;
+
+  -- Build geometry
+  EXECUTE format('
+    WITH RECURSIVE walk_network(idcana, idnini, idnterm, all_parents) AS (
+      SELECT c.idcana::text,
+      c.idnini, c.idnterm,
+      array[c.idcana::text] as all_parents
+      FROM %s AS c
+      JOIN raepa.get_canalisation_ids_by_object_id(''%s'', ''up'') AS s
+          ON c.idcana = s.idcana
+    UNION
+      SELECT n.idcana::text,
+      n.idnini, n.idnterm,
+      w.all_parents || n.idcana::text
+      FROM %s AS n, walk_network AS w
+      WHERE TRUE
+      AND n.idnterm = w.idnini AND n.idnterm != ''INCONNU''
+      AND n.idcana <> ALL (w.all_parents)
+    )
+    SELECT ST_Union(DISTINCT r.geom) AS geom
+    FROM walk_network wn
+    INNER JOIN %s AS r
+    ON wn.idcana = r.idcana
+    ',
+    p_cana_table, p_id_object,
+    p_cana_table,
+    p_cana_table
+  ) INTO parcours;
+
+  RETURN parcours;
+END;
+]]></definition>
+      </routine>
+   </routines>
+</database>
