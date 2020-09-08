@@ -1,7 +1,6 @@
+os: linux
 dist: bionic
-
 language: python
-
 python: 3.7
 
 services:
@@ -36,7 +35,7 @@ jobs:
       if: tag IS present
       name: Create release
       install:
-        - pip3 install git+https://github.com/Gustry/qgis-plugin-ci.git
+        - pip3 install qgis-plugin-ci==1.8.4
       before_deploy:
         - export RELEASE_TITLE="$TRAVIS_TAG"
         - qgis-plugin-ci changelog $TRAVIS_TAG > ../release.md
@@ -49,7 +48,7 @@ jobs:
           file: .
           name: ${RELEASE_TITLE}
           release_notes_file: ../release.md
-          api_key: ${GH_TOKEN}
+          token: ${GH_TOKEN}
           on:
             tags: true
 
@@ -59,7 +58,6 @@ jobs:
             tags: true
 
         - provider: script
-          skip_cleanup: true
           script: .github/push_to_github.sh
           on:
             tags: true
