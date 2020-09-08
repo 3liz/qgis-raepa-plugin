@@ -4,6 +4,12 @@ Plugin QGIS pour le standard Réseaux d'Adduction d'Eau Potable et d'Assainissem
 
 [![Build Status](https://travis-ci.org/3liz/qgis-raepa-plugin.svg?branch=master)](https://travis-ci.org/3liz/qgis-raepa-plugin)
 
+## Installation
+
+Dans le gestionnaire des extensions de QGIS, vous pouvez ajouter un dépôt avec l'URL suivante : 
+
+https://github.com/3liz/qgis-raepa-plugin/releases/latest/download/plugins.xml
+
 ## Présentation
 
 Lizmap Web Client:
