@@ -5,7 +5,7 @@ networks:
 
 services:
   db:
-    image: kartoza/postgis:10.0-2.4  # Despite the tag, it's a 10.6 version
+    image: kartoza/postgis:10.0-2.4  # Despite the tag, it's a 10.15 version
     hostname: db
     container_name: postgis
     networks:
