@@ -1,8 +1,8 @@
 # RAEPA
 
-Plugin QGIS pour le standard Réseaux d'Adduction d'Eau Potable et d'Assainissement (RAEPA)
+Extension QGIS pour le standard Réseaux d'Adduction d'Eau Potable et d'Assainissement (RAEPA)
 
-[![Build Status](https://travis-ci.org/3liz/qgis-raepa-plugin.svg?branch=master)](https://travis-ci.org/3liz/qgis-raepa-plugin)
+[![Tests 🎳](https://github.com/3liz/qgis-raepa-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/3liz/qgis-raepa-plugin/actions/workflows/ci.yml)
 
 ## Installation
 
@@ -22,7 +22,7 @@ QGIS Plugin:
 
 ## Documentation
 
-Database documentation : https://3liz.github.io/qgis-raepa-plugin/
+Database documentation : https://docs.3liz.org/qgis-raepa-plugin/
 
 ## Financeurs
 
