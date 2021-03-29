@@ -69,6 +69,7 @@ jobs:
         run: flake8
 
   packaging:
+    needs: [flake8, unittests, migration]
     runs-on: ubuntu-latest
     if: github.repository == '3liz/qgis-raepa-plugin' && contains(github.ref, 'refs/tags/')
 
