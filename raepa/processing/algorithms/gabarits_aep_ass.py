@@ -75,7 +75,7 @@ class ExportGabarits(BaseProcessingAlgorithm):
         gabarit = self.parameterAsEnum(parameters, self.TYPE, context)
         gabarit = self.gabarit_type[gabarit].lower()
         crs = self.parameterAsEnum(parameters, self.CRS, context)
-        crs = self.projection[crs - 1]
+        crs = self.projection[crs]
         zip_path = self.parameterAsFile(parameters, self.DESTINATION, context)
 
         if not zip_path.lower().endswith('.zip'):
