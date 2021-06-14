@@ -74,4 +74,6 @@ class GetNetworkToVanne(GetDataAsLayer):
         self.SQL = sql.replace('\n', ' ').rstrip(';')
 
     def setLayerName(self, parameters, context, feedback):
-        self.LAYER_NAME = 'Réseau vers la vanne depuis {}'.format(parameters[self.SOURCE_ID])
+        GetDataAsLayer.setLayerName(self, parameters, context, feedback)
+        if self.LAYER_NAME == '' :
+            self.LAYER_NAME = 'Réseau vers la vanne depuis {}'.format(parameters[self.SOURCE_ID])
