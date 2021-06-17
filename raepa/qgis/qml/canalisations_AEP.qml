@@ -288,7 +288,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="nom"/>
-            <Option name="Layer" type="QString" value="sys_organisme_gestionnaire2019100910365653369926340"/>
+            <Option name="LayerName" type="QString" value="sys_organisme_gestionnaire"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -305,7 +305,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="nom"/>
-            <Option name="Layer" type="QString" value="sys_organisme_gestionnaire2019100910365653369926340"/>
+            <Option name="LayerName" type="QString" value="sys_organisme_gestionnaire"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -342,7 +342,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="code"/>
-            <Option name="Layer" type="QString" value="val_raepa_materiau201910091036565381184808403"/>
+            <Option name="LayerName" type="QString" value="val_raepa_materiau"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -379,7 +379,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="code"/>
-            <Option name="Layer" type="QString" value="val_raepa_mode_circulation20191009103656538101934309"/>
+            <Option name="LayerName" type="QString" value="val_raepa_mode_circulation"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -396,7 +396,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="code"/>
-            <Option name="Layer" type="QString" value="val_raepa_fonc_canal_ae201910091036565371961455885"/>
+            <Option name="LayerName" type="QString" value="val_raepa_cat_canal_ae"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -413,7 +413,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="code"/>
-            <Option name="Layer" type="QString" value="val_raepa_fonc_canal_ae201910091036565371961455885"/>
+            <Option name="LayerName" type="QString" value="val_raepa_fonc_canal_ae"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -520,7 +520,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="code"/>
-            <Option name="Layer" type="QString" value="val_raepa_qualite_geoloc201910091036565392031560565"/>
+            <Option name="LayerName" type="QString" value="val_raepa_qualite_geoloc"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -537,7 +537,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="code"/>
-            <Option name="Layer" type="QString" value="val_raepa_qualite_geoloc201910091036565392031560565"/>
+            <Option name="LayerName" type="QString" value="val_raepa_qualite_geoloc"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -567,7 +567,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="nom"/>
-            <Option name="Layer" type="QString" value="sys_organisme_gestionnaire2019100910365653369926340"/>
+            <Option name="LayerName" type="QString" value="sys_organisme_gestionnaire"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -584,7 +584,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="code"/>
-            <Option name="Layer" type="QString" value="val_raepa_qualite_anpose20191009103656539585994462"/>
+            <Option name="LayerName" type="QString" value="val_raepa_qualite_anpose"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -919,7 +919,7 @@ def my_form_open(dialog, layer, feature):
     <field name="fonccanass" editable="1"/>
     <field name="gexploit" editable="1"/>
     <field name="id" editable="0"/>
-    <field name="idcana" editable="0"/>
+    <field name="idcana" editable="1"/>
     <field name="idcanppale" editable="1"/>
     <field name="idnini" editable="1"/>
     <field name="idnterm" editable="1"/>

@@ -53,7 +53,7 @@
             <Option name="AllowNull" value="true" type="bool"/>
             <Option name="FilterExpression" value="" type="QString"/>
             <Option name="Key" value="nom" type="QString"/>
-            <Option name="Layer" value="sys_organisme_gestionnaire2019100910365653369926340" type="QString"/>
+            <Option name="LayerName" value="sys_organisme_gestionnaire" type="QString"/>
             <Option name="NofColumns" value="1" type="int"/>
             <Option name="OrderByValue" value="true" type="bool"/>
             <Option name="UseCompleter" value="false" type="bool"/>
@@ -70,7 +70,7 @@
             <Option name="AllowNull" value="true" type="bool"/>
             <Option name="FilterExpression" value="" type="QString"/>
             <Option name="Key" value="nom" type="QString"/>
-            <Option name="Layer" value="sys_organisme_gestionnaire2019100910365653369926340" type="QString"/>
+            <Option name="LayerName" value="sys_organisme_gestionnaire" type="QString"/>
             <Option name="NofColumns" value="1" type="int"/>
             <Option name="OrderByValue" value="true" type="bool"/>
             <Option name="UseCompleter" value="false" type="bool"/>
@@ -87,7 +87,7 @@
             <Option name="AllowNull" value="true" type="bool"/>
             <Option name="FilterExpression" value="" type="QString"/>
             <Option name="Key" value="code" type="QString"/>
-            <Option name="Layer" value="val_raepa_fonc_ouv_ae201910091036565371693200831" type="QString"/>
+            <Option name="LayerName" value="val_raepa_fonc_ouv_ae" type="QString"/>
             <Option name="NofColumns" value="1" type="int"/>
             <Option name="OrderByValue" value="true" type="bool"/>
             <Option name="UseCompleter" value="false" type="bool"/>
@@ -164,7 +164,7 @@
             <Option name="AllowNull" value="true" type="bool"/>
             <Option name="FilterExpression" value="" type="QString"/>
             <Option name="Key" value="code" type="QString"/>
-            <Option name="Layer" value="val_raepa_qualite_geoloc201910091036565392031560565" type="QString"/>
+            <Option name="LayerName" value="val_raepa_qualite_geoloc" type="QString"/>
             <Option name="NofColumns" value="1" type="int"/>
             <Option name="OrderByValue" value="true" type="bool"/>
             <Option name="UseCompleter" value="false" type="bool"/>
@@ -181,7 +181,7 @@
             <Option name="AllowNull" value="true" type="bool"/>
             <Option name="FilterExpression" value="" type="QString"/>
             <Option name="Key" value="code" type="QString"/>
-            <Option name="Layer" value="val_raepa_qualite_geoloc201910091036565392031560565" type="QString"/>
+            <Option name="LayerName" value="val_raepa_qualite_geoloc" type="QString"/>
             <Option name="NofColumns" value="1" type="int"/>
             <Option name="OrderByValue" value="true" type="bool"/>
             <Option name="UseCompleter" value="false" type="bool"/>
@@ -211,7 +211,7 @@
             <Option name="AllowNull" value="true" type="bool"/>
             <Option name="FilterExpression" value="" type="QString"/>
             <Option name="Key" value="nom" type="QString"/>
-            <Option name="Layer" value="sys_organisme_gestionnaire2019100910365653369926340" type="QString"/>
+            <Option name="LayerName" value="sys_organisme_gestionnaire" type="QString"/>
             <Option name="NofColumns" value="1" type="int"/>
             <Option name="OrderByValue" value="true" type="bool"/>
             <Option name="UseCompleter" value="false" type="bool"/>
@@ -228,7 +228,7 @@
             <Option name="AllowNull" value="true" type="bool"/>
             <Option name="FilterExpression" value="" type="QString"/>
             <Option name="Key" value="code" type="QString"/>
-            <Option name="Layer" value="val_raepa_qualite_anpose20191009103656539585994462" type="QString"/>
+            <Option name="LayerName" value="val_raepa_qualite_anpose" type="QString"/>
             <Option name="NofColumns" value="1" type="int"/>
             <Option name="OrderByValue" value="true" type="bool"/>
             <Option name="UseCompleter" value="false" type="bool"/>
@@ -445,7 +445,7 @@
     <field name="idcanamont" editable="1"/>
     <field name="idcanaval" editable="1"/>
     <field name="idcanppale" editable="1"/>
-    <field name="idouvrage" editable="0"/>
+    <field name="idouvrage" editable="1"/>
     <field name="mouvrage" editable="1"/>
     <field name="qualannee" editable="1"/>
     <field name="qualglocxy" editable="1"/>

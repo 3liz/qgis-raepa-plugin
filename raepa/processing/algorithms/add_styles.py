@@ -176,10 +176,12 @@ class AddStyles(BaseProcessingAlgorithm):
                 if s == 'actions':
                     final_qml = os.path.join(qml_path, 'actions_{}'.format(file_name))
                     category = QgsMapLayer.Actions
+                    layer.loadNamedStyle(final_qml, categories=category)
+                    
                 else:
                     final_qml = os.path.join(qml_path, 'forms_{}'.format(file_name))
-                    category = QgsMapLayer.Forms
-
-                layer.loadNamedStyle(final_qml, categories=category)
+                    category = QgsMapLayer.Forms|QgsMapLayer.Fields
+                    layer.loadNamedStyle(final_qml, categories=category)
+                    
                 feedback.pushInfo('Fichier QML {} sur la couche {} pour {}'.format(file_name, layer.name(), s))
                 layer.triggerRepaint()
