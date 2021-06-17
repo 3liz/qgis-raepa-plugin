@@ -82,6 +82,6 @@ class GetDownstreamRoute(GetDataAsLayer):
         self.SQL = sql.replace('\n', ' ').rstrip(';')
 
     def setLayerName(self, parameters, context, feedback):
-        GetDataAsLayer.setLayerName(self, parameters, context, feedback)
+        super().setLayerName(parameters, context, feedback)
         if self.LAYER_NAME == '' :
             self.LAYER_NAME = 'Réseau aval depuis {}'.format(parameters[self.SOURCE_ID])
