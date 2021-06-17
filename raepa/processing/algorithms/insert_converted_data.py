@@ -54,6 +54,8 @@ class InsertConvertedData(ExecuteSql):
         super(self.__class__, self).initAlgorithm(config)
 
         # INPUTS
+        self.removeParameter('INPUT_SQL')
+
         self.addParameter(
             QgsProcessingParameterString(
                 self.SOURCE_HISTORIQUE, 'Source historique',

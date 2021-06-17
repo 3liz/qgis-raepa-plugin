@@ -54,12 +54,8 @@ class CancelLastModification(ExecuteSql):
         super(self.__class__, self).initAlgorithm(config)
 
         # INPUTS
-        self.addParameter(
-            QgsProcessingParameterVectorLayer(
-                self.SOURCE_LAYER, 'Source layer',
-                optional=False
-            )
-        )
+        self.removeParameter('INPUT_SQL')
+
         self.addParameter(
             QgsProcessingParameterString(
                 self.SOURCE_ID, 'Unique ID (id)',
