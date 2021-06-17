@@ -1545,53 +1545,50 @@
   <featformsuppress>0</featformsuppress>
   <editorlayout>tablayout</editorlayout>
   <attributeEditorForm>
-    <attributeEditorContainer visibilityExpressionEnabled="0" showLabel="1" groupBox="0" visibilityExpression="" columnCount="1" name="Ouvrage">
-      <attributeEditorContainer visibilityExpressionEnabled="0" showLabel="1" groupBox="1" visibilityExpression="" columnCount="1" name="Général">
+    <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="0" showLabel="1" columnCount="1" name="Ouvrage">
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Général">
         <attributeEditorField index="0" showLabel="1" name="id"/>
         <attributeEditorField index="1" showLabel="1" name="idouvrage"/>
         <attributeEditorField index="6" showLabel="1" name="typreseau"/>
         <attributeEditorField index="7" showLabel="1" name="fnouvass"/>
-        <attributeEditorField index="29" showLabel="1" name="_observation"/>
       </attributeEditorContainer>
-      <attributeEditorContainer visibilityExpressionEnabled="0" showLabel="1" groupBox="1" visibilityExpression="" columnCount="1" name="Technique">
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Technique">
         <attributeEditorField index="2" showLabel="1" name="x"/>
         <attributeEditorField index="3" showLabel="1" name="y"/>
         <attributeEditorField index="12" showLabel="1" name="z"/>
-        <attributeEditorField index="13" showLabel="1" name="_ztampon"/>
-        <attributeEditorField index="14" showLabel="1" name="_angletampon"/>
         <attributeEditorField index="16" showLabel="1" name="qualglocxy"/>
         <attributeEditorField index="17" showLabel="1" name="qualglocz"/>
       </attributeEditorContainer>
-      <attributeEditorContainer visibilityExpressionEnabled="0" showLabel="1" groupBox="1" visibilityExpression="" columnCount="1" name="Relations">
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Relations">
         <attributeEditorField index="9" showLabel="1" name="idcanamont"/>
         <attributeEditorField index="10" showLabel="1" name="idcanaval"/>
         <attributeEditorField index="11" showLabel="1" name="idcanppale"/>
       </attributeEditorContainer>
-      <attributeEditorContainer visibilityExpressionEnabled="0" showLabel="1" groupBox="1" visibilityExpression="" columnCount="1" name="Historique">
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Historique">
         <attributeEditorField index="4" showLabel="1" name="mouvrage"/>
         <attributeEditorField index="5" showLabel="1" name="gexploit"/>
         <attributeEditorField index="15" showLabel="1" name="andebpose"/>
         <attributeEditorField index="8" showLabel="1" name="anfinpose"/>
-        <attributeEditorField index="25" showLabel="1" name="_code_chantier"/>
-        <attributeEditorField index="26" showLabel="1" name="_date_import"/>
       </attributeEditorContainer>
-      <attributeEditorContainer visibilityExpressionEnabled="0" showLabel="1" groupBox="1" visibilityExpression="" columnCount="1" name="Métadonnées">
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Métadonnées">
         <attributeEditorField index="18" showLabel="1" name="datemaj"/>
         <attributeEditorField index="19" showLabel="1" name="sourmaj"/>
         <attributeEditorField index="20" showLabel="1" name="qualannee"/>
         <attributeEditorField index="21" showLabel="1" name="dategeoloc"/>
         <attributeEditorField index="22" showLabel="1" name="sourgeoloc"/>
         <attributeEditorField index="23" showLabel="1" name="sourattrib"/>
-        <attributeEditorField index="24" showLabel="1" name="_source_historique"/>
       </attributeEditorContainer>
     </attributeEditorContainer>
   </attributeEditorForm>
   <editable>
     <field editable="1" name="_angletampon"/>
+    <field editable="1" name="_capacite"/>
     <field editable="1" name="_code_chantier"/>
     <field editable="1" name="_commune"/>
     <field editable="1" name="_date_import"/>
+    <field editable="1" name="_fiche"/>
     <field editable="1" name="_geom_emprise"/>
+    <field editable="1" name="_image"/>
     <field editable="1" name="_nom_appareil"/>
     <field editable="1" name="_observation"/>
     <field editable="1" name="_source_historique"/>
@@ -1622,10 +1619,13 @@
   </editable>
   <labelOnTop>
     <field labelOnTop="0" name="_angletampon"/>
+    <field labelOnTop="0" name="_capacite"/>
     <field labelOnTop="0" name="_code_chantier"/>
     <field labelOnTop="0" name="_commune"/>
     <field labelOnTop="0" name="_date_import"/>
+    <field labelOnTop="0" name="_fiche"/>
     <field labelOnTop="0" name="_geom_emprise"/>
+    <field labelOnTop="0" name="_image"/>
     <field labelOnTop="0" name="_nom_appareil"/>
     <field labelOnTop="0" name="_observation"/>
     <field labelOnTop="0" name="_source_historique"/>
@@ -1710,7 +1710,5 @@
       <config/>
     </widget>
   </widgets>
-  <previewExpression>"idouvrage"</previewExpression>
-  <mapTip></mapTip>
   <layerGeometryType>0</layerGeometryType>
 </qgis>

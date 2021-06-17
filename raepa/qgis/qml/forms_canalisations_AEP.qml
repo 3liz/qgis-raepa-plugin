@@ -537,154 +537,157 @@ def my_form_open(dialog, layer, feature):
   <featformsuppress>0</featformsuppress>
   <editorlayout>tablayout</editorlayout>
   <attributeEditorForm>
-    <attributeEditorContainer name="Canalisation d'assainissement" groupBox="0" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" showLabel="1">
-      <attributeEditorContainer name="Général" groupBox="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" showLabel="1">
-        <attributeEditorField name="id" index="0" showLabel="1"/>
-        <attributeEditorField name="idcana" index="1" showLabel="1"/>
-        <attributeEditorField name="typreseau" index="-1" showLabel="1"/>
-        <attributeEditorField name="contcanaep" index="10" showLabel="1"/>
-        <attributeEditorField name="fonccanaep" index="11" showLabel="1"/>
-        <attributeEditorField name="modecirc" index="9" showLabel="1"/>
-        <attributeEditorField name="materiau" index="6" showLabel="1"/>
-        <attributeEditorField name="branchemnt" index="5" showLabel="1"/>
-        <attributeEditorField name="nbranche" index="20" showLabel="1"/>
-        <attributeEditorField name="_observation" index="29" showLabel="1"/>
+    <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="0" showLabel="1" columnCount="1" name="Canalisation AEP">
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Général">
+        <attributeEditorField index="0" showLabel="1" name="id"/>
+        <attributeEditorField index="1" showLabel="1" name="idcana"/>
+        <attributeEditorField index="10" showLabel="1" name="contcanaep"/>
+        <attributeEditorField index="11" showLabel="1" name="fonccanaep"/>
+        <attributeEditorField index="9" showLabel="1" name="modecirc"/>
+        <attributeEditorField index="6" showLabel="1" name="materiau"/>
+        <attributeEditorField index="5" showLabel="1" name="branchemnt"/>
+        <attributeEditorField index="20" showLabel="1" name="nbranche"/>
+        <attributeEditorField index="4" showLabel="1" name="enservice"/>
       </attributeEditorContainer>
-      <attributeEditorContainer name="Technique" groupBox="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" showLabel="1">
-        <attributeEditorField name="longcana" index="17" showLabel="1"/>
-        <attributeEditorField name="_longcana_cm" index="18" showLabel="1"/>
-        <attributeEditorField name="_longcana_reelle" index="19" showLabel="1"/>
-        <attributeEditorField name="diametre" index="7" showLabel="1"/>
-        <attributeEditorField name="sensecoul" index="-1" showLabel="1"/>
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Technique">
+        <attributeEditorField index="17" showLabel="1" name="longcana"/>
+        <attributeEditorField index="7" showLabel="1" name="diametre"/>
+        <attributeEditorField index="15" showLabel="1" name="profgen"/>
       </attributeEditorContainer>
-      <attributeEditorContainer name="Relations" groupBox="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" showLabel="1">
-        <attributeEditorField name="zamont" index="-1" showLabel="1"/>
-        <attributeEditorField name="zaval" index="-1" showLabel="1"/>
-        <attributeEditorField name="idnini" index="12" showLabel="1"/>
-        <attributeEditorField name="idnterm" index="13" showLabel="1"/>
-        <attributeEditorField name="idcanppale" index="14" showLabel="1"/>
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Relations">
+        <attributeEditorField index="12" showLabel="1" name="idnini"/>
+        <attributeEditorField index="13" showLabel="1" name="idnterm"/>
+        <attributeEditorField index="14" showLabel="1" name="idcanppale"/>
       </attributeEditorContainer>
-      <attributeEditorContainer name="Historique" groupBox="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" showLabel="1">
-        <attributeEditorField name="mouvrage" index="2" showLabel="1"/>
-        <attributeEditorField name="gexploit" index="3" showLabel="1"/>
-        <attributeEditorField name="anfinpose" index="8" showLabel="1"/>
-        <attributeEditorField name="andebpose" index="16" showLabel="1"/>
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Historique">
+        <attributeEditorField index="2" showLabel="1" name="mouvrage"/>
+        <attributeEditorField index="3" showLabel="1" name="gexploit"/>
+        <attributeEditorField index="8" showLabel="1" name="anfinpose"/>
+        <attributeEditorField index="16" showLabel="1" name="andebpose"/>
       </attributeEditorContainer>
-      <attributeEditorContainer name="Métadonnées" groupBox="1" visibilityExpressionEnabled="0" columnCount="1" visibilityExpression="" showLabel="1">
-        <attributeEditorField name="qualglocxy" index="21" showLabel="1"/>
-        <attributeEditorField name="qualglocz" index="22" showLabel="1"/>
-        <attributeEditorField name="datemaj" index="23" showLabel="1"/>
-        <attributeEditorField name="sourmaj" index="24" showLabel="1"/>
-        <attributeEditorField name="qualannee" index="25" showLabel="1"/>
-        <attributeEditorField name="dategeoloc" index="26" showLabel="1"/>
-        <attributeEditorField name="sourgeoloc" index="27" showLabel="1"/>
-        <attributeEditorField name="sourattrib" index="28" showLabel="1"/>
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Métadonnées">
+        <attributeEditorField index="21" showLabel="1" name="qualglocxy"/>
+        <attributeEditorField index="22" showLabel="1" name="qualglocz"/>
+        <attributeEditorField index="23" showLabel="1" name="datemaj"/>
+        <attributeEditorField index="24" showLabel="1" name="sourmaj"/>
+        <attributeEditorField index="25" showLabel="1" name="qualannee"/>
+        <attributeEditorField index="26" showLabel="1" name="dategeoloc"/>
+        <attributeEditorField index="27" showLabel="1" name="sourgeoloc"/>
+        <attributeEditorField index="28" showLabel="1" name="sourattrib"/>
       </attributeEditorContainer>
     </attributeEditorContainer>
   </attributeEditorForm>
   <editable>
-    <field name="_code_chantier" editable="1"/>
-    <field name="_date_import" editable="1"/>
-    <field name="_dimensionhorizontale" editable="1"/>
-    <field name="_etat" editable="1"/>
-    <field name="_forme" editable="1"/>
-    <field name="_longcana_cm" editable="1"/>
-    <field name="_longcana_reelle" editable="1"/>
-    <field name="_observation" editable="1"/>
-    <field name="_pente" editable="1"/>
-    <field name="_precisionannee" editable="1"/>
-    <field name="_source_historique" editable="1"/>
-    <field name="_temp_data" editable="1"/>
-    <field name="andebpose" editable="1"/>
-    <field name="anfinpose" editable="1"/>
-    <field name="branchemnt" editable="1"/>
-    <field name="contcanaep" editable="1"/>
-    <field name="contcanass" editable="1"/>
-    <field name="dategeoloc" editable="1"/>
-    <field name="datemaj" editable="1"/>
-    <field name="diametre" editable="1"/>
-    <field name="enservice" editable="1"/>
-    <field name="fonccanaep" editable="1"/>
-    <field name="fonccanass" editable="1"/>
-    <field name="gexploit" editable="1"/>
-    <field name="id" editable="0"/>
-    <field name="idcana" editable="1"/>
-    <field name="idcanppale" editable="1"/>
-    <field name="idnini" editable="1"/>
-    <field name="idnterm" editable="1"/>
-    <field name="longcana" editable="1"/>
-    <field name="materiau" editable="1"/>
-    <field name="modecirc" editable="1"/>
-    <field name="mouvrage" editable="1"/>
-    <field name="nbranche" editable="1"/>
-    <field name="profgen" editable="1"/>
-    <field name="qualannee" editable="1"/>
-    <field name="qualglocxy" editable="1"/>
-    <field name="qualglocz" editable="1"/>
-    <field name="sensecoul" editable="1"/>
-    <field name="sourattrib" editable="1"/>
-    <field name="sourgeoloc" editable="1"/>
-    <field name="sourmaj" editable="1"/>
-    <field name="typreseau" editable="1"/>
-    <field name="val_raepa_cat_canal_ass_libelle" editable="0"/>
-    <field name="val_raepa_fonc_canal_ass_libelle" editable="0"/>
-    <field name="val_raepa_materiau_libelle" editable="0"/>
-    <field name="val_raepa_mode_circulation_libelle" editable="0"/>
-    <field name="val_raepa_qualite_geoloc_libelle" editable="0"/>
-    <field name="zamont" editable="1"/>
-    <field name="zaval" editable="1"/>
+    <field editable="1" name="_code_chantier"/>
+    <field editable="1" name="_commune"/>
+    <field editable="1" name="_date_import"/>
+    <field editable="1" name="_dimensionhorizontale"/>
+    <field editable="1" name="_etagedist"/>
+    <field editable="1" name="_etat"/>
+    <field editable="1" name="_forme"/>
+    <field editable="1" name="_longcana_cm"/>
+    <field editable="1" name="_longcana_reelle"/>
+    <field editable="1" name="_observation"/>
+    <field editable="1" name="_pente"/>
+    <field editable="1" name="_precisionannee"/>
+    <field editable="1" name="_source_historique"/>
+    <field editable="1" name="_temp_data"/>
+    <field editable="1" name="_typecana"/>
+    <field editable="1" name="_zonedist"/>
+    <field editable="1" name="andebpose"/>
+    <field editable="1" name="anfinpose"/>
+    <field editable="1" name="branchemnt"/>
+    <field editable="1" name="contcanaep"/>
+    <field editable="1" name="contcanass"/>
+    <field editable="1" name="dategeoloc"/>
+    <field editable="1" name="datemaj"/>
+    <field editable="1" name="diametre"/>
+    <field editable="1" name="enservice"/>
+    <field editable="1" name="fonccanaep"/>
+    <field editable="1" name="fonccanass"/>
+    <field editable="1" name="gexploit"/>
+    <field editable="0" name="id"/>
+    <field editable="1" name="idcana"/>
+    <field editable="1" name="idcanppale"/>
+    <field editable="1" name="idnini"/>
+    <field editable="1" name="idnterm"/>
+    <field editable="1" name="longcana"/>
+    <field editable="1" name="materiau"/>
+    <field editable="1" name="modecirc"/>
+    <field editable="1" name="mouvrage"/>
+    <field editable="1" name="nbranche"/>
+    <field editable="1" name="profgen"/>
+    <field editable="1" name="qualannee"/>
+    <field editable="1" name="qualglocxy"/>
+    <field editable="1" name="qualglocz"/>
+    <field editable="1" name="sensecoul"/>
+    <field editable="1" name="sourattrib"/>
+    <field editable="1" name="sourgeoloc"/>
+    <field editable="1" name="sourmaj"/>
+    <field editable="1" name="typreseau"/>
+    <field editable="0" name="val_raepa_cat_canal_ass_libelle"/>
+    <field editable="0" name="val_raepa_fonc_canal_ass_libelle"/>
+    <field editable="0" name="val_raepa_materiau_libelle"/>
+    <field editable="0" name="val_raepa_mode_circulation_libelle"/>
+    <field editable="0" name="val_raepa_qualite_geoloc_libelle"/>
+    <field editable="1" name="zamont"/>
+    <field editable="1" name="zaval"/>
   </editable>
   <labelOnTop>
-    <field name="_code_chantier" labelOnTop="0"/>
-    <field name="_date_import" labelOnTop="0"/>
-    <field name="_dimensionhorizontale" labelOnTop="0"/>
-    <field name="_etat" labelOnTop="0"/>
-    <field name="_forme" labelOnTop="0"/>
-    <field name="_longcana_cm" labelOnTop="0"/>
-    <field name="_longcana_reelle" labelOnTop="0"/>
-    <field name="_observation" labelOnTop="0"/>
-    <field name="_pente" labelOnTop="0"/>
-    <field name="_precisionannee" labelOnTop="0"/>
-    <field name="_source_historique" labelOnTop="0"/>
-    <field name="_temp_data" labelOnTop="0"/>
-    <field name="andebpose" labelOnTop="0"/>
-    <field name="anfinpose" labelOnTop="0"/>
-    <field name="branchemnt" labelOnTop="0"/>
-    <field name="contcanaep" labelOnTop="0"/>
-    <field name="contcanass" labelOnTop="0"/>
-    <field name="dategeoloc" labelOnTop="0"/>
-    <field name="datemaj" labelOnTop="0"/>
-    <field name="diametre" labelOnTop="0"/>
-    <field name="enservice" labelOnTop="0"/>
-    <field name="fonccanaep" labelOnTop="0"/>
-    <field name="fonccanass" labelOnTop="0"/>
-    <field name="gexploit" labelOnTop="0"/>
-    <field name="id" labelOnTop="0"/>
-    <field name="idcana" labelOnTop="0"/>
-    <field name="idcanppale" labelOnTop="0"/>
-    <field name="idnini" labelOnTop="0"/>
-    <field name="idnterm" labelOnTop="0"/>
-    <field name="longcana" labelOnTop="0"/>
-    <field name="materiau" labelOnTop="0"/>
-    <field name="modecirc" labelOnTop="0"/>
-    <field name="mouvrage" labelOnTop="0"/>
-    <field name="nbranche" labelOnTop="0"/>
-    <field name="profgen" labelOnTop="0"/>
-    <field name="qualannee" labelOnTop="0"/>
-    <field name="qualglocxy" labelOnTop="0"/>
-    <field name="qualglocz" labelOnTop="0"/>
-    <field name="sensecoul" labelOnTop="0"/>
-    <field name="sourattrib" labelOnTop="0"/>
-    <field name="sourgeoloc" labelOnTop="0"/>
-    <field name="sourmaj" labelOnTop="0"/>
-    <field name="typreseau" labelOnTop="0"/>
-    <field name="val_raepa_cat_canal_ass_libelle" labelOnTop="0"/>
-    <field name="val_raepa_fonc_canal_ass_libelle" labelOnTop="0"/>
-    <field name="val_raepa_materiau_libelle" labelOnTop="0"/>
-    <field name="val_raepa_mode_circulation_libelle" labelOnTop="0"/>
-    <field name="val_raepa_qualite_geoloc_libelle" labelOnTop="0"/>
-    <field name="zamont" labelOnTop="0"/>
-    <field name="zaval" labelOnTop="0"/>
+    <field labelOnTop="0" name="_code_chantier"/>
+    <field labelOnTop="0" name="_commune"/>
+    <field labelOnTop="0" name="_date_import"/>
+    <field labelOnTop="0" name="_dimensionhorizontale"/>
+    <field labelOnTop="0" name="_etagedist"/>
+    <field labelOnTop="0" name="_etat"/>
+    <field labelOnTop="0" name="_forme"/>
+    <field labelOnTop="0" name="_longcana_cm"/>
+    <field labelOnTop="0" name="_longcana_reelle"/>
+    <field labelOnTop="0" name="_observation"/>
+    <field labelOnTop="0" name="_pente"/>
+    <field labelOnTop="0" name="_precisionannee"/>
+    <field labelOnTop="0" name="_source_historique"/>
+    <field labelOnTop="0" name="_temp_data"/>
+    <field labelOnTop="0" name="_typecana"/>
+    <field labelOnTop="0" name="_zonedist"/>
+    <field labelOnTop="0" name="andebpose"/>
+    <field labelOnTop="0" name="anfinpose"/>
+    <field labelOnTop="0" name="branchemnt"/>
+    <field labelOnTop="0" name="contcanaep"/>
+    <field labelOnTop="0" name="contcanass"/>
+    <field labelOnTop="0" name="dategeoloc"/>
+    <field labelOnTop="0" name="datemaj"/>
+    <field labelOnTop="0" name="diametre"/>
+    <field labelOnTop="0" name="enservice"/>
+    <field labelOnTop="0" name="fonccanaep"/>
+    <field labelOnTop="0" name="fonccanass"/>
+    <field labelOnTop="0" name="gexploit"/>
+    <field labelOnTop="0" name="id"/>
+    <field labelOnTop="0" name="idcana"/>
+    <field labelOnTop="0" name="idcanppale"/>
+    <field labelOnTop="0" name="idnini"/>
+    <field labelOnTop="0" name="idnterm"/>
+    <field labelOnTop="0" name="longcana"/>
+    <field labelOnTop="0" name="materiau"/>
+    <field labelOnTop="0" name="modecirc"/>
+    <field labelOnTop="0" name="mouvrage"/>
+    <field labelOnTop="0" name="nbranche"/>
+    <field labelOnTop="0" name="profgen"/>
+    <field labelOnTop="0" name="qualannee"/>
+    <field labelOnTop="0" name="qualglocxy"/>
+    <field labelOnTop="0" name="qualglocz"/>
+    <field labelOnTop="0" name="sensecoul"/>
+    <field labelOnTop="0" name="sourattrib"/>
+    <field labelOnTop="0" name="sourgeoloc"/>
+    <field labelOnTop="0" name="sourmaj"/>
+    <field labelOnTop="0" name="typreseau"/>
+    <field labelOnTop="0" name="val_raepa_cat_canal_ass_libelle"/>
+    <field labelOnTop="0" name="val_raepa_fonc_canal_ass_libelle"/>
+    <field labelOnTop="0" name="val_raepa_materiau_libelle"/>
+    <field labelOnTop="0" name="val_raepa_mode_circulation_libelle"/>
+    <field labelOnTop="0" name="val_raepa_qualite_geoloc_libelle"/>
+    <field labelOnTop="0" name="zamont"/>
+    <field labelOnTop="0" name="zaval"/>
   </labelOnTop>
   <widgets>
     <widget name="od_file20160921105557083_object_vw_qgep_reach_ws_obj_id">
