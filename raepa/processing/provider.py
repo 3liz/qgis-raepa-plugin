@@ -6,6 +6,7 @@ __revision__ = '$Format:%H$'
 from qgis.PyQt.QtGui import QIcon
 from qgis.core import QgsProcessingProvider
 
+from .algorithms.execute_sql import ExecuteSql
 from .algorithms.add_styles import AddStyles
 from .algorithms.cancel_last_modification import CancelLastModification
 from .algorithms.configure_plugin import ConfigurePlugin
@@ -33,6 +34,7 @@ class RaepaProvider(QgsProcessingProvider):
         return QIcon(resources_path('icons/icon.png'))
 
     def loadAlgorithms(self):
+        self.addAlgorithm(ExecuteSql())
         self.addAlgorithm(AddSqlLayers())
         self.addAlgorithm(AddStyles())
         self.addAlgorithm(CancelLastModification())
