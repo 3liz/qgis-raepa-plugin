@@ -61,6 +61,8 @@ class ConvertImportedData(ExecuteSql):
         super(self.__class__, self).initAlgorithm(config)
 
         # INPUTS
+        self.removeParameter('INPUT_SQL')
+
         self.addParameter(
             QgsProcessingParameterString(
                 self.ANNEE_FIN_POSE, 'Année de fin de pose',
