@@ -392,7 +392,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="nom"/>
-            <Option name="Layer" type="QString" value="sys_organisme_gestionnaire2019100910365653369926340"/>
+            <Option name="LayerName" type="QString" value="sys_organisme_gestionnaire"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -409,7 +409,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="nom"/>
-            <Option name="Layer" type="QString" value="sys_organisme_gestionnaire2019100910365653369926340"/>
+            <Option name="LayerName" type="QString" value="sys_organisme_gestionnaire"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -426,7 +426,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="code"/>
-            <Option name="Layer" type="QString" value="val_raepa_fonc_app_ae201910091036565361229466762"/>
+            <Option name="LayerName" type="QString" value="val_raepa_fonc_app_ae"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -523,7 +523,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="code"/>
-            <Option name="Layer" type="QString" value="val_raepa_qualite_geoloc201910091036565392031560565"/>
+            <Option name="LayerName" type="QString" value="val_raepa_qualite_geoloc"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -540,7 +540,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="code"/>
-            <Option name="Layer" type="QString" value="val_raepa_qualite_geoloc201910091036565392031560565"/>
+            <Option name="LayerName" type="QString" value="val_raepa_qualite_geoloc"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -570,7 +570,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="nom"/>
-            <Option name="Layer" type="QString" value="sys_organisme_gestionnaire2019100910365653369926340"/>
+            <Option name="LayerName" type="QString" value="sys_organisme_gestionnaire"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -587,7 +587,7 @@
             <Option name="AllowNull" type="bool" value="true"/>
             <Option name="FilterExpression" type="QString" value=""/>
             <Option name="Key" type="QString" value="code"/>
-            <Option name="Layer" type="QString" value="val_raepa_qualite_anpose20191009103656539585994462"/>
+            <Option name="LayerName" type="QString" value="val_raepa_qualite_anpose"/>
             <Option name="NofColumns" type="int" value="1"/>
             <Option name="OrderByValue" type="bool" value="true"/>
             <Option name="UseCompleter" type="bool" value="false"/>
@@ -843,114 +843,114 @@ def my_form_open(dialog, layer, feature):
   <featformsuppress>0</featformsuppress>
   <editorlayout>tablayout</editorlayout>
   <attributeEditorForm>
-    <attributeEditorContainer showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0" columnCount="1" groupBox="0" name="Appareil">
-      <attributeEditorContainer showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0" columnCount="1" groupBox="1" name="Général">
-        <attributeEditorField showLabel="1" index="0" name="id"/>
-        <attributeEditorField showLabel="1" index="1" name="idappareil"/>
-        <attributeEditorField showLabel="1" index="-1" name="typreseau"/>
-        <attributeEditorField showLabel="1" index="6" name="fnappaep"/>
-        <attributeEditorField showLabel="1" index="25" name="_observation"/>
+    <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="0" showLabel="1" columnCount="1" name="Appareil">
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Général">
+        <attributeEditorField index="0" showLabel="1" name="id"/>
+        <attributeEditorField index="1" showLabel="1" name="idappareil"/>
+        <attributeEditorField index="6" showLabel="1" name="fnappaep"/>
       </attributeEditorContainer>
-      <attributeEditorContainer showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0" columnCount="1" groupBox="1" name="Technique">
-        <attributeEditorField showLabel="1" index="2" name="x"/>
-        <attributeEditorField showLabel="1" index="3" name="y"/>
-        <attributeEditorField showLabel="1" index="13" name="z"/>
-        <attributeEditorField showLabel="1" index="8" name="diametre"/>
-        <attributeEditorField showLabel="1" index="15" name="qualglocxy"/>
-        <attributeEditorField showLabel="1" index="16" name="qualglocz"/>
-        <attributeEditorField showLabel="1" index="23" name="_ferme"/>
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Technique">
+        <attributeEditorField index="2" showLabel="1" name="x"/>
+        <attributeEditorField index="3" showLabel="1" name="y"/>
+        <attributeEditorField index="13" showLabel="1" name="z"/>
+        <attributeEditorField index="8" showLabel="1" name="diametre"/>
+        <attributeEditorField index="15" showLabel="1" name="qualglocxy"/>
+        <attributeEditorField index="16" showLabel="1" name="qualglocz"/>
       </attributeEditorContainer>
-      <attributeEditorContainer showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0" columnCount="1" groupBox="1" name="Relations">
-        <attributeEditorField showLabel="1" index="9" name="idcanamont"/>
-        <attributeEditorField showLabel="1" index="10" name="idcanaval"/>
-        <attributeEditorField showLabel="1" index="11" name="idcanppale"/>
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Relations">
+        <attributeEditorField index="9" showLabel="1" name="idcanamont"/>
+        <attributeEditorField index="10" showLabel="1" name="idcanaval"/>
+        <attributeEditorField index="11" showLabel="1" name="idcanppale"/>
+        <attributeEditorField index="12" showLabel="1" name="idouvrage"/>
       </attributeEditorContainer>
-      <attributeEditorContainer showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0" columnCount="1" groupBox="1" name="Historique">
-        <attributeEditorField showLabel="1" index="4" name="mouvrage"/>
-        <attributeEditorField showLabel="1" index="5" name="gexploit"/>
-        <attributeEditorField showLabel="1" index="14" name="andebpose"/>
-        <attributeEditorField showLabel="1" index="7" name="anfinpose"/>
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Historique">
+        <attributeEditorField index="4" showLabel="1" name="mouvrage"/>
+        <attributeEditorField index="5" showLabel="1" name="gexploit"/>
+        <attributeEditorField index="14" showLabel="1" name="andebpose"/>
+        <attributeEditorField index="7" showLabel="1" name="anfinpose"/>
+        <attributeEditorField index="17" showLabel="1" name="datemaj"/>
+        <attributeEditorField index="18" showLabel="1" name="sourmaj"/>
       </attributeEditorContainer>
-      <attributeEditorContainer showLabel="1" visibilityExpression="" visibilityExpressionEnabled="0" columnCount="1" groupBox="1" name="Métadonnées">
-        <attributeEditorField showLabel="1" index="17" name="datemaj"/>
-        <attributeEditorField showLabel="1" index="18" name="sourmaj"/>
-        <attributeEditorField showLabel="1" index="19" name="qualannee"/>
-        <attributeEditorField showLabel="1" index="20" name="dategeoloc"/>
-        <attributeEditorField showLabel="1" index="21" name="sourgeoloc"/>
-        <attributeEditorField showLabel="1" index="22" name="sourattrib"/>
+      <attributeEditorContainer visibilityExpressionEnabled="0" visibilityExpression="" groupBox="1" showLabel="1" columnCount="1" name="Métadonnées">
+        <attributeEditorField index="19" showLabel="1" name="qualannee"/>
+        <attributeEditorField index="20" showLabel="1" name="dategeoloc"/>
+        <attributeEditorField index="21" showLabel="1" name="sourgeoloc"/>
+        <attributeEditorField index="22" showLabel="1" name="sourattrib"/>
       </attributeEditorContainer>
     </attributeEditorContainer>
   </attributeEditorForm>
   <editable>
-    <field name="_code_chantier" editable="1"/>
-    <field name="_date_import" editable="1"/>
-    <field name="_ferme" editable="1"/>
-    <field name="_observation" editable="1"/>
-    <field name="_orientation" editable="1"/>
-    <field name="_source_historique" editable="1"/>
-    <field name="_temp_data" editable="1"/>
-    <field name="andebpose" editable="1"/>
-    <field name="anfinpose" editable="1"/>
-    <field name="dategeoloc" editable="1"/>
-    <field name="datemaj" editable="1"/>
-    <field name="diametre" editable="1"/>
-    <field name="fnappaep" editable="1"/>
-    <field name="fnappass" editable="1"/>
-    <field name="gexploit" editable="1"/>
-    <field name="id" editable="0"/>
-    <field name="idappareil" editable="0"/>
-    <field name="idcanamont" editable="1"/>
-    <field name="idcanaval" editable="1"/>
-    <field name="idcanppale" editable="1"/>
-    <field name="idouvrage" editable="1"/>
-    <field name="mouvrage" editable="1"/>
-    <field name="qualannee" editable="1"/>
-    <field name="qualglocxy" editable="1"/>
-    <field name="qualglocz" editable="1"/>
-    <field name="sourattrib" editable="1"/>
-    <field name="sourgeoloc" editable="1"/>
-    <field name="sourmaj" editable="1"/>
-    <field name="typreseau" editable="1"/>
-    <field name="x" editable="1"/>
-    <field name="y" editable="1"/>
-    <field name="z" editable="1"/>
+    <field editable="1" name="_code_chantier"/>
+    <field editable="1" name="_commune"/>
+    <field editable="1" name="_date_import"/>
+    <field editable="1" name="_ferme"/>
+    <field editable="1" name="_nom_appareil"/>
+    <field editable="1" name="_observation"/>
+    <field editable="1" name="_orientation"/>
+    <field editable="1" name="_source_historique"/>
+    <field editable="1" name="_temp_data"/>
+    <field editable="1" name="andebpose"/>
+    <field editable="1" name="anfinpose"/>
+    <field editable="1" name="dategeoloc"/>
+    <field editable="1" name="datemaj"/>
+    <field editable="1" name="diametre"/>
+    <field editable="1" name="fnappaep"/>
+    <field editable="1" name="fnappass"/>
+    <field editable="1" name="gexploit"/>
+    <field editable="0" name="id"/>
+    <field editable="1" name="idappareil"/>
+    <field editable="1" name="idcanamont"/>
+    <field editable="1" name="idcanaval"/>
+    <field editable="1" name="idcanppale"/>
+    <field editable="1" name="idouvrage"/>
+    <field editable="1" name="mouvrage"/>
+    <field editable="1" name="qualannee"/>
+    <field editable="1" name="qualglocxy"/>
+    <field editable="1" name="qualglocz"/>
+    <field editable="1" name="sourattrib"/>
+    <field editable="1" name="sourgeoloc"/>
+    <field editable="1" name="sourmaj"/>
+    <field editable="1" name="typreseau"/>
+    <field editable="1" name="x"/>
+    <field editable="1" name="y"/>
+    <field editable="1" name="z"/>
   </editable>
   <labelOnTop>
-    <field name="_code_chantier" labelOnTop="0"/>
-    <field name="_date_import" labelOnTop="0"/>
-    <field name="_ferme" labelOnTop="0"/>
-    <field name="_observation" labelOnTop="0"/>
-    <field name="_orientation" labelOnTop="0"/>
-    <field name="_source_historique" labelOnTop="0"/>
-    <field name="_temp_data" labelOnTop="0"/>
-    <field name="andebpose" labelOnTop="0"/>
-    <field name="anfinpose" labelOnTop="0"/>
-    <field name="dategeoloc" labelOnTop="0"/>
-    <field name="datemaj" labelOnTop="0"/>
-    <field name="diametre" labelOnTop="0"/>
-    <field name="fnappaep" labelOnTop="0"/>
-    <field name="fnappass" labelOnTop="0"/>
-    <field name="gexploit" labelOnTop="0"/>
-    <field name="id" labelOnTop="0"/>
-    <field name="idappareil" labelOnTop="0"/>
-    <field name="idcanamont" labelOnTop="0"/>
-    <field name="idcanaval" labelOnTop="0"/>
-    <field name="idcanppale" labelOnTop="0"/>
-    <field name="idouvrage" labelOnTop="0"/>
-    <field name="mouvrage" labelOnTop="0"/>
-    <field name="qualannee" labelOnTop="0"/>
-    <field name="qualglocxy" labelOnTop="0"/>
-    <field name="qualglocz" labelOnTop="0"/>
-    <field name="sourattrib" labelOnTop="0"/>
-    <field name="sourgeoloc" labelOnTop="0"/>
-    <field name="sourmaj" labelOnTop="0"/>
-    <field name="typreseau" labelOnTop="0"/>
-    <field name="x" labelOnTop="0"/>
-    <field name="y" labelOnTop="0"/>
-    <field name="z" labelOnTop="0"/>
+    <field labelOnTop="0" name="_code_chantier"/>
+    <field labelOnTop="0" name="_commune"/>
+    <field labelOnTop="0" name="_date_import"/>
+    <field labelOnTop="0" name="_ferme"/>
+    <field labelOnTop="0" name="_nom_appareil"/>
+    <field labelOnTop="0" name="_observation"/>
+    <field labelOnTop="0" name="_orientation"/>
+    <field labelOnTop="0" name="_source_historique"/>
+    <field labelOnTop="0" name="_temp_data"/>
+    <field labelOnTop="0" name="andebpose"/>
+    <field labelOnTop="0" name="anfinpose"/>
+    <field labelOnTop="0" name="dategeoloc"/>
+    <field labelOnTop="0" name="datemaj"/>
+    <field labelOnTop="0" name="diametre"/>
+    <field labelOnTop="0" name="fnappaep"/>
+    <field labelOnTop="0" name="fnappass"/>
+    <field labelOnTop="0" name="gexploit"/>
+    <field labelOnTop="0" name="id"/>
+    <field labelOnTop="0" name="idappareil"/>
+    <field labelOnTop="0" name="idcanamont"/>
+    <field labelOnTop="0" name="idcanaval"/>
+    <field labelOnTop="0" name="idcanppale"/>
+    <field labelOnTop="0" name="idouvrage"/>
+    <field labelOnTop="0" name="mouvrage"/>
+    <field labelOnTop="0" name="qualannee"/>
+    <field labelOnTop="0" name="qualglocxy"/>
+    <field labelOnTop="0" name="qualglocz"/>
+    <field labelOnTop="0" name="sourattrib"/>
+    <field labelOnTop="0" name="sourgeoloc"/>
+    <field labelOnTop="0" name="sourmaj"/>
+    <field labelOnTop="0" name="typreseau"/>
+    <field labelOnTop="0" name="x"/>
+    <field labelOnTop="0" name="y"/>
+    <field labelOnTop="0" name="z"/>
   </labelOnTop>
   <widgets/>
-  <previewExpression>id</previewExpression>
-  <mapTip></mapTip>
   <layerGeometryType>0</layerGeometryType>
 </qgis>
