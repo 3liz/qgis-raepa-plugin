@@ -4,25 +4,19 @@ Extension QGIS pour le standard Réseaux d'Adduction d'Eau Potable et d'Assainis
 
 [![Tests 🎳](https://github.com/3liz/qgis-raepa-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/3liz/qgis-raepa-plugin/actions/workflows/ci.yml)
 
-## Installation
+## Documentation
 
-Dans le gestionnaire des extensions de QGIS, vous pouvez ajouter un dépôt avec l'URL suivante : 
-
-https://github.com/3liz/qgis-raepa-plugin/releases/latest/download/plugins.xml
+La documentation de l'installation, de la base de données etc se trouve sur [docs.3liz.org](https://docs.3liz.org/qgis-raepa-plugin/)
 
 ## Présentation
 
 Lizmap Web Client:
 
-![demo LWC](media/lizmap_raepa_visualisation_grande_echelle.png "3Liz")
+![demo LWC](docs/media/lizmap_raepa_visualisation_grande_echelle.png "3Liz")
 
-QGIS Plugin:
+Extension QGIS:
 
-![demo qgis](media/qgis_raepa_calcul_parcours_reseau.png "3Liz")
-
-## Documentation
-
-Database documentation : https://docs.3liz.org/qgis-raepa-plugin/
+![demo qgis](docs/media/qgis_raepa_calcul_parcours_reseau.png "3Liz")
 
 ## Financeurs
 

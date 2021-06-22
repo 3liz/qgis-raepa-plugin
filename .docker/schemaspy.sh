@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 export $(grep -v '^#' .env | xargs)
 
-chmod 777 -R "${PWD}"/../docs
+chmod 777 -R "${PWD}"/../docs/database
 docker run \
-  -v "${PWD}/../docs:/output" \
+  -v "${PWD}/../docs/database:/output" \
   --network=docker_${NETWORK} \
   etrimaille/schemaspy-pg:latest \
   -t pgsql-mat \

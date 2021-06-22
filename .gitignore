@@ -45,8 +45,22 @@ nosetests.xml
 *~
 *.o
 *.swp
+
+# Python
+.venv
+venv
 *.pyc
+
+# OS
 *.DS_Store
 
+# IDEA
 .idea/
+
+# QGIS-Plugin-CI
 raepa.*.*.*.zip
+
+# MKdocs
+build/
+docs/CHANGELOG.md
+docs/CONTRIBUTING.md

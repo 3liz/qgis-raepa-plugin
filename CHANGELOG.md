@@ -1,6 +1,8 @@
-# CHANGELOG
+# Changelog
 
-## 0.3.0 - 16/06/2020
+## Unreleased
+
+## 0.3.0 - 2020-06-16
 
 * Add a dock panel for a better user experience
 * Possible to add new SQL based layers
@@ -9,5 +11,3 @@
 * New simplified QGIS project
 * Refactoring the plugin architecture
 * Adding tests about database
-
-##
