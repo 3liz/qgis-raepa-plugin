@@ -566,7 +566,7 @@ CREATE TABLE raepa.sys_structure_metadonnee (
 
 
 -- sys_structure_metadonnee
-COMMENT ON TABLE raepa.sys_structure_metadonnee IS 'Métadonnées sur la structure de la bdd : numéro de version, date, etc.';
+COMMENT ON TABLE raepa.sys_structure_metadonnee IS 'Métadonnées sur la structure de la bdd : numéro de version, date, etc.';
 
 
 -- sys_structure_metadonnee_id_seq
@@ -824,4 +824,3 @@ ALTER TABLE ONLY raepa.sys_structure_metadonnee ALTER COLUMN id SET DEFAULT next
 --
 -- PostgreSQL database dump complete
 --
-

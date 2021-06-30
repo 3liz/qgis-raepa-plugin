@@ -43,6 +43,7 @@ class ImportShapefile(BaseProcessingAlgorithm):
     APPAREILS = 'APPAREILS'
     CANALISATIONS = 'CANALISATIONS'
     OUVRAGES = 'OUVRAGES'
+    REPARATIONS = 'REPARATIONS'
     OUTPUT_STRING = 'OUTPUT_STRING'
     OUTPUT_STATUS = 'OUTPUT_STATUS'
 
@@ -82,6 +83,13 @@ class ImportShapefile(BaseProcessingAlgorithm):
         self.addParameter(
             QgsProcessingParameterVectorLayer(
                 self.OUVRAGES, 'Ouvrages',
+                optional=False
+            )
+        )
+
+        self.addParameter(
+            QgsProcessingParameterVectorLayer(
+                self.REPARATIONS, 'Réparations',
                 optional=False
             )
         )
@@ -142,6 +150,24 @@ class ImportShapefile(BaseProcessingAlgorithm):
             'FORCE_SINGLEPART': True
         }, context=context, feedback=feedback)
         feedback.pushInfo('Import ouvrages - OK')
+
+        # Réparations
+        feedback.pushInfo('Import Réparations')
+        processing.run("qgis:importintopostgis", {
+            'INPUT': parameters[self.REPARATIONS],
+            'DATABASE': connection_name,
+            'SCHEMA': 'imports',
+            'TABLENAME': 'gabarit_reparation',
+            'PRIMARY_KEY': None,
+            'GEOMETRY_COLUMN': 'geom',
+            'ENCODING': 'UTF-8',
+            'OVERWRITE': True,
+            'CREATEINDEX': True,
+            'LOWERCASE_NAMES': True,
+            'DROP_STRING_LENGTH': True,
+            'FORCE_SINGLEPART': True
+        }, context=context, feedback=feedback)
+        feedback.pushInfo('Import Réparations - OK')
 
         # Appareils
         feedback.pushInfo('Import appareils')

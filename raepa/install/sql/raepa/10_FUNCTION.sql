@@ -711,6 +711,8 @@ BEGIN
     CREATE TABLE imports.ouvrages AS SELECT * FROM raepa.raepa_ouvrass_p LIMIT 0;
     DROP TABLE IF EXISTS imports.canalisations;
     CREATE TABLE imports.canalisations AS SELECT * FROM raepa.raepa_canalass_l LIMIT 0;
+    DROP TABLE IF EXISTS imports.reparation;
+    CREATE TABLE imports.reparation AS SELECT * FROM raepa.raepa_reparass_p LIMIT 0;
 
     -- ouvrages
     INSERT INTO imports.ouvrages (
@@ -730,6 +732,21 @@ BEGIN
         in_source_historique, in_code_chantier, now()::date,
         ST_Transform(o.geom, 2154)
     FROM imports.gabarit_ouvrages o
+    ;
+
+	    -- reparation
+    INSERT INTO imports.reparation (
+        idrepar,
+        supprepare, defreparee,
+        idsuprepar, daterepar, mouvrage, _typeintervention,
+        geom
+    )
+    SELECT
+        r.idrepar,
+        r.supprepare, r.defreparee,
+        r.idsuprepar, r.daterepar, r.mouvrage, r._typeinter,
+        ST_Transform(r.geom, 2154)
+    FROM imports.gabarit_reparation r
     ;
 
     -- appareils
@@ -896,7 +913,6 @@ BEGIN
     WHERE TRUE
     ;
 
-
     -- Modification des ouvrages pour modifier les cana amont et aval
     WITH a AS (
         SELECT
@@ -936,6 +952,21 @@ BEGIN
     WHERE TRUE
     AND a.idouvrage = o.idouvrage
     AND o.idcanaval = 'INCONNU'
+    ;
+
+		-- reparation
+    INSERT INTO raepa.raepa_reparass_p (
+        idrepar,
+        supprepare, defreparee,
+        idsuprepar, daterepar, mouvrage, _typeintervention,
+        geom
+    )
+    SELECT DISTINCT
+        r.idrepar,
+        r.supprepare, r.defreparee,
+        r.idsuprepar, r.daterepar, r.mouvrage, r._typeintervention,
+        r.geom
+    FROM imports.reparation r
     ;
 
     RETURN TRUE;
@@ -1237,6 +1268,7 @@ CREATE FUNCTION raepa.trg_avant_modification_appareil() RETURNS trigger
 DECLARE
     organisme text;
     table_canalisation text;
+	table_ouvrage text;
 BEGIN
 
     -- Calcul de l'identifiant si besoin
@@ -1292,6 +1324,25 @@ BEGIN
 
 
     END IF;
+
+	--Ouvrage acceuil
+	table_ouvrage = 'raepa.raepa_ouvrass_p';
+    IF TG_TABLE_NAME = 'raepa_reparaep_p' THEN
+        table_canalisation = 'raepa.raepa_ouvraep_p';
+    END IF;
+
+	IF (NEW.idouvrage IS NOT NULL) AND (trim(NEW.idouvrage) != 'INCONNU') THEN
+		EXECUTE format(
+            '
+            SELECT COALESCE(string_agg(o.idouvrage, '','' ORDER BY idouvrage), ''INCONNU'')
+            FROM %s AS o
+            WHERE ST_DWithin(o.geom, ''%s''::geometry, 0.05)
+            ',
+            table_ouvrage,
+            NEW.geom
+        )
+        INTO NEW.idouvrage;
+	END IF;
 
 
     -- Métadonnées
@@ -1407,6 +1458,116 @@ BEGIN
     NEW.datemaj := now();
     IF NEW.sourmaj IS NULL THEN
         NEW.sourmaj := organisme;
+    END IF;
+
+    RETURN NEW;
+
+END;
+$$;
+
+
+-- trg_avant_modification_reparation()
+CREATE FUNCTION raepa.trg_avant_modification_reparation() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    organisme text;
+	table_canalisation text;
+	table_ouvrage text;
+	table_appareil text;
+BEGIN
+
+    -- Calcul de l'identifiant si besoin
+    IF NEW.idrepar IS NULL OR trim(NEW.idrepar) = '' OR trim(NEW.idrepar) = 'INCONNU' THEN
+        NEW.idrepar := raepa.generate_oid(TG_TABLE_NAME::text)::character varying;
+    END IF;
+
+    -- Calcul de la géométrie à partir de X et Y
+    IF ( TG_OP = 'UPDATE' AND NEW.x IS NOT NULL AND NEW.y IS NOT NULL AND ( NEW.x != OLD.x OR NEW.y != OLD.y ) )
+    OR ( TG_OP = 'INSERT' AND NEW.x IS NOT NULL AND NEW.y IS NOT NULL ) THEN
+        NEW.geom := ST_SetSRID(ST_Makepoint(NEW.x, NEW.y), 32620);
+        RAISE NOTICE 'appareil % - X ou Y changé -> changement geom vers POINT(% %)', NEW.idrepar, NEW.x, NEW.y;
+    END IF;
+
+    IF ( TG_OP = 'UPDATE' AND NOT ST_Equals(NEW.geom, OLD.geom) ) OR TG_OP = 'INSERT' THEN
+
+        -- Calcul des X et Y si besoin
+        NEW.x := ST_X(NEW.geom)::numeric(10,3);
+        NEW.y := ST_Y(NEW.geom)::numeric(10,3);
+	END IF;
+
+
+        -- idsuprepar
+	table_canalisation = 'raepa.raepa_canalass_l';
+    IF TG_TABLE_NAME = 'raepa_reparaep_p' THEN
+        table_canalisation = 'raepa.raepa_canalaep_l';
+    END IF;
+
+    table_ouvrage = 'raepa.raepa_ouvrass_p';
+    IF TG_TABLE_NAME = 'raepa_reparaep_p' THEN
+        table_canalisation = 'raepa.raepa_ouvraep_p';
+    END IF;
+
+    table_appareil = 'raepa.raepa_apparass_p';
+    IF TG_TABLE_NAME = 'raepa_reparaep_p' THEN
+        table_canalisation = 'raepa.raepa_apparaep_p';
+    END IF;
+
+
+	IF (trim(NEW.supprepare) = '01') THEN
+        EXECUTE format(
+            '
+            SELECT COALESCE(string_agg(c.idcana, '','' ORDER BY idcana), ''CANALISATION'')
+            FROM %s AS c
+            WHERE ST_DWithin(c.geom, ''%s''::geometry, 0.05)
+            ',
+            table_canalisation,
+            NEW.geom
+        )
+        INTO NEW.idsuprepar;
+
+
+	ELSIF (trim(NEW.supprepare) = '02') THEN
+        EXECUTE format(
+            '
+            SELECT COALESCE(string_agg(a.idappareil, '','' ORDER BY idappareil), ''INCONNU'')
+            FROM %s AS a
+            WHERE ST_DWithin(a.geom, ''%s''::geometry, 0.05)
+            ',
+            table_appareil,
+            NEW.geom
+        )
+        INTO NEW.idsuprepar;
+
+	ELSIF (trim(NEW.supprepare) = '03') THEN
+        EXECUTE format(
+            '
+            SELECT COALESCE(string_agg(o.idouvrage, '','' ORDER BY idouvrage), ''INCONNU'')
+            FROM %s AS o
+            WHERE ST_DWithin(o.geom, ''%s''::geometry, 0.05)
+            ',
+            table_ouvrage,
+            NEW.geom
+        )
+        INTO NEW.idsuprepar;
+
+	ELSE NEW.idsuprepar:='INCONNU';
+	END IF;
+
+
+    -- Métadonnées
+    IF (NEW.mouvrage IS NULL) THEN
+        -- Récupération du gestionnaire
+        SELECT INTO organisme
+        s.nom
+        FROM raepa.sys_organisme_gestionnaire s
+        WHERE actif IS TRUE
+        ORDER BY id DESC
+        LIMIT 1;
+    END IF;
+
+    IF NEW.mouvrage IS NULL THEN
+        NEW.mouvrage := organisme;
     END IF;
 
     RETURN NEW;
