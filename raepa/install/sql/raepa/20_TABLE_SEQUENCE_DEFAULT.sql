@@ -479,7 +479,9 @@ CREATE TABLE raepa.raepa_reparass_p (
     _etatcanalisation character varying(2),
     _frequencecuragepreventif integer,
     _idinterventionparent character varying(254),
-    geom public.geometry(Point,2154) NOT NULL
+    geom public.geometry(Point,2154) NOT NULL,
+    _source_historique text,
+    _code_chantier text
 );
 
 

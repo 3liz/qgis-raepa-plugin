@@ -739,12 +739,14 @@ BEGIN
         idrepar,
         supprepare, defreparee,
         idsuprepar, daterepar, mouvrage, _typeintervention,
+        _source_historique, _code_chantier,
         geom
     )
     SELECT
         r.idrepar,
         r.supprepare, r.defreparee,
         r.idsuprepar, r.daterepar, r.mouvrage, r._typeinter,
+        in_source_historique, in_code_chantier,
         ST_Transform(r.geom, 2154)
     FROM imports.gabarit_reparation r
     ;
@@ -812,6 +814,7 @@ BEGIN
         DELETE FROM raepa.raepa_apparass_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
         DELETE FROM raepa.raepa_canalass_l WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
         DELETE FROM raepa.raepa_ouvrass_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
+        DELETE FROM raepa.raepa_reparass_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
     END IF;
 
     -- Mise à jour des champs dans les tables d'import
@@ -959,12 +962,14 @@ BEGIN
         idrepar,
         supprepare, defreparee,
         idsuprepar, daterepar, mouvrage, _typeintervention,
+        _source_historique, _code_chantier,
         geom
     )
     SELECT DISTINCT
         r.idrepar,
         r.supprepare, r.defreparee,
         r.idsuprepar, r.daterepar, r.mouvrage, r._typeintervention,
+        _source_historique, _code_chantier,
         r.geom
     FROM imports.reparation r
     ;
