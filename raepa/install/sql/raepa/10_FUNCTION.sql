@@ -1518,11 +1518,11 @@ BEGIN
         table_canalisation = 'raepa.raepa_apparaep_p';
     END IF;
 
-
+    IF NEW.idsuprepar IS NULL OR trim(NEW.idsuprepar) = '' OR trim(NEW.idsuprepar) = 'INCONNU' THEN
 	IF (trim(NEW.supprepare) = '01') THEN
         EXECUTE format(
             '
-            SELECT COALESCE(string_agg(c.idcana, '','' ORDER BY idcana), ''CANALISATION'')
+            SELECT COALESCE(string_agg(c.idcana, '','' ORDER BY idcana), ''INCONNU'')
             FROM %s AS c
             WHERE ST_DWithin(c.geom, ''%s''::geometry, 0.05)
             ',
@@ -1557,6 +1557,7 @@ BEGIN
         INTO NEW.idsuprepar;
 
 	ELSE NEW.idsuprepar:='INCONNU';
+	END IF;
 	END IF;
 
 
