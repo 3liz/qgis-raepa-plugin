@@ -79,4 +79,6 @@ class GetNetworkToVanneFermeFromPoint(GetDataAsLayer):
         self.SQL = sql.replace('\n', ' ').rstrip(';')
 
     def setLayerName(self, parameters, context, feedback):
-        self.LAYER_NAME = 'Réseau jusqu\'aux vannes fermées depuis {}'.format(self.parameterAsString(parameters, self.POINT, context))
+        super().setLayerName(parameters, context, feedback)
+        if self.LAYER_NAME == '':
+            self.LAYER_NAME = 'Réseau jusqu\'aux vannes fermées depuis {}'.format(self.parameterAsString(parameters, self.POINT, context))
