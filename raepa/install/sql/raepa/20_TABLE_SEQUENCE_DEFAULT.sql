@@ -142,7 +142,11 @@ CREATE TABLE raepa.raepa_apparaep_p (
     geom public.geometry(Point,2154) NOT NULL,
     _ferme boolean DEFAULT false NOT NULL,
     _orientation double precision,
-    _observation text
+    _observation text,
+    _source_historique text,
+    _code_chantier text,
+    _date_import text,
+    _temp_data public.hstore
 );
 
 
@@ -247,7 +251,11 @@ CREATE TABLE raepa.raepa_canalaep_l (
     sourgeoloc character varying(100),
     sourattrib character varying(100),
     geom public.geometry(LineString,2154) NOT NULL,
-    _observation text
+    _observation text,
+    _source_historique text,
+    _code_chantier text,
+    _date_import text,
+    _temp_data public.hstore
 );
 
 
@@ -357,7 +365,11 @@ CREATE TABLE raepa.raepa_ouvraep_p (
     sourgeoloc character varying(100),
     sourattrib character varying(100),
     geom public.geometry(Point,2154) NOT NULL,
-    _observation text
+    _observation text,
+    _source_historique text,
+    _code_chantier text,
+    _date_import text,
+    _temp_data public.hstore
 );
 
 
@@ -442,7 +454,11 @@ CREATE TABLE raepa.raepa_reparaep_p (
     idsuprepar character varying(254) NOT NULL,
     daterepar date,
     mouvrage character varying(254),
-    geom public.geometry(Point,2154) NOT NULL
+    geom public.geometry(Point,2154) NOT NULL,
+    _source_historique text,
+    _code_chantier text,
+    _date_import text,
+    _temp_data public.hstore
 );
 
 
@@ -481,7 +497,8 @@ CREATE TABLE raepa.raepa_reparass_p (
     _idinterventionparent character varying(254),
     geom public.geometry(Point,2154) NOT NULL,
     _source_historique text,
-    _code_chantier text
+    _code_chantier text,
+    _temp_data public.hstore
 );
 
 
@@ -568,7 +585,7 @@ CREATE TABLE raepa.sys_structure_metadonnee (
 
 
 -- sys_structure_metadonnee
-COMMENT ON TABLE raepa.sys_structure_metadonnee IS 'Métadonnées sur la structure de la bdd : numéro de version, date, etc.';
+COMMENT ON TABLE raepa.sys_structure_metadonnee IS 'Métadonnées sur la structure de la bdd : numéro de version, date, etc.';
 
 
 -- sys_structure_metadonnee_id_seq
@@ -826,3 +843,4 @@ ALTER TABLE ONLY raepa.sys_structure_metadonnee ALTER COLUMN id SET DEFAULT next
 --
 -- PostgreSQL database dump complete
 --
+

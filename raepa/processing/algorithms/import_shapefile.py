@@ -25,6 +25,7 @@ from qgis.core import (
     QgsProcessingParameterVectorLayer,
     QgsProcessingOutputString,
     QgsProcessingOutputNumber,
+    QgsProcessingParameterEnum,
     QgsExpressionContextUtils
 )
 if Qgis.QGIS_VERSION_INT >= 30800:
@@ -40,12 +41,17 @@ class ImportShapefile(BaseProcessingAlgorithm):
     Import Shapefile into imports schema
     """
 
+    TYPE = 'TYPE'
     APPAREILS = 'APPAREILS'
     CANALISATIONS = 'CANALISATIONS'
     OUVRAGES = 'OUVRAGES'
     REPARATIONS = 'REPARATIONS'
     OUTPUT_STRING = 'OUTPUT_STRING'
     OUTPUT_STATUS = 'OUTPUT_STATUS'
+
+    def __init__(self):
+        super().__init__()
+        self.import_type = ['ASS', 'AEP']
 
     def name(self):
         return 'import_shapefile'
@@ -68,6 +74,15 @@ class ImportShapefile(BaseProcessingAlgorithm):
         with some other properties.
         """
         # INPUTS
+        self.addParameter(
+            QgsProcessingParameterEnum(
+                self.TYPE,
+                'Type d\'import',
+                self.import_type,
+                False,
+                0
+            )
+        )
         self.addParameter(
             QgsProcessingParameterVectorLayer(
                 self.APPAREILS, 'Appareils',
@@ -132,6 +147,8 @@ class ImportShapefile(BaseProcessingAlgorithm):
         """
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
         feedback.pushInfo('Connection name = %s' % connection_name)
+        import_TYPE = self.parameterAsEnum(parameters, self.TYPE, context)
+        import_TYPE = self.import_type[import_TYPE].lower()
 
         # Ouvrages
         feedback.pushInfo('Import ouvrages')
@@ -139,7 +156,7 @@ class ImportShapefile(BaseProcessingAlgorithm):
             'INPUT': parameters[self.OUVRAGES],
             'DATABASE': connection_name,
             'SCHEMA': 'imports',
-            'TABLENAME': 'gabarit_ouvrages',
+            'TABLENAME': 'gabarit_ouvrages_{}'.format(import_TYPE),
             'PRIMARY_KEY': None,
             'GEOMETRY_COLUMN': 'geom',
             'ENCODING': 'UTF-8',
@@ -157,7 +174,7 @@ class ImportShapefile(BaseProcessingAlgorithm):
             'INPUT': parameters[self.REPARATIONS],
             'DATABASE': connection_name,
             'SCHEMA': 'imports',
-            'TABLENAME': 'gabarit_reparation',
+            'TABLENAME': 'gabarit_reparation_{}'.format(import_TYPE),
             'PRIMARY_KEY': None,
             'GEOMETRY_COLUMN': 'geom',
             'ENCODING': 'UTF-8',
@@ -175,7 +192,7 @@ class ImportShapefile(BaseProcessingAlgorithm):
             'INPUT': parameters[self.APPAREILS],
             'DATABASE': connection_name,
             'SCHEMA': 'imports',
-            'TABLENAME': 'gabarit_appareils',
+            'TABLENAME': 'gabarit_appareils_{}'.format(import_TYPE),
             'PRIMARY_KEY': None,
             'GEOMETRY_COLUMN': 'geom',
             'ENCODING': 'UTF-8',
@@ -193,7 +210,7 @@ class ImportShapefile(BaseProcessingAlgorithm):
             'INPUT': parameters[self.CANALISATIONS],
             'DATABASE': connection_name,
             'SCHEMA': 'imports',
-            'TABLENAME': 'gabarit_canalisations',
+            'TABLENAME': 'gabarit_canalisations_{}'.format(import_TYPE),
             'PRIMARY_KEY': None,
             'GEOMETRY_COLUMN': 'geom',
             'ENCODING': 'UTF-8',

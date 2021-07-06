@@ -670,8 +670,8 @@ END;$$;
 COMMENT ON FUNCTION raepa.get_vanne_cana(myid text, starter boolean) IS 'Calcul de la position de la vanne la plus proche sur une canalisation selon un point de départ (fin ou debut de canalisation)';
 
 
--- import_gabarit_dans_tables_temporaires(text, text, text, text, text, text)
-CREATE FUNCTION raepa.import_gabarit_dans_tables_temporaires(in_anfinpose text, in_qualglocxy text, in_qualglocz text, in_etat text, in_source_historique text, in_code_chantier text) RETURNS boolean
+-- import_gabarit_dans_tables_temporaires(text, text, text, text, text, text, text)
+CREATE FUNCTION raepa.import_gabarit_dans_tables_temporaires(in_anfinpose text, in_qualglocxy text, in_qualglocz text, in_etat text, in_source_historique text, in_code_chantier text, in_type text) RETURNS boolean
     LANGUAGE plpgsql
     AS $_$
 DECLARE
@@ -704,96 +704,194 @@ BEGIN
         ELSE '03'
     END;
 
-    -- Création du schéma d'import et des tables si nécessaire
-    DROP TABLE IF EXISTS imports.appareils;
-    CREATE TABLE imports.appareils AS SELECT * FROM raepa.raepa_apparass_p LIMIT 0;
-    DROP TABLE IF EXISTS imports.ouvrages;
-    CREATE TABLE imports.ouvrages AS SELECT * FROM raepa.raepa_ouvrass_p LIMIT 0;
-    DROP TABLE IF EXISTS imports.canalisations;
-    CREATE TABLE imports.canalisations AS SELECT * FROM raepa.raepa_canalass_l LIMIT 0;
-    DROP TABLE IF EXISTS imports.reparation;
-    CREATE TABLE imports.reparation AS SELECT * FROM raepa.raepa_reparass_p LIMIT 0;
+    IF (in_type = 'ass') THEN
+   	    -- Création du schéma d'import et des tables si nécessaire
+        DROP TABLE IF EXISTS imports.appareils_ass;
+        CREATE TABLE imports.appareils_ass AS SELECT * FROM raepa.raepa_apparass_p LIMIT 0;
+        DROP TABLE IF EXISTS imports.ouvrages_ass;
+        CREATE TABLE imports.ouvrages_ass AS SELECT * FROM raepa.raepa_ouvrass_p LIMIT 0;
+        DROP TABLE IF EXISTS imports.canalisations_ass;
+        CREATE TABLE imports.canalisations_ass AS SELECT * FROM raepa.raepa_canalass_l LIMIT 0;
+        DROP TABLE IF EXISTS imports.reparation_ass;
+        CREATE TABLE imports.reparation_ass AS SELECT * FROM raepa.raepa_reparass_p LIMIT 0;
 
-    -- ouvrages
-    INSERT INTO imports.ouvrages (
-        idouvrage,
-        typreseau, fnouvass,
-        z, _ztampon, _angletampon,
-        qualglocxy, qualglocz, anfinpose,
-        _source_historique, _code_chantier, _date_import,
-        geom
-    )
-    SELECT
-        o.idouvrage,
-        o.typreseau, o.fnouvass,
-        o.z_radier, o.z_tampon, o.angle_tamp,
-        -- degrees(o.ang_ouv) * -1 AS _angletampon,
-        in_qualglocxy, in_qualglocz, in_anfinpose,
-        in_source_historique, in_code_chantier, now()::date,
-        ST_Transform(o.geom, 2154)
-    FROM imports.gabarit_ouvrages o
-    ;
+        -- ouvrages
+        INSERT INTO imports.ouvrages_ass (
+            idouvrage,
+            typreseau, fnouvass,
+            z, _ztampon, _angletampon,
+            qualglocxy, qualglocz, anfinpose,
+            _source_historique, _code_chantier, _date_import,
+            geom
+        )
+        SELECT
+            o.idouvrage,
+            o.typreseau, o.fnouvass,
+            o.z_radier, o.z_tampon, o.angle_tamp,
+            -- degrees(o.ang_ouv) * -1 AS _angletampon,
+            in_qualglocxy, in_qualglocz, in_anfinpose,
+            in_source_historique, in_code_chantier, now()::date,
+            ST_Transform(o.geom, 2154)
+        FROM imports.gabarit_ouvrages_ass o
+        ;
 
 	    -- reparation
-    INSERT INTO imports.reparation (
-        idrepar,
-        supprepare, defreparee,
-        idsuprepar, daterepar, mouvrage, _typeintervention,
-        _source_historique, _code_chantier,
-        geom
-    )
-    SELECT
-        r.idrepar,
-        r.supprepare, r.defreparee,
-        r.idsuprepar, r.daterepar, r.mouvrage, r._typeinter,
-        in_source_historique, in_code_chantier,
-        ST_Transform(r.geom, 2154)
-    FROM imports.gabarit_reparation r
-    ;
+        INSERT INTO imports.reparation_ass (
+            idrepar,
+            supprepare, defreparee,
+            idsuprepar, daterepar, mouvrage, _typeintervention,
+            _source_historique, _code_chantier,
+            geom
+        )
+        SELECT
+            r.idrepar,
+            r.supprepare, r.defreparee,
+            r.idsuprepar, r.daterepar, r.mouvrage, r._typeinter,
+            in_source_historique, in_code_chantier,
+            ST_Transform(r.geom, 2154)
+        FROM imports.gabarit_reparation_ass r
+        ;
 
-    -- appareils
-    INSERT INTO imports.appareils (
-        idappareil,
-        typreseau, fnappass,
-        diametre, z,
-        idouvrage,
-        qualglocxy, qualglocz, anfinpose,
-        _source_historique, _code_chantier, _date_import,
-        geom
-    )
-    SELECT
-        a.idappareil,
-        a.typreseau, a.fnappass,
-        a.diametre, a.z_appareil,
-        a.idouvrage,
-        in_qualglocxy, in_qualglocz, in_anfinpose,
-        in_source_historique, in_code_chantier, now()::date,
-        ST_Transform(a.geom, 2154)
-    FROM imports.gabarit_appareils a
-    ;
+        -- appareils
+        INSERT INTO imports.appareils_ass (
+            idappareil,
+            typreseau, fnappass,
+            diametre, z,
+            idouvrage,
+            qualglocxy, qualglocz, anfinpose,
+            _source_historique, _code_chantier, _date_import,
+            geom
+        )
+        SELECT
+            a.idappareil,
+            a.typreseau, a.fnappass,
+            a.diametre, a.z_appareil,
+            a.idouvrage,
+            in_qualglocxy, in_qualglocz, in_anfinpose,
+            in_source_historique, in_code_chantier, now()::date,
+            ST_Transform(a.geom, 2154)
+        FROM imports.gabarit_appareils_ass a
+        ;
 
-    -- canalisations
-    INSERT INTO imports.canalisations(
-        branchemnt, typreseau, materiau,
-        _forme, diametre, _dimensionhorizontale,
-        modecirc, nbranche,
-        qualglocxy, qualglocz, anfinpose, _etat,
-        _source_historique, _code_chantier, _date_import,
-        _precisionannee,
-        zamont, zaval, idnini, idnterm,
-        geom
-    )
-    SELECT
-        c.branchemnt, c.typreseau, c.materiau,
-        c.forme, c.dim_v, c.dim_h,
-        c.mode_circ, c.nbranche,
-        in_qualglocxy, in_qualglocz, in_anfinpose, in_etat,
-        in_source_historique, in_code_chantier, now()::date,
-        '00' AS _precisionannee,
-        c.fe_amont, c.fe_aval, c.id_nd_amon, c.id_nd_aval,
-        ST_Transform((st_dump(c.geom)).geom, 2154)
-    FROM imports.gabarit_canalisations AS c
-    ;
+        -- canalisations
+        INSERT INTO imports.canalisations_ass(
+            branchemnt, typreseau, materiau,
+            _forme, diametre, _dimensionhorizontale,
+            modecirc, nbranche,
+            qualglocxy, qualglocz, anfinpose, _etat,
+            _source_historique, _code_chantier, _date_import,
+            _precisionannee,
+            zamont, zaval, idnini, idnterm,
+            geom
+        )
+        SELECT
+            c.branchemnt, c.typreseau, c.materiau,
+            c.forme, c.dim_v, c.dim_h,
+            c.mode_circ, c.nbranche,
+            in_qualglocxy, in_qualglocz, in_anfinpose, in_etat,
+            in_source_historique, in_code_chantier, now()::date,
+            '00' AS _precisionannee,
+            c.fe_amont, c.fe_aval, c.id_nd_amon, c.id_nd_aval,
+            ST_Transform((st_dump(c.geom)).geom, 2154)
+        FROM imports.gabarit_canalisations_ass AS c
+        ;
+
+    ELSE
+
+		-- Création du schéma d'import et des tables si nécessaire
+        DROP TABLE IF EXISTS imports.appareils_aep;
+        CREATE TABLE imports.appareils_aep AS SELECT * FROM raepa.raepa_apparaep_p LIMIT 0;
+        DROP TABLE IF EXISTS imports.ouvrages_aep;
+        CREATE TABLE imports.ouvrages_aep AS SELECT * FROM raepa.raepa_ouvraep_p LIMIT 0;
+        DROP TABLE IF EXISTS imports.canalisations_aep;
+        CREATE TABLE imports.canalisations_aep AS SELECT * FROM raepa.raepa_canalaep_l LIMIT 0;
+        DROP TABLE IF EXISTS imports.reparation_aep;
+        CREATE TABLE imports.reparation_aep AS SELECT * FROM raepa.raepa_reparaep_p LIMIT 0;
+
+        -- ouvrages
+        INSERT INTO imports.ouvrages_aep (
+            idouvrage,
+            mouvrage, gexploit,
+			fnouvaep, z,
+			anfinpose, qualglocxy, qualglocz,
+			_source_historique, _code_chantier, _date_import,
+			geom
+        )
+        SELECT
+            o.idouvrage,
+            o.mouvrage, o.gexploit,
+			o.fnouvaep, o.z,
+			in_anfinpose, in_qualglocxy, in_qualglocz,
+			in_source_historique, in_code_chantier, now()::date,
+			ST_Transform(o.geom, 2154)
+        FROM imports.gabarit_ouvrages_aep o
+        ;
+
+	    -- reparation
+        INSERT INTO imports.reparation_aep (
+            idrepar,
+			supprepare, defreparee, idsuprepar,
+			daterepar, mouvrage,
+			_source_historique, _code_chantier, _date_import,
+			geom
+        )
+        SELECT
+            r.idrepar,
+			r.supprepare, r.defreparee, r.idsuprepar,
+			r.daterepar, r.mouvrage,
+			in_source_historique, in_code_chantier, now()::date,
+			ST_Transform(r.geom, 2154)
+        FROM imports.gabarit_reparation_aep r
+        ;
+
+        -- appareils
+        INSERT INTO imports.appareils_aep (
+            idappareil,
+            mouvrage, gexploit,
+			diametre,
+			fnappaep, z,
+			idouvrage,
+			anfinpose, qualglocxy, qualglocz,
+			_source_historique, _code_chantier, _date_import,
+			geom
+        )
+        SELECT
+		    a.idappareil,
+            a.mouvrage, a.gexploit,
+			a.diametre,
+			a.fnappaep, a.z,
+			a.idouvrage,
+			in_anfinpose, in_qualglocxy, in_qualglocz,
+			in_source_historique, in_code_chantier, now()::date,
+            ST_Transform(a.geom, 2154)
+        FROM imports.gabarit_appareils_aep a
+        ;
+
+        -- canalisations
+        INSERT INTO imports.canalisations_aep(
+            idcana,
+			mouvrage, gexploit,
+			enservice, branchemnt, materiau,
+			diametre, anfinpose, modecirc, contcanaep, fonccanaep,
+			idnini, idnterm,
+			qualglocxy, qualglocz,
+			_source_historique, _code_chantier, _date_import,
+			geom
+        )
+        SELECT
+            c.idcana,
+			c.mouvrage, c.gexploit,
+			c.enservice, c.branchemnt, c.materiau,
+			c.diametre, in_anfinpose, c.modecirc, c.contcanaep, c.fonccanaep,
+			c.idnini, c.idnterm,
+			in_qualglocxy, in_qualglocz,
+			in_source_historique, in_code_chantier, now()::date,
+			ST_Transform((st_dump(c.geom)).geom, 2154)
+        FROM imports.gabarit_canalisations_aep AS c
+        ;
+
+
+    END IF;
 
     RETURN TRUE;
 
@@ -801,178 +899,366 @@ END;
 $_$;
 
 
--- import_tables_temporaires_dans_raepa(text, text, boolean)
-CREATE FUNCTION raepa.import_tables_temporaires_dans_raepa(in_source_historique text, in_code_chantier text, nettoyer_chantier boolean) RETURNS boolean
+-- import_tables_temporaires_dans_raepa(text, text, boolean, text)
+CREATE FUNCTION raepa.import_tables_temporaires_dans_raepa(in_source_historique text, in_code_chantier text, nettoyer_chantier boolean, in_type text) RETURNS boolean
     LANGUAGE plpgsql
     AS $$
 DECLARE
   sql_template text;
 BEGIN
 
-    -- Suppression des données précédemment importées
-    IF nettoyer_chantier IS TRUE THEN
-        DELETE FROM raepa.raepa_apparass_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
-        DELETE FROM raepa.raepa_canalass_l WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
-        DELETE FROM raepa.raepa_ouvrass_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
-        DELETE FROM raepa.raepa_reparass_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
-    END IF;
+	IF (in_type = 'ass') THEN
 
-    -- Mise à jour des champs dans les tables d'import
-    UPDATE imports.ouvrages
-    SET "_temp_data" = hstore(array['code_ouvrage', idouvrage])
-    ;
-    UPDATE imports.appareils
-    SET "_temp_data" = hstore(ARRAY['code_appareil', idappareil, 'code_ouvrage', idouvrage])
-    ;
-    UPDATE imports.canalisations
-    SET "_temp_data" = hstore(array['ouvrage_amont', idnini, 'ouvrage_aval', idnterm] );
+		-- Suppression des données précédemment importées
+    	IF nettoyer_chantier IS TRUE THEN
+        	DELETE FROM raepa.raepa_apparass_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
+        	DELETE FROM raepa.raepa_canalass_l WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
+        	DELETE FROM raepa.raepa_ouvrass_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
+        	DELETE FROM raepa.raepa_reparass_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
+    	END IF;
 
-    -- Insertion des données dans raepa
-    -- ouvrages
-    INSERT INTO raepa.raepa_ouvrass_p (
-        typreseau, fnouvass,
-        z, _ztampon, _angletampon,
-        qualglocxy, qualglocz, anfinpose,
-        _source_historique, _code_chantier, _date_import,
-        _temp_data,
-        geom
-    )
-    SELECT DISTINCT
-        o.typreseau, o.fnouvass,
-        o.z, o._ztampon, o._angletampon,
-        -- degrees(o.ang_ouv) * -1 AS _angletampon,
-        qualglocxy, qualglocz, anfinpose,
-        _source_historique, _code_chantier, _date_import,
-        _temp_data,
-        o.geom
-    FROM imports.ouvrages o
-    ;
+        -- Mise à jour des champs dans les tables d'import
+        UPDATE imports.ouvrages_ass
+        SET "_temp_data" = hstore(array['code_ouvrage', idouvrage])
+        ;
+        UPDATE imports.appareils_ass
+        SET "_temp_data" = hstore(ARRAY['code_appareil', idappareil, 'code_ouvrage', idouvrage])
+        ;
+        UPDATE imports.canalisations_ass
+        SET "_temp_data" = hstore(array['code_canalisation',idcana,'ouvrage_amont', idnini, 'ouvrage_aval', idnterm] )
+		;
+		UPDATE imports.reparation_ass
+        SET "_temp_data" = hstore(array['code_reparation', idrepar, 'code_support', idsuprepar] );
 
-    -- appareils
-    INSERT INTO raepa.raepa_apparass_p (
-        typreseau, fnappass,
-        diametre, z,
-        idouvrage,
-        qualglocxy, qualglocz, anfinpose,
-        _source_historique, _code_chantier, _date_import,
-        _temp_data,
-        geom
-    )
-    SELECT DISTINCT
-        a.typreseau, a.fnappass,
-        a.diametre, a.z,
-        (SELECT o.idouvrage FROM raepa.raepa_ouvrass_p o WHERE o."_temp_data"->'code_ouvrage' = a."_temp_data"->'code_ouvrage' LIMIT 1) AS idouvrage,
-        qualglocxy, qualglocz, anfinpose,
-        _source_historique, _code_chantier, _date_import,
-        _temp_data,
-        a.geom
-    FROM imports.appareils a
-    ;
+        -- Insertion des données dans raepa
+        -- ouvrages
+        INSERT INTO raepa.raepa_ouvrass_p (
+            typreseau, fnouvass,
+            z, _ztampon, _angletampon,
+            qualglocxy, qualglocz, anfinpose,
+            _source_historique, _code_chantier, _date_import,
+            _temp_data,
+            geom
+        )
+        SELECT DISTINCT
+            o.typreseau, o.fnouvass,
+            o.z, o._ztampon, o._angletampon,
+            -- degrees(o.ang_ouv) * -1 AS _angletampon,
+            qualglocxy, qualglocz, anfinpose,
+            _source_historique, _code_chantier, _date_import,
+            _temp_data,
+            o.geom
+        FROM imports.ouvrages_ass o
+        ;
 
-    -- canalisations
-    INSERT INTO raepa.raepa_canalass_l(
-        branchemnt, typreseau, contcanass, fonccanass, materiau,
-        _forme, diametre, _dimensionhorizontale,
-        modecirc, nbranche,
-        qualglocxy, qualglocz, anfinpose, _etat,
-        _source_historique, _code_chantier, _date_import,
-        _precisionannee,
-        zamont, zaval,
-        idnini, idnterm,
-        _temp_data,
-        geom
-    )
-    SELECT DISTINCT
-        c.branchemnt, c.typreseau, c.typreseau AS contcanass, '02', c.materiau,
-        c._forme, c.diametre, c._dimensionhorizontale,
-        c.modecirc, c.nbranche,
-        c.qualglocxy, c.qualglocz, c.anfinpose, c._etat,
-        c._source_historique, c._code_chantier, c._date_import,
-        c._precisionannee,
-        c.zamont, c.zaval,
-        o1.idouvrage AS idnini,
-        o2.idouvrage AS idterm,
-        c._temp_data,
+        -- appareils
+        INSERT INTO raepa.raepa_apparass_p (
+            typreseau, fnappass,
+            diametre, z,
+            idouvrage,
+            qualglocxy, qualglocz, anfinpose,
+            _source_historique, _code_chantier, _date_import,
+            _temp_data,
+            geom
+        )
+        SELECT DISTINCT
+            a.typreseau, a.fnappass,
+            a.diametre, a.z,
+            (SELECT o.idouvrage FROM raepa.raepa_ouvrass_p o WHERE o."_temp_data"->'code_ouvrage' = a."_temp_data"->'code_ouvrage' LIMIT 1) AS idouvrage,
+            qualglocxy, qualglocz, anfinpose,
+            _source_historique, _code_chantier, _date_import,
+            _temp_data,
+            a.geom
+        FROM imports.appareils_ass a
+        ;
 
-        -- On retourne les canalisations dans le mauvais sens
-        CASE
-            WHEN
-                ST_Dwithin(ST_EndPoint(c.geom), o1.geom, 0.05)
-                OR ST_Dwithin(ST_StartPoint(c.geom), o2.geom, 0.05)
-            THEN ST_Reverse(c.geom)
-            ELSE c.geom
-        END AS geom
-    FROM imports.canalisations AS c
-    LEFT JOIN raepa.raepa_ouvrass_p o1
-        ON TRUE
-            AND o1._source_historique = in_source_historique
-            AND o1._code_chantier = in_code_chantier
-            AND o1."_temp_data"->'code_ouvrage' = c."_temp_data"->'ouvrage_amont'
-    LEFT JOIN raepa.raepa_ouvrass_p o2
-        ON TRUE
-            AND o2._source_historique = in_source_historique
-            AND o2._code_chantier = in_code_chantier
-            AND o2."_temp_data"->'code_ouvrage' = c."_temp_data"->'ouvrage_aval'
-    WHERE TRUE
-    ;
+        -- canalisations
+        INSERT INTO raepa.raepa_canalass_l(
+            branchemnt, typreseau, contcanass, fonccanass, materiau,
+            _forme, diametre, _dimensionhorizontale,
+            modecirc, nbranche,
+            qualglocxy, qualglocz, anfinpose, _etat,
+            _source_historique, _code_chantier, _date_import,
+            _precisionannee,
+			zamont, zaval,
+            idnini, idnterm,
+            _temp_data,
+            geom
+        )
+        SELECT DISTINCT
+            c.branchemnt, c.typreseau, c.typreseau AS contcanass, '02', c.materiau,
+            c._forme, c.diametre, c._dimensionhorizontale,
+            c.modecirc, c.nbranche,
+            c.qualglocxy, c.qualglocz, c.anfinpose, c._etat,
+            c._source_historique, c._code_chantier, c._date_import,
+            c._precisionannee,
+			c.zamont, c.zaval,
+            o1.idouvrage AS idnini,
+            o2.idouvrage AS idterm,
+            c._temp_data,
 
-    -- Modification des ouvrages pour modifier les cana amont et aval
-    WITH a AS (
-        SELECT
-            oo.idouvrage,
-            COALESCE(string_agg(c.idcana, ',' ORDER BY idcana), 'INCONNU') AS idcanamont
-        FROM raepa.raepa_ouvrass_p AS oo
-        LEFT JOIN raepa.raepa_canalass_l AS c
-        ON ST_DWithin(ST_EndPoint(c.geom), oo.geom, 0.05)
+            -- On retourne les canalisations dans le mauvais sens
+            CASE
+                WHEN
+                    ST_Dwithin(ST_EndPoint(c.geom), o1.geom, 0.05)
+                    OR ST_Dwithin(ST_StartPoint(c.geom), o2.geom, 0.05)
+                THEN ST_Reverse(c.geom)
+                ELSE c.geom
+            END AS geom
+        FROM imports.canalisations_ass AS c
+        LEFT JOIN raepa.raepa_ouvrass_p o1
+            ON TRUE
+                AND o1._source_historique = in_source_historique
+                AND o1._code_chantier = in_code_chantier
+                AND o1."_temp_data"->'code_ouvrage' = c."_temp_data"->'ouvrage_amont'
+        LEFT JOIN raepa.raepa_ouvrass_p o2
+            ON TRUE
+                AND o2._source_historique = in_source_historique
+                AND o2._code_chantier = in_code_chantier
+                AND o2."_temp_data"->'code_ouvrage' = c."_temp_data"->'ouvrage_aval'
         WHERE TRUE
-        AND idcanamont = 'INCONNU'
-        AND oo._source_historique = in_source_historique AND oo._code_chantier = in_code_chantier
-        GROUP BY idouvrage
-    )
-    UPDATE raepa.raepa_ouvrass_p AS o
-    SET idcanamont = a.idcanamont
-    FROM a
-    WHERE TRUE
-    AND a.idouvrage = o.idouvrage
-    AND o.idcanamont = 'INCONNU'
-    ;
+        ;
 
-    WITH a AS (
-        SELECT
-            oo.idouvrage,
-            COALESCE(string_agg(c.idcana, ',' ORDER BY idcana), 'INCONNU') AS idcanaval
-        FROM raepa.raepa_ouvrass_p AS oo
-        LEFT JOIN raepa.raepa_canalass_l AS c
-        ON ST_DWithin(ST_StartPoint(c.geom), oo.geom, 0.05)
+        -- Modification des ouvrages pour modifier les cana amont et aval
+        WITH a AS (
+            SELECT
+                oo.idouvrage,
+                COALESCE(string_agg(c.idcana, ',' ORDER BY idcana), 'INCONNU') AS idcanamont
+            FROM raepa.raepa_ouvrass_p AS oo
+            LEFT JOIN raepa.raepa_canalass_l AS c
+            ON ST_DWithin(ST_EndPoint(c.geom), oo.geom, 0.05)
+            WHERE TRUE
+            AND idcanamont = 'INCONNU'
+            AND oo._source_historique = in_source_historique AND oo._code_chantier = in_code_chantier
+            GROUP BY idouvrage
+        )
+        UPDATE raepa.raepa_ouvrass_p AS o
+        SET idcanamont = a.idcanamont
+        FROM a
         WHERE TRUE
-        AND idcanaval = 'INCONNU'
-        AND oo._source_historique = in_source_historique AND oo._code_chantier = in_code_chantier
-        GROUP BY idouvrage
-    )
-    UPDATE raepa.raepa_ouvrass_p AS o
-    SET idcanaval = a.idcanaval
-    FROM a
-    WHERE TRUE
-    AND a.idouvrage = o.idouvrage
-    AND o.idcanaval = 'INCONNU'
-    ;
+        AND a.idouvrage = o.idouvrage
+        AND o.idcanamont = 'INCONNU'
+        ;
+
+        WITH a AS (
+            SELECT
+                oo.idouvrage,
+                COALESCE(string_agg(c.idcana, ',' ORDER BY idcana), 'INCONNU') AS idcanaval
+            FROM raepa.raepa_ouvrass_p AS oo
+            LEFT JOIN raepa.raepa_canalass_l AS c
+            ON ST_DWithin(ST_StartPoint(c.geom), oo.geom, 0.05)
+            WHERE TRUE
+            AND idcanaval = 'INCONNU'
+            AND oo._source_historique = in_source_historique AND oo._code_chantier = in_code_chantier
+            GROUP BY idouvrage
+        )
+        UPDATE raepa.raepa_ouvrass_p AS o
+        SET idcanaval = a.idcanaval
+        FROM a
+        WHERE TRUE
+        AND a.idouvrage = o.idouvrage
+        AND o.idcanaval = 'INCONNU'
+        ;
+
+    		-- reparation
+        INSERT INTO raepa.raepa_reparass_p (
+            supprepare, defreparee,
+            idsuprepar,
+			daterepar, mouvrage, _typeintervention,
+            _source_historique, _code_chantier, _temp_data,
+            geom
+        )
+        SELECT DISTINCT
+            r.supprepare, r.defreparee,
+            CASE
+                WHEN r.supprepare = '01'
+					THEN (SELECT c.idcana FROM raepa.raepa_canalass_l c WHERE c."_temp_data"->'code_canalisation' = r."_temp_data"->'code_support' LIMIT 1)
+				WHEN r.supprepare = '02'
+					THEN (SELECT c.idappareil FROM raepa.raepa_apparass_p c WHERE c."_temp_data"->'code_appareil' = r."_temp_data"->'code_support' LIMIT 1)
+				WHEN r.supprepare = '03'
+					THEN (SELECT c.idouvrage FROM raepa.raepa_ouvrass_p c WHERE c."_temp_data"->'code_ouvrage' = r."_temp_data"->'code_support' LIMIT 1)
+				ELSE 'INCONNU' END AS idsuprepar,
+			r.daterepar, r.mouvrage, r._typeintervention,
+            _source_historique, _code_chantier, r._temp_data,
+            r.geom
+        FROM imports.reparation_ass r
+        ;
+
+	ELSE
+
+		-- Suppression des données précédemment importées
+		IF nettoyer_chantier IS TRUE THEN
+		DELETE FROM raepa.raepa_apparaep_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
+        DELETE FROM raepa.raepa_canalaep_l WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
+        DELETE FROM raepa.raepa_ouvraep_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
+        DELETE FROM raepa.raepa_reparaep_p WHERE _source_historique = in_source_historique AND _code_chantier = in_code_chantier;
+		END IF;
+
+		-- Mise à jour des champs dans les tables d'import
+        UPDATE imports.ouvrages_aep
+        SET "_temp_data" = hstore(array['code_ouvrage', idouvrage])
+        ;
+        UPDATE imports.appareils_aep
+        SET "_temp_data" = hstore(ARRAY['code_appareil', idappareil, 'code_ouvrage', idouvrage])
+        ;
+        UPDATE imports.canalisations_aep
+        SET "_temp_data" = hstore(array['ouvrage_amont', idnini, 'ouvrage_aval', idnterm] )
+		;
+		UPDATE imports.reparation_aep
+        SET "_temp_data" = hstore(array['code_reparation', idrepar, 'code_support', idsuprepar] );
+
+		-- Insertion des données dans raepa
+        -- ouvrages
+        INSERT INTO raepa.raepa_ouvraep_p (
+            fnouvaep,
+            z,
+            qualglocxy, qualglocz, anfinpose,
+            _source_historique, _code_chantier, _date_import,
+            _temp_data,
+            geom
+        )
+        SELECT DISTINCT
+            o.fnouvaep,
+            o.z,
+            -- degrees(o.ang_ouv) * -1 AS _angletampon,
+            qualglocxy, qualglocz, anfinpose,
+            _source_historique, _code_chantier, _date_import,
+            _temp_data,
+            o.geom
+        FROM imports.ouvrages_aep o
+        ;
+
+		-- appareils
+        INSERT INTO raepa.raepa_apparaep_p (
+            fnappaep,
+            diametre, z,
+            idouvrage,
+            qualglocxy, qualglocz, anfinpose,
+            _source_historique, _code_chantier, _date_import,
+            _temp_data,
+            geom
+        )
+        SELECT DISTINCT
+            a.fnappaep,
+            a.diametre, a.z,
+            (SELECT o.idouvrage FROM raepa.raepa_ouvraep_p o WHERE o."_temp_data"->'code_ouvrage' = a."_temp_data"->'code_ouvrage' LIMIT 1) AS idouvrage,
+            qualglocxy, qualglocz, anfinpose,
+            _source_historique, _code_chantier, _date_import,
+            _temp_data,
+            a.geom
+        FROM imports.appareils_aep a
+        ;
+
+		-- canalisations
+        INSERT INTO raepa.raepa_canalaep_l(
+            branchemnt, contcanaep, fonccanaep, materiau,
+            diametre,
+            modecirc, nbranche,
+            qualglocxy, qualglocz, anfinpose,
+            _source_historique, _code_chantier, _date_import,
+            idnini, idnterm,
+            _temp_data,
+            geom
+        )
+        SELECT DISTINCT
+            c.branchemnt, c.contcanaep, c.fonccanaep, c.materiau,
+            c.diametre,
+            c.modecirc, c.nbranche,
+            c.qualglocxy, c.qualglocz, c.anfinpose,
+            c._source_historique, c._code_chantier, c._date_import,
+            /*o1.idouvrage AS idnini,
+            o2.idouvrage AS idterm,*/
+			'INCONNU','INCONNU',
+            c._temp_data,
+
+            -- On retourne les canalisations dans le mauvais sens
+            CASE
+                WHEN
+                    ST_Dwithin(ST_EndPoint(c.geom), o1.geom, 0.05)
+                    OR ST_Dwithin(ST_StartPoint(c.geom), o2.geom, 0.05)
+                THEN ST_Reverse(c.geom)
+                ELSE c.geom
+            END AS geom
+        FROM imports.canalisations_aep AS c
+        LEFT JOIN raepa.raepa_ouvraep_p o1
+            ON TRUE
+                AND o1._source_historique = in_source_historique
+                AND o1._code_chantier = in_code_chantier
+                AND o1."_temp_data"->'code_ouvrage' = c."_temp_data"->'ouvrage_amont'
+        LEFT JOIN raepa.raepa_ouvraep_p o2
+            ON TRUE
+                AND o2._source_historique = in_source_historique
+                AND o2._code_chantier = in_code_chantier
+                AND o2."_temp_data"->'code_ouvrage' = c."_temp_data"->'ouvrage_aval'
+        WHERE TRUE
+        ;
+
+        -- Modification des ouvrages pour modifier les cana amont et aval
+        WITH a AS (
+            SELECT
+                oo.idouvrage,
+                COALESCE(string_agg(c.idcana, ',' ORDER BY idcana), 'INCONNU') AS idcanamont
+            FROM raepa.raepa_ouvraep_p AS oo
+            LEFT JOIN raepa.raepa_canalaep_l AS c
+            ON ST_DWithin(ST_EndPoint(c.geom), oo.geom, 0.05)
+            WHERE TRUE
+            AND idcanamont = 'INCONNU'
+            AND oo._source_historique = in_source_historique AND oo._code_chantier = in_code_chantier
+            GROUP BY idouvrage
+        )
+        UPDATE raepa.raepa_ouvraep_p AS o
+        SET idcanamont = a.idcanamont
+        FROM a
+        WHERE TRUE
+        AND a.idouvrage = o.idouvrage
+        AND o.idcanamont = 'INCONNU'
+        ;
+
+        WITH a AS (
+            SELECT
+                oo.idouvrage,
+                COALESCE(string_agg(c.idcana, ',' ORDER BY idcana), 'INCONNU') AS idcanaval
+            FROM raepa.raepa_ouvraep_p AS oo
+            LEFT JOIN raepa.raepa_canalaep_l AS c
+            ON ST_DWithin(ST_StartPoint(c.geom), oo.geom, 0.05)
+            WHERE TRUE
+            AND idcanaval = 'INCONNU'
+            AND oo._source_historique = in_source_historique AND oo._code_chantier = in_code_chantier
+            GROUP BY idouvrage
+        )
+        UPDATE raepa.raepa_ouvraep_p AS o
+        SET idcanaval = a.idcanaval
+        FROM a
+        WHERE TRUE
+        AND a.idouvrage = o.idouvrage
+        AND o.idcanaval = 'INCONNU'
+        ;
 
 		-- reparation
-    INSERT INTO raepa.raepa_reparass_p (
-        idrepar,
-        supprepare, defreparee,
-        idsuprepar, daterepar, mouvrage, _typeintervention,
-        _source_historique, _code_chantier,
-        geom
-    )
-    SELECT DISTINCT
-        r.idrepar,
-        r.supprepare, r.defreparee,
-        r.idsuprepar, r.daterepar, r.mouvrage, r._typeintervention,
-        _source_historique, _code_chantier,
-        r.geom
-    FROM imports.reparation r
-    ;
+        INSERT INTO raepa.raepa_reparaep_p (
+            supprepare, defreparee,
+            idsuprepar,
+			daterepar, mouvrage,
+            _source_historique, _code_chantier, _temp_data,
+            geom
+        )
+        SELECT DISTINCT
+            r.supprepare, r.defreparee,
+            CASE
+                WHEN r.supprepare = '01'
+					THEN (SELECT c.idcana FROM raepa.raepa_canalaep_l c WHERE c."_temp_data"->'code_canalisation' = r."_temp_data"->'code_support' LIMIT 1)
+				WHEN r.supprepare = '02'
+					THEN (SELECT c.idappareil FROM raepa.raepa_apparaep_p c WHERE c."_temp_data"->'code_appareil' = r."_temp_data"->'code_support' LIMIT 1)
+				WHEN r.supprepare = '03'
+					THEN (SELECT c.idouvrage FROM raepa.raepa_ouvraep_p c WHERE c."_temp_data"->'code_ouvrage' = r."_temp_data"->'code_support' LIMIT 1)
+				ELSE 'INCONNU' END AS idsuprepar,
+			r.daterepar, r.mouvrage,
+            _source_historique, _code_chantier, r._temp_data,
+            r.geom
+        FROM imports.reparation_aep r
+        ;
+
+	END IF;
 
     RETURN TRUE;
 END;
@@ -1490,7 +1776,7 @@ BEGIN
     -- Calcul de la géométrie à partir de X et Y
     IF ( TG_OP = 'UPDATE' AND NEW.x IS NOT NULL AND NEW.y IS NOT NULL AND ( NEW.x != OLD.x OR NEW.y != OLD.y ) )
     OR ( TG_OP = 'INSERT' AND NEW.x IS NOT NULL AND NEW.y IS NOT NULL ) THEN
-        NEW.geom := ST_SetSRID(ST_Makepoint(NEW.x, NEW.y), 32620);
+        NEW.geom := ST_SetSRID(ST_Makepoint(NEW.x, NEW.y), 2154);
         RAISE NOTICE 'appareil % - X ou Y changé -> changement geom vers POINT(% %)', NEW.idrepar, NEW.x, NEW.y;
     END IF;
 
@@ -1510,12 +1796,12 @@ BEGIN
 
     table_ouvrage = 'raepa.raepa_ouvrass_p';
     IF TG_TABLE_NAME = 'raepa_reparaep_p' THEN
-        table_canalisation = 'raepa.raepa_ouvraep_p';
+        table_ouvrage = 'raepa.raepa_ouvraep_p';
     END IF;
 
     table_appareil = 'raepa.raepa_apparass_p';
     IF TG_TABLE_NAME = 'raepa_reparaep_p' THEN
-        table_canalisation = 'raepa.raepa_apparaep_p';
+        table_appareil = 'raepa.raepa_apparaep_p';
     END IF;
 
     IF NEW.idsuprepar IS NULL OR trim(NEW.idsuprepar) = '' OR trim(NEW.idsuprepar) = 'INCONNU' THEN
