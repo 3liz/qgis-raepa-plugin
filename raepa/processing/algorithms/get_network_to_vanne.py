@@ -19,6 +19,7 @@ __revision__ = '$Format:%H$'
 
 from qgis.core import (
     QgsProcessingParameterString,
+    QgsLineSymbol
 )
 
 from .get_data_as_layer import GetDataAsLayer
@@ -77,3 +78,13 @@ class GetNetworkToVanne(GetDataAsLayer):
         super().setLayerName(parameters, context, feedback)
         if self.LAYER_NAME == '':
             self.LAYER_NAME = 'Réseau vers la vanne depuis {}'.format(parameters[self.SOURCE_ID])
+
+    def setSymbole(self, parameters, context, feedback):
+        super().setSymbole(parameters, context, feedback)
+        self.SYMBOLE = QgsLineSymbol.createSimple(
+            {
+                'line_color': '255,50,50,255',
+                'line_style': 'solid',
+                'line_width': '1.8'
+            }
+        )

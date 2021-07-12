@@ -21,6 +21,7 @@ from db_manager.db_plugins import createDbPlugin
 from processing.tools import postgis
 from qgis.core import (
     QgsVectorLayer,
+    QgsLineSymbol,
     QgsProcessingContext,
     QgsProcessingException,
     QgsProcessingParameterString,
@@ -40,6 +41,7 @@ class GetDataAsLayer(BaseProcessingAlgorithm):
     OUTPUT_LAYER = 'OUTPUT_LAYER'
     OUTPUT_LAYER_NAME = 'OUTPUT_LAYER_NAME'
     OUTPUT_LAYER_RESULT_NAME = 'OUTPUT_LAYER_RESULT_NAME'
+    SYMBOLE = 'SYMBOLE'
 
     SQL = 'SELECT 1::int AS id'
     LAYER_NAME = ''
@@ -136,6 +138,14 @@ class GetDataAsLayer(BaseProcessingAlgorithm):
         output_layer_name = parameters[self.OUTPUT_LAYER_NAME]
         self.LAYER_NAME = output_layer_name
 
+    def setSymbole(self, parameters, context, feedback):
+        self.SYMBOLE = QgsLineSymbol.createSimple(
+            {
+                'line_color': '0,0,0',
+                'line_style': 'solid',
+                'line_width': '1'
+            })
+
     def processAlgorithm(self, parameters, context, feedback):
         """
         Here is where the processing itself takes place.
@@ -150,6 +160,8 @@ class GetDataAsLayer(BaseProcessingAlgorithm):
         self.setSql(parameters, context, feedback)
         # Set output layer name
         self.setLayerName(parameters, context, feedback)
+        # Set symbole
+        self.setSymbole(parameters, context, feedback)
 
         # Buid QGIS uri to load layer
         id_field = 'id'
@@ -162,13 +174,14 @@ class GetDataAsLayer(BaseProcessingAlgorithm):
                 Vérifier les logs de PostGIS pour des messages d\'erreurs.""")
 
         # Load layer
+        vlayer.renderer().setSymbol(self.SYMBOLE)
         context.temporaryLayerStore().addMapLayer(vlayer)
         context.addLayerToLoadOnCompletion(
             vlayer.id(),
             QgsProcessingContext.LayerDetails(
                 self.LAYER_NAME,
                 context.project(),
-                self.OUTPUT_LAYER
+                self.OUTPUT_LAYER,
             )
         )
 
