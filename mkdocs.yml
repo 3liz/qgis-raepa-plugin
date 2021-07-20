@@ -12,9 +12,14 @@ nav:
     - Accueil: index.md
     - Guide utilisateur:
         - 'Installation': 'user-guide/installation.md'
-    - Processing: 'processing/README.md'
+        - 'Panneau RAEPA' : 'user-guide/Panel.md'
+        - 'Configuration' : 'user-guide/Config.md'
+        - 'Import-Export' : 'user-guide/Imp-exp.md'
+        - 'Outils' : 'user-guide/Outils.md'
+        - 'Actions' : 'user-guide/Actions.md'
     - Changelog: changelog.md
     - Contribution: contributing.md
+    - Base de données : 'https://docs.3liz.org/qgis-raepa-plugin/database'
 
 markdown_extensions:
   - toc:

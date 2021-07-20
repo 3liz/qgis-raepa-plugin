@@ -78,4 +78,4 @@ class RaepaDock(QDockWidget, DOCK_CLASS):
         """
         Display the help on database structure
         """
-        open_new(r'https://3liz.github.io/qgis-raepa-plugin/')
+        open_new(r'https://3liz.github.io/qgis-raepa-plugin/database')
