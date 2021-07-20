@@ -1,0 +1,2 @@
+Par la suite, avec l'outil `identifier des entitées` ![identifier des entités](../media/Icone_id_data.png) de Qgis vous pourrez
+utiliser des fonctionnalités du plugin directement en cliquant sur les objets présents sur la carte.

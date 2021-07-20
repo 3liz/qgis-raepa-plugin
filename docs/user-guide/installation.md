@@ -7,7 +7,7 @@ l'installer à la main.
 
 ## Dépôt de l'extension
 
-Nous recommandons l'ajout du dépôt Véloroutes dans QGIS en suivant la
+Nous recommandons l'ajout du dépôt RAEPA dans QGIS en suivant la
 [documentation QGIS](https://docs.qgis.org/3.16/fr/docs/user_manual/plugins/plugins.html#the-settings-tab) ou
 le [petit tutoriel 3Liz](https://3liz.github.io/add_qgis_repository.html) à l'aide de l'URL suivante :
 
