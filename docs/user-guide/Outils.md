@@ -19,7 +19,7 @@ Vous pouvez aussi choisir le nom du fichier de sortie.
 `Orientation d'un appareil` permet de calculer l'orientation de la canalisation support de l'appareil cible, l'interet est de pouvoir orienter
 le symbole de l'appareil pourqu'il colle à la canalisation.
 
-![appareil non orienté](../media/app_NO.png)
+![appareil non orienté](../media/app_NO_2.png)
 
 Cet appareil n'est pas orienté, vous pouvez utiliser `Orientation d'un appareil` pour calculer son orientation.
 Pour cela vous avez besoin de connaitre son identifiant (ou d'utiliser une de ses [Actions](../Actions/)) grace à l'outil 
