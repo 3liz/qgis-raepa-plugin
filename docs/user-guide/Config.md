@@ -14,7 +14,8 @@ Il y a ensuite deux options : <br/>
 
 ###__1.2. Installation de la base__
 
-Pour installer (ou réinstaller) la base de données, utilisez l'outil `installation de la base`:
+_**Pour utiliser cet outil vous devez vous connecter à la base de donnée en tant que super-utilisateur**_
+<br/>Pour installer (ou réinstaller) la base de données, utilisez l'outil `installation de la base`:
 
 ![Installation de la Base](../media/Instal_base.png)
 Paramètres d'entrée : <br/>
