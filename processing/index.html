@@ -1,0 +1,3090 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Extension QGIS pour les réseaux d'eaux">
+      
+      
+      
+        <meta name="author" content="3Liz">
+      
+      
+        <link rel="canonical" href="https://docs.3liz.org/qgis-raepa-plugin/processing/">
+      
+      <link rel="icon" href="../media/icon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.0">
+    
+    
+      
+        <title>Processing - RAEPA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fe914879.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ba0d045b.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4cae4f">
+        
+      
+    
+    
+    
+      
+    
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="deep-orange">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#processing" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href=".." title="RAEPA" class="md-header__button md-logo" aria-label="RAEPA" data-md-component="logo">
+      
+  <img src="../media/icon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RAEPA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Processing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Effacer" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Accueil
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../user-guide/installation/" class="md-tabs__link">
+        Guide utilisateur
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
+      Processing
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../changelog/" class="md-tabs__link">
+      Changelog
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../contributing/" class="md-tabs__link">
+      Contribution
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="RAEPA" class="md-nav__button md-logo" aria-label="RAEPA" data-md-component="logo">
+      
+  <img src="../media/icon.png" alt="logo">
+
+    </a>
+    RAEPA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Accueil
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Guide utilisateur
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Guide utilisateur" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guide utilisateur
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-guide/installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Processing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Processing
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#outils" class="md-nav__link">
+    Outils
+  </a>
+  
+    <nav class="md-nav" aria-label="Outils">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ajouter-des-vues-sql" class="md-nav__link">
+    Ajouter des vues SQL
+  </a>
+  
+    <nav class="md-nav" aria-label="Ajouter des vues SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#annuler-la-derniere-modification" class="md-nav__link">
+    Annuler la dernière modification
+  </a>
+  
+    <nav class="md-nav" aria-label="Annuler la dernière modification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_1" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execute-sql" class="md-nav__link">
+    Execute SQL
+  </a>
+  
+    <nav class="md-nav" aria-label="Execute SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_2" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_2" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtenir-les-gabarits-aepass" class="md-nav__link">
+    Obtenir les gabarits AEP/ASS
+  </a>
+  
+    <nav class="md-nav" aria-label="Obtenir les gabarits AEP/ASS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_3" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_3" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recuperation-reseau-aval" class="md-nav__link">
+    Récupération réseau aval
+  </a>
+  
+    <nav class="md-nav" aria-label="Récupération réseau aval">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_4" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_4" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reseau-vers-une-vanne" class="md-nav__link">
+    Réseau vers une vanne
+  </a>
+  
+    <nav class="md-nav" aria-label="Réseau vers une vanne">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_5" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_5" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-reseau-jusquaux-vannes-fermees-depuis-un-point" class="md-nav__link">
+    Parcours réseau jusqu'aux vannes fermées depuis un point
+  </a>
+  
+    <nav class="md-nav" aria-label="Parcours réseau jusqu'aux vannes fermées depuis un point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_6" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_6" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-reseau-jusquaux-vannes-depuis-un-point" class="md-nav__link">
+    Parcours réseau jusqu'aux vannes depuis un point
+  </a>
+  
+    <nav class="md-nav" aria-label="Parcours réseau jusqu'aux vannes depuis un point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_7" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_7" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orientation-appareil" class="md-nav__link">
+    Orientation appareil
+  </a>
+  
+    <nav class="md-nav" aria-label="Orientation appareil">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_8" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_8" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recuperation-reseau-amont" class="md-nav__link">
+    Récupération réseau amont
+  </a>
+  
+    <nav class="md-nav" aria-label="Récupération réseau amont">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_9" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_9" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#charger-les-styles-des-couches" class="md-nav__link">
+    Charger les styles des couches
+  </a>
+  
+    <nav class="md-nav" aria-label="Charger les styles des couches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_10" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_10" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurer-le-plugin-raepa" class="md-nav__link">
+    Configurer le plugin RAEPA
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurer le plugin RAEPA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_11" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_11" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#charger-le-projet-apres-generation-de-la-base-de-donnees" class="md-nav__link">
+    Charger le projet après génération de la base de données
+  </a>
+  
+    <nav class="md-nav" aria-label="Charger le projet après génération de la base de données">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_12" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_12" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    Import
+  </a>
+  
+    <nav class="md-nav" aria-label="Import">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#02-conversion-donnees-importees-dans-le-modele-raepa" class="md-nav__link">
+    02 Conversion données importées dans le modèle RAEPA
+  </a>
+  
+    <nav class="md-nav" aria-label="02 Conversion données importées dans le modèle RAEPA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_13" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_13" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#01-import-des-shp-dans-les-tables-temporaires" class="md-nav__link">
+    01 Import des SHP dans les tables temporaires
+  </a>
+  
+    <nav class="md-nav" aria-label="01 Import des SHP dans les tables temporaires">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_14" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_14" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-insertion-donnees-converties" class="md-nav__link">
+    03 Insertion données converties
+  </a>
+  
+    <nav class="md-nav" aria-label="03 Insertion données converties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_15" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_15" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    Structure
+  </a>
+  
+    <nav class="md-nav" aria-label="Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creation-de-la-structure-bdd" class="md-nav__link">
+    Création de la structure BDD
+  </a>
+  
+    <nav class="md-nav" aria-label="Création de la structure BDD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_16" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_16" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mise-a-jour-de-la-structure-de-la-bdd" class="md-nav__link">
+    Mise à jour de la structure de la BDD
+  </a>
+  
+    <nav class="md-nav" aria-label="Mise à jour de la structure de la BDD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_17" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_17" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    Export
+  </a>
+  
+    <nav class="md-nav" aria-label="Export">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exporter-les-donnees-en-geopackage" class="md-nav__link">
+    Exporter les données en geopackage
+  </a>
+  
+    <nav class="md-nav" aria-label="Exporter les données en geopackage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_18" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_18" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        Contribution
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#outils" class="md-nav__link">
+    Outils
+  </a>
+  
+    <nav class="md-nav" aria-label="Outils">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ajouter-des-vues-sql" class="md-nav__link">
+    Ajouter des vues SQL
+  </a>
+  
+    <nav class="md-nav" aria-label="Ajouter des vues SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#annuler-la-derniere-modification" class="md-nav__link">
+    Annuler la dernière modification
+  </a>
+  
+    <nav class="md-nav" aria-label="Annuler la dernière modification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_1" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execute-sql" class="md-nav__link">
+    Execute SQL
+  </a>
+  
+    <nav class="md-nav" aria-label="Execute SQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_2" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_2" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#obtenir-les-gabarits-aepass" class="md-nav__link">
+    Obtenir les gabarits AEP/ASS
+  </a>
+  
+    <nav class="md-nav" aria-label="Obtenir les gabarits AEP/ASS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_3" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_3" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recuperation-reseau-aval" class="md-nav__link">
+    Récupération réseau aval
+  </a>
+  
+    <nav class="md-nav" aria-label="Récupération réseau aval">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_4" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_4" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reseau-vers-une-vanne" class="md-nav__link">
+    Réseau vers une vanne
+  </a>
+  
+    <nav class="md-nav" aria-label="Réseau vers une vanne">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_5" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_5" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-reseau-jusquaux-vannes-fermees-depuis-un-point" class="md-nav__link">
+    Parcours réseau jusqu'aux vannes fermées depuis un point
+  </a>
+  
+    <nav class="md-nav" aria-label="Parcours réseau jusqu'aux vannes fermées depuis un point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_6" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_6" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parcours-reseau-jusquaux-vannes-depuis-un-point" class="md-nav__link">
+    Parcours réseau jusqu'aux vannes depuis un point
+  </a>
+  
+    <nav class="md-nav" aria-label="Parcours réseau jusqu'aux vannes depuis un point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_7" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_7" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orientation-appareil" class="md-nav__link">
+    Orientation appareil
+  </a>
+  
+    <nav class="md-nav" aria-label="Orientation appareil">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_8" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_8" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recuperation-reseau-amont" class="md-nav__link">
+    Récupération réseau amont
+  </a>
+  
+    <nav class="md-nav" aria-label="Récupération réseau amont">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_9" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_9" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#charger-les-styles-des-couches" class="md-nav__link">
+    Charger les styles des couches
+  </a>
+  
+    <nav class="md-nav" aria-label="Charger les styles des couches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_10" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_10" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurer-le-plugin-raepa" class="md-nav__link">
+    Configurer le plugin RAEPA
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurer le plugin RAEPA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_11" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_11" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#charger-le-projet-apres-generation-de-la-base-de-donnees" class="md-nav__link">
+    Charger le projet après génération de la base de données
+  </a>
+  
+    <nav class="md-nav" aria-label="Charger le projet après génération de la base de données">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_12" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_12" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    Import
+  </a>
+  
+    <nav class="md-nav" aria-label="Import">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#02-conversion-donnees-importees-dans-le-modele-raepa" class="md-nav__link">
+    02 Conversion données importées dans le modèle RAEPA
+  </a>
+  
+    <nav class="md-nav" aria-label="02 Conversion données importées dans le modèle RAEPA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_13" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_13" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#01-import-des-shp-dans-les-tables-temporaires" class="md-nav__link">
+    01 Import des SHP dans les tables temporaires
+  </a>
+  
+    <nav class="md-nav" aria-label="01 Import des SHP dans les tables temporaires">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_14" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_14" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-insertion-donnees-converties" class="md-nav__link">
+    03 Insertion données converties
+  </a>
+  
+    <nav class="md-nav" aria-label="03 Insertion données converties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_15" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_15" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure" class="md-nav__link">
+    Structure
+  </a>
+  
+    <nav class="md-nav" aria-label="Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creation-de-la-structure-bdd" class="md-nav__link">
+    Création de la structure BDD
+  </a>
+  
+    <nav class="md-nav" aria-label="Création de la structure BDD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_16" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_16" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mise-a-jour-de-la-structure-de-la-bdd" class="md-nav__link">
+    Mise à jour de la structure de la BDD
+  </a>
+  
+    <nav class="md-nav" aria-label="Mise à jour de la structure de la BDD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_17" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_17" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    Export
+  </a>
+  
+    <nav class="md-nav" aria-label="Export">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exporter-les-donnees-en-geopackage" class="md-nav__link">
+    Exporter les données en geopackage
+  </a>
+  
+    <nav class="md-nav" aria-label="Exporter les données en geopackage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_18" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outputs_18" class="md-nav__link">
+    Outputs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="processing">Processing<a class="headerlink" href="#processing" title="Permanent link">#</a></h1>
+<h2 id="outils">Outils<a class="headerlink" href="#outils" title="Permanent link">#</a></h2>
+<h3 id="ajouter-des-vues-sql">Ajouter des vues SQL<a class="headerlink" href="#ajouter-des-vues-sql" title="Permanent link">#</a></h3>
+<p>Ajouter des requêtes SQL dans le canevas.</p>
+<p>Ces requêtes sont des fichiers dans le plugin.</p>
+<p><img alt="algo_id" src="raepa-add_sql_layers.png" /></p>
+<h4 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">FILES</td>
+<td align="center">Requêtes</td>
+<td align="center">Enum</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Values: Culs de sac <br></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs">Outputs<a class="headerlink" href="#outputs" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT</td>
+<td align="center">Sortie</td>
+<td align="center">MultipleLayers</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="annuler-la-derniere-modification">Annuler la dernière modification<a class="headerlink" href="#annuler-la-derniere-modification" title="Permanent link">#</a></h3>
+<p>Annule la dernière modification sur la base de données.</p>
+<p><img alt="algo_id" src="raepa-cancel_last_modification.png" /></p>
+<h4 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">SOURCE_LAYER</td>
+<td align="center">Source layer</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Type:  <br></td>
+</tr>
+<tr>
+<td align="center">SOURCE_ID</td>
+<td align="center">Unique ID (id)</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: -1 <br></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_1">Outputs<a class="headerlink" href="#outputs_1" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STATUS</td>
+<td align="center">Statut de sortie</td>
+<td align="center">Number</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="execute-sql">Execute SQL<a class="headerlink" href="#execute-sql" title="Permanent link">#</a></h3>
+<p>Exécuter du SQL dans la base de données.</p>
+<p><img alt="algo_id" src="raepa-execute_sql.png" /></p>
+<h4 id="parameters_2">Parameters<a class="headerlink" href="#parameters_2" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">INPUT_SQL</td>
+<td align="center">INPUT_SQL</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_2">Outputs<a class="headerlink" href="#outputs_2" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STATUS</td>
+<td align="center">Statut de sortie</td>
+<td align="center">Number</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="obtenir-les-gabarits-aepass">Obtenir les gabarits AEP/ASS<a class="headerlink" href="#obtenir-les-gabarits-aepass" title="Permanent link">#</a></h3>
+<p>Obtenir un zip des gabarits AEP/ASS</p>
+<p><img alt="algo_id" src="raepa-gabarits.png" /></p>
+<h4 id="parameters_3">Parameters<a class="headerlink" href="#parameters_3" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">TYPE</td>
+<td align="center">Type de gabarits</td>
+<td align="center">Enum</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Values: ASS, AEP <br></td>
+</tr>
+<tr>
+<td align="center">CRS</td>
+<td align="center">Projection</td>
+<td align="center">Enum</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Values: EPSG:2154, EPSG:32620 <br></td>
+</tr>
+<tr>
+<td align="center">DESTINATION</td>
+<td align="center">Fichier ZIP</td>
+<td align="center">FileDestination</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_3">Outputs<a class="headerlink" href="#outputs_3" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">DESTINATION</td>
+<td align="center">Fichier ZIP</td>
+<td align="center">File</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="recuperation-reseau-aval">Récupération réseau aval<a class="headerlink" href="#recuperation-reseau-aval" title="Permanent link">#</a></h3>
+<p>Obtenir le réseau en aval d'un ouvrage</p>
+<p><img alt="algo_id" src="raepa-get_downstream_route.png" /></p>
+<h4 id="parameters_4">Parameters<a class="headerlink" href="#parameters_4" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_LAYER_NAME</td>
+<td align="center">Nom de la couche de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">SOURCE_ID</td>
+<td align="center">Unique ID (idouvrage)</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: -1 <br></td>
+</tr>
+<tr>
+<td align="center">METHOD</td>
+<td align="center">Méthode</td>
+<td align="center">Enum</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Values: geom, attribute <br></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_4">Outputs<a class="headerlink" href="#outputs_4" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STATUS</td>
+<td align="center">Statut de sortie</td>
+<td align="center">Number</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_LAYER</td>
+<td align="center">Couche de sortie</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_LAYER_RESULT_NAME</td>
+<td align="center">Nom de la couche de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="reseau-vers-une-vanne">Réseau vers une vanne<a class="headerlink" href="#reseau-vers-une-vanne" title="Permanent link">#</a></h3>
+<p>Charger une couche vecteur</p>
+<p><img alt="algo_id" src="raepa-get_network_to_vanne.png" /></p>
+<h4 id="parameters_5">Parameters<a class="headerlink" href="#parameters_5" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_LAYER_NAME</td>
+<td align="center">Nom de la couche de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">SOURCE_ID</td>
+<td align="center">Unique ID (idcana)</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: -1 <br></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_5">Outputs<a class="headerlink" href="#outputs_5" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STATUS</td>
+<td align="center">Statut de sortie</td>
+<td align="center">Number</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_LAYER</td>
+<td align="center">Couche de sortie</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_LAYER_RESULT_NAME</td>
+<td align="center">Nom de la couche de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="parcours-reseau-jusquaux-vannes-fermees-depuis-un-point">Parcours réseau jusqu'aux vannes fermées depuis un point<a class="headerlink" href="#parcours-reseau-jusquaux-vannes-fermees-depuis-un-point" title="Permanent link">#</a></h3>
+<p>Charger une couche vecteur</p>
+<p><img alt="algo_id" src="raepa-get_network_to_vanne_ferme_from_point.png" /></p>
+<h4 id="parameters_6">Parameters<a class="headerlink" href="#parameters_6" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_LAYER_NAME</td>
+<td align="center">Nom de la couche de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">POINT</td>
+<td align="center">Point de départ</td>
+<td align="center">Point</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_6">Outputs<a class="headerlink" href="#outputs_6" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STATUS</td>
+<td align="center">Statut de sortie</td>
+<td align="center">Number</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_LAYER</td>
+<td align="center">Couche de sortie</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_LAYER_RESULT_NAME</td>
+<td align="center">Nom de la couche de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="parcours-reseau-jusquaux-vannes-depuis-un-point">Parcours réseau jusqu'aux vannes depuis un point<a class="headerlink" href="#parcours-reseau-jusquaux-vannes-depuis-un-point" title="Permanent link">#</a></h3>
+<p>Charger une couche vecteur</p>
+<p><img alt="algo_id" src="raepa-get_network_to_vanne_from_point.png" /></p>
+<h4 id="parameters_7">Parameters<a class="headerlink" href="#parameters_7" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_LAYER_NAME</td>
+<td align="center">Nom de la couche de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">POINT</td>
+<td align="center">Point de départ</td>
+<td align="center">Point</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_7">Outputs<a class="headerlink" href="#outputs_7" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STATUS</td>
+<td align="center">Statut de sortie</td>
+<td align="center">Number</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_LAYER</td>
+<td align="center">Couche de sortie</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_LAYER_RESULT_NAME</td>
+<td align="center">Nom de la couche de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="orientation-appareil">Orientation appareil<a class="headerlink" href="#orientation-appareil" title="Permanent link">#</a></h3>
+<p>Obtenir l'orientation d'un appareil.</p>
+<p><img alt="algo_id" src="raepa-get_orientation_appareil.png" /></p>
+<h4 id="parameters_8">Parameters<a class="headerlink" href="#parameters_8" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">SOURCE_ID</td>
+<td align="center">Unique ID (idappareil)</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: -1 <br></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_8">Outputs<a class="headerlink" href="#outputs_8" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STATUS</td>
+<td align="center">Statut de sortie</td>
+<td align="center">Number</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="recuperation-reseau-amont">Récupération réseau amont<a class="headerlink" href="#recuperation-reseau-amont" title="Permanent link">#</a></h3>
+<p>Obtenir le réseau en amont d'un ouvrage</p>
+<p><img alt="algo_id" src="raepa-get_upstream_route.png" /></p>
+<h4 id="parameters_9">Parameters<a class="headerlink" href="#parameters_9" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_LAYER_NAME</td>
+<td align="center">Nom de la couche de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">SOURCE_ID</td>
+<td align="center">Unique ID (idouvrage)</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: -1 <br></td>
+</tr>
+<tr>
+<td align="center">METHOD</td>
+<td align="center">Méthode</td>
+<td align="center">Enum</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Values: geom, attribute <br></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_9">Outputs<a class="headerlink" href="#outputs_9" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STATUS</td>
+<td align="center">Statut de sortie</td>
+<td align="center">Number</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_LAYER</td>
+<td align="center">Couche de sortie</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_LAYER_RESULT_NAME</td>
+<td align="center">Nom de la couche de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">#</a></h2>
+<h3 id="charger-les-styles-des-couches">Charger les styles des couches<a class="headerlink" href="#charger-les-styles-des-couches" title="Permanent link">#</a></h3>
+<p>Ajoute les styles et/ou les actions par défaut pour chacune des couches.</p>
+<p><img alt="algo_id" src="raepa-add_styles.png" /></p>
+<h4 id="parameters_10">Parameters<a class="headerlink" href="#parameters_10" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">APPARAEP</td>
+<td align="center">Couche Appareil AEP</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">Type: TypeVectorPoint <br></td>
+</tr>
+<tr>
+<td align="center">APPARASS</td>
+<td align="center">Couche Appareil ASS</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">Type: TypeVectorPoint <br></td>
+</tr>
+<tr>
+<td align="center">OUVRAEP</td>
+<td align="center">Couche Ouvrage AEP</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">Type: TypeVectorPoint <br></td>
+</tr>
+<tr>
+<td align="center">OUVRASS</td>
+<td align="center">Couche Ouvrage ASS</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">Type: TypeVectorPoint <br></td>
+</tr>
+<tr>
+<td align="center">CANALAEP</td>
+<td align="center">Couche Canalisation AEP</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">Type: TypeVectorLine <br></td>
+</tr>
+<tr>
+<td align="center">CANALASS</td>
+<td align="center">Couche Canalisation ASS</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">Type: TypeVectorLine <br></td>
+</tr>
+<tr>
+<td align="center">STYLETYPE</td>
+<td align="center">Importer uniquement les actions</td>
+<td align="center">Enum</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: [1, 2] <br> Values: Tout, Actions, Forms <br></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_10">Outputs<a class="headerlink" href="#outputs_10" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">No output</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="configurer-le-plugin-raepa">Configurer le plugin RAEPA<a class="headerlink" href="#configurer-le-plugin-raepa" title="Permanent link">#</a></h3>
+<p>Ajoute la variable "raepa_connection_name" à QGIS.</p>
+<p><img alt="algo_id" src="raepa-configure_plugin.png" /></p>
+<h4 id="parameters_11">Parameters<a class="headerlink" href="#parameters_11" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">CONNECTION_NAME</td>
+<td align="center">Connection PostgreSQL à la base à RAEPA</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_11">Outputs<a class="headerlink" href="#outputs_11" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STATUS</td>
+<td align="center">Statut de sortie</td>
+<td align="center">Number</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="charger-le-projet-apres-generation-de-la-base-de-donnees">Charger le projet après génération de la base de données<a class="headerlink" href="#charger-le-projet-apres-generation-de-la-base-de-donnees" title="Permanent link">#</a></h3>
+<p>Charger les couches de la base de données.</p>
+<p><img alt="algo_id" src="raepa-load_project.png" /></p>
+<h4 id="parameters_12">Parameters<a class="headerlink" href="#parameters_12" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">RIEN</td>
+<td align="center">Champ qui ne sert à rien</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_12">Outputs<a class="headerlink" href="#outputs_12" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_LAYERS</td>
+<td align="center">Couches de sortie</td>
+<td align="center">MultipleLayers</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="import">Import<a class="headerlink" href="#import" title="Permanent link">#</a></h2>
+<h3 id="02-conversion-donnees-importees-dans-le-modele-raepa">02 Conversion données importées dans le modèle RAEPA<a class="headerlink" href="#02-conversion-donnees-importees-dans-le-modele-raepa" title="Permanent link">#</a></h3>
+<p><img alt="algo_id" src="raepa-convert_imported_data.png" /></p>
+<h4 id="parameters_13">Parameters<a class="headerlink" href="#parameters_13" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">ANNEE_FIN_POSE</td>
+<td align="center">Année de fin de pose</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: 2018 <br></td>
+</tr>
+<tr>
+<td align="center">QUALITE_XY</td>
+<td align="center">Qualité XY</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: A <br></td>
+</tr>
+<tr>
+<td align="center">QUALITE_Z</td>
+<td align="center">Qualité Z</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: A <br></td>
+</tr>
+<tr>
+<td align="center">ETAT</td>
+<td align="center">État</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: 00 <br></td>
+</tr>
+<tr>
+<td align="center">SOURCE_HISTORIQUE</td>
+<td align="center">Source historique</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: test <br></td>
+</tr>
+<tr>
+<td align="center">CODE_CHANTIER</td>
+<td align="center">Code Chantier</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: test <br></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_13">Outputs<a class="headerlink" href="#outputs_13" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STATUS</td>
+<td align="center">Statut de sortie</td>
+<td align="center">Number</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="01-import-des-shp-dans-les-tables-temporaires">01 Import des SHP dans les tables temporaires<a class="headerlink" href="#01-import-des-shp-dans-les-tables-temporaires" title="Permanent link">#</a></h3>
+<p>Import des données vecteurs dans la base de données PostGIS.</p>
+<p><img alt="algo_id" src="raepa-import_shapefile.png" /></p>
+<h4 id="parameters_14">Parameters<a class="headerlink" href="#parameters_14" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">APPAREILS</td>
+<td align="center">Appareils</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Type:  <br></td>
+</tr>
+<tr>
+<td align="center">CANALISATIONS</td>
+<td align="center">Canalisations</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Type:  <br></td>
+</tr>
+<tr>
+<td align="center">OUVRAGES</td>
+<td align="center">Ouvrages</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Type:  <br></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_14">Outputs<a class="headerlink" href="#outputs_14" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STATUS</td>
+<td align="center">Statut de sortie</td>
+<td align="center">Number</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="03-insertion-donnees-converties">03 Insertion données converties<a class="headerlink" href="#03-insertion-donnees-converties" title="Permanent link">#</a></h3>
+<p><img alt="algo_id" src="raepa-insert_converted_data.png" /></p>
+<h4 id="parameters_15">Parameters<a class="headerlink" href="#parameters_15" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">SOURCE_HISTORIQUE</td>
+<td align="center">Source historique</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: test <br></td>
+</tr>
+<tr>
+<td align="center">CODE_CHANTIER</td>
+<td align="center">Code Chantier</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: test <br></td>
+</tr>
+<tr>
+<td align="center">NETTOYER_AVANT_INSERTION</td>
+<td align="center">Nettoyer avant insertion</td>
+<td align="center">Boolean</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: True <br></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_15">Outputs<a class="headerlink" href="#outputs_15" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STATUS</td>
+<td align="center">Statut de sortie</td>
+<td align="center">Number</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">#</a></h2>
+<h3 id="creation-de-la-structure-bdd">Création de la structure BDD<a class="headerlink" href="#creation-de-la-structure-bdd" title="Permanent link">#</a></h3>
+<p>Crée la base de données avec les schémas et les tables.</p>
+<p><img alt="algo_id" src="raepa-create_database_structure.png" /></p>
+<h4 id="parameters_16">Parameters<a class="headerlink" href="#parameters_16" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OVERRIDE</td>
+<td align="center">Écraser les schémas raepa,audit et import et toutes les données ? <strong> ATTENTION </strong></td>
+<td align="center">Boolean</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">ADD_AUDIT</td>
+<td align="center">Ajouter un audit de suivi des modifications sur les tables ?</td>
+<td align="center">Boolean</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: True <br></td>
+</tr>
+<tr>
+<td align="center">SRID</td>
+<td align="center">Projection des géométries</td>
+<td align="center">Crs</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: EPSG:2154 <br></td>
+</tr>
+<tr>
+<td align="center">NOM</td>
+<td align="center">Nom du gestionnaire</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: Communauté d'Agglomération de Test <br></td>
+</tr>
+<tr>
+<td align="center">SIREN</td>
+<td align="center">SIREN</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: 123456789 <br></td>
+</tr>
+<tr>
+<td align="center">CODE</td>
+<td align="center">Nom abbrégé en 3 caractères</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: cat <br></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_16">Outputs<a class="headerlink" href="#outputs_16" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STATUS</td>
+<td align="center">Statut de sortie</td>
+<td align="center">Number</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="mise-a-jour-de-la-structure-de-la-bdd">Mise à jour de la structure de la BDD<a class="headerlink" href="#mise-a-jour-de-la-structure-de-la-bdd" title="Permanent link">#</a></h3>
+<p>Applique les migrations SQL nécéssaires sur la base de données. Cela est à faire lors d'une mise à jour du plugin.</p>
+<p><img alt="algo_id" src="raepa-upgrade_database_structure.png" /></p>
+<h4 id="parameters_17">Parameters<a class="headerlink" href="#parameters_17" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">RUN_MIGRATIONS</td>
+<td align="center">Cocher cette case pour faire la mise à jour. Autrement, aucune action ne se passera.</td>
+<td align="center">Boolean</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">SRID</td>
+<td align="center">Projection des géométries</td>
+<td align="center">Crs</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: EPSG:2154 <br></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_17">Outputs<a class="headerlink" href="#outputs_17" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">OUTPUT_STATUS</td>
+<td align="center">Statut de sortie</td>
+<td align="center">Number</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">OUTPUT_STRING</td>
+<td align="center">Message de sortie</td>
+<td align="center">String</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="export">Export<a class="headerlink" href="#export" title="Permanent link">#</a></h2>
+<h3 id="exporter-les-donnees-en-geopackage">Exporter les données en geopackage<a class="headerlink" href="#exporter-les-donnees-en-geopackage" title="Permanent link">#</a></h3>
+<p>Exporte toutes les couches du canvas qui appartiennent au service PostgreSQL dans un fichier SQLite. Un CRS peut-être spécifié.</p>
+<p><img alt="algo_id" src="raepa-export_package.png" /></p>
+<h4 id="parameters_18">Parameters<a class="headerlink" href="#parameters_18" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+<th align="center">Required</th>
+<th align="center">Advanced</th>
+<th align="center">Option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">PGSERVICE</td>
+<td align="center">PostgreSQL Service</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: raepa <br></td>
+</tr>
+<tr>
+<td align="center">SRID</td>
+<td align="center">Projection</td>
+<td align="center">Crs</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Default: EPSG:32620 <br></td>
+</tr>
+<tr>
+<td align="center">DESTINATION</td>
+<td align="center">Fichier SQLite</td>
+<td align="center">FileDestination</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="outputs_18">Outputs<a class="headerlink" href="#outputs_18" title="Permanent link">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="center">ID</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">DESTINATION</td>
+<td align="center">Fichier SQLite</td>
+<td align="center">File</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Retour en haut de la page
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Pied de page">
+      
+        
+        <a href="../user-guide/installation/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Installation" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              Installation
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../changelog/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Changelog" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              Changelog
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            <span class="copyleft">&copy;</span> 3Liz
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/3LIZ_news" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.linkedin.com/company/3liz" target="_blank" rel="noopener" title="www.linkedin.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/3liz/" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://hub.docker.com/u/3liz" target="_blank" rel="noopener" title="hub.docker.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.youtube.com/channel/UCYYW2CTWR_84kB6pt2zCWbQ" target="_blank" rel="noopener" title="www.youtube.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top"], "translations": {"clipboard.copy": "Copier dans le presse-papier", "clipboard.copied": "Copi\u00e9 dans le presse-papier", "search.config.lang": "fr", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Rechercher", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.term.missing": "Non trouv\u00e9", "select.version.title": "S\u00e9lectionner la version"}, "search": "../assets/javascripts/workers/search.53c85856.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.716f8af4.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@8.6.4/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
