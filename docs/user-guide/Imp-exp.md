@@ -4,12 +4,12 @@ Lorsque ce n'est pas précisé, les outils évoqués dans cette page sont access
 
 ##__1. Import__
 
-Maintenant que votre base de données et votre projet sont bien installés, vous allez surement vouloir y insérer des données.
+Maintenant que votre base de données et votre projet sont bien installés, vous allez sûrement vouloir y insérer des données.
 
 ###__1.1 Obtenir les gabarits AEP/ASS__
 
 Pour commencer, la donnée que vous souhaitez ajouter doit être dans le standard RAEPA, et plus particulièrement au niveau des noms des champs
-c'est pourquoi,pour construire la nouvelle donnée, il est recommandé d'utiliser les Gabarits fournis par l'outil [`Obtenir les gabarits AEP/ASS`](../Outils/#2-obtenir-les-gabarits-aepass).
+c'est pourquoi, pour construire la nouvelle donnée, il est recommandé d'utiliser les Gabarits fournis par l'outil [`Obtenir les gabarits AEP/ASS`](../Outils/#2-obtenir-les-gabarits-aepass).
 <br/> /!\ La plupart des champs sont nécessaires au bon fonctionnement des outils qui suivent. Veillez à bien tous les remplir !
 
 ###__1.2 Import shapefiles dans les tables temporaires__
@@ -26,7 +26,7 @@ Pour cela il faut d'abord les [convertir](#13-convertisseur-des-donnees).
 Maintenant que vos données sont dans la base, l'outil `Convertisseur de données` leur ajoute les métadonnées RAEPA et s'assure qu'elles
 rentrent bien dans le standard RAEPA.
 
-![Convertisseur des données](../media/Convert_data.png)
+![Convertisseur des données](../processing/raepa-convert_imported_data.png)
 
 Paramètres d'entrée :
 <br/>-`Année de fin de pose` : Année durant laquelle on à fini de poser les objets
@@ -61,4 +61,4 @@ enregistrer les géométries.
 ![Exporter les données en Geopackage](../media/Export_data.png)
 
 Pour ce qui est du paramètre `PostgreSQL Service`, c'est un service de connexion à la base de donnée que l'outil utilise pour y extraire les données à exporter.
-Pour plus d'information, cliquez [ici](https://docs.postgresql.fr/10/libpq-pgservice.html).
+Pour plus d'information, consultez la [documentation Postgres](https://docs.postgresql.fr/10/libpq-pgservice.html).

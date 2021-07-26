@@ -22,4 +22,4 @@ Il n'y a pas d'authentification et vous aurez les mises à jour automatiquement 
 Si vous ne voulez pas utiliser l'adresse du dépôt ci-dessus, vous devez télécharger manuellement le ZIP depuis
 la page des [sorties](https://github.com/3liz/qgis-raepa-plugin/releases).
 
-Dans ce cas-là pensez donc à vérifier périodiquement les mises à jour de l'extension.
+Dans ce cas-là pensez à vérifier périodiquement les mises à jour de l'extension.

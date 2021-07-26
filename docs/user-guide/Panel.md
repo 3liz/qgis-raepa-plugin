@@ -1,6 +1,6 @@
 #Panneau RAEPA
 
-Maintenant que vous avez installé le plugin dans Qgis, le panneau du plugin devrai être apparu :
+Maintenant que vous avez installé le plugin dans Qgis, le panneau du plugin devrai être affiché :
 
 ![Panneau RAEPA](../media/Panneau_Raepa.png)
 
