@@ -16,6 +16,7 @@ nav:
         - 'Import-Export' : 'user-guide/Imp-exp.md'
         - 'Outils' : 'user-guide/Outils.md'
         - 'Actions' : 'user-guide/Actions.md'
+    - Processing: 'processing/README.md'
     - Changelog: changelog.md
     - Contribution: contributing.md
     - Base de données : 'https://docs.3liz.org/qgis-raepa-plugin/database'
