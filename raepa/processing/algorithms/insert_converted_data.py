@@ -19,7 +19,8 @@ __revision__ = '$Format:%H$'
 
 from qgis.core import (
     QgsProcessingParameterString,
-    QgsProcessingParameterBoolean
+    QgsProcessingParameterBoolean,
+    QgsProcessingParameterEnum
 )
 
 from .execute_sql import ExecuteSql
@@ -30,9 +31,14 @@ class InsertConvertedData(ExecuteSql):
     Insert imported and converted data into the schema raepa
     """
 
+    TYPE = 'TYPE'
     SOURCE_HISTORIQUE = 'SOURCE_HISTORIQUE'
     CODE_CHANTIER = 'CODE_CHANTIER'
     NETTOYER_AVANT_INSERTION = 'NETTOYER_AVANT_INSERTION'
+
+    def __init__(self):
+        super().__init__()
+        self.import_type = ['ASS', 'AEP']
 
     def name(self):
         return 'insert_converted_data'
@@ -57,6 +63,15 @@ class InsertConvertedData(ExecuteSql):
         self.removeParameter('INPUT_SQL')
 
         self.addParameter(
+            QgsProcessingParameterEnum(
+                self.TYPE,
+                'Type d\'import',
+                self.import_type,
+                False,
+                0
+            )
+        )
+        self.addParameter(
             QgsProcessingParameterString(
                 self.SOURCE_HISTORIQUE, 'Source historique',
                 defaultValue='test',
@@ -79,13 +94,16 @@ class InsertConvertedData(ExecuteSql):
         )
 
     def setSql(self, parameters, context, feedback):
+        import_TYPE = self.parameterAsEnum(parameters, self.TYPE, context)
+        import_TYPE = self.import_type[import_TYPE].lower()
         sql = '''SELECT raepa.import_tables_temporaires_dans_raepa(
-            '%s', '%s', %s
+            '%s', '%s', %s, '%s'
         )
         ''' % (
             parameters[self.SOURCE_HISTORIQUE],
             parameters[self.CODE_CHANTIER],
-            parameters[self.NETTOYER_AVANT_INSERTION]
+            parameters[self.NETTOYER_AVANT_INSERTION],
+            import_TYPE
         )
         feedback.pushInfo('Insertion données converties dans le schéma RAEPA.')
         feedback.pushInfo(sql)
