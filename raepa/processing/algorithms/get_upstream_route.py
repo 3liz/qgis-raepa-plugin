@@ -19,6 +19,7 @@ __revision__ = '$Format:%H$'
 
 from qgis.core import (
     QgsProcessingParameterString,
+    QgsLineSymbol,
     QgsProcessingParameterEnum
 )
 
@@ -87,3 +88,13 @@ class GetUpstreamRoute(GetDataAsLayer):
         super().setLayerName(parameters, context, feedback)
         if self.LAYER_NAME == '':
             self.LAYER_NAME = 'Réseau amont depuis {}'.format(parameters[self.SOURCE_ID])
+
+    def setSymbole(self, parameters, context, feedback):
+        super().setSymbole(parameters, context, feedback)
+        self.SYMBOLE = QgsLineSymbol.createSimple(
+            {
+                'line_color': '50,255,50,255',
+                'line_style': 'solid',
+                'line_width': '1.8'
+            }
+        )
