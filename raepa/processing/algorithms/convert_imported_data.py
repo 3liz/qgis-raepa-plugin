@@ -19,6 +19,7 @@ __revision__ = '$Format:%H$'
 
 from qgis.core import (
     QgsProcessingParameterString,
+    QgsProcessingParameterEnum
 )
 
 from .execute_sql import ExecuteSql
@@ -29,12 +30,17 @@ class ConvertImportedData(ExecuteSql):
     Convert imported Shapefile data into Raepa model structure
     """
 
+    TYPE = 'TYPE'
     ANNEE_FIN_POSE = 'ANNEE_FIN_POSE'
     QUALITE_XY = 'QUALITE_XY'
     QUALITE_Z = 'QUALITE_Z'
     ETAT = 'ETAT'
     SOURCE_HISTORIQUE = 'SOURCE_HISTORIQUE'
     CODE_CHANTIER = 'CODE_CHANTIER'
+
+    def __init__(self):
+        super().__init__()
+        self.import_type = ['ASS', 'AEP']
 
     def name(self):
         return 'convert_imported_data'
@@ -63,6 +69,15 @@ class ConvertImportedData(ExecuteSql):
         # INPUTS
         self.removeParameter('INPUT_SQL')
 
+        self.addParameter(
+            QgsProcessingParameterEnum(
+                self.TYPE,
+                'Type d\'import',
+                self.import_type,
+                False,
+                0
+            )
+        )
         self.addParameter(
             QgsProcessingParameterString(
                 self.ANNEE_FIN_POSE, 'Année de fin de pose',
@@ -107,16 +122,19 @@ class ConvertImportedData(ExecuteSql):
         )
 
     def setSql(self, parameters, context, feedback):
+        import_TYPE = self.parameterAsEnum(parameters, self.TYPE, context)
+        import_TYPE = self.import_type[import_TYPE].lower()
         sql = '''
         SELECT raepa.import_gabarit_dans_tables_temporaires(
             '%s', '%s', '%s', '%s',
-            '%s', '%s'
+            '%s', '%s', '%s'
         )
         ''' % (
             parameters[self.ANNEE_FIN_POSE],
             parameters[self.QUALITE_XY], parameters[self.QUALITE_Z],
             parameters[self.ETAT],
-            parameters[self.SOURCE_HISTORIQUE], parameters[self.CODE_CHANTIER]
+            parameters[self.SOURCE_HISTORIQUE], parameters[self.CODE_CHANTIER],
+            import_TYPE
         )
         feedback.pushInfo('Conversion des données importées')
         feedback.pushInfo(sql)

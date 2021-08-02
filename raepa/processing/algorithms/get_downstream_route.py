@@ -20,6 +20,7 @@ __revision__ = '$Format:%H$'
 from .get_data_as_layer import GetDataAsLayer
 from qgis.core import (
     QgsProcessingParameterString,
+    QgsLineSymbol,
     QgsProcessingParameterEnum
 )
 
@@ -85,3 +86,13 @@ class GetDownstreamRoute(GetDataAsLayer):
         super().setLayerName(parameters, context, feedback)
         if self.LAYER_NAME == '':
             self.LAYER_NAME = 'Réseau aval depuis {}'.format(parameters[self.SOURCE_ID])
+
+    def setSymbole(self, parameters, context, feedback):
+        super().setSymbole(parameters, context, feedback)
+        self.SYMBOLE = QgsLineSymbol.createSimple(
+            {
+                'line_color': '255,50,50,255',
+                'line_style': 'solid',
+                'line_width': '1.8'
+            }
+        )

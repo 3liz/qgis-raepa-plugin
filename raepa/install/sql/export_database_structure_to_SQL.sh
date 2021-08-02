@@ -28,7 +28,7 @@ mkdir -p "$OUTDIR"
 
 # STRUCTURE
 # Dump database structure
-pg_dump service=$SERVICE --schema-only -n $SCHEMA --no-acl --no-owner -Fc -f "$OUTDIR/dump"
+pg_dump --schema-only -n $SCHEMA --no-acl --no-owner -Fc -f "$OUTDIR/dump" service=$SERVICE
 
 # Loop through DB object types and extract SQL
 I=10
@@ -37,7 +37,7 @@ for ITEM in FUNCTION "TABLE|SEQUENCE|DEFAULT" VIEW INDEX TRIGGER CONSTRAINT COMM
     # Extract list of objects for current item
     pg_restore --no-acl --no-owner -l $OUTDIR/dump | grep -E "$ITEM" > "$OUTDIR/$ITEM";
     # Extract SQL for these objects
-    pg_restore --no-acl --no-owner -L "$OUTDIR/$ITEM" "$OUTDIR/dump" > "$OUTDIR"/"$I"_"$ITEM".sql;
+    pg_restore --no-acl --no-owner -L "$OUTDIR""/""$ITEM" -f ""$OUTDIR"/"$I"_"$ITEM".sql" ""$OUTDIR"/dump";
     # Remove file containing list of objects
     rm "$OUTDIR/$ITEM";
     # Simplify comments inside SQL files
@@ -62,5 +62,5 @@ rm "$OUTDIR/dump"
 echo "GLOSSARY"
 if [ $SCHEMA = 'raepa' ]
 then
-    pg_dump service=$SERVICE --data-only --inserts --column-inserts -n $SCHEMA --no-acl --no-owner --table "raepa.val_*" --table "raepa._val*" --table "raepa.sys_liste_table" -f "$OUTDIR"/90_GLOSSARY.sql
+    pg_dump --data-only --inserts --column-inserts -n $SCHEMA --no-acl --no-owner --table "raepa.val_*" --table "raepa._val*" --table "raepa.sys_liste_table" -f "$OUTDIR"/90_GLOSSARY.sql service=$SERVICE
 fi

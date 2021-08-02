@@ -48,6 +48,14 @@ CREATE TRIGGER raepa_avant_modification_ouvrage BEFORE INSERT OR UPDATE ON raepa
 CREATE TRIGGER raepa_avant_modification_ouvrage BEFORE INSERT OR UPDATE ON raepa.raepa_ouvrass_p FOR EACH ROW EXECUTE PROCEDURE raepa.trg_avant_modification_ouvrage();
 
 
+-- raepa_reparaep_p raepa_avant_modification_reparation
+CREATE TRIGGER raepa_avant_modification_reparation BEFORE INSERT OR UPDATE ON raepa.raepa_reparaep_p FOR EACH ROW EXECUTE PROCEDURE raepa.trg_avant_modification_reparation();
+
+
+-- raepa_reparass_p raepa_avant_modification_reparation
+CREATE TRIGGER raepa_avant_modification_reparation BEFORE INSERT OR UPDATE ON raepa.raepa_reparass_p FOR EACH ROW EXECUTE PROCEDURE raepa.trg_avant_modification_reparation();
+
+
 --
 -- PostgreSQL database dump complete
 --
