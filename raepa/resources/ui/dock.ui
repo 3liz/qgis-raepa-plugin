@@ -344,9 +344,9 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_10">
                <item>
-                <widget class="QPushButton" name="button_help_database">
+                <widget class="QPushButton" name="button_help_plugin">
                  <property name="text">
-                  <string>Modèle conceptuel de données</string>
+                  <string>Aide en ligne</string>
                  </property>
                 </widget>
                </item>
