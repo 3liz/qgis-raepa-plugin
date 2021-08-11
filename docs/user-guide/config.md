@@ -1,5 +1,5 @@
 #Configuration
-Tous les outils présentés dans cette page sont accessible via l'onglet `Config` du [Panneau RAEPA](../Panel/).
+Tous les outils présentés dans cette page sont accessible via l'onglet `Config` du [Panneau RAEPA](../panel/).
 ##1. Installation de la base
 
 ###1.1. Configurer la connexion à la base
@@ -77,7 +77,7 @@ Le dernier paramètre, lui, permet de définir quels sont les types de style que
 ![Charger les styles](../media/Load_style.png)
 
 - Si vous sélectionnez `Actions` : Vous allez ajouter des actions possible sur les différentes couches du projet. L'utilité des actions
-est précisément décrite dans la page [Actions](../Actions/)
+est précisément décrite dans la page [Actions](../actions/)
 
 - Si vous sélectionnez `Forms` : Vous allez ajouter des formulaires aux différents couches, ceux-ci permettent de simplifier l'ajout de 
 nouveaux objets et/ou la modification des attributs des objets déjà existants. 

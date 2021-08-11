@@ -1,6 +1,6 @@
 #Import-Export
 
-Lorsque ce n'est pas précisé, les outils évoqués dans cette page sont accessible via l'onglet `Import/Export` du [Panneau RAEPA](../Panel/).
+Lorsque ce n'est pas précisé, les outils évoqués dans cette page sont accessible via l'onglet `Import/Export` du [Panneau RAEPA](../panel/).
 
 ##1. Import
 
@@ -9,7 +9,7 @@ Maintenant que votre base de données et votre projet sont bien installés, vous
 ###1.1 Obtenir les gabarits AEP/ASS
 
 Pour commencer, la donnée que vous souhaitez ajouter doit être dans le standard RAEPA, et plus particulièrement au niveau des noms des champs
-c'est pourquoi, pour construire la nouvelle donnée, il est recommandé d'utiliser les Gabarits fournis par l'outil [`Obtenir les gabarits AEP/ASS`](../Outils/#2-obtenir-les-gabarits-aepass).
+c'est pourquoi, pour construire la nouvelle donnée, il est recommandé d'utiliser les Gabarits fournis par l'outil [`Obtenir les gabarits AEP/ASS`](../outils/#2-obtenir-les-gabarits-aepass).
 
 !!! warning
  La plupart des champs sont nécessaires au bon fonctionnement des outils qui suivent. Veillez à bien tous les remplir !

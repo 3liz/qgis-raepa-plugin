@@ -2,7 +2,7 @@
 
 ##1. Mise en place
 
-Pour pouvoir utiliser les actions disponibles via le plugin, il faut que vous les chargiez sur les différentes couches avec l'outil [Charger les styles](../Config/#22-charger-les-styles).
+Pour pouvoir utiliser les actions disponibles via le plugin, il faut que vous les chargiez sur les différentes couches avec l'outil [Charger les styles](../config/#22-charger-les-styles).
 Il suffit d'y cocher la case `action` ou `tout` dans le choix des styles.
 
 ##2. Utilisation
@@ -11,10 +11,10 @@ Une fois que vous avez chargé les styles, avec l'outil `identifier des entitée
 utiliser des fonctionnalités du plugin directement en cliquant sur les objets présents sur la carte.
 
 - En effectuant un clic droit, vous avez directement accès aux actions disponibles :
-![Actions via clique droit](../media/Action_CD.png)
+![Actions via clic droit](../media/Action_CD.png)
   
 - En effectuant un clic gauche vous y avez accès via le panneau [résultat de l'identification](https://docs.qgis.org/3.10/fr/docs/user_manual/introduction/general_tools.html#feature-information) :
-![Actions via clique gauche](../media/Action_CG.png)
+![Actions via clic gauche](../media/Action_CG.png)
 
 ##3. Les différentes actions
 
@@ -22,7 +22,7 @@ utiliser des fonctionnalités du plugin directement en cliquant sur les objets p
 
 *(N'est disponible que pour les ouvrages)*
 
-Cette action fonctionne de la même manière que l'outil [`annuler la dernière modification`](../Outils/#3-annuler-la-derniere-modification) 
+Cette action fonctionne de la même manière que l'outil [`annuler la dernière modification`](../outils/#3-annuler-la-derniere-modification) 
 Elle permet d'annuler la dernière modification de l'objet sur lequel vous avez cliqué. 
 
 ###3.2 couper la canalisation sous cet ouvrage
@@ -53,21 +53,21 @@ une modification du réseau.
 
 *(Disponible partout)*
 
-Cette action execute les outils [`Récupération du réseau amont`](../Outils/#51-recuperation-du-reseau-amont)
-et [`Récupération de réseau aval`](../Outils/#52-recuperation-de-reseau-aval) à partir de l'objet sélectionné :
+Cette action execute les outils [`Récupération du réseau amont`](../outils/#51-recuperation-du-reseau-amont)
+et [`Récupération de réseau aval`](../outils/#52-recuperation-de-reseau-aval) à partir de l'objet sélectionné :
 ![résultat](../media/action_parcour_reseau.png)
 
 ###3.5 calcul de l'orientation de l'appareil
 
 *(N'est disponible que pour les appareils)*
 
-De la même manière que l'outil [`Orientation d'un appareil`](../Outils/#2-orientation-dun-appareil) cette action permet de 
+De la même manière que l'outil [`Orientation d'un appareil`](../outils/#2-orientation-dun-appareil) cette action permet de 
 calculer l'orientation de la canalisation se trouvant sous l'appareil.
 
 ###3.6 Parcourir le sous réseau jusqu'à une vanne
 
 *(N'est disponible que pour les canalisations)*
 
-Fonctionne de la même manière que [`Réseau vers une vanne`](../Outils/#43-reseau-vers-une-vanne), détermine la plus petite 
+Fonctionne de la même manière que [`Réseau vers une vanne`](../outils/#43-reseau-vers-une-vanne), détermine la plus petite 
 partie du réseau pouvant être isolée par des vannes et contenant la canalisation initiale. Ignore les vannes présentes
 sur la canalisation initiale.

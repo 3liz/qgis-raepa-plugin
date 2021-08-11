@@ -22,7 +22,7 @@ le symbole de l'appareil pour qu'il colle à la canalisation.
 ![appareil non orienté](../media/app_NO_2.png)
 
 Ces appareils ne sont pas orientés, vous pouvez utiliser `Orientation d'un appareil` pour calculer leur orientation.
-Pour cela vous avez besoin de connaitre leur identifiant (ou d'utiliser une de leur [Actions](../Actions/)) grace à l'outil 
+Pour cela vous avez besoin de connaitre leur identifiant (ou d'utiliser une de leur [Actions](../actions/)) grace à l'outil 
 `identifier les entités` ![icone outil](../media/Icone_id_data.png) ou la `table d'attribut` ![icone table](../media/Icone_table.png).
 
 Après avoir renseigné l'indentifiant des appareils (idappareil), lancez l'algorithme pour chacun de ceux-ci, et vous obtenez ceci :
@@ -33,7 +33,7 @@ Les appareils sont bien orientés selon les canalisations !
 
 ##3. Annuler la dernière modification
 
-Si vous vous souvenez bien, lorsque vous avez [installé la base de données](../Config/#12-installation-de-la-base) vous aviez la possibilité d'ajouter un
+Si vous vous souvenez bien, lorsque vous avez [installé la base de données](../config/#12-installation-de-la-base) vous aviez la possibilité d'ajouter un
 `Audit de suivi des modifications sur les tables`. Cet audit permet de garder en mémoire toutes les modifications effectuées sur la base.
 Ainsi, si vous avez effectué une modification que vous désirez annuler dans la base (supposons par exemple que finalement vous ne vouliez pas calculer 
 l'orientation de votre appareil), il vous suffit d'executer `annuler la dernière modification`
@@ -108,13 +108,13 @@ Ces deux outils (celui-ci et le suivant) permettent donc de déterminer quel a �
 Le point de départ du calcul est un ouvrage du réseau dont vous renseignez l'identifiant `idouvrage` (récupérable via l'outil `identifier les entités` ![icone outil](../media/Icone_id_data.png) ou la
 `table d'attribut` ![icone table](../media/Icone_table.png)).
 
-Si vous souhaitez partir d'un autre objet utilisez les [Actions](../Actions/).
+Si vous souhaitez partir d'un autre objet utilisez les [Actions](../actions/).
 
 ###5.2. Récupération de réseau aval
 
 De la même manière que `Récuperation du réseau amont`, `Récuperation du réseau aval` prend comme point de départ un ouvrage via son identifiant.
 
-Si vous souhaitez partir d'un autre objet utilisez les [Actions](../Actions/).
+Si vous souhaitez partir d'un autre objet utilisez les [Actions](../actions/).
 
 ![réseau aval](../media/Reseau_aval.png)
 
