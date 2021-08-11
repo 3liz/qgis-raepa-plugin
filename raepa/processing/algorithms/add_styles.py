@@ -35,6 +35,8 @@ class AddStyles(BaseProcessingAlgorithm):
     OUVRASS = 'OUVRASS'
     CANALAEP = 'CANALAEP'
     CANALASS = 'CANALASS'
+    REPARASS = 'REPARASS'
+    REPARAEP = 'REPARAEP'
     STYLETYPE = 'STYLETYPE'
     STYLETYPELIST = [
         ('all', 'Tout'),
@@ -113,6 +115,24 @@ class AddStyles(BaseProcessingAlgorithm):
         )
 
         self.addParameter(
+            QgsProcessingParameterVectorLayer(
+                self.REPARASS,
+                'Couche Reparation ASS',
+                optional=True,
+                types=[QgsProcessing.TypeVectorPoint]
+            )
+        )
+
+        self.addParameter(
+            QgsProcessingParameterVectorLayer(
+                self.REPARAEP,
+                'Couche Reparation AEP',
+                optional=True,
+                types=[QgsProcessing.TypeVectorPoint]
+            )
+        )
+
+        self.addParameter(
             QgsProcessingParameterEnum(
                 self.STYLETYPE, 'Importer uniquement les actions',
                 options=[s[1] for s in self.STYLETYPELIST], allowMultiple=True,
@@ -131,32 +151,42 @@ class AddStyles(BaseProcessingAlgorithm):
         layer = self.parameterAsVectorLayer(parameters, self.APPARAEP, context)
         self.load_qml_file(feedback, 'appareils_AEP.qml', layer, qml_path, styles)
 
-        feedback.setProgress(int(100 * 1 / 6))
+        feedback.setProgress(int(100 * 1 / 8))
 
         layer = self.parameterAsVectorLayer(parameters, self.APPARASS, context)
         self.load_qml_file(feedback, 'appareils_ASS.qml', layer, qml_path, styles)
 
-        feedback.setProgress(int(100 * 2 / 6))
+        feedback.setProgress(int(100 * 2 / 8))
 
         layer = self.parameterAsVectorLayer(parameters, self.OUVRAEP, context)
         self.load_qml_file(feedback, 'ouvrages_AEP.qml', layer, qml_path, styles)
 
-        feedback.setProgress(int(100 * 3 / 6))
+        feedback.setProgress(int(100 * 3 / 8))
 
         layer = self.parameterAsVectorLayer(parameters, self.OUVRASS, context)
         self.load_qml_file(feedback, 'ouvrages_ASS.qml', layer, qml_path, styles)
 
-        feedback.setProgress(int(100 * 4 / 6))
+        feedback.setProgress(int(100 * 4 / 8))
 
         layer = self.parameterAsVectorLayer(parameters, self.CANALAEP, context)
         self.load_qml_file(feedback, 'canalisations_AEP.qml', layer, qml_path, styles)
 
-        feedback.setProgress(int(100 * 5 / 6))
+        feedback.setProgress(int(100 * 5 / 8))
 
         layer = self.parameterAsVectorLayer(parameters, self.CANALASS, context)
         self.load_qml_file(feedback, 'canalisations_ASS.qml', layer, qml_path, styles)
 
-        feedback.setProgress(int(100 * 6 / 6))
+        feedback.setProgress(int(100 * 6 / 8))
+
+        layer = self.parameterAsVectorLayer(parameters, self.REPARASS, context)
+        self.load_qml_file(feedback, 'reparation_ASS.qml', layer, qml_path, styles)
+
+        feedback.setProgress(int(100 * 7 / 8))
+
+        layer = self.parameterAsVectorLayer(parameters, self.REPARAEP, context)
+        self.load_qml_file(feedback, 'reparation_AEP.qml', layer, qml_path, styles)
+
+        feedback.setProgress(int(100 * 8 / 8))
 
         return {}
 
