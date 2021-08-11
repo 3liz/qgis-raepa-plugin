@@ -8,6 +8,10 @@
 * Correction du chargement des gabarits
 * Correction de l'action 'Couper la canalisation sous cet ouvrage'
 * Ajout de la possibilité de définir le nom des couches de sorties
+* Nouveau style pour les couches de sorties 
+* Possibilité d'importer les réparations
+* Possibilité de choisir d'importer des couches AEP ou ASS 
+* Création d'un guide utilisateur complet
 
 ## 0.3.0 - 2020-06-16
 
