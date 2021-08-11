@@ -12,7 +12,7 @@ Pour commencer, la donnée que vous souhaitez ajouter doit être dans le standar
 c'est pourquoi, pour construire la nouvelle donnée, il est recommandé d'utiliser les Gabarits fournis par l'outil [`Obtenir les gabarits AEP/ASS`](../outils/#2-obtenir-les-gabarits-aepass).
 
 !!! warning
- La plupart des champs sont nécessaires au bon fonctionnement des outils qui suivent. Veillez à bien tous les remplir !
+    La plupart des champs sont nécessaires au bon fonctionnement des outils qui suivent. Veillez à bien tous les remplir !
 
 ###1.2 Import shapefiles dans les tables temporaires
 
