@@ -20,6 +20,7 @@ __revision__ = '$Format:%H$'
 from .get_data_as_layer import GetDataAsLayer
 from qgis.core import (
     QgsProcessingParameterPoint,
+    QgsLineSymbol
 )
 
 
@@ -79,4 +80,16 @@ class GetNetworkToVanneFermeFromPoint(GetDataAsLayer):
         self.SQL = sql.replace('\n', ' ').rstrip(';')
 
     def setLayerName(self, parameters, context, feedback):
-        self.LAYER_NAME = 'Réseau jusqu\'aux vannes fermées depuis {}'.format(self.parameterAsString(parameters, self.POINT, context))
+        super().setLayerName(parameters, context, feedback)
+        if self.LAYER_NAME == '':
+            self.LAYER_NAME = 'Réseau jusqu\'aux vannes fermées depuis {}'.format(self.parameterAsString(parameters, self.POINT, context))
+
+    def setSymbole(self, parameters, context, feedback):
+        super().setSymbole(parameters, context, feedback)
+        self.SYMBOLE = QgsLineSymbol.createSimple(
+            {
+                'line_color': '255,50,50,255',
+                'line_style': 'solid',
+                'line_width': '1.8'
+            }
+        )

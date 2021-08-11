@@ -13,6 +13,7 @@
 * Possibilité de choisir d'importer des couches AEP ou ASS 
 * Création d'un guide utilisateur complet
 
+
 ## 0.3.0 - 2020-06-16
 
 * Add a dock panel for a better user experience

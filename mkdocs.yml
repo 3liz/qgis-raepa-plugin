@@ -2,6 +2,7 @@ site_name: RAEPA
 site_author: 3Liz
 site_description: Extension QGIS pour les réseaux d'eaux
 site_url: https://docs.3liz.org/qgis-raepa-plugin/
+repo_url: https://github.com/3liz/qgis-raepa-plugin
 copyright: '<span class="copyleft">&copy;</span> 3Liz'
 
 docs_dir: docs
@@ -11,8 +12,15 @@ nav:
     - Accueil: index.md
     - Guide utilisateur:
         - 'Installation': 'user-guide/installation.md'
+        - 'Panneau RAEPA' : 'user-guide/panel.md'
+        - 'Configuration' : 'user-guide/config.md'
+        - 'Import-Export' : 'user-guide/import-export.md'
+        - 'Outils' : 'user-guide/outils.md'
+        - 'Actions' : 'user-guide/actions.md'
+    - Processing: 'processing/README.md'
     - Changelog: changelog.md
     - Contribution: contributing.md
+    - Base de données : database/index.html
 
 markdown_extensions:
   - toc:

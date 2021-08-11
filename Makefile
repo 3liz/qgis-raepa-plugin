@@ -34,3 +34,6 @@ reformat_sql:
 	@cd .docker && ./install_db.sh
 	@cd .docker && ./reformat_sql_install.sh
 	@cd .docker && ./stop.sh
+
+processing-doc:
+	cd .docker && ./processing_doc.sh

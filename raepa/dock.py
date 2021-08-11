@@ -64,9 +64,9 @@ class RaepaDock(QDockWidget, DOCK_CLASS):
                 continue
             button.clicked.connect(partial(self.run_algorithm, alg))
 
-        button = self.findChild(QPushButton, 'button_help_database')
+        button = self.findChild(QPushButton, 'button_help_plugin')
         if button:
-            button.clicked.connect(self.help_database)
+            button.clicked.connect(self.help_plugin)
 
     @staticmethod
     def run_algorithm(name):
@@ -74,7 +74,7 @@ class RaepaDock(QDockWidget, DOCK_CLASS):
         execAlgorithmDialog(alg_name, {})
 
     @staticmethod
-    def help_database():
+    def help_plugin():
         """
         Display the help on database structure
         """
