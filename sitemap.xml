@@ -2,62 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.3liz.org/qgis-raepa-plugin/</loc>
-         <lastmod>2021-08-11</lastmod>
+         <lastmod>2021-08-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.3liz.org/qgis-raepa-plugin/CHANGELOG/</loc>
-         <lastmod>2021-08-11</lastmod>
+         <lastmod>2021-08-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.3liz.org/qgis-raepa-plugin/CONTRIBUTING/</loc>
-         <lastmod>2021-08-11</lastmod>
+         <lastmod>2021-08-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.3liz.org/qgis-raepa-plugin/changelog/</loc>
-         <lastmod>2021-08-11</lastmod>
+         <lastmod>2021-08-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.3liz.org/qgis-raepa-plugin/contributing/</loc>
-         <lastmod>2021-08-11</lastmod>
+         <lastmod>2021-08-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.3liz.org/qgis-raepa-plugin/processing/</loc>
-         <lastmod>2021-08-11</lastmod>
+         <lastmod>2021-08-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.3liz.org/qgis-raepa-plugin/user-guide/actions/</loc>
-         <lastmod>2021-08-11</lastmod>
+         <lastmod>2021-08-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.3liz.org/qgis-raepa-plugin/user-guide/config/</loc>
-         <lastmod>2021-08-11</lastmod>
+         <lastmod>2021-08-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.3liz.org/qgis-raepa-plugin/user-guide/import-export/</loc>
-         <lastmod>2021-08-11</lastmod>
+         <lastmod>2021-08-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.3liz.org/qgis-raepa-plugin/user-guide/installation/</loc>
-         <lastmod>2021-08-11</lastmod>
+         <lastmod>2021-08-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.3liz.org/qgis-raepa-plugin/user-guide/outils/</loc>
-         <lastmod>2021-08-11</lastmod>
+         <lastmod>2021-08-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.3liz.org/qgis-raepa-plugin/user-guide/panel/</loc>
-         <lastmod>2021-08-11</lastmod>
+         <lastmod>2021-08-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
