@@ -2,17 +2,17 @@
 
 ## Unreleased
 
-* Suppression du paramètre 'INPUT_SQL'
-* Modification des fichiers de styles des couches
-* Correction calcul d'orientation des appareils
+## 0.4.0 - 2021-08-23
+
+* Correction du calcul d'orientation des appareils
 * Correction du chargement des gabarits
 * Correction de l'action 'Couper la canalisation sous cet ouvrage'
+* Modification des fichiers de styles des couches
 * Ajout de la possibilité de définir le nom des couches de sorties
-* Nouveau style pour les couches de sorties 
-* Possibilité d'importer les réparations
-* Possibilité de choisir d'importer des couches AEP ou ASS 
-* Création d'un guide utilisateur complet
-
+* Ajout d'un nouveau style pour les couches de sorties
+* Ajout de la possibilité d'importer les réparations
+* Ajout de la possibilité de choisir d'importer des couches AEP ou ASS
+* Ajout d'un guide utilisateur complet https://docs.3liz.org/qgis-raepa-plugin/
 
 ## 0.3.0 - 2020-06-16
 

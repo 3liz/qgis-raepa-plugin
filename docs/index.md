@@ -9,7 +9,7 @@ hide:
 Extension QGIS pour le standard Réseaux d'Adduction d'Eau Potable et d'Assainissement
 [RAEPA](http://www.geoinformations.developpement-durable.gouv.fr/geostandard-reseaux-d-adduction-d-eau-potable-et-d-a3478.html)
 
-![Logo](media/icon.png)
+<!-- ![Logo](media/icon.png) -->
 
 Lizmap Web Client:
 
