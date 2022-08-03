@@ -13,9 +13,6 @@ __author__ = '3liz'
 __date__ = '2019-02-15'
 __copyright__ = '(C) 2019 by 3liz'
 
-# This will get replaced with a git SHA1 when you do a git archive
-
-__revision__ = '$Format:%H$'
 
 from db_manager.db_plugins import createDbPlugin
 from qgis.core import (

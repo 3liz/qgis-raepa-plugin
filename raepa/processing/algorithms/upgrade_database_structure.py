@@ -12,7 +12,6 @@
 __author__ = '3liz'
 __date__ = '2019-02-15'
 __copyright__ = '(C) 2019 by 3liz'
-__revision__ = '$Format:%H$'
 
 import os
 

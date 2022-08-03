@@ -13,9 +13,6 @@ __author__ = '3liz'
 __date__ = '2018-12-19'
 __copyright__ = '(C) 2018 by 3liz'
 
-# This will get replaced with a git SHA1 when you do a git archive
-
-__revision__ = '$Format:%H$'
 
 from .get_data_as_layer import GetDataAsLayer
 from qgis.core import (
