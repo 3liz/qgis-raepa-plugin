@@ -14,11 +14,9 @@ __date__ = '2018-12-19'
 __copyright__ = '(C) 2018 by 3liz'
 
 
-from .get_data_as_layer import GetDataAsLayer
-from qgis.core import (
-    QgsProcessingParameterPoint,
-    QgsLineSymbol
-)
+from qgis.core import QgsLineSymbol, QgsProcessingParameterPoint
+
+from raepa.get_data_as_layer import GetDataAsLayer
 
 
 class GetNetworkToVanneFermeFromPoint(GetDataAsLayer):

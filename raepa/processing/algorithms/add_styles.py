@@ -16,13 +16,15 @@ __email__ = 'info@3liz.org'
 import os
 
 from qgis.core import (
-    QgsProcessingParameterVectorLayer,
-    QgsProcessingParameterEnum,
-    QgsProcessing,
     QgsMapLayer,
+    QgsProcessing,
+    QgsProcessingParameterEnum,
+    QgsProcessingParameterVectorLayer,
 )
 
-from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
+from raepa.qgis_plugin_tools.tools.algorithm_processing import (
+    BaseProcessingAlgorithm,
+)
 
 
 class AddStyles(BaseProcessingAlgorithm):

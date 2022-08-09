@@ -16,17 +16,19 @@ __copyright__ = '(C) 2018 by 3liz'
 
 import os
 
+from processing.algs.gdal.GdalUtils import GdalUtils
 from qgis.core import (
+    QgsDataSourceUri,
     QgsProcessingAlgorithm,
     QgsProcessingException,
-    QgsProcessingParameterString,
     QgsProcessingParameterCrs,
-    QgsDataSourceUri,
     QgsProcessingParameterFileDestination,
+    QgsProcessingParameterString,
 )
-from processing.algs.gdal.GdalUtils import GdalUtils
 
-from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
+from raepa.qgis_plugin_tools.tools.algorithm_processing import (
+    BaseProcessingAlgorithm,
+)
 
 
 class ExportPackage(BaseProcessingAlgorithm):

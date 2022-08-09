@@ -15,21 +15,23 @@ __copyright__ = '(C) 2018 by 3liz'
 
 
 from db_manager.db_plugins import createDbPlugin
-
 from qgis.core import (
     Qgis,
-    QgsProcessingParameterVectorLayer,
-    QgsProcessingOutputString,
+    QgsExpressionContextUtils,
     QgsProcessingOutputNumber,
+    QgsProcessingOutputString,
     QgsProcessingParameterEnum,
-    QgsExpressionContextUtils
+    QgsProcessingParameterVectorLayer,
 )
+
 if Qgis.QGIS_VERSION_INT >= 30800:
     from qgis import processing
 else:
     import processing
 
-from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
+from raepa.qgis_plugin_tools.tools.algorithm_processing import (
+    BaseProcessingAlgorithm,
+)
 
 
 class ImportShapefile(BaseProcessingAlgorithm):

@@ -14,12 +14,13 @@ __date__ = '2019-02-15'
 __copyright__ = '(C) 2019 by 3liz'
 
 
-from .get_data_as_layer import GetDataAsLayer
 from qgis.core import (
-    QgsProcessingParameterString,
     QgsLineSymbol,
-    QgsProcessingParameterEnum
+    QgsProcessingParameterEnum,
+    QgsProcessingParameterString,
 )
+
+from raepa.get_data_as_layer import GetDataAsLayer
 
 
 class GetDownstreamRoute(GetDataAsLayer):

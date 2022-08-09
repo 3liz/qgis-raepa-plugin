@@ -17,18 +17,20 @@ __copyright__ = '(C) 2019 by 3liz'
 from db_manager.db_plugins import createDbPlugin
 from processing.tools import postgis
 from qgis.core import (
-    QgsVectorLayer,
+    QgsExpressionContextUtils,
     QgsLineSymbol,
     QgsProcessingContext,
     QgsProcessingException,
-    QgsProcessingParameterString,
-    QgsProcessingOutputString,
     QgsProcessingOutputNumber,
+    QgsProcessingOutputString,
     QgsProcessingOutputVectorLayer,
-    QgsExpressionContextUtils
+    QgsProcessingParameterString,
+    QgsVectorLayer,
 )
 
-from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
+from raepa.qgis_plugin_tools.tools.algorithm_processing import (
+    BaseProcessingAlgorithm,
+)
 
 
 class GetDataAsLayer(BaseProcessingAlgorithm):

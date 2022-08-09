@@ -15,12 +15,12 @@ __copyright__ = '(C) 2018 by 3liz'
 
 
 from qgis.core import (
-    QgsProcessingParameterString,
     QgsProcessingParameterBoolean,
-    QgsProcessingParameterEnum
+    QgsProcessingParameterEnum,
+    QgsProcessingParameterString,
 )
 
-from .execute_sql import ExecuteSql
+from raepa.execute_sql import ExecuteSql
 
 
 class InsertConvertedData(ExecuteSql):

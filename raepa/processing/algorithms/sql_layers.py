@@ -6,14 +6,16 @@ __email__ = 'info@3liz.org'
 from qgis.core import (
     QgsExpressionContextUtils,
     QgsProcessingContext,
+    QgsProcessingLayerPostProcessorInterface,
     QgsProcessingOutputMultipleLayers,
     QgsProcessingParameterEnum,
-    QgsProcessingLayerPostProcessorInterface,
     QgsVectorLayer,
 )
 
-from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
-from ...sql_layer import SqlLayer
+from raepa.qgis_plugin_tools.tools.algorithm_processing import (
+    BaseProcessingAlgorithm,
+)
+from raepa.sql_layer import SqlLayer
 
 
 class StylesPostProcessor(QgsProcessingLayerPostProcessorInterface):

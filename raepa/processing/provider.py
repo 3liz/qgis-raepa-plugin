@@ -2,29 +2,45 @@ __copyright__ = 'Copyright 2020, 3Liz'
 __license__ = 'GPL version 3'
 __email__ = 'info@3liz.org'
 
-from qgis.PyQt.QtGui import QIcon
 from qgis.core import QgsProcessingProvider
+from qgis.PyQt.QtGui import QIcon
 
-from .algorithms.execute_sql import ExecuteSql
-from .algorithms.add_styles import AddStyles
-from .algorithms.cancel_last_modification import CancelLastModification
-from .algorithms.configure_plugin import ConfigurePlugin
-from .algorithms.convert_imported_data import ConvertImportedData
-from .algorithms.create_database_structure import CreateDatabaseStructure
-from .algorithms.export_package import ExportPackage
-from .algorithms.gabarits_aep_ass import ExportGabarits
-from .algorithms.get_downstream_route import GetDownstreamRoute
-from .algorithms.get_network_to_vanne import GetNetworkToVanne
-from .algorithms.get_network_to_vanne_ferme_from_point import GetNetworkToVanneFermeFromPoint
-from .algorithms.get_network_to_vanne_from_point import GetNetworkToVanneFromPoint
-from .algorithms.get_orientation_appareil import GetOrientationAppareil
-from .algorithms.get_upstream_route import GetUpstreamRoute
-from .algorithms.import_shapefile import ImportShapefile
-from .algorithms.insert_converted_data import InsertConvertedData
-from .algorithms.load_project import LoadProject
-from .algorithms.sql_layers import AddSqlLayers
-from .algorithms.upgrade_database_structure import UpgradeDatabaseStructure
-from ..qgis_plugin_tools.tools.resources import resources_path
+from raepa.processing.algorithms.add_styles import AddStyles
+from raepa.processing.algorithms.cancel_last_modification import (
+    CancelLastModification,
+)
+from raepa.processing.algorithms.configure_plugin import ConfigurePlugin
+from raepa.processing.algorithms.convert_imported_data import (
+    ConvertImportedData,
+)
+from raepa.processing.algorithms.create_database_structure import (
+    CreateDatabaseStructure,
+)
+from raepa.processing.algorithms.execute_sql import ExecuteSql
+from raepa.processing.algorithms.export_package import ExportPackage
+from raepa.processing.algorithms.gabarits_aep_ass import ExportGabarits
+from raepa.processing.algorithms.get_downstream_route import GetDownstreamRoute
+from raepa.processing.algorithms.get_network_to_vanne import GetNetworkToVanne
+from raepa.processing.algorithms.get_network_to_vanne_ferme_from_point import (
+    GetNetworkToVanneFermeFromPoint,
+)
+from raepa.processing.algorithms.get_network_to_vanne_from_point import (
+    GetNetworkToVanneFromPoint,
+)
+from raepa.processing.algorithms.get_orientation_appareil import (
+    GetOrientationAppareil,
+)
+from raepa.processing.algorithms.get_upstream_route import GetUpstreamRoute
+from raepa.processing.algorithms.import_shapefile import ImportShapefile
+from raepa.processing.algorithms.insert_converted_data import (
+    InsertConvertedData,
+)
+from raepa.processing.algorithms.load_project import LoadProject
+from raepa.processing.algorithms.sql_layers import AddSqlLayers
+from raepa.processing.algorithms.upgrade_database_structure import (
+    UpgradeDatabaseStructure,
+)
+from raepa.qgis_plugin_tools.tools.resources import resources_path
 
 
 class RaepaProvider(QgsProcessingProvider):

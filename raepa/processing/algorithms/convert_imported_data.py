@@ -14,12 +14,9 @@ __date__ = '2018-12-19'
 __copyright__ = '(C) 2018 by 3liz'
 
 
-from qgis.core import (
-    QgsProcessingParameterString,
-    QgsProcessingParameterEnum
-)
+from qgis.core import QgsProcessingParameterEnum, QgsProcessingParameterString
 
-from .execute_sql import ExecuteSql
+from raepa.execute_sql import ExecuteSql
 
 
 class ConvertImportedData(ExecuteSql):

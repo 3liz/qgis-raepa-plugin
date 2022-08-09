@@ -1,26 +1,27 @@
 """Tests for Processing algorithms."""
 
 import os
-import psycopg2
 import time
 
 import processing
+import psycopg2
 
 from qgis.core import (
     QgsApplication,
-    QgsProcessingException,
     QgsCoordinateReferenceSystem,
+    QgsProcessingException,
 )
 from qgis.testing import unittest
 
-from ..processing.provider import RaepaProvider as ProcessingProvider
-from ..qgis_plugin_tools.tools.database import available_migrations
-from ..qgis_plugin_tools.tools.logger_processing import LoggerProcessingFeedBack
+from raepa.processing.provider import RaepaProvider as ProcessingProvider
+from raepa.qgis_plugin_tools.tools.database import available_migrations
+from raepa.qgis_plugin_tools.tools.logger_processing import (
+    LoggerProcessingFeedBack,
+)
 
 __copyright__ = "Copyright 2020, 3Liz"
 __license__ = "GPL version 3"
 __email__ = "info@3liz.org"
-__revision__ = "$Format:%H$"
 
 SCHEMA = "raepa"
 VERSION = "0.2.0"

@@ -15,12 +15,12 @@ __copyright__ = '(C) 2019 by 3liz'
 
 
 from qgis.core import (
-    QgsProcessingParameterString,
     QgsLineSymbol,
-    QgsProcessingParameterEnum
+    QgsProcessingParameterEnum,
+    QgsProcessingParameterString,
 )
 
-from .get_data_as_layer import GetDataAsLayer
+from raepa.get_data_as_layer import GetDataAsLayer
 
 
 class GetUpstreamRoute(GetDataAsLayer):

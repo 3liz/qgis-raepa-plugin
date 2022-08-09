@@ -17,22 +17,27 @@ import os
 
 from db_manager.db_plugins import createDbPlugin
 from qgis.core import (
+    QgsExpressionContextUtils,
     QgsProcessingException,
-    QgsProcessingParameterString,
-    QgsProcessingParameterCrs,
-    QgsProcessingParameterBoolean,
     QgsProcessingOutputNumber,
     QgsProcessingOutputString,
-    QgsExpressionContextUtils
+    QgsProcessingParameterBoolean,
+    QgsProcessingParameterCrs,
+    QgsProcessingParameterString,
 )
 
-from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
-from ...qgis_plugin_tools.tools.database import (
+from raepa.qgis_plugin_tools.tools.algorithm_processing import (
+    BaseProcessingAlgorithm,
+)
+from raepa.qgis_plugin_tools.tools.database import (
     available_migrations,
     fetch_data_from_sql_query,
 )
-from ...qgis_plugin_tools.tools.resources import plugin_test_data_path, plugin_path
-from ...qgis_plugin_tools.tools.version import version
+from raepa.qgis_plugin_tools.tools.resources import (
+    plugin_path,
+    plugin_test_data_path,
+)
+from raepa.qgis_plugin_tools.tools.version import version
 
 SCHEMA = "raepa"
 

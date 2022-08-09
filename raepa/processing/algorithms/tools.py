@@ -15,8 +15,8 @@ __copyright__ = '(C) 2019 by 3liz'
 
 
 def fetchDataFromSqlQuery(connection_name, sql):
-    from db_manager.db_plugins.plugin import BaseError
     from db_manager.db_plugins import createDbPlugin
+    from db_manager.db_plugins.plugin import BaseError
     from db_manager.db_plugins.postgis.connector import PostGisDBConnector
 
     header = None

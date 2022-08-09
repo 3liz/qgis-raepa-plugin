@@ -4,10 +4,10 @@ __email__ = 'info@3liz.org'
 
 import os
 
-from qgis.core import QgsVectorLayer
 from processing.tools.postgis import uri_from_name
+from qgis.core import QgsVectorLayer
 
-from .qgis_plugin_tools.tools.resources import resources_path
+from raepa.qgis_plugin_tools.tools.resources import resources_path
 
 FOLDER = 'sql_layer'
 

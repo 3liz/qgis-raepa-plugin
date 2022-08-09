@@ -15,13 +15,15 @@ __copyright__ = '(C) 2019 by 3liz'
 
 
 from qgis.core import (
-    QgsProcessingParameterString,
-    QgsProcessingOutputString,
+    QgsExpressionContextUtils,
     QgsProcessingOutputNumber,
-    QgsExpressionContextUtils
+    QgsProcessingOutputString,
+    QgsProcessingParameterString,
 )
 
-from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
+from raepa.qgis_plugin_tools.tools.algorithm_processing import (
+    BaseProcessingAlgorithm,
+)
 
 
 class ConfigurePlugin(BaseProcessingAlgorithm):

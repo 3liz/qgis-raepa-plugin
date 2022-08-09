@@ -4,12 +4,14 @@ import os
 import shutil
 
 from qgis.core import (
-    QgsProcessingParameterFileDestination,
     QgsProcessingParameterEnum,
+    QgsProcessingParameterFileDestination,
 )
 
-from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
-from ...qgis_plugin_tools.tools.resources import plugin_path
+from raepa.qgis_plugin_tools.tools.algorithm_processing import (
+    BaseProcessingAlgorithm,
+)
+from raepa.qgis_plugin_tools.tools.resources import plugin_path
 
 __copyright__ = 'Copyright 2019, 3Liz'
 __license__ = 'GPL version 3'

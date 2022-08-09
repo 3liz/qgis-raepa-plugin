@@ -2,23 +2,23 @@ __copyright__ = 'Copyright 2020, 3Liz'
 __license__ = 'GPL version 3'
 __email__ = 'info@3liz.org'
 
-from qgis.core import QgsApplication, QgsMessageLog, Qgis
-from qgis.utils import iface
+from qgis.core import Qgis, QgsApplication, QgsMessageLog
 from qgis.PyQt.QtCore import Qt
 from qgis.PyQt.QtWidgets import QMessageBox
+from qgis.utils import iface
 
-from .actions import (
-    parcourir_reseau_depuis_cet_objet,
-    couper_la_canalisation_sous_cet_ouvrage,
+from raepa.actions import (
     annuler_la_derniere_modification,
+    calcul_orientation_appareil,
+    couper_la_canalisation_sous_cet_ouvrage,
     inverser_canalisation,
+    network_to_vanne,
+    parcourir_reseau_depuis_cet_objet,
     parcourir_reseau_jusquaux_vannes,
     parcourir_reseau_jusquaux_vannes_fermees,
-    calcul_orientation_appareil,
-    network_to_vanne,
 )
-from .dock import RaepaDock
-from .processing.provider import RaepaProvider
+from raepa.dock import RaepaDock
+from raepa.processing.provider import RaepaProvider
 
 
 class Raepa:

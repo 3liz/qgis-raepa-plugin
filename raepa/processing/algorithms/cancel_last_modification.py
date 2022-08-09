@@ -15,11 +15,11 @@ __copyright__ = '(C) 2018 by 3liz'
 
 
 from qgis.core import (
-    QgsProcessingParameterVectorLayer,
     QgsProcessingParameterString,
+    QgsProcessingParameterVectorLayer,
 )
 
-from .execute_sql import ExecuteSql
+from raepa.execute_sql import ExecuteSql
 
 
 class CancelLastModification(ExecuteSql):

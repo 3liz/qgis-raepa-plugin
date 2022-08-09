@@ -16,15 +16,17 @@ __copyright__ = '(C) 2019 by 3liz'
 
 from db_manager.db_plugins import createDbPlugin
 from qgis.core import (
-    QgsProcessingException,
-    QgsProcessingParameterString,
-    QgsProcessingOutputString,
-    QgsProcessingOutputNumber,
     QgsExpressionContextUtils,
+    QgsProcessingException,
+    QgsProcessingOutputNumber,
+    QgsProcessingOutputString,
+    QgsProcessingParameterString,
 )
 
-from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
-from .tools import fetchDataFromSqlQuery
+from raepa.qgis_plugin_tools.tools.algorithm_processing import (
+    BaseProcessingAlgorithm,
+)
+from raepa.tools import fetchDataFromSqlQuery
 
 
 class ExecuteSql(BaseProcessingAlgorithm):

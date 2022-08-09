@@ -14,19 +14,20 @@ __date__ = '2019-02-15'
 __copyright__ = '(C) 2019 by 3liz'
 
 
+from processing.tools.postgis import uri_from_name
 from qgis.core import (
-    QgsProcessingParameterString,
-    QgsProcessingOutputString,
     QgsExpressionContextUtils,
-    QgsVectorLayer,
-    QgsProcessingOutputMultipleLayers,
     QgsProcessingContext,
+    QgsProcessingOutputMultipleLayers,
+    QgsProcessingOutputString,
     QgsProcessingParameterDefinition,
+    QgsProcessingParameterString,
+    QgsVectorLayer,
 )
 
-from processing.tools.postgis import uri_from_name
-
-from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
+from raepa.qgis_plugin_tools.tools.algorithm_processing import (
+    BaseProcessingAlgorithm,
+)
 
 
 class LoadProject(BaseProcessingAlgorithm):

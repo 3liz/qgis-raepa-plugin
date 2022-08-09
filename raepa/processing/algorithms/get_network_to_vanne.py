@@ -14,12 +14,9 @@ __date__ = '2018-12-19'
 __copyright__ = '(C) 2018 by 3liz'
 
 
-from qgis.core import (
-    QgsProcessingParameterString,
-    QgsLineSymbol
-)
+from qgis.core import QgsLineSymbol, QgsProcessingParameterString
 
-from .get_data_as_layer import GetDataAsLayer
+from raepa.get_data_as_layer import GetDataAsLayer
 
 
 class GetNetworkToVanne(GetDataAsLayer):

@@ -1,14 +1,14 @@
 """Actions."""
 
 from qgis.core import (
-    QgsProject,
-    QgsLineSymbol,
-    QgsFeatureRequest,
     Qgis,
-    QgsProcessingException,
+    QgsFeatureRequest,
+    QgsLineSymbol,
     QgsMessageLog,
+    QgsPointXY,
+    QgsProcessingException,
+    QgsProject,
     QgsReferencedPointXY,
-    QgsPointXY
 )
 from qgis.utils import iface
 
