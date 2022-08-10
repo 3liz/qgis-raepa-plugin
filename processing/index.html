@@ -2475,6 +2475,24 @@
 <td align="center">Type: TypeVectorLine <br></td>
 </tr>
 <tr>
+<td align="center">REPARASS</td>
+<td align="center">Couche Reparation ASS</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">Type: TypeVectorPoint <br></td>
+</tr>
+<tr>
+<td align="center">REPARAEP</td>
+<td align="center">Couche Reparation AEP</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">Type: TypeVectorPoint <br></td>
+</tr>
+<tr>
 <td align="center">STYLETYPE</td>
 <td align="center">Importer uniquement les actions</td>
 <td align="center">Enum</td>
@@ -2524,9 +2542,9 @@
 <tbody>
 <tr>
 <td align="center">CONNECTION_NAME</td>
-<td align="center">Connection PostgreSQL à la base à RAEPA</td>
-<td align="center">String</td>
-<td align="center"></td>
+<td align="center">Connexion PostgreSQL vers la base de données</td>
+<td align="center">ProviderConnection</td>
+<td align="center">Base de données de destination</td>
 <td align="center">✓</td>
 <td align="center"></td>
 <td align="center"></td>
@@ -2631,6 +2649,15 @@
 </thead>
 <tbody>
 <tr>
+<td align="center">TYPE</td>
+<td align="center">Type d'import</td>
+<td align="center">Enum</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Values: ASS, AEP <br></td>
+</tr>
+<tr>
 <td align="center">ANNEE_FIN_POSE</td>
 <td align="center">Année de fin de pose</td>
 <td align="center">String</td>
@@ -2730,6 +2757,15 @@
 </thead>
 <tbody>
 <tr>
+<td align="center">TYPE</td>
+<td align="center">Type d'import</td>
+<td align="center">Enum</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Values: ASS, AEP <br></td>
+</tr>
+<tr>
 <td align="center">APPAREILS</td>
 <td align="center">Appareils</td>
 <td align="center">VectorLayer</td>
@@ -2750,6 +2786,15 @@
 <tr>
 <td align="center">OUVRAGES</td>
 <td align="center">Ouvrages</td>
+<td align="center">VectorLayer</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Type:  <br></td>
+</tr>
+<tr>
+<td align="center">REPARATIONS</td>
+<td align="center">Réparations</td>
 <td align="center">VectorLayer</td>
 <td align="center"></td>
 <td align="center">✓</td>
@@ -2800,6 +2845,15 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td align="center">TYPE</td>
+<td align="center">Type d'import</td>
+<td align="center">Enum</td>
+<td align="center"></td>
+<td align="center">✓</td>
+<td align="center"></td>
+<td align="center">Values: ASS, AEP <br></td>
+</tr>
 <tr>
 <td align="center">SOURCE_HISTORIQUE</td>
 <td align="center">Source historique</td>
@@ -2920,7 +2974,7 @@
 </tr>
 <tr>
 <td align="center">CODE</td>
-<td align="center">Nom abbrégé en 3 caractères</td>
+<td align="center">Nom abrégé en 3 caractères</td>
 <td align="center">String</td>
 <td align="center"></td>
 <td align="center">✓</td>
@@ -2956,7 +3010,7 @@
 </table>
 <hr />
 <h3 id="mise-a-jour-de-la-structure-de-la-bdd">Mise à jour de la structure de la BDD<a class="headerlink" href="#mise-a-jour-de-la-structure-de-la-bdd" title="Permanent link">#</a></h3>
-<p>Applique les migrations SQL nécéssaires sur la base de données. Cela est à faire lors d'une mise à jour du plugin.</p>
+<p>Applique les migrations SQL nécessaires sur la base de données. Cela est à faire lors d'une mise à jour du plugin.</p>
 <p><img alt="algo_id" src="raepa-upgrade_database_structure.png" /></p>
 <h4 id="parameters_17">Parameters<a class="headerlink" href="#parameters_17" title="Permanent link">#</a></h4>
 <table>
