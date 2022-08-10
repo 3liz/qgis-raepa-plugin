@@ -1,5 +1,6 @@
 """Actions."""
 
+from qgis import processing
 from qgis.core import (
     Qgis,
     QgsFeatureRequest,
@@ -11,11 +12,6 @@ from qgis.core import (
     QgsReferencedPointXY,
 )
 from qgis.utils import iface
-
-if Qgis.QGIS_VERSION_INT >= 30800:
-    from qgis import processing
-else:
-    import processing
 
 __copyright__ = 'Copyright 2019, 3Liz'
 __license__ = 'GPL version 3'

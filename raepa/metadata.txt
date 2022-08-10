@@ -1,6 +1,6 @@
 [general]
 name=Raepa
-qgisMinimumVersion=3.0
+qgisMinimumVersion=3.16
 description=France only - Plugin dedicated to import and manage water network data by using Raepa standard
 version=master
 changelog=changelog

@@ -20,7 +20,7 @@ from qgis.core import (
     QgsProcessingParameterString,
 )
 
-from raepa.execute_sql import ExecuteSql
+from raepa.processing.algorithms.execute_sql import ExecuteSql
 
 
 class InsertConvertedData(ExecuteSql):

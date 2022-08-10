@@ -19,7 +19,7 @@ from qgis.core import (
     QgsProcessingParameterVectorLayer,
 )
 
-from raepa.execute_sql import ExecuteSql
+from raepa.processing.algorithms.execute_sql import ExecuteSql
 
 
 class CancelLastModification(ExecuteSql):

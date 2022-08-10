@@ -14,19 +14,19 @@ __date__ = '2019-02-15'
 __copyright__ = '(C) 2019 by 3liz'
 
 
-from db_manager.db_plugins import createDbPlugin
 from qgis.core import (
     QgsExpressionContextUtils,
     QgsProcessingException,
     QgsProcessingOutputNumber,
     QgsProcessingOutputString,
     QgsProcessingParameterString,
+    QgsProviderRegistry,
 )
 
+from raepa.processing.algorithms.tools import fetch_data_from_sql_query
 from raepa.qgis_plugin_tools.tools.algorithm_processing import (
     BaseProcessingAlgorithm,
 )
-from raepa.tools import fetchDataFromSqlQuery
 
 
 class ExecuteSql(BaseProcessingAlgorithm):
@@ -90,11 +90,10 @@ class ExecuteSql(BaseProcessingAlgorithm):
             return False, msg
 
         # Check that it corresponds to an existing connection
-        dbpluginclass = createDbPlugin('postgis')
-        connections = [c.connectionName() for c in dbpluginclass.connections()]
-        if connection_name not in connections:
-            msg = 'La connexion "{}" n\'existe pas dans QGIS : {}'.format(
-                connection_name, ', '.join(connections))
+        metadata = QgsProviderRegistry.instance().providerMetadata('postgres')
+        connection = metadata.findConnection(connection_name)
+        if not connection:
+            msg = 'La connexion "{}" n\'existe pas dans QGIS'.format(connection_name)
             return False, msg
 
         return super(ExecuteSql, self).checkParameterValues(parameters, context)
@@ -120,16 +119,13 @@ class ExecuteSql(BaseProcessingAlgorithm):
         feedback.pushInfo(self.SQL)
 
         # Run SQL
-        [header, data, rowCount, ok, error_message] = fetchDataFromSqlQuery(
-            connection_name,
-            self.SQL
-        )
-        if ok:
-            msg = 'SQL exécuté avec succès'
-            feedback.pushInfo(msg)
-        else:
+        _, error_message = fetch_data_from_sql_query(connection_name, self.SQL)
+        if error_message:
             feedback.pushInfo('* ' + error_message)
             raise QgsProcessingException(error_message)
+
+        msg = 'SQL exécuté avec succès'
+        feedback.pushInfo(msg)
 
         return {
             self.OUTPUT_STATUS: 0,

@@ -14,9 +14,8 @@ __date__ = '2019-02-15'
 __copyright__ = '(C) 2019 by 3liz'
 
 
-from db_manager.db_plugins import createDbPlugin
-from processing.tools import postgis
 from qgis.core import (
+    QgsDataSourceUri,
     QgsExpressionContextUtils,
     QgsLineSymbol,
     QgsProcessingContext,
@@ -25,6 +24,7 @@ from qgis.core import (
     QgsProcessingOutputString,
     QgsProcessingOutputVectorLayer,
     QgsProcessingParameterString,
+    QgsProviderRegistry,
     QgsVectorLayer,
 )
 
@@ -118,11 +118,10 @@ class GetDataAsLayer(BaseProcessingAlgorithm):
             return False, msg
 
         # Check that it corresponds to an existing connection
-        dbpluginclass = createDbPlugin('postgis')
-        connections = [c.connectionName() for c in dbpluginclass.connections()]
-        if connection_name not in connections:
-            msg = 'La connexion "{}" n\'existe pas dans QGIS : {}'.format(
-                connection_name, ', '.join(connections))
+        metadata = QgsProviderRegistry.instance().providerMetadata('postgres')
+        connection = metadata.findConnection(connection_name)
+        if not connection:
+            msg = 'La connexion "{}" n\'existe pas dans QGIS'.format(connection_name)
             return False, msg
 
         return super(GetDataAsLayer, self).checkParameterValues(parameters, context)
@@ -151,6 +150,9 @@ class GetDataAsLayer(BaseProcessingAlgorithm):
         """
         # Database connection parameters
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
+        metadata = QgsProviderRegistry.instance().providerMetadata('postgres')
+        connection = metadata.findConnection(connection_name)
+        uri = QgsDataSourceUri(connection.uri())
 
         msg = ''
         status = 1
@@ -162,9 +164,8 @@ class GetDataAsLayer(BaseProcessingAlgorithm):
         # Set symbole
         self.setSymbole(parameters, context, feedback)
 
-        # Buid QGIS uri to load layer
+        # Build QGIS uri to load layer
         id_field = 'id'
-        uri = postgis.uri_from_name(connection_name)
         uri.setDataSource("", "(" + self.SQL + ")", self.GEOM_FIELD, "", id_field)
         vlayer = QgsVectorLayer(uri.uri(), "layername", "postgres")
         if not vlayer.isValid():

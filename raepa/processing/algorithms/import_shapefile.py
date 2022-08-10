@@ -14,20 +14,15 @@ __date__ = '2018-12-19'
 __copyright__ = '(C) 2018 by 3liz'
 
 
-from db_manager.db_plugins import createDbPlugin
+from qgis import processing
 from qgis.core import (
-    Qgis,
     QgsExpressionContextUtils,
     QgsProcessingOutputNumber,
     QgsProcessingOutputString,
     QgsProcessingParameterEnum,
     QgsProcessingParameterVectorLayer,
+    QgsProviderRegistry,
 )
-
-if Qgis.QGIS_VERSION_INT >= 30800:
-    from qgis import processing
-else:
-    import processing
 
 from raepa.qgis_plugin_tools.tools.algorithm_processing import (
     BaseProcessingAlgorithm,
@@ -130,11 +125,10 @@ class ImportShapefile(BaseProcessingAlgorithm):
             return False, msg
 
         # Check that it corresponds to an existing connection
-        dbpluginclass = createDbPlugin('postgis')
-        connections = [c.connectionName() for c in dbpluginclass.connections()]
-        if connection_name not in connections:
-            msg = 'La connexion "{}" n\'existe pas dans QGIS : {}'.format(
-                connection_name, ', '.join(connections))
+        metadata = QgsProviderRegistry.instance().providerMetadata('postgres')
+        connection = metadata.findConnection(connection_name)
+        if not connection:
+            msg = 'La connexion "{}" n\'existe pas dans QGIS'.format(connection_name)
             return False, msg
 
         return super(ImportShapefile, self).checkParameterValues(parameters, context)

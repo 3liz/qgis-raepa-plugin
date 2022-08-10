@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Mise à jour de l'extension pour le rendre compatible QGIS 3.16
+* QGIS 3.16 est désormais la version minimum de l'extension
+
 ## 0.4.0 - 2021-08-23
 
 * Correction du calcul d'orientation des appareils

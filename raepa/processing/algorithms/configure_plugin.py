@@ -18,7 +18,7 @@ from qgis.core import (
     QgsExpressionContextUtils,
     QgsProcessingOutputNumber,
     QgsProcessingOutputString,
-    QgsProcessingParameterString,
+    QgsProcessingParameterProviderConnection,
 )
 
 from raepa.qgis_plugin_tools.tools.algorithm_processing import (
@@ -49,26 +49,15 @@ class ConfigurePlugin(BaseProcessingAlgorithm):
         return 'Ajoute la variable "raepa_connection_name" à QGIS.'
 
     def initAlgorithm(self, config):
-        """
-        Here we define the inputs and output of the algorithm, along
-        with some other properties.
-        """
-        # INPUTS
-
-        # Database connection parameters
-        connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
-        db_param = QgsProcessingParameterString(
+        default = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
+        param = QgsProcessingParameterProviderConnection(
             self.CONNECTION_NAME,
-            'Connection PostgreSQL à la base à RAEPA',
-            defaultValue=connection_name,
-            optional=False
+            "Connexion PostgreSQL vers la base de données",
+            "postgres",
+            defaultValue=default
         )
-        db_param.setMetadata({
-            'widget_wrapper': {
-                'class': 'processing.gui.wrappers_postgis.ConnectionWidgetWrapper'
-            }
-        })
-        self.addParameter(db_param)
+        param.setHelp("Base de données de destination")
+        self.addParameter(param)
 
         # OUTPUTS
         # Add output for status (integer)
@@ -90,7 +79,7 @@ class ConfigurePlugin(BaseProcessingAlgorithm):
         """
         Here is where the processing itself takes place.
         """
-        connection_name = parameters[self.CONNECTION_NAME]
+        connection_name = self.parameterAsConnectionName(parameters, self.CONNECTION_NAME, context)
 
         # Set global variable
         # noinspection PyCallByClass,PyArgumentList

@@ -34,7 +34,7 @@ services:
   qgis:
     profiles:
       - "qgis"
-    image: qgis/qgis:release-3_4
+    image: qgis/qgis:release-3_16
     container_name: qgis
     networks:
       qgis_plugin_network:

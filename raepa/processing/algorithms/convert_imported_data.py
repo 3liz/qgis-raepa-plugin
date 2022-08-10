@@ -16,7 +16,7 @@ __copyright__ = '(C) 2018 by 3liz'
 
 from qgis.core import QgsProcessingParameterEnum, QgsProcessingParameterString
 
-from raepa.execute_sql import ExecuteSql
+from raepa.processing.algorithms.execute_sql import ExecuteSql
 
 
 class ConvertImportedData(ExecuteSql):

@@ -14,14 +14,15 @@ __date__ = '2019-02-15'
 __copyright__ = '(C) 2019 by 3liz'
 
 
-from processing.tools.postgis import uri_from_name
 from qgis.core import (
+    QgsDataSourceUri,
     QgsExpressionContextUtils,
     QgsProcessingContext,
     QgsProcessingOutputMultipleLayers,
     QgsProcessingOutputString,
     QgsProcessingParameterDefinition,
     QgsProcessingParameterString,
+    QgsProviderRegistry,
     QgsVectorLayer,
 )
 
@@ -97,7 +98,10 @@ class LoadProject(BaseProcessingAlgorithm):
         """
         Here is where the processing itself takes place.
         """
-        uri = uri_from_name(QgsExpressionContextUtils.globalScope().variable('raepa_connection_name'))
+        connexion_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
+        metadata = QgsProviderRegistry.instance().providerMetadata('postgres')
+        connection = metadata.findConnection(connexion_name)
+        uri = QgsDataSourceUri(connection.uri())
 
         layers_name = {
             "sys_structure_metadonnee": {'geomfield': None, 'pk': 'id'},

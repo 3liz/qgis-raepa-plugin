@@ -15,7 +15,6 @@ __copyright__ = '(C) 2018 by 3liz'
 
 import os
 
-from db_manager.db_plugins import createDbPlugin
 from qgis.core import (
     QgsExpressionContextUtils,
     QgsProcessingException,
@@ -24,15 +23,14 @@ from qgis.core import (
     QgsProcessingParameterBoolean,
     QgsProcessingParameterCrs,
     QgsProcessingParameterString,
+    QgsProviderRegistry,
 )
 
+from raepa.processing.algorithms.tools import fetch_data_from_sql_query
 from raepa.qgis_plugin_tools.tools.algorithm_processing import (
     BaseProcessingAlgorithm,
 )
-from raepa.qgis_plugin_tools.tools.database import (
-    available_migrations,
-    fetch_data_from_sql_query,
-)
+from raepa.qgis_plugin_tools.tools.database import available_migrations
 from raepa.qgis_plugin_tools.tools.resources import (
     plugin_path,
     plugin_test_data_path,
@@ -109,7 +107,7 @@ class CreateDatabaseStructure(BaseProcessingAlgorithm):
         )
         self.addParameter(
             QgsProcessingParameterString(
-                self.CODE, 'Nom abbrégé en 3 caractères',
+                self.CODE, 'Nom abrégé en 3 caractères',
                 defaultValue='cat',
                 optional=False
             )
@@ -138,49 +136,29 @@ class CreateDatabaseStructure(BaseProcessingAlgorithm):
             return False, msg
 
         # Check that it corresponds to an existing connection
-        dbpluginclass = createDbPlugin('postgis')
-        connections = [c.connectionName() for c in dbpluginclass.connections()]
-        if connection_name not in connections:
-            msg = 'La connexion "{}" n\'existe pas dans QGIS : {}'.format(
-                connection_name, ', '.join(connections))
+        metadata = QgsProviderRegistry.instance().providerMetadata('postgres')
+        connection = metadata.findConnection(connection_name)
+        if not connection:
+            msg = 'La connexion "{}" n\'existe pas dans QGIS'.format(connection_name)
             return False, msg
 
+        override = parameters[self.OVERRIDE]
+
         # Check database content
-        ok, msg = self.checkSchema(parameters, context)
-        if not ok:
+        if 'raepa' in connection.schemas() and not override:
+            msg = (
+                'Le schéma raepa existe déjà dans la base de données ! Si vous souhaitez réellement supprimer '
+                'et recréer (et perdre les données existantes), cochez la case "Écrasement".'
+            )
             return False, msg
 
         # Check inputs
         if len(parameters[self.CODE]) != 3:
-            return False, 'Le nom abbrégé doit faire 3 exactement caractères.'
+            return False, 'Le nom abrégé doit faire 3 exactement caractères.'
         if len(parameters[self.SIREN]) != 9:
             return False, "Le SIREN doit faire exactement 9 caractères."
 
         return super(CreateDatabaseStructure, self).checkParameterValues(parameters, context)
-
-    def checkSchema(self, parameters, context):
-        sql = '''
-            SELECT schema_name
-            FROM information_schema.schemata
-            WHERE schema_name = 'raepa';
-        '''
-        connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
-        [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
-            connection_name,
-            sql
-        )
-        if not ok:
-            return ok, error_message
-        override = parameters[self.OVERRIDE]
-        msg = 'Le schéma raepa n\'existe pas. On continue...'
-        for a in data:
-            schema = a[0]
-            if schema == 'raepa' and not override:
-                ok = False
-                msg = (
-                    'Le schéma raepa existe déjà dans la base de données ! Si vous souhaitez réelement supprimer '
-                    'et recréer (et perdre les données existantes), cochez la case "Écrasement".')
-        return ok, msg
 
     def processAlgorithm(self, parameters, context, feedback):
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
@@ -195,14 +173,10 @@ class CreateDatabaseStructure(BaseProcessingAlgorithm):
                 DROP SCHEMA IF EXISTS imports CASCADE;
             '''
 
-            [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
-                connection_name,
-                sql
-            )
-            if ok:
-                feedback.pushInfo("* Schéma raepa, audit et imports supprimés.")
-            else:
+            _, error_message = fetch_data_from_sql_query(connection_name, sql)
+            if error_message:
                 raise QgsProcessingException(error_message)
+            feedback.pushInfo("* Schéma raepa, audit et imports supprimés.")
 
         plugin_dir = plugin_path()
         plugin_version = version()
@@ -273,14 +247,10 @@ class CreateDatabaseStructure(BaseProcessingAlgorithm):
                     continue
                 sql = sql.replace('2154', srid)
 
-                [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
-                    connection_name,
-                    sql
-                )
-                if ok:
-                    feedback.pushInfo('  Success !')
-                else:
+                _, error_message = fetch_data_from_sql_query(connection_name, sql)
+                if error_message:
                     raise QgsProcessingException(error_message)
+                feedback.pushInfo('  Success !')
 
         # Add version
         if run_migration or not dev_version:
@@ -299,11 +269,8 @@ class CreateDatabaseStructure(BaseProcessingAlgorithm):
                 '{}', now()::timestamp(0)
             )
         '''.format(SCHEMA, metadata_version)
-        [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
-            connection_name,
-            sql
-        )
-        if not ok:
+        _, error_message = fetch_data_from_sql_query(connection_name, sql)
+        if error_message:
             raise QgsProcessingException(error_message)
 
         # Add metadata info
@@ -313,11 +280,8 @@ class CreateDatabaseStructure(BaseProcessingAlgorithm):
             parameters[self.SIREN],
             parameters[self.CODE]
         )
-        [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
-            connection_name,
-            sql
-        )
-        if not ok:
+        _, error_message = fetch_data_from_sql_query(connection_name, sql)
+        if error_message:
             raise QgsProcessingException(error_message)
 
         return {

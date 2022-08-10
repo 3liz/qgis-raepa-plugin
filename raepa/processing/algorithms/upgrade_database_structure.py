@@ -15,7 +15,6 @@ __copyright__ = '(C) 2019 by 3liz'
 
 import os
 
-from db_manager.db_plugins import createDbPlugin
 from qgis.core import (
     QgsExpressionContextUtils,
     QgsProcessingException,
@@ -23,15 +22,14 @@ from qgis.core import (
     QgsProcessingOutputString,
     QgsProcessingParameterBoolean,
     QgsProcessingParameterCrs,
+    QgsProviderRegistry,
 )
 
+from raepa.processing.algorithms.tools import fetch_data_from_sql_query
 from raepa.qgis_plugin_tools.tools.algorithm_processing import (
     BaseProcessingAlgorithm,
 )
-from raepa.qgis_plugin_tools.tools.database import (
-    available_migrations,
-    fetch_data_from_sql_query,
-)
+from raepa.qgis_plugin_tools.tools.database import available_migrations
 from raepa.qgis_plugin_tools.tools.resources import plugin_path
 from raepa.qgis_plugin_tools.tools.version import (
     format_version_integer,
@@ -56,7 +54,7 @@ class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
 
     def shortHelpString(self) -> str:
         return (
-            'Applique les migrations SQL nécéssaires sur la base de données. '
+            'Applique les migrations SQL nécessaires sur la base de données. '
             'Cela est à faire lors d\'une mise à jour du plugin.')
 
     def group(self):
@@ -111,42 +109,17 @@ class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
             return False, msg
 
         # Check that it corresponds to an existing connection
-        dbpluginclass = createDbPlugin('postgis')
-        connections = [c.connectionName() for c in dbpluginclass.connections()]
-        if connection_name not in connections:
-            msg = (
-                'La connexion configurée "{}" n\'existe pas dans QGIS : {}'.format(
-                    connection_name, ', '.join(connections)))
+        metadata = QgsProviderRegistry.instance().providerMetadata('postgres')
+        connection = metadata.findConnection(connection_name)
+        if not connection:
+            msg = 'La connexion "{}" n\'existe pas dans QGIS'.format(connection_name)
             return False, msg
 
         # Check database content
-        ok, msg = self.checkSchema(parameters, context)
-        if not ok:
-            return False, msg
+        if 'raepa' not in connection.schemas():
+            return False, 'Le schéma RAEPA n\'existe pas dans la base de données.'
 
         return super(UpgradeDatabaseStructure, self).checkParameterValues(parameters, context)
-
-    def checkSchema(self, parameters, context):
-        sql = '''
-            SELECT schema_name
-            FROM information_schema.schemata
-            WHERE schema_name = 'raepa';
-        '''
-        connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
-        [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
-            connection_name,
-            sql
-        )
-        if not ok:
-            return ok, error_message
-        ok = False
-        msg = 'Le schéma RAEPA n\'existe pas dans la base de données.'
-        for a in data:
-            schema = a[0]
-            if schema == 'raepa':
-                ok = True
-                msg = ''
-        return ok, msg
 
     def processAlgorithm(self, parameters, context, feedback):
         connection_name = QgsExpressionContextUtils.globalScope().variable('raepa_connection_name')
@@ -164,11 +137,8 @@ class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
             ORDER BY date_ajout DESC
             LIMIT 1;
         '''
-        [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
-            connection_name,
-            sql
-        )
-        if not ok:
+        data, error_message = fetch_data_from_sql_query(connection_name, sql)
+        if error_message:
             raise QgsProcessingException(error_message)
 
         db_version = None
@@ -234,14 +204,10 @@ class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
                     = ( '%s', now()::timestamp(0) );
                 ''' % new_db_version
 
-                [header, data, rowCount, ok, error_message] = fetch_data_from_sql_query(
-                    connection_name,
-                    sql
-                )
-                if ok:
-                    feedback.pushInfo('* ' + sf + ' -- SUCCESS !')
-                else:
+                ok, error_message = fetch_data_from_sql_query(connection_name, sql)
+                if error_message:
                     raise QgsProcessingException(error_message)
+                feedback.pushInfo('* ' + sf + ' -- SUCCESS !')
 
         # Everything is fine, we now update to the plugin version
         sql += '''
@@ -250,8 +216,8 @@ class UpgradeDatabaseStructure(BaseProcessingAlgorithm):
             = ( '{}', now()::timestamp(0) );
         '''.format(SCHEMA, plugin_version)
 
-        _, _, _, ok, error_message = fetch_data_from_sql_query(connection_name, sql)
-        if not ok:
+        _, error_message = fetch_data_from_sql_query(connection_name, sql)
+        if error_message:
             raise QgsProcessingException(error_message)
 
         return {

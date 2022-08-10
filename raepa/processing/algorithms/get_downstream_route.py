@@ -20,7 +20,7 @@ from qgis.core import (
     QgsProcessingParameterString,
 )
 
-from raepa.get_data_as_layer import GetDataAsLayer
+from raepa.processing.algorithms.get_data_as_layer import GetDataAsLayer
 
 
 class GetDownstreamRoute(GetDataAsLayer):

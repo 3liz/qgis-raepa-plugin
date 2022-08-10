@@ -4,8 +4,7 @@ __email__ = 'info@3liz.org'
 
 import os
 
-from processing.tools.postgis import uri_from_name
-from qgis.core import QgsVectorLayer
+from qgis.core import QgsDataSourceUri, QgsProviderRegistry, QgsVectorLayer
 
 from raepa.qgis_plugin_tools.tools.resources import resources_path
 
@@ -81,7 +80,9 @@ class SqlLayer:
         self.sql = '({})'.format(self.sql)
 
     def vector_layer(self):
-        uri = uri_from_name(self.connection)
+        metadata = QgsProviderRegistry.instance().providerMetadata('postgres')
+        connection = metadata.findConnection(self.connection)
+        uri = QgsDataSourceUri(connection.uri())
         uri.setDataSource('', self.sql, self.geom, '')
         uri.setKeyColumn(self.pk)
         layer = QgsVectorLayer(uri.uri(), self.name, 'postgres')
