@@ -72,5 +72,5 @@ if [ $SCHEMA = 'raepa' ]
 then
     pg_dump --data-only --inserts --column-inserts -n $SCHEMA --no-acl --no-owner --table "raepa.val_*" --table "raepa._val*" --table "raepa.sys_liste_table" -f "$OUTDIR"/90_GLOSSARY.sql service=$SERVICE
     # Remove SET search_path
-    sed -i "s#SELECT pg_catalog.set_config('search_path', '', false);##g" "$OUTDIR"/"$I"_"$ITEM".sql;
+    sed -i "s#SELECT pg_catalog.set_config('search_path', '', false);##g" "$OUTDIR"/90_GLOSSARY.sql;
 fi
