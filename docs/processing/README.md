@@ -287,6 +287,8 @@ OUVRAEP|Couche Ouvrage AEP|VectorLayer||||Type: TypeVectorPoint <br>|
 OUVRASS|Couche Ouvrage ASS|VectorLayer||||Type: TypeVectorPoint <br>|
 CANALAEP|Couche Canalisation AEP|VectorLayer||||Type: TypeVectorLine <br>|
 CANALASS|Couche Canalisation ASS|VectorLayer||||Type: TypeVectorLine <br>|
+REPARASS|Couche Reparation ASS|VectorLayer||||Type: TypeVectorPoint <br>|
+REPARAEP|Couche Reparation AEP|VectorLayer||||Type: TypeVectorPoint <br>|
 STYLETYPE|Importer uniquement les actions|Enum||✓||Default: [1, 2] <br> Values: Tout, Actions, Forms <br>|
 
 
@@ -309,7 +311,7 @@ Ajoute la variable "raepa_connection_name" à QGIS.
 
 | ID | Description | Type | Info | Required | Advanced | Option |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-CONNECTION_NAME|Connection PostgreSQL à la base à RAEPA|String||✓|||
+CONNECTION_NAME|Connexion PostgreSQL vers la base de données|ProviderConnection|Base de données de destination|✓|||
 
 
 #### Outputs
@@ -360,6 +362,7 @@ OUTPUT_LAYERS|Couches de sortie|MultipleLayers||
 
 | ID | Description | Type | Info | Required | Advanced | Option |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+TYPE|Type d'import|Enum||✓||Values: ASS, AEP <br>|
 ANNEE_FIN_POSE|Année de fin de pose|String||✓||Default: 2018 <br> |
 QUALITE_XY|Qualité XY|String||✓||Default: A <br> |
 QUALITE_Z|Qualité Z|String||✓||Default: A <br> |
@@ -389,9 +392,11 @@ Import des données vecteurs dans la base de données PostGIS.
 
 | ID | Description | Type | Info | Required | Advanced | Option |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+TYPE|Type d'import|Enum||✓||Values: ASS, AEP <br>|
 APPAREILS|Appareils|VectorLayer||✓||Type:  <br>|
 CANALISATIONS|Canalisations|VectorLayer||✓||Type:  <br>|
 OUVRAGES|Ouvrages|VectorLayer||✓||Type:  <br>|
+REPARATIONS|Réparations|VectorLayer||✓||Type:  <br>|
 
 
 #### Outputs
@@ -415,6 +420,7 @@ OUTPUT_STRING|Message de sortie|String||
 
 | ID | Description | Type | Info | Required | Advanced | Option |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+TYPE|Type d'import|Enum||✓||Values: ASS, AEP <br>|
 SOURCE_HISTORIQUE|Source historique|String||✓||Default: test <br> |
 CODE_CHANTIER|Code Chantier|String||✓||Default: test <br> |
 NETTOYER_AVANT_INSERTION|Nettoyer avant insertion|Boolean||✓||Default: True <br> |
@@ -449,7 +455,7 @@ ADD_AUDIT|Ajouter un audit de suivi des modifications sur les tables ?|Boolean||
 SRID|Projection des géométries|Crs||✓||Default: EPSG:2154 <br> |
 NOM|Nom du gestionnaire|String||✓||Default: Communauté d'Agglomération de Test <br> |
 SIREN|SIREN|String||✓||Default: 123456789 <br> |
-CODE|Nom abbrégé en 3 caractères|String||✓||Default: cat <br> |
+CODE|Nom abrégé en 3 caractères|String||✓||Default: cat <br> |
 
 
 #### Outputs
@@ -465,7 +471,7 @@ OUTPUT_STRING|Message de sortie|String||
 
 ### Mise à jour de la structure de la BDD
 
-Applique les migrations SQL nécéssaires sur la base de données. Cela est à faire lors d'une mise à jour du plugin.
+Applique les migrations SQL nécessaires sur la base de données. Cela est à faire lors d'une mise à jour du plugin.
 
 ![algo_id](./raepa-upgrade_database_structure.png)
 
