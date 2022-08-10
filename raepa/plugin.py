@@ -3,8 +3,9 @@ __license__ = 'GPL version 3'
 __email__ = 'info@3liz.org'
 
 from qgis.core import Qgis, QgsApplication, QgsMessageLog
-from qgis.PyQt.QtCore import Qt
-from qgis.PyQt.QtWidgets import QMessageBox
+from qgis.PyQt.QtCore import Qt, QUrl
+from qgis.PyQt.QtGui import QDesktopServices, QIcon
+from qgis.PyQt.QtWidgets import QAction, QMessageBox
 from qgis.utils import iface
 
 from raepa.actions import (
@@ -19,6 +20,7 @@ from raepa.actions import (
 )
 from raepa.dock import RaepaDock
 from raepa.processing.provider import RaepaProvider
+from raepa.qgis_plugin_tools.tools.resources import resources_path
 
 
 class Raepa:
@@ -26,6 +28,7 @@ class Raepa:
     def __init__(self):
         self.provider = None
         self.dock = None
+        self.help_action = None
 
     def initProcessing(self):
         """Init Processing provider."""
@@ -38,11 +41,24 @@ class Raepa:
         self.dock = RaepaDock()
         iface.addDockWidget(Qt.RightDockWidgetArea, self.dock)
 
+        icon = QIcon(resources_path('icons', 'icon.png'))
+        self.help_action = QAction(icon, 'RAEPA', iface.mainWindow())
+        iface.pluginHelpMenu().addAction(self.help_action)
+        self.help_action.triggered.connect(self.show_help)
+
     def unload(self):
         """Unload the plugin."""
         QgsApplication.processingRegistry().removeProvider(self.provider)
         iface.removeDockWidget(self.dock)
         self.dock.deleteLater()
+
+        iface.pluginHelpMenu().removeAction(self.help_action)
+        del self.help_action
+
+    @staticmethod
+    def show_help():
+        """Open the help web page"""
+        QDesktopServices.openUrl(QUrl("https://docs.3liz.org/qgis-raepa-plugin/"))
 
     @staticmethod
     def run_action(name, *args):

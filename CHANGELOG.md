@@ -4,6 +4,7 @@
 
 * Mise à jour de l'extension pour le rendre compatible QGIS 3.16
 * QGIS 3.16 est désormais la version minimum de l'extension
+* Ajout d'un bouton pour ouvrir l'aide en ligne depuis le menu d'aide de QGIS
 
 ## 0.4.0 - 2021-08-23
 
