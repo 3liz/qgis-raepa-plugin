@@ -118,7 +118,7 @@ jobs:
         consumer_secret: ${{ secrets.TWITTER_CONSUMER_SECRET }}
         access_token_key: ${{ secrets.TWITTER_ACCESS_TOKEN_KEY }}
         access_token_secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
-        tweet_body: "Nouvelle version de l'extension #RAEPA ${{ env.RELEASE_VERSION }} 🚰 pour #QGIS, géostandard Réseaux d’adduction d’eau potable et d’assainissement https://github.com/3liz/qgis-raepa-plugin/releases"
+        tweet_body: "Nouvelle version de l'extension #RAEPA ${{ env.RELEASE_VERSION }} 🚰 pour #QGIS, géostandard Réseaux d’Adduction d’Eau Potable et d’Assainissement https://github.com/3liz/qgis-raepa-plugin/releases"
 
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v1
