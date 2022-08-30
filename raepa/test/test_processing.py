@@ -5,12 +5,11 @@ import processing
 from qgis.core import QgsVectorLayer
 from qgis.testing import unittest
 
-from ..qgis_plugin_tools.tools.resources import plugin_test_data_path
+from raepa.qgis_plugin_tools.tools.resources import plugin_test_data_path
 
 __copyright__ = 'Copyright 2020, 3Liz'
 __license__ = 'GPL version 3'
 __email__ = 'info@3liz.org'
-__revision__ = '$Format:%H$'
 
 
 class TestProcessingWithoutDatabase(unittest.TestCase):

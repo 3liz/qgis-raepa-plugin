@@ -1,26 +1,21 @@
 """Actions."""
 
+from qgis import processing
 from qgis.core import (
-    QgsProject,
-    QgsLineSymbol,
-    QgsFeatureRequest,
     Qgis,
-    QgsProcessingException,
+    QgsFeatureRequest,
+    QgsLineSymbol,
     QgsMessageLog,
+    QgsPointXY,
+    QgsProcessingException,
+    QgsProject,
     QgsReferencedPointXY,
-    QgsPointXY
 )
 from qgis.utils import iface
-
-if Qgis.QGIS_VERSION_INT >= 30800:
-    from qgis import processing
-else:
-    import processing
 
 __copyright__ = 'Copyright 2019, 3Liz'
 __license__ = 'GPL version 3'
 __email__ = 'info@3liz.org'
-__revision__ = '$Format:%H$'
 
 
 def inverser_canalisation(*args):

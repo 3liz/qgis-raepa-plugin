@@ -1,8 +1,8 @@
 """Dock file."""
 from functools import partial
+from webbrowser import open_new
 
 from qgis.PyQt.QtWidgets import QDockWidget, QPushButton
-from webbrowser import open_new
 
 try:
     # QGIS < 3.8
@@ -13,8 +13,7 @@ except ModuleNotFoundError:
     # noinspection PyPep8Naming,PyUnresolvedReferences
     from qgis.processing import execAlgorithmDialog
 
-
-from .qgis_plugin_tools.tools.resources import load_ui
+from raepa.qgis_plugin_tools.tools.resources import load_ui
 
 DOCK_CLASS = load_ui('dock.ui')
 
@@ -22,7 +21,6 @@ DOCK_CLASS = load_ui('dock.ui')
 __copyright__ = 'Copyright 2020, 3Liz'
 __license__ = 'GPL version 3'
 __email__ = 'info@3liz.org'
-__revision__ = '$Format:%H$'
 
 
 class RaepaDock(QDockWidget, DOCK_CLASS):

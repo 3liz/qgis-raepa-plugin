@@ -12,18 +12,19 @@
 __copyright__ = 'Copyright 2020, 3Liz'
 __license__ = 'GPL version 3'
 __email__ = 'info@3liz.org'
-__revision__ = '$Format:%H$'
 
 import os
 
 from qgis.core import (
-    QgsProcessingParameterVectorLayer,
-    QgsProcessingParameterEnum,
-    QgsProcessing,
     QgsMapLayer,
+    QgsProcessing,
+    QgsProcessingParameterEnum,
+    QgsProcessingParameterVectorLayer,
 )
 
-from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
+from raepa.qgis_plugin_tools.tools.algorithm_processing import (
+    BaseProcessingAlgorithm,
+)
 
 
 class AddStyles(BaseProcessingAlgorithm):

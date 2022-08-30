@@ -1,26 +1,27 @@
 """Tests for Processing algorithms."""
 
 import os
-import psycopg2
 import time
 
 import processing
+import psycopg2
 
 from qgis.core import (
     QgsApplication,
-    QgsProcessingException,
     QgsCoordinateReferenceSystem,
+    QgsProcessingException,
 )
 from qgis.testing import unittest
 
-from ..processing.provider import RaepaProvider as ProcessingProvider
-from ..qgis_plugin_tools.tools.database import available_migrations
-from ..qgis_plugin_tools.tools.logger_processing import LoggerProcessingFeedBack
+from raepa.processing.provider import RaepaProvider as ProcessingProvider
+from raepa.qgis_plugin_tools.tools.database import available_migrations
+from raepa.qgis_plugin_tools.tools.logger_processing import (
+    LoggerProcessingFeedBack,
+)
 
 __copyright__ = "Copyright 2020, 3Liz"
 __license__ = "GPL version 3"
 __email__ = "info@3liz.org"
-__revision__ = "$Format:%H$"
 
 SCHEMA = "raepa"
 VERSION = "0.2.0"
@@ -41,7 +42,9 @@ class TestProcessing(unittest.TestCase):
     def test_load_structure_with_migration(self):
         """Test we can load the PostGIS structure with migrations."""
         provider = ProcessingProvider()
-        QgsApplication.processingRegistry().addProvider(provider)
+        registry = QgsApplication.processingRegistry()
+        if not registry.providerById(provider.id()):
+            registry.addProvider(provider)
 
         feedback = LoggerProcessingFeedBack()
         params = {
@@ -55,10 +58,8 @@ class TestProcessing(unittest.TestCase):
 
         os.environ["TEST_DATABASE_INSTALL_{}".format(SCHEMA.upper())] = VERSION
         alg = "{}:create_database_structure".format(provider.id())
-        try:
-            processing_output = processing.run(alg, params, feedback=feedback)
-        except QgsProcessingException as e:
-            self.assertTrue(False, e)
+        processing_output = processing.run(alg, params, feedback=feedback)
+
         del os.environ["TEST_DATABASE_INSTALL_{}".format(SCHEMA.upper())]
 
         self.cursor.execute(
@@ -207,7 +208,9 @@ class TestProcessing(unittest.TestCase):
     def test_load_structure_without_migrations(self):
         """Test we can load the PostGIS structure without migrations."""
         provider = ProcessingProvider()
-        QgsApplication.processingRegistry().addProvider(provider)
+        registry = QgsApplication.processingRegistry()
+        if not registry.providerById(provider.id()):
+            registry.addProvider(provider)
 
         feedback = LoggerProcessingFeedBack()
         self.cursor.execute("SELECT version();")
@@ -292,7 +295,7 @@ class TestProcessing(unittest.TestCase):
 
         expected = (
             "Unable to execute algorithm\nLe schéma raepa existe déjà dans la base de données ! Si vous souhaitez "
-            "réelement supprimer et recréer (et perdre les données existantes), cochez la case \"Écrasement\"."
+            "réellement supprimer et recréer (et perdre les données existantes), cochez la case \"Écrasement\"."
         )
         self.assertEqual(expected, feedback.last, feedback.last)
 

@@ -4,13 +4,12 @@ import os
 
 from qgis.testing import unittest
 
-from ..sql_layer import SqlLayer
-from ..qgis_plugin_tools.tools.resources import plugin_test_data_path
+from raepa.qgis_plugin_tools.tools.resources import plugin_test_data_path
+from raepa.sql_layer import SqlLayer
 
 __copyright__ = 'Copyright 2020, 3Liz'
 __license__ = 'GPL version 3'
 __email__ = 'info@3liz.org'
-__revision__ = '$Format:%H$'
 
 
 class TestSqlLayer(unittest.TestCase):

@@ -13,23 +13,22 @@ __author__ = '3liz'
 __date__ = '2018-12-19'
 __copyright__ = '(C) 2018 by 3liz'
 
-# This will get replaced with a git SHA1 when you do a git archive
-
-__revision__ = '$Format:%H$'
 
 import os
 
+from processing.algs.gdal.GdalUtils import GdalUtils
 from qgis.core import (
+    QgsDataSourceUri,
     QgsProcessingAlgorithm,
     QgsProcessingException,
-    QgsProcessingParameterString,
     QgsProcessingParameterCrs,
-    QgsDataSourceUri,
     QgsProcessingParameterFileDestination,
+    QgsProcessingParameterString,
 )
-from processing.algs.gdal.GdalUtils import GdalUtils
 
-from ...qgis_plugin_tools.tools.algorithm_processing import BaseProcessingAlgorithm
+from raepa.qgis_plugin_tools.tools.algorithm_processing import (
+    BaseProcessingAlgorithm,
+)
 
 
 class ExportPackage(BaseProcessingAlgorithm):
